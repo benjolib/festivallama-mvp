@@ -10,11 +10,19 @@
 		560D0A951B17951100B03090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0A941B17951100B03090 /* main.m */; };
 		560D0A981B17951100B03090 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0A971B17951100B03090 /* AppDelegate.m */; };
 		560D0A9B1B17951100B03090 /* Festivalama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 560D0A991B17951100B03090 /* Festivalama.xcdatamodeld */; };
-		560D0A9E1B17951100B03090 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0A9D1B17951100B03090 /* ViewController.m */; };
 		560D0AA11B17951100B03090 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 560D0A9F1B17951100B03090 /* Main.storyboard */; };
 		560D0AA31B17951100B03090 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 560D0AA21B17951100B03090 /* Images.xcassets */; };
 		560D0AA61B17951100B03090 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560D0AA41B17951100B03090 /* LaunchScreen.xib */; };
 		560D0AB21B17951100B03090 /* FestivalamaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AB11B17951100B03090 /* FestivalamaTests.m */; };
+		560D0AC01B1799E600B03090 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0ABF1B1799E600B03090 /* WelcomeViewController.m */; };
+		560D0AC31B1799FB00B03090 /* StoryboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AC21B1799FB00B03090 /* StoryboardManager.m */; };
+		560D0AC51B179A2100B03090 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0AC41B179A2100B03090 /* CoreData.framework */; };
+		560D0AC71B179A2800B03090 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0AC61B179A2800B03090 /* CoreLocation.framework */; };
+		560D0AC91B179A3000B03090 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0AC81B179A3000B03090 /* AVFoundation.framework */; };
+		560D0ACB1B179A3600B03090 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0ACA1B179A3600B03090 /* CoreGraphics.framework */; };
+		560D0ACD1B179A3D00B03090 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0ACC1B179A3D00B03090 /* QuartzCore.framework */; };
+		560D0AD01B179A6900B03090 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0ACE1B179A6900B03090 /* EventKit.framework */; };
+		560D0AD11B179A6900B03090 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0ACF1B179A6900B03090 /* EventKitUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,14 +42,23 @@
 		560D0A961B17951100B03090 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		560D0A971B17951100B03090 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		560D0A9A1B17951100B03090 /* Festivalama.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Festivalama.xcdatamodel; sourceTree = "<group>"; };
-		560D0A9C1B17951100B03090 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		560D0A9D1B17951100B03090 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		560D0AA01B17951100B03090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		560D0AA21B17951100B03090 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		560D0AA51B17951100B03090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		560D0AAB1B17951100B03090 /* FestivalamaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FestivalamaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		560D0AB01B17951100B03090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		560D0AB11B17951100B03090 /* FestivalamaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FestivalamaTests.m; sourceTree = "<group>"; };
+		560D0ABE1B1799E600B03090 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = viewControllers/WelcomeViewController.h; sourceTree = "<group>"; };
+		560D0ABF1B1799E600B03090 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = viewControllers/WelcomeViewController.m; sourceTree = "<group>"; };
+		560D0AC11B1799FB00B03090 /* StoryboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryboardManager.h; path = storyboard/StoryboardManager.h; sourceTree = "<group>"; };
+		560D0AC21B1799FB00B03090 /* StoryboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryboardManager.m; path = storyboard/StoryboardManager.m; sourceTree = "<group>"; };
+		560D0AC41B179A2100B03090 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		560D0AC61B179A2800B03090 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		560D0AC81B179A3000B03090 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		560D0ACA1B179A3600B03090 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		560D0ACC1B179A3D00B03090 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		560D0ACE1B179A6900B03090 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		560D0ACF1B179A6900B03090 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +66,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				560D0AD01B179A6900B03090 /* EventKit.framework in Frameworks */,
+				560D0AD11B179A6900B03090 /* EventKitUI.framework in Frameworks */,
+				560D0ACD1B179A3D00B03090 /* QuartzCore.framework in Frameworks */,
+				560D0ACB1B179A3600B03090 /* CoreGraphics.framework in Frameworks */,
+				560D0AC91B179A3000B03090 /* AVFoundation.framework in Frameworks */,
+				560D0AC71B179A2800B03090 /* CoreLocation.framework in Frameworks */,
+				560D0AC51B179A2100B03090 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +89,13 @@
 		560D0A861B17951100B03090 = {
 			isa = PBXGroup;
 			children = (
+				560D0ACE1B179A6900B03090 /* EventKit.framework */,
+				560D0ACF1B179A6900B03090 /* EventKitUI.framework */,
+				560D0ACC1B179A3D00B03090 /* QuartzCore.framework */,
+				560D0ACA1B179A3600B03090 /* CoreGraphics.framework */,
+				560D0AC81B179A3000B03090 /* AVFoundation.framework */,
+				560D0AC61B179A2800B03090 /* CoreLocation.framework */,
+				560D0AC41B179A2100B03090 /* CoreData.framework */,
 				560D0A911B17951100B03090 /* Festivalama */,
 				560D0AAE1B17951100B03090 /* FestivalamaTests */,
 				560D0A901B17951100B03090 /* Products */,
@@ -96,6 +127,7 @@
 		560D0A921B17951100B03090 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				560D0AA41B17951100B03090 /* LaunchScreen.xib */,
 				560D0AA21B17951100B03090 /* Images.xcassets */,
 				560D0A931B17951100B03090 /* Info.plist */,
 				560D0A941B17951100B03090 /* main.m */,
@@ -123,8 +155,9 @@
 		560D0ABB1B17952100B03090 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				560D0AA41B17951100B03090 /* LaunchScreen.xib */,
 				560D0A9F1B17951100B03090 /* Main.storyboard */,
+				560D0AC11B1799FB00B03090 /* StoryboardManager.h */,
+				560D0AC21B1799FB00B03090 /* StoryboardManager.m */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -140,8 +173,8 @@
 		560D0ABD1B17953500B03090 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				560D0A9C1B17951100B03090 /* ViewController.h */,
-				560D0A9D1B17951100B03090 /* ViewController.m */,
+				560D0ABE1B1799E600B03090 /* WelcomeViewController.h */,
+				560D0ABF1B1799E600B03090 /* WelcomeViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -246,9 +279,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				560D0AC01B1799E600B03090 /* WelcomeViewController.m in Sources */,
+				560D0AC31B1799FB00B03090 /* StoryboardManager.m in Sources */,
 				560D0A981B17951100B03090 /* AppDelegate.m in Sources */,
 				560D0A9B1B17951100B03090 /* Festivalama.xcdatamodeld in Sources */,
-				560D0A9E1B17951100B03090 /* ViewController.m in Sources */,
 				560D0A951B17951100B03090 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
