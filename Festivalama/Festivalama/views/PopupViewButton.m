@@ -7,15 +7,34 @@
 //
 
 #import "PopupViewButton.h"
+#import "UIColor+AppColors.h"
 
 @implementation PopupViewButton
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
+    self.layer.cornerRadius = 17;
 }
-*/
+
+- (void)setupAsConfirmButton
+{
+    self.backgroundColor = [UIColor globalGreenColor];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.4] forState:UIControlStateHighlighted];
+
+    self.layer.borderWidth = 0.0;
+}
+
+- (void)setupAsCancelButton
+{
+    self.backgroundColor = [UIColor whiteColor];
+    [self setTitleColor:[UIColor globalGreenColor] forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor globalGreenColorWithAlpha:0.4] forState:UIControlStateHighlighted];
+
+    self.layer.borderColor = [UIColor globalGreenColor].CGColor;
+    self.layer.borderWidth = 1.0;
+}
 
 @end

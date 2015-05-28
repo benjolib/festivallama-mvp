@@ -10,4 +10,7 @@
 
 @interface PopupViewButton : UIButton
 
+- (void)setupAsConfirmButton;
+- (void)setupAsCancelButton;
+
 @end
