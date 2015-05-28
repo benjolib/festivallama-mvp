@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "GenreDownloadClient.h"
 
 @interface GenreListTest : XCTestCase
-
+@property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
 @end
 
 @implementation GenreListTest
@@ -25,16 +26,38 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
+//- (void)testExample {
+//    // This is an example of a functional test case.
+//    XCTAssert(YES, @"Pass");
+//}
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+- (void)testGenreListing
+{
+    XCTestExpectation *downloadingExpectation = [self expectationWithDescription:@"downloading genres"];
+
+    self.genreDownloadClient = [GenreDownloadClient new];
+    [self.genreDownloadClient downloadAllGenresWithCompletionBlock:^(NSArray *sortedGenres, NSString *errorMessage, BOOL completed) {
+        XCTAssert(completed);
+
+        if (completed) {
+            [downloadingExpectation fulfill];
+        } else {
+
+        }
+    }];
+
+    [self waitForExpectationsWithTimeout:6.0 handler:^(NSError *error) {
+        if (error) {
+
+        }
     }];
 }
+
+//- (void)testPerformanceExample {
+//    // This is an example of a performance test case.
+//    [self measureBlock:^{
+//        // Put the code you want to measure the time of here.
+//    }];
+//}
 
 @end
