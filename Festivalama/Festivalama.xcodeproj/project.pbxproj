@@ -23,6 +23,11 @@
 		560D0ACD1B179A3D00B03090 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0ACC1B179A3D00B03090 /* QuartzCore.framework */; };
 		560D0AD01B179A6900B03090 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0ACE1B179A6900B03090 /* EventKit.framework */; };
 		560D0AD11B179A6900B03090 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 560D0ACF1B179A6900B03090 /* EventKitUI.framework */; };
+		560D0AD61B179CAA00B03090 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AD51B179CAA00B03090 /* PopupView.m */; };
+		560D0AD81B179CB500B03090 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560D0AD71B179CB500B03090 /* PopupView.xib */; };
+		560D0ADB1B179F0100B03090 /* PopupViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0ADA1B179F0100B03090 /* PopupViewButton.m */; };
+		560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0ADE1B179FBA00B03090 /* UIColor+AppColors.m */; };
+		560D0AE21B17BD9200B03090 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AE11B17BD9200B03090 /* LocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +64,15 @@
 		560D0ACC1B179A3D00B03090 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		560D0ACE1B179A6900B03090 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		560D0ACF1B179A6900B03090 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		560D0AD41B179CAA00B03090 /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupView.h; path = views/PopupView.h; sourceTree = "<group>"; };
+		560D0AD51B179CAA00B03090 /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopupView.m; path = views/PopupView.m; sourceTree = "<group>"; };
+		560D0AD71B179CB500B03090 /* PopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PopupView.xib; path = views/PopupView.xib; sourceTree = "<group>"; };
+		560D0AD91B179F0100B03090 /* PopupViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopupViewButton.h; path = views/PopupViewButton.h; sourceTree = "<group>"; };
+		560D0ADA1B179F0100B03090 /* PopupViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopupViewButton.m; path = views/PopupViewButton.m; sourceTree = "<group>"; };
+		560D0ADD1B179FBA00B03090 /* UIColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+AppColors.h"; path = "custom objects/UIColor+AppColors.h"; sourceTree = "<group>"; };
+		560D0ADE1B179FBA00B03090 /* UIColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+AppColors.m"; path = "custom objects/UIColor+AppColors.m"; sourceTree = "<group>"; };
+		560D0AE01B17BD9200B03090 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = "custom objects/LocationManager.h"; sourceTree = "<group>"; };
+		560D0AE11B17BD9200B03090 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = "custom objects/LocationManager.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,15 +103,9 @@
 		560D0A861B17951100B03090 = {
 			isa = PBXGroup;
 			children = (
-				560D0ACE1B179A6900B03090 /* EventKit.framework */,
-				560D0ACF1B179A6900B03090 /* EventKitUI.framework */,
-				560D0ACC1B179A3D00B03090 /* QuartzCore.framework */,
-				560D0ACA1B179A3600B03090 /* CoreGraphics.framework */,
-				560D0AC81B179A3000B03090 /* AVFoundation.framework */,
-				560D0AC61B179A2800B03090 /* CoreLocation.framework */,
-				560D0AC41B179A2100B03090 /* CoreData.framework */,
 				560D0A911B17951100B03090 /* Festivalama */,
 				560D0AAE1B17951100B03090 /* FestivalamaTests */,
+				560D0AD21B179AAF00B03090 /* Frameworks */,
 				560D0A901B17951100B03090 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,6 +124,8 @@
 			children = (
 				560D0A961B17951100B03090 /* AppDelegate.h */,
 				560D0A971B17951100B03090 /* AppDelegate.m */,
+				560D0ADC1B179FA500B03090 /* Object */,
+				560D0AD31B179BAD00B03090 /* Views */,
 				560D0ABD1B17953500B03090 /* ViewControllers */,
 				560D0ABB1B17952100B03090 /* Storyboard */,
 				560D0ABC1B17952D00B03090 /* Core data */,
@@ -177,6 +187,51 @@
 				560D0ABF1B1799E600B03090 /* WelcomeViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		560D0AD21B179AAF00B03090 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				560D0ACE1B179A6900B03090 /* EventKit.framework */,
+				560D0ACF1B179A6900B03090 /* EventKitUI.framework */,
+				560D0ACC1B179A3D00B03090 /* QuartzCore.framework */,
+				560D0ACA1B179A3600B03090 /* CoreGraphics.framework */,
+				560D0AC81B179A3000B03090 /* AVFoundation.framework */,
+				560D0AC61B179A2800B03090 /* CoreLocation.framework */,
+				560D0AC41B179A2100B03090 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		560D0AD31B179BAD00B03090 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				560D0AD41B179CAA00B03090 /* PopupView.h */,
+				560D0AD51B179CAA00B03090 /* PopupView.m */,
+				560D0AD71B179CB500B03090 /* PopupView.xib */,
+				560D0AD91B179F0100B03090 /* PopupViewButton.h */,
+				560D0ADA1B179F0100B03090 /* PopupViewButton.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		560D0ADC1B179FA500B03090 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				560D0AE31B17BD9900B03090 /* Categories */,
+				560D0AE01B17BD9200B03090 /* LocationManager.h */,
+				560D0AE11B17BD9200B03090 /* LocationManager.m */,
+			);
+			name = Object;
+			sourceTree = "<group>";
+		};
+		560D0AE31B17BD9900B03090 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				560D0ADD1B179FBA00B03090 /* UIColor+AppColors.h */,
+				560D0ADE1B179FBA00B03090 /* UIColor+AppColors.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				560D0AA11B17951100B03090 /* Main.storyboard in Resources */,
+				560D0AD81B179CB500B03090 /* PopupView.xib in Resources */,
 				560D0AA61B17951100B03090 /* LaunchScreen.xib in Resources */,
 				560D0AA31B17951100B03090 /* Images.xcassets in Resources */,
 			);
@@ -280,10 +336,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				560D0AC01B1799E600B03090 /* WelcomeViewController.m in Sources */,
+				560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */,
 				560D0AC31B1799FB00B03090 /* StoryboardManager.m in Sources */,
+				560D0AE21B17BD9200B03090 /* LocationManager.m in Sources */,
 				560D0A981B17951100B03090 /* AppDelegate.m in Sources */,
+				560D0AD61B179CAA00B03090 /* PopupView.m in Sources */,
 				560D0A9B1B17951100B03090 /* Festivalama.xcdatamodeld in Sources */,
 				560D0A951B17951100B03090 /* main.m in Sources */,
+				560D0ADB1B179F0100B03090 /* PopupViewButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
