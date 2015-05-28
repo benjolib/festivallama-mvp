@@ -10,4 +10,7 @@
 
 @interface UIColor (AppColors)
 
++ (UIColor*)globalGreenColor;
++ (UIColor*)globalGreenColorWithAlpha:(CGFloat)alpha;
+
 @end
