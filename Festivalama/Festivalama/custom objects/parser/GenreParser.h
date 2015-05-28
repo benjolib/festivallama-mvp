@@ -10,4 +10,6 @@
 
 @interface GenreParser : NSObject
 
+- (NSArray*)parseJSONData:(NSData*)data;
+
 @end
