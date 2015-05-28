@@ -28,6 +28,11 @@
 		560D0ADB1B179F0100B03090 /* PopupViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0ADA1B179F0100B03090 /* PopupViewButton.m */; };
 		560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0ADE1B179FBA00B03090 /* UIColor+AppColors.m */; };
 		560D0AE21B17BD9200B03090 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AE11B17BD9200B03090 /* LocationManager.m */; };
+		560D0AE71B17C0B300B03090 /* AbstractClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AE61B17C0B300B03090 /* AbstractClient.m */; };
+		560D0AEA1B17C0D200B03090 /* GenreDownloadClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AE91B17C0D200B03090 /* GenreDownloadClient.m */; };
+		560D0AF01B17C35D00B03090 /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AEF1B17C35D00B03090 /* Genre.m */; };
+		560D0AF31B17C3E600B03090 /* GenreParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AF21B17C3E600B03090 /* GenreParser.m */; };
+		560D0AF51B17C4E100B03090 /* GenreListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AF41B17C4E100B03090 /* GenreListTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +78,16 @@
 		560D0ADE1B179FBA00B03090 /* UIColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+AppColors.m"; path = "custom objects/UIColor+AppColors.m"; sourceTree = "<group>"; };
 		560D0AE01B17BD9200B03090 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = "custom objects/LocationManager.h"; sourceTree = "<group>"; };
 		560D0AE11B17BD9200B03090 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = "custom objects/LocationManager.m"; sourceTree = "<group>"; };
+		560D0AE51B17C0B300B03090 /* AbstractClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractClient.h; path = "custom objects/AbstractClient.h"; sourceTree = "<group>"; };
+		560D0AE61B17C0B300B03090 /* AbstractClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractClient.m; path = "custom objects/AbstractClient.m"; sourceTree = "<group>"; };
+		560D0AE81B17C0D200B03090 /* GenreDownloadClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenreDownloadClient.h; path = "custom objects/networking/GenreDownloadClient.h"; sourceTree = "<group>"; };
+		560D0AE91B17C0D200B03090 /* GenreDownloadClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenreDownloadClient.m; path = "custom objects/networking/GenreDownloadClient.m"; sourceTree = "<group>"; };
+		560D0AEB1B17C11800B03090 /* NetworkConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NetworkConstants.h; path = "custom objects/networking/NetworkConstants.h"; sourceTree = "<group>"; };
+		560D0AEE1B17C35D00B03090 /* Genre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Genre.h; path = "custom objects/Datamodel/Genre.h"; sourceTree = "<group>"; };
+		560D0AEF1B17C35D00B03090 /* Genre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Genre.m; path = "custom objects/Datamodel/Genre.m"; sourceTree = "<group>"; };
+		560D0AF11B17C3E600B03090 /* GenreParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenreParser.h; path = "custom objects/parser/GenreParser.h"; sourceTree = "<group>"; };
+		560D0AF21B17C3E600B03090 /* GenreParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenreParser.m; path = "custom objects/parser/GenreParser.m"; sourceTree = "<group>"; };
+		560D0AF41B17C4E100B03090 /* GenreListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenreListTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				560D0AB11B17951100B03090 /* FestivalamaTests.m */,
+				560D0AF41B17C4E100B03090 /* GenreListTest.m */,
 				560D0AAF1B17951100B03090 /* Supporting Files */,
 			);
 			path = FestivalamaTests;
@@ -218,6 +234,7 @@
 		560D0ADC1B179FA500B03090 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				560D0AE41B17C0A300B03090 /* Networking */,
 				560D0AE31B17BD9900B03090 /* Categories */,
 				560D0AE01B17BD9200B03090 /* LocationManager.h */,
 				560D0AE11B17BD9200B03090 /* LocationManager.m */,
@@ -232,6 +249,38 @@
 				560D0ADE1B179FBA00B03090 /* UIColor+AppColors.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		560D0AE41B17C0A300B03090 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				560D0AED1B17C34B00B03090 /* Model */,
+				560D0AEC1B17C32700B03090 /* Parsers */,
+				560D0AE51B17C0B300B03090 /* AbstractClient.h */,
+				560D0AE61B17C0B300B03090 /* AbstractClient.m */,
+				560D0AE81B17C0D200B03090 /* GenreDownloadClient.h */,
+				560D0AE91B17C0D200B03090 /* GenreDownloadClient.m */,
+				560D0AEB1B17C11800B03090 /* NetworkConstants.h */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		560D0AEC1B17C32700B03090 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				560D0AF11B17C3E600B03090 /* GenreParser.h */,
+				560D0AF21B17C3E600B03090 /* GenreParser.m */,
+			);
+			name = Parsers;
+			sourceTree = "<group>";
+		};
+		560D0AED1B17C34B00B03090 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				560D0AEE1B17C35D00B03090 /* Genre.h */,
+				560D0AEF1B17C35D00B03090 /* Genre.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,11 +386,15 @@
 			files = (
 				560D0AC01B1799E600B03090 /* WelcomeViewController.m in Sources */,
 				560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */,
+				560D0AE71B17C0B300B03090 /* AbstractClient.m in Sources */,
+				560D0AF01B17C35D00B03090 /* Genre.m in Sources */,
 				560D0AC31B1799FB00B03090 /* StoryboardManager.m in Sources */,
 				560D0AE21B17BD9200B03090 /* LocationManager.m in Sources */,
 				560D0A981B17951100B03090 /* AppDelegate.m in Sources */,
+				560D0AEA1B17C0D200B03090 /* GenreDownloadClient.m in Sources */,
 				560D0AD61B179CAA00B03090 /* PopupView.m in Sources */,
 				560D0A9B1B17951100B03090 /* Festivalama.xcdatamodeld in Sources */,
+				560D0AF31B17C3E600B03090 /* GenreParser.m in Sources */,
 				560D0A951B17951100B03090 /* main.m in Sources */,
 				560D0ADB1B179F0100B03090 /* PopupViewButton.m in Sources */,
 			);
@@ -352,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				560D0AB21B17951100B03090 /* FestivalamaTests.m in Sources */,
+				560D0AF51B17C4E100B03090 /* GenreListTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
