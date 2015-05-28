@@ -10,4 +10,8 @@
 
 @interface Genre : NSObject
 
+@property (nonatomic, copy) NSString *name;
+
++ (Genre*)genreWithName:(NSString*)name;
+
 @end

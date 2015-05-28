@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "NetworkConstants.h"
 
 @interface AbstractClient : NSObject
+
+- (NSURLSessionConfiguration*)defaultSessionConfiguration;
+
+- (NSURLSessionDataTask*)dataTaskWithRequest:(NSURLRequest*)request forSession:(NSURLSession*)session withCompletionBlock:(void (^)(NSData *data, NSString *errorMessage, BOOL completed))completionBlock;
+- (BOOL)startSessionTask:(NSURLSessionDataTask*)task;
 
 @end
