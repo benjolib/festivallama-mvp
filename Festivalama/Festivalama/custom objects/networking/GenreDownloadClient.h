@@ -10,4 +10,6 @@
 
 @interface GenreDownloadClient : AbstractClient
 
+- (void)downloadAllGenresWithCompletionBlock:(void (^)(NSArray *sortedGenres, NSString *errorMessage, BOOL completed))completionBlock;
+
 @end

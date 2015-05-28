@@ -9,5 +9,8 @@
 #ifndef Festivalama_NetworkConstants_h
 #define Festivalama_NetworkConstants_h
 
+static NSString * const kBaseURL = @"http://api-eventim.makers.do/festivals/";
+
+static NSString * const kGenresList = @"genre/list";
 
 #endif
