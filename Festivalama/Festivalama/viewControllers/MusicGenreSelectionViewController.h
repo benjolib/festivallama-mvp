@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MusicGenreSelectionViewController : UIViewController
+@class ContinueButton;
+
+@interface MusicGenreSelectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet ContinueButton *continueButton;
+
+@property (nonatomic, strong) NSArray *allGenresArray;
+@property (nonatomic, strong, readonly) NSMutableArray *selectedGenresArray;
 
 @end
