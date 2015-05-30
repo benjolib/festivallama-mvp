@@ -23,4 +23,14 @@
     return RGBA(122.0, 168.0, 110.0, alpha);
 }
 
++ (UIColor*)globalOrangeColor
+{
+    return RGB(225.0, 176.0, 104.0);
+}
+
+- (UIColor*)lighterColorWithAlpha:(CGFloat)alpha
+{
+    return [self colorWithAlphaComponent:alpha];
+}
+
 @end

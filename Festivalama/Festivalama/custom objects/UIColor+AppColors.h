@@ -13,4 +13,8 @@
 + (UIColor*)globalGreenColor;
 + (UIColor*)globalGreenColorWithAlpha:(CGFloat)alpha;
 
+- (UIColor*)lighterColorWithAlpha:(CGFloat)alpha;
+
++ (UIColor*)globalOrangeColor;
+
 @end
