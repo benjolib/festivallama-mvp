@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface LocationManager : NSObject
+@interface LocationManager : NSObject 
+
+- (void)startLocationDiscoveryWithCompletionBlock:(void(^)(CLLocation *userLocation, NSString *errorMessage))completionBlock;
+- (void)stopLocationDiscovery;
 
 @end

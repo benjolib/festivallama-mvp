@@ -33,6 +33,11 @@
 		560D0AF01B17C35D00B03090 /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AEF1B17C35D00B03090 /* Genre.m */; };
 		560D0AF31B17C3E600B03090 /* GenreParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AF21B17C3E600B03090 /* GenreParser.m */; };
 		560D0AF51B17C4E100B03090 /* GenreListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AF41B17C4E100B03090 /* GenreListTest.m */; };
+		56D05A3C1B19D3980031F2A2 /* QuestionsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A3B1B19D3980031F2A2 /* QuestionsContainerViewController.m */; };
+		56D05A401B19D43D0031F2A2 /* OnboardingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A3F1B19D43D0031F2A2 /* OnboardingModel.m */; };
+		56D05A431B19D9740031F2A2 /* MusicGenreSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A421B19D9740031F2A2 /* MusicGenreSelectionViewController.m */; };
+		56D05A461B19D9CD0031F2A2 /* ContinueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A451B19D9CD0031F2A2 /* ContinueButton.m */; };
+		56D05A491B19DBE00031F2A2 /* SelectionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A481B19DBE00031F2A2 /* SelectionCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +93,16 @@
 		560D0AF11B17C3E600B03090 /* GenreParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenreParser.h; path = "custom objects/parser/GenreParser.h"; sourceTree = "<group>"; };
 		560D0AF21B17C3E600B03090 /* GenreParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenreParser.m; path = "custom objects/parser/GenreParser.m"; sourceTree = "<group>"; };
 		560D0AF41B17C4E100B03090 /* GenreListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenreListTest.m; sourceTree = "<group>"; };
+		56D05A3A1B19D3980031F2A2 /* QuestionsContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionsContainerViewController.h; path = viewControllers/QuestionsContainerViewController.h; sourceTree = "<group>"; };
+		56D05A3B1B19D3980031F2A2 /* QuestionsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsContainerViewController.m; path = viewControllers/QuestionsContainerViewController.m; sourceTree = "<group>"; };
+		56D05A3E1B19D43D0031F2A2 /* OnboardingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingModel.h; path = "custom objects/Datamodel/OnboardingModel.h"; sourceTree = "<group>"; };
+		56D05A3F1B19D43D0031F2A2 /* OnboardingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingModel.m; path = "custom objects/Datamodel/OnboardingModel.m"; sourceTree = "<group>"; };
+		56D05A411B19D9740031F2A2 /* MusicGenreSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MusicGenreSelectionViewController.h; path = viewControllers/MusicGenreSelectionViewController.h; sourceTree = "<group>"; };
+		56D05A421B19D9740031F2A2 /* MusicGenreSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MusicGenreSelectionViewController.m; path = viewControllers/MusicGenreSelectionViewController.m; sourceTree = "<group>"; };
+		56D05A441B19D9CD0031F2A2 /* ContinueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContinueButton.h; path = views/ContinueButton.h; sourceTree = "<group>"; };
+		56D05A451B19D9CD0031F2A2 /* ContinueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContinueButton.m; path = views/ContinueButton.m; sourceTree = "<group>"; };
+		56D05A471B19DBE00031F2A2 /* SelectionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectionCollectionViewCell.h; path = views/SelectionCollectionViewCell.h; sourceTree = "<group>"; };
+		56D05A481B19DBE00031F2A2 /* SelectionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectionCollectionViewCell.m; path = views/SelectionCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +154,7 @@
 			children = (
 				560D0A961B17951100B03090 /* AppDelegate.h */,
 				560D0A971B17951100B03090 /* AppDelegate.m */,
+				56D05A3D1B19D4180031F2A2 /* DataModels */,
 				560D0ADC1B179FA500B03090 /* Object */,
 				560D0AD31B179BAD00B03090 /* Views */,
 				560D0ABD1B17953500B03090 /* ViewControllers */,
@@ -199,6 +215,7 @@
 		560D0ABD1B17953500B03090 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				56D05A391B19D37E0031F2A2 /* Welcome Question views */,
 				560D0ABE1B1799E600B03090 /* WelcomeViewController.h */,
 				560D0ABF1B1799E600B03090 /* WelcomeViewController.m */,
 			);
@@ -227,6 +244,10 @@
 				560D0AD71B179CB500B03090 /* PopupView.xib */,
 				560D0AD91B179F0100B03090 /* PopupViewButton.h */,
 				560D0ADA1B179F0100B03090 /* PopupViewButton.m */,
+				56D05A441B19D9CD0031F2A2 /* ContinueButton.h */,
+				56D05A451B19D9CD0031F2A2 /* ContinueButton.m */,
+				56D05A471B19DBE00031F2A2 /* SelectionCollectionViewCell.h */,
+				56D05A481B19DBE00031F2A2 /* SelectionCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -234,10 +255,10 @@
 		560D0ADC1B179FA500B03090 /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				560D0AE41B17C0A300B03090 /* Networking */,
-				560D0AE31B17BD9900B03090 /* Categories */,
 				560D0AE01B17BD9200B03090 /* LocationManager.h */,
 				560D0AE11B17BD9200B03090 /* LocationManager.m */,
+				560D0AE41B17C0A300B03090 /* Networking */,
+				560D0AE31B17BD9900B03090 /* Categories */,
 			);
 			name = Object;
 			sourceTree = "<group>";
@@ -254,7 +275,6 @@
 		560D0AE41B17C0A300B03090 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				560D0AED1B17C34B00B03090 /* Model */,
 				560D0AEC1B17C32700B03090 /* Parsers */,
 				560D0AE51B17C0B300B03090 /* AbstractClient.h */,
 				560D0AE61B17C0B300B03090 /* AbstractClient.m */,
@@ -274,13 +294,26 @@
 			name = Parsers;
 			sourceTree = "<group>";
 		};
-		560D0AED1B17C34B00B03090 /* Model */ = {
+		56D05A391B19D37E0031F2A2 /* Welcome Question views */ = {
+			isa = PBXGroup;
+			children = (
+				56D05A3A1B19D3980031F2A2 /* QuestionsContainerViewController.h */,
+				56D05A3B1B19D3980031F2A2 /* QuestionsContainerViewController.m */,
+				56D05A411B19D9740031F2A2 /* MusicGenreSelectionViewController.h */,
+				56D05A421B19D9740031F2A2 /* MusicGenreSelectionViewController.m */,
+			);
+			name = "Welcome Question views";
+			sourceTree = "<group>";
+		};
+		56D05A3D1B19D4180031F2A2 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
 				560D0AEE1B17C35D00B03090 /* Genre.h */,
 				560D0AEF1B17C35D00B03090 /* Genre.m */,
+				56D05A3E1B19D43D0031F2A2 /* OnboardingModel.h */,
+				56D05A3F1B19D43D0031F2A2 /* OnboardingModel.m */,
 			);
-			name = Model;
+			name = DataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,17 +417,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D05A3C1B19D3980031F2A2 /* QuestionsContainerViewController.m in Sources */,
 				560D0AC01B1799E600B03090 /* WelcomeViewController.m in Sources */,
 				560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */,
 				560D0AE71B17C0B300B03090 /* AbstractClient.m in Sources */,
+				56D05A461B19D9CD0031F2A2 /* ContinueButton.m in Sources */,
 				560D0AF01B17C35D00B03090 /* Genre.m in Sources */,
 				560D0AC31B1799FB00B03090 /* StoryboardManager.m in Sources */,
 				560D0AE21B17BD9200B03090 /* LocationManager.m in Sources */,
 				560D0A981B17951100B03090 /* AppDelegate.m in Sources */,
+				56D05A401B19D43D0031F2A2 /* OnboardingModel.m in Sources */,
 				560D0AEA1B17C0D200B03090 /* GenreDownloadClient.m in Sources */,
 				560D0AD61B179CAA00B03090 /* PopupView.m in Sources */,
 				560D0A9B1B17951100B03090 /* Festivalama.xcdatamodeld in Sources */,
+				56D05A491B19DBE00031F2A2 /* SelectionCollectionViewCell.m in Sources */,
 				560D0AF31B17C3E600B03090 /* GenreParser.m in Sources */,
+				56D05A431B19D9740031F2A2 /* MusicGenreSelectionViewController.m in Sources */,
 				560D0A951B17951100B03090 /* main.m in Sources */,
 				560D0ADB1B179F0100B03090 /* PopupViewButton.m in Sources */,
 			);
@@ -594,6 +632,7 @@
 				560D0AB71B17951100B03090 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		560D0AB81B17951100B03090 /* Build configuration list for PBXNativeTarget "FestivalamaTests" */ = {
 			isa = XCConfigurationList;
@@ -602,6 +641,7 @@
 				560D0ABA1B17951100B03090 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
