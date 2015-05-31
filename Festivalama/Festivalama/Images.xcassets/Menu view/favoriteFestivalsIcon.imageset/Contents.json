@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "orangeArrow.png"
+      "filename" : "favoriteFestivalsIcon.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "orangeArrow@2x.png"
+      "filename" : "favoriteFestivalsIcon@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "orangeArrow@3x.png"
+      "filename" : "favoriteFestivalsIcon@3x.png"
     }
   ],
   "info" : {
