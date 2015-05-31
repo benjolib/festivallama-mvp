@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class MenuButton;
+
 @interface MenuViewController : UIViewController
+
+@property (nonatomic, weak) IBOutlet MenuButton *festivalButton;
+@property (nonatomic, weak) IBOutlet MenuButton *favoriteFestivalButton;
+@property (nonatomic, weak) IBOutlet MenuButton *calendarButton;
+@property (nonatomic, weak) IBOutlet UIButton *infoButton;
 
 @end

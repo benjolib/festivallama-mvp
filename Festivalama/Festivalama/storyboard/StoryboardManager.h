@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@class MenuViewController;
 
 @interface StoryboardManager : NSObject
+
++ (UIStoryboard*)mainStoryboard;
+
++ (MenuViewController*)menuViewController;
 
 @end

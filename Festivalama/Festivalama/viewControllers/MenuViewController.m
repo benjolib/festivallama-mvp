@@ -9,29 +9,45 @@
 #import "MenuViewController.h"
 
 @interface MenuViewController ()
-
+@property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 @end
 
 @implementation MenuViewController
 
-- (void)viewDidLoad {
+- (void)updateCalendarButton
+{
+
+}
+
+#pragma mark - tapRecognizer
+- (void)addRecognizer
+{
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    self.tapRecognizer.numberOfTapsRequired = 1.0;
+    [self.view addGestureRecognizer:self.tapRecognizer];
+}
+
+- (void)viewTapped:(UITapGestureRecognizer*)taprecognizer
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self updateCalendarButton];
+    [self addRecognizer];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
-*/
 
 @end

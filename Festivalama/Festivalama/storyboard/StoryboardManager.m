@@ -10,4 +10,14 @@
 
 @implementation StoryboardManager
 
++ (UIStoryboard*)mainStoryboard
+{
+    return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+}
+
++ (MenuViewController*)menuViewController
+{
+   return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"MenuViewController"];
+}
+
 @end
