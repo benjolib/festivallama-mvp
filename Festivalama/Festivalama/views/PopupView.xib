@@ -84,7 +84,7 @@ Festival-Kalender.</string>
                         <constraint firstAttribute="trailing" secondItem="iv5-1t-Sr9" secondAttribute="trailing" constant="10" id="zR2-3e-Zyk"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YGO-s8-RRa">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconLocation" translatesAutoresizingMaskIntoConstraints="NO" id="YGO-s8-RRa">
                     <rect key="frame" x="119" y="0.0" width="82" height="82"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="82" id="2uJ-Fj-ILq"/>
@@ -112,9 +112,12 @@ Festival-Kalender.</string>
                 <outlet property="textLabelHeightConstraint" destination="3HB-UB-eUv" id="eGN-ks-IIk"/>
                 <outlet property="titleLabel" destination="iv5-1t-Sr9" id="WeJ-I1-i91"/>
             </connections>
-            <point key="canvasLocation" x="333" y="353.5"/>
+            <point key="canvasLocation" x="388" y="209.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="iconLocation" width="86" height="86"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

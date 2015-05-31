@@ -10,4 +10,6 @@
 
 @interface QuestionsContainerViewController : UIViewController
 
+@property (nonatomic, strong) NSArray *genresArray;
+
 @end

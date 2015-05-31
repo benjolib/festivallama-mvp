@@ -43,7 +43,8 @@
 {
     Genre *genre = [self genreAtIndexPath:indexPath];
     if ([self.selectedGenresArray containsObject:genre]) {
-        return;
+        [self.selectedGenresArray removeObject:genre];
+        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
     } else {
         [self.selectedGenresArray addObject:genre];
         [collectionView reloadItemsAtIndexPaths:@[indexPath]];
@@ -61,12 +62,12 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0.0, 10.0, 20.0, 10.0);
+    return UIEdgeInsetsMake(0.0, 20.0, 0.0, 20.0);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(CGRectGetWidth(collectionView.frame) / 2, 60.0);
+    return CGSizeMake((CGRectGetWidth(collectionView.frame) / 2) - 30, 60.0);
 }
 
 #pragma mark - view methods
@@ -74,6 +75,8 @@
 {
     [super viewDidLoad];
     self.selectedGenresArray = [NSMutableArray array];
+
+    self.titleLabel.text = @"Welche Musik hörst du auf einem Festival? (1/2)";
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +89,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 @end

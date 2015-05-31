@@ -11,7 +11,7 @@
 @interface SelectionCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet UIView *backgroundView;
+@property (nonatomic, weak) IBOutlet UIView *cellBackgroundView;
 
 + (NSString*)cellIdentifier;
 

@@ -15,12 +15,8 @@
 {
     [super awakeFromNib];
 
-    [self setTitleColor:[UIColor globalOrangeColor] forState:UIControlStateNormal];
-    [self setTitleColor:[[UIColor globalOrangeColor] lighterColorWithAlpha:0.6]
-               forState:UIControlStateHighlighted];
-
+    self.imageView.tintColor = [UIColor globalOrangeColor];
     self.backgroundColor = [UIColor whiteColor];
-    self.imageView.image = [UIImage imageNamed:@"continueButtonArrow"];
 }
 
 - (void)layoutSubviews
@@ -28,8 +24,20 @@
     [super layoutSubviews];
 
     CGRect iconFrame = self.imageView.frame;
-    iconFrame.origin.x = CGRectGetWidth(self.frame) - 30.0;
+    iconFrame.origin.x = CGRectGetWidth(self.frame) - 20.0;
     self.imageView.frame = iconFrame;
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    if (highlighted) {
+        UIColor *highLightColor = [[UIColor globalOrangeColor] lighterColorWithAlpha:0.6];
+        [self setTitleColor:highLightColor forState:UIControlStateHighlighted];
+        self.imageView.tintColor = highLightColor;
+    } else {
+        [self setTitleColor:[UIColor globalOrangeColor] forState:UIControlStateHighlighted];
+        self.imageView.tintColor = [UIColor globalOrangeColor];
+    }
 }
 
 @end

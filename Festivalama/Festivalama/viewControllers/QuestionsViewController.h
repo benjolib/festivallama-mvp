@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QuestionsViewController : UIViewController
+@interface QuestionsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (nonatomic, strong) NSArray *optionsToDisplay;
+@property (nonatomic, strong, readonly) NSMutableArray *selectedOptionsArray;
+
+- (void)setViewTitle:(NSString*)title;
 
 @end

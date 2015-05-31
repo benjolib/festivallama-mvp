@@ -36,7 +36,7 @@
 {
     [super awakeFromNib];
     self.popupBackgroundView.layer.cornerRadius = 15.0;
-    self.popupBackgroundView.backgroundColor = [UIColor whiteColor];
+    self.popupBackgroundView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
 }
 
 #pragma mark - button methods

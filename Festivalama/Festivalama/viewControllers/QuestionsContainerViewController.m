@@ -7,31 +7,97 @@
 //
 
 #import "QuestionsContainerViewController.h"
+#import "MusicGenreSelectionViewController.h"
 
-@interface QuestionsContainerViewController ()
-
+@interface QuestionsContainerViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@property (nonatomic, strong) UIPageViewController *pageViewController;
+@property (nonatomic, strong) NSArray *viewControllerIdentitiesArray;
+@property (nonatomic) NSInteger currentIndex;
 @end
 
 @implementation QuestionsContainerViewController
 
-- (void)viewDidLoad {
+
+- (void)setupPageViewController
+{
+    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                              navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                            options:nil];
+    self.pageViewController.dataSource = self;
+    self.pageViewController.delegate = self;
+
+    // Add the page view controller to this root view controller.
+    [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.pageViewController.view];
+    [self.pageViewController didMoveToParentViewController:self];
+}
+
+#pragma mark - pageViewController methods
+//- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+//{
+//
+//}
+//
+//- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+//{
+//
+//}
+
+//- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
+//{
+//
+//}
+
+//- (NSArray *)pageViewControllerAtIndexes:(NSIndexSet *)indexes
+//{
+//
+//}
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+{
+    return self.viewControllerIdentitiesArray.count;
+}
+
+//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+//{
+//
+//}
+
+#pragma mark - helper methods
+- (UIViewController*)initialiseViewControllerWithIdentifier:(NSString*)identifier
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:identifier];
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupPageViewController];
+
+    self.viewControllerIdentitiesArray = @[@"MusicGenreSelectionViewController", @"QuestionsViewController"];
+
+    MusicGenreSelectionViewController *musicGenreSelectionViewController = (MusicGenreSelectionViewController*)[self initialiseViewControllerWithIdentifier:[self.viewControllerIdentitiesArray firstObject]];
+    musicGenreSelectionViewController.allGenresArray = [self.genresArray copy];
+    self.currentIndex = 0;
+
+    [self.pageViewController setViewControllers:@[musicGenreSelectionViewController]
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:NO
+                                     completion:^(BOOL finished) {
+                                         // Completion code
+                                     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc
+{
+    self.viewControllerIdentitiesArray = nil;
 }
-*/
 
 @end
