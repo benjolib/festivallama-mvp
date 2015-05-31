@@ -16,5 +16,6 @@
 - (UIColor*)lighterColorWithAlpha:(CGFloat)alpha;
 
 + (UIColor*)globalOrangeColor;
++ (UIColor*)gradientGreenColor;
 
 @end

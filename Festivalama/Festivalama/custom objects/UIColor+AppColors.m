@@ -8,8 +8,8 @@
 
 #import "UIColor+AppColors.h"
 
-#define RGB(r, g, b) [UIColor colorWithRed: r/255.0 green: g/255.0 blue: r/255.0 alpha: 1.0]
-#define RGBA(r, g, b, a) [UIColor colorWithRed: r/255.0 green: g/255.0 blue: r/255.0 alpha: a]
+#define RGB(r, g, b) [UIColor colorWithRed: r/255.0 green: g/255.0 blue: b/255.0 alpha: 1.0]
+#define RGBA(r, g, b, a) [UIColor colorWithRed: r/255.0 green: g/255.0 blue: b/255.0 alpha: a]
 
 @implementation UIColor (AppColors)
 
@@ -31,6 +31,11 @@
 - (UIColor*)lighterColorWithAlpha:(CGFloat)alpha
 {
     return [self colorWithAlphaComponent:alpha];
+}
+
++ (UIColor*)gradientGreenColor
+{
+    return RGB(145.0, 186.0, 136.0);
 }
 
 @end
