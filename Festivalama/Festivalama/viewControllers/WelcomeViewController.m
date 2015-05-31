@@ -15,6 +15,8 @@
 
 
 #import "MenuTransitionManager.h"
+#import "StoryboardManager.h"
+#import "FilterNavigationController.h"
 
 @interface WelcomeViewController () <PopupViewDelegate>
 @property (nonatomic, strong) PopupView *activePopup;
@@ -33,6 +35,12 @@
 {
     self.transitionManager = [MenuTransitionManager new];
     [self.transitionManager presentMenuViewControllerOnViewController:self];
+}
+
+- (IBAction)showFilterView:(id)sender
+{
+    FilterNavigationController *filterNav = [StoryboardManager filterNavigationController];
+    [self presentViewController:filterNav animated:YES completion:nil];
 }
 
 - (void)displayFirstPopup
