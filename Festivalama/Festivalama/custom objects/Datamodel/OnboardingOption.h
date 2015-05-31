@@ -10,4 +10,9 @@
 
 @interface OnboardingOption : NSObject
 
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic) NSInteger optionIndex;
+
++ (OnboardingOption*)optionWithTitle:(NSString*)title andIndex:(NSInteger)index;
+
 @end

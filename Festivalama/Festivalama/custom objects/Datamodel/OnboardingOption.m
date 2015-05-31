@@ -10,4 +10,12 @@
 
 @implementation OnboardingOption
 
++ (OnboardingOption*)optionWithTitle:(NSString*)title andIndex:(NSInteger)index
+{
+    OnboardingOption *option = [OnboardingOption new];
+    option.title = title;
+    option.optionIndex = index;
+    return option;
+}
+
 @end
