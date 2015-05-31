@@ -11,13 +11,43 @@
 @implementation FilterTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    self.backgroundColor = [UIColor clearColor];
+    self.textLabel.textColor = [UIColor whiteColor];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
 
-    // Configure the view for the selected state
+    if (self.imageView.image)
+    {
+        CGSize iconSize = self.imageView.image.size;
+
+        CGRect iconFrame = self.imageView.frame;
+        iconFrame.size.width = 24.0;
+        iconFrame.size.height = 24.0;
+        iconFrame.origin.x = 15.0;
+        iconFrame.origin.y = (CGRectGetHeight(self.frame) - iconSize.height)/2 + 3;
+        self.imageView.frame = iconFrame;
+
+        self.imageView.layer.cornerRadius = CGRectGetHeight(self.imageView.frame)/2;
+        self.imageView.clipsToBounds = YES;
+        
+        CGRect labelFrame = self.textLabel.frame;
+        labelFrame.origin.x = CGRectGetMaxX(self.imageView.frame) + 15.0;
+        self.textLabel.frame = labelFrame;
+    }
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+    } else {
+        self.backgroundColor = [UIColor clearColor];
+    }
 }
 
 @end
