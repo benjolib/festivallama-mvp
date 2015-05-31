@@ -7,31 +7,87 @@
 //
 
 #import "FilterGenresViewController.h"
+#import "FilterTableViewCell.h"
+#import "Genre.h"
 
 @interface FilterGenresViewController ()
-
+@property (nonatomic, strong) NSMutableArray *selectedGenresArray;
 @end
 
 @implementation FilterGenresViewController
 
-- (void)viewDidLoad {
+- (void)trashButtonPressed:(id)sender
+{
+    [self.selectedGenresArray removeAllObjects];
+    [self.tableView reloadData];
+}
+
+- (NSMutableArray *)selectedGenresArray
+{
+    [self setTrashIconVisible:_selectedGenresArray.count > 0];
+    self.filterModel.selectedGenresArray = [_selectedGenresArray copy];
+    return _selectedGenresArray;
+}
+
+#pragma mark - tableView methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.allGenresArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44.0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+    Genre *genre = self.allGenresArray[indexPath.row];
+    cell.textLabel.text = genre.name;
+
+    if ([self.selectedGenresArray containsObject:self.allGenresArray[indexPath.row]]) {
+        UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
+        cell.accessoryView = accessoryView;
+        cell.textLabel.textColor = [UIColor whiteColor];
+    } else {
+        cell.accessoryView = nil;
+        cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (!self.selectedGenresArray) {
+        self.selectedGenresArray = [NSMutableArray array];
+    }
+
+    Genre *selectedGenre = self.allGenresArray[indexPath.row];
+    if ([self.selectedGenresArray containsObject:selectedGenre]) {
+        [self.selectedGenresArray removeObject:selectedGenre];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        [self.selectedGenresArray addObject:selectedGenre];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"Musik Genres";
+
+    
+    [self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

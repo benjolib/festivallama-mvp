@@ -8,6 +8,8 @@
 
 #import "FilterViewController.h"
 
-@interface FilterCountryViewController : FilterViewController
+@interface FilterCountryViewController : FilterViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

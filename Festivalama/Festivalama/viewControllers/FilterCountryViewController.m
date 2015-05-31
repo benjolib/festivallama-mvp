@@ -7,31 +7,95 @@
 //
 
 #import "FilterCountryViewController.h"
+#import "FilterCountriesDatasource.h"
+#import "FilterTableViewCell.h"
 
 @interface FilterCountryViewController ()
-
+@property (nonatomic, strong) FilterCountriesDatasource *countriesDatasource;
+@property (nonatomic, strong) NSMutableArray *selectedCountriesArray;
+@property (nonatomic, strong) NSArray *allCountriesArray;
 @end
 
 @implementation FilterCountryViewController
 
-- (void)viewDidLoad {
+- (void)trashButtonPressed:(id)sender
+{
+    [self.selectedCountriesArray removeAllObjects];
+    [self.tableView reloadData];
+}
+
+- (NSMutableArray *)selectedCountriesArray
+{
+    [self setTrashIconVisible:_selectedCountriesArray.count > 0];
+    return _selectedCountriesArray;
+}
+
+- (void)setupDatasource
+{
+    if (!self.countriesDatasource) {
+        self.countriesDatasource = [FilterCountriesDatasource new];
+    }
+    self.allCountriesArray = [self.countriesDatasource countryNames];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.allCountriesArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+    NSString *countryName = [self.countriesDatasource countryNameAtIndex:indexPath.row];
+
+    cell.textLabel.text = countryName;
+    cell.imageView.image = [self.countriesDatasource flagIconAtIndex:indexPath.row];
+
+    if (cell.selected || [self.selectedCountriesArray containsObject:countryName]) {
+        UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
+        cell.accessoryView = accessoryView;
+    } else {
+        cell.accessoryView = nil;
+    }
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if (!self.selectedCountriesArray) {
+        self.selectedCountriesArray = [NSMutableArray array];
+    }
+    NSString *selectedCountry = self.allCountriesArray[indexPath.row];
+    if ([self.selectedCountriesArray containsObject:selectedCountry]) {
+        [self.selectedCountriesArray removeObject:selectedCountry];
+        self.filterModel.selectedCountry = nil;
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        if (self.selectedCountriesArray.count == 0) {
+            [self.selectedCountriesArray addObject:selectedCountry];
+            self.filterModel.selectedCountry = selectedCountry;
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"Land";
+
+    [self setupDatasource];
+    [self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

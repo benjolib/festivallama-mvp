@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterModel.h"
 
-@interface FilterViewController : UIViewController
+@class GreenButton;
+
+@interface FilterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet GreenButton *applyButton;
+@property (nonatomic, weak) IBOutlet UIButton *trashIcon;
+
+@property (nonatomic, strong, readonly) NSArray *genresArray;
+@property (nonatomic, strong) FilterModel *filterModel;
+
+- (IBAction)applyButtonPressed:(id)sender;
+- (IBAction)trashButtonPressed:(id)sender;
+
+- (void)setTrashIconVisible:(BOOL)visible;
 
 @end

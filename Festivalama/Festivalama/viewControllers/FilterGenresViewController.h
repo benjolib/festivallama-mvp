@@ -8,6 +8,8 @@
 
 #import "FilterViewController.h"
 
-@interface FilterGenresViewController : FilterViewController
+@interface FilterGenresViewController : FilterViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) NSArray *allGenresArray;
 
 @end

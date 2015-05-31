@@ -7,31 +7,64 @@
 //
 
 #import "FilterPlacesViewController.h"
-
-@interface FilterPlacesViewController ()
-
-@end
+#import "FilterTableViewCell.h"
 
 @implementation FilterPlacesViewController
 
-- (void)viewDidLoad {
+#pragma mark - tableView methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+    UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclosureIcon"]];
+    cell.accessoryView = accessoryView;
+
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"Postleitzahl";
+        return cell;
+    } else {
+        cell.textLabel.text = @"Land";
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"openPostcode" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"openCountry" sender:nil];
+    }
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"Ort";
+
+    if (self.filterModel.selectedCountry || self.filterModel.selectedPostCode) {
+        [self setTrashIconVisible:YES];
+    } else {
+        [self setTrashIconVisible:NO];
+    }
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
 
 @end

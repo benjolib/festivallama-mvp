@@ -8,6 +8,6 @@
 
 #import "FilterViewController.h"
 
-@interface FilterPlacesViewController : FilterViewController
+@interface FilterPlacesViewController : FilterViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
