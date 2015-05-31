@@ -7,15 +7,17 @@
 //
 
 #import "GreenButton.h"
+#import "UIColor+AppColors.h"
 
 @implementation GreenButton
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.6] forState:UIControlStateHighlighted];
+
+    self.backgroundColor = [UIColor globalGreenColor];
 }
-*/
 
 @end
