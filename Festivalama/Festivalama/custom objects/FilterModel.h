@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+// Object to hold all the selected filtering options
+
 @interface FilterModel : NSObject
+
+@property (nonatomic, strong) NSArray *selectedGenresArray;
+@property (nonatomic, copy) NSString *selectedCountry;
+@property (nonatomic, copy) NSString *selectedPostCode;
 
 @end
