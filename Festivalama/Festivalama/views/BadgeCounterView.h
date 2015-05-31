@@ -10,4 +10,6 @@
 
 @interface BadgeCounterView : UIView
 
+- (void)displayCounterValue:(NSInteger)counterValue;
+
 @end

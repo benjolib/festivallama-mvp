@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "MenuButton.h"
 
 @interface MenuViewController ()
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
@@ -38,6 +39,8 @@
     [super viewDidLoad];
     [self updateCalendarButton];
     [self addRecognizer];
+
+    [self.calendarButton setBadgeCounterValue:99];
 }
 
 - (void)didReceiveMemoryWarning
