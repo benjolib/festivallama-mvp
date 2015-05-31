@@ -1,7 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Menu View Controller-->
+        <scene sceneID="wnx-2U-hpn">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uPf-gQ-NDb" customClass="MenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dtc-2o-dqn"/>
+                        <viewControllerLayoutGuide type="bottom" id="pDm-5Q-tXw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tai-n6-xqD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srT-66-753" customClass="MenuButton">
+                                <rect key="frame" x="115" y="40" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="NEq-zk-Wvb"/>
+                                    <constraint firstAttribute="height" constant="90" id="u72-K8-B1T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Deine Festivals" image="festivalsIcon">
+                                    <color key="titleColor" red="0.2666666667" green="0.64705882349999999" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvB-w5-ouz" customClass="MenuButton">
+                                <rect key="frame" x="135" y="518" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="8Ib-Cp-wc6"/>
+                                    <constraint firstAttribute="height" constant="50" id="lkj-MK-1ud"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" image="infoButton">
+                                    <color key="titleColor" red="0.2666666667" green="0.64705882349999999" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrW-ZK-Bd5" customClass="MenuButton">
+                                <rect key="frame" x="115" y="300" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="36w-BX-yns"/>
+                                    <constraint firstAttribute="height" constant="90" id="fim-zK-783"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Kalender" image="calendarIcon">
+                                    <color key="titleColor" red="0.2666666667" green="0.64705882349999999" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzL-3h-W9q" customClass="MenuButton">
+                                <rect key="frame" x="115" y="170" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="aAZ-t3-ibX"/>
+                                    <constraint firstAttribute="height" constant="90" id="o6O-dt-V8P"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Beliebte Festivals" image="favoriteFestivalsIcon">
+                                    <color key="titleColor" red="0.2666666667" green="0.64705882349999999" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yzL-3h-W9q" firstAttribute="top" secondItem="srT-66-753" secondAttribute="bottom" constant="40" id="1Z8-hG-paF"/>
+                            <constraint firstAttribute="centerX" secondItem="bvB-w5-ouz" secondAttribute="centerX" id="7rz-Tq-VLa"/>
+                            <constraint firstAttribute="centerX" secondItem="FrW-ZK-Bd5" secondAttribute="centerX" id="A3i-3K-dKa"/>
+                            <constraint firstItem="srT-66-753" firstAttribute="top" secondItem="dtc-2o-dqn" secondAttribute="bottom" constant="40" id="Jtl-0O-76C"/>
+                            <constraint firstAttribute="centerX" secondItem="yzL-3h-W9q" secondAttribute="centerX" id="OHe-35-EPl"/>
+                            <constraint firstItem="FrW-ZK-Bd5" firstAttribute="top" secondItem="yzL-3h-W9q" secondAttribute="bottom" constant="40" id="SZx-PA-0it"/>
+                            <constraint firstItem="pDm-5Q-tXw" firstAttribute="top" secondItem="bvB-w5-ouz" secondAttribute="bottom" id="hNc-l0-EZl"/>
+                            <constraint firstAttribute="centerX" secondItem="srT-66-753" secondAttribute="centerX" id="lIP-o6-WuO"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="calendarButton" destination="FrW-ZK-Bd5" id="nZo-mX-7KY"/>
+                        <outlet property="favoriteFestivalButton" destination="yzL-3h-W9q" id="1N7-dA-VXY"/>
+                        <outlet property="festivalButton" destination="srT-66-753" id="ehP-b9-1jB"/>
+                        <outlet property="infoButton" destination="bvB-w5-ouz" id="i75-4W-fVv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwn-9O-s6d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25" y="424"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="calendarIcon" width="33" height="39"/>
+        <image name="favoriteFestivalsIcon" width="35" height="33"/>
+        <image name="festivalsIcon" width="48" height="36"/>
+        <image name="infoButton" width="19" height="19"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

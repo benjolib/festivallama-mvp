@@ -10,7 +10,6 @@
 		560D0A951B17951100B03090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0A941B17951100B03090 /* main.m */; };
 		560D0A981B17951100B03090 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0A971B17951100B03090 /* AppDelegate.m */; };
 		560D0A9B1B17951100B03090 /* Festivalama.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 560D0A991B17951100B03090 /* Festivalama.xcdatamodeld */; };
-		560D0AA11B17951100B03090 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 560D0A9F1B17951100B03090 /* Main.storyboard */; };
 		560D0AA31B17951100B03090 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 560D0AA21B17951100B03090 /* Images.xcassets */; };
 		560D0AA61B17951100B03090 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560D0AA41B17951100B03090 /* LaunchScreen.xib */; };
 		560D0AB21B17951100B03090 /* FestivalamaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AB11B17951100B03090 /* FestivalamaTests.m */; };
@@ -33,11 +32,20 @@
 		560D0AF01B17C35D00B03090 /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AEF1B17C35D00B03090 /* Genre.m */; };
 		560D0AF31B17C3E600B03090 /* GenreParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AF21B17C3E600B03090 /* GenreParser.m */; };
 		560D0AF51B17C4E100B03090 /* GenreListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AF41B17C4E100B03090 /* GenreListTest.m */; };
+		56CF1AF61B1B007700A899DB /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF51B1B007700A899DB /* MenuViewController.m */; };
+		56CF1AF91B1B00C200A899DB /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF81B1B00C200A899DB /* MenuButton.m */; };
+		56CF1AFD1B1B01BB00A899DB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CF1AFB1B1B01BB00A899DB /* Onboarding.storyboard */; };
+		56CF1AFF1B1B01D300A899DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CF1AFE1B1B01D300A899DB /* Main.storyboard */; };
+		56CF1B031B1B099D00A899DB /* MenuTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1B021B1B099D00A899DB /* MenuTransitionManager.m */; };
+		56CF1B061B1B0C2000A899DB /* MenuTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1B051B1B0C2000A899DB /* MenuTransitionAnimator.m */; };
+		56CF1B091B1B0D3200A899DB /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1B081B1B0D3200A899DB /* UIImage+ImageEffects.m */; };
 		56D05A3C1B19D3980031F2A2 /* QuestionsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A3B1B19D3980031F2A2 /* QuestionsContainerViewController.m */; };
 		56D05A401B19D43D0031F2A2 /* OnboardingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A3F1B19D43D0031F2A2 /* OnboardingModel.m */; };
 		56D05A431B19D9740031F2A2 /* MusicGenreSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A421B19D9740031F2A2 /* MusicGenreSelectionViewController.m */; };
 		56D05A461B19D9CD0031F2A2 /* ContinueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A451B19D9CD0031F2A2 /* ContinueButton.m */; };
 		56D05A491B19DBE00031F2A2 /* SelectionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A481B19DBE00031F2A2 /* SelectionCollectionViewCell.m */; };
+		56D05A4C1B19FDCC0031F2A2 /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A4B1B19FDCC0031F2A2 /* QuestionsViewController.m */; };
+		56D05A4F1B19FEE50031F2A2 /* OnboardingOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A4E1B19FEE50031F2A2 /* OnboardingOption.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +65,6 @@
 		560D0A961B17951100B03090 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		560D0A971B17951100B03090 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		560D0A9A1B17951100B03090 /* Festivalama.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Festivalama.xcdatamodel; sourceTree = "<group>"; };
-		560D0AA01B17951100B03090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		560D0AA21B17951100B03090 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		560D0AA51B17951100B03090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		560D0AAB1B17951100B03090 /* FestivalamaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FestivalamaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +100,18 @@
 		560D0AF11B17C3E600B03090 /* GenreParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenreParser.h; path = "custom objects/parser/GenreParser.h"; sourceTree = "<group>"; };
 		560D0AF21B17C3E600B03090 /* GenreParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenreParser.m; path = "custom objects/parser/GenreParser.m"; sourceTree = "<group>"; };
 		560D0AF41B17C4E100B03090 /* GenreListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenreListTest.m; sourceTree = "<group>"; };
+		56CF1AF41B1B007700A899DB /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = viewControllers/MenuViewController.h; sourceTree = "<group>"; };
+		56CF1AF51B1B007700A899DB /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = viewControllers/MenuViewController.m; sourceTree = "<group>"; };
+		56CF1AF71B1B00C200A899DB /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuButton.h; path = views/MenuButton.h; sourceTree = "<group>"; };
+		56CF1AF81B1B00C200A899DB /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuButton.m; path = views/MenuButton.m; sourceTree = "<group>"; };
+		56CF1AFC1B1B01BB00A899DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
+		56CF1AFE1B1B01D300A899DB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = storyboard/Main.storyboard; sourceTree = "<group>"; };
+		56CF1B011B1B099D00A899DB /* MenuTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuTransitionManager.h; path = "custom objects/transitionManagers/MenuTransitionManager.h"; sourceTree = "<group>"; };
+		56CF1B021B1B099D00A899DB /* MenuTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuTransitionManager.m; path = "custom objects/transitionManagers/MenuTransitionManager.m"; sourceTree = "<group>"; };
+		56CF1B041B1B0C2000A899DB /* MenuTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuTransitionAnimator.h; path = "custom objects/transitionManagers/MenuTransitionAnimator.h"; sourceTree = "<group>"; };
+		56CF1B051B1B0C2000A899DB /* MenuTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuTransitionAnimator.m; path = "custom objects/transitionManagers/MenuTransitionAnimator.m"; sourceTree = "<group>"; };
+		56CF1B071B1B0D3200A899DB /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		56CF1B081B1B0D3200A899DB /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		56D05A3A1B19D3980031F2A2 /* QuestionsContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionsContainerViewController.h; path = viewControllers/QuestionsContainerViewController.h; sourceTree = "<group>"; };
 		56D05A3B1B19D3980031F2A2 /* QuestionsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsContainerViewController.m; path = viewControllers/QuestionsContainerViewController.m; sourceTree = "<group>"; };
 		56D05A3E1B19D43D0031F2A2 /* OnboardingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingModel.h; path = "custom objects/Datamodel/OnboardingModel.h"; sourceTree = "<group>"; };
@@ -103,6 +122,10 @@
 		56D05A451B19D9CD0031F2A2 /* ContinueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContinueButton.m; path = views/ContinueButton.m; sourceTree = "<group>"; };
 		56D05A471B19DBE00031F2A2 /* SelectionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectionCollectionViewCell.h; path = views/SelectionCollectionViewCell.h; sourceTree = "<group>"; };
 		56D05A481B19DBE00031F2A2 /* SelectionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectionCollectionViewCell.m; path = views/SelectionCollectionViewCell.m; sourceTree = "<group>"; };
+		56D05A4A1B19FDCC0031F2A2 /* QuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionsViewController.h; path = viewControllers/QuestionsViewController.h; sourceTree = "<group>"; };
+		56D05A4B1B19FDCC0031F2A2 /* QuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsViewController.m; path = viewControllers/QuestionsViewController.m; sourceTree = "<group>"; };
+		56D05A4D1B19FEE50031F2A2 /* OnboardingOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingOption.h; path = "custom objects/Datamodel/OnboardingOption.h"; sourceTree = "<group>"; };
+		56D05A4E1B19FEE50031F2A2 /* OnboardingOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingOption.m; path = "custom objects/Datamodel/OnboardingOption.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +191,8 @@
 		560D0A921B17951100B03090 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				56CF1B071B1B0D3200A899DB /* UIImage+ImageEffects.h */,
+				56CF1B081B1B0D3200A899DB /* UIImage+ImageEffects.m */,
 				560D0AA41B17951100B03090 /* LaunchScreen.xib */,
 				560D0AA21B17951100B03090 /* Images.xcassets */,
 				560D0A931B17951100B03090 /* Info.plist */,
@@ -197,7 +222,8 @@
 		560D0ABB1B17952100B03090 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				560D0A9F1B17951100B03090 /* Main.storyboard */,
+				56CF1AFB1B1B01BB00A899DB /* Onboarding.storyboard */,
+				56CF1AFE1B1B01D300A899DB /* Main.storyboard */,
 				560D0AC11B1799FB00B03090 /* StoryboardManager.h */,
 				560D0AC21B1799FB00B03090 /* StoryboardManager.m */,
 			);
@@ -215,6 +241,9 @@
 		560D0ABD1B17953500B03090 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				56CF1B001B1B097000A899DB /* Transition Managers */,
+				56CF1AF41B1B007700A899DB /* MenuViewController.h */,
+				56CF1AF51B1B007700A899DB /* MenuViewController.m */,
 				56D05A391B19D37E0031F2A2 /* Welcome Question views */,
 				560D0ABE1B1799E600B03090 /* WelcomeViewController.h */,
 				560D0ABF1B1799E600B03090 /* WelcomeViewController.m */,
@@ -239,13 +268,11 @@
 		560D0AD31B179BAD00B03090 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				560D0AD41B179CAA00B03090 /* PopupView.h */,
-				560D0AD51B179CAA00B03090 /* PopupView.m */,
-				560D0AD71B179CB500B03090 /* PopupView.xib */,
-				560D0AD91B179F0100B03090 /* PopupViewButton.h */,
-				560D0ADA1B179F0100B03090 /* PopupViewButton.m */,
+				56CF1AFA1B1B00CA00A899DB /* Popup */,
 				56D05A441B19D9CD0031F2A2 /* ContinueButton.h */,
 				56D05A451B19D9CD0031F2A2 /* ContinueButton.m */,
+				56CF1AF71B1B00C200A899DB /* MenuButton.h */,
+				56CF1AF81B1B00C200A899DB /* MenuButton.m */,
 				56D05A471B19DBE00031F2A2 /* SelectionCollectionViewCell.h */,
 				56D05A481B19DBE00031F2A2 /* SelectionCollectionViewCell.m */,
 			);
@@ -294,6 +321,29 @@
 			name = Parsers;
 			sourceTree = "<group>";
 		};
+		56CF1AFA1B1B00CA00A899DB /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				560D0AD41B179CAA00B03090 /* PopupView.h */,
+				560D0AD51B179CAA00B03090 /* PopupView.m */,
+				560D0AD71B179CB500B03090 /* PopupView.xib */,
+				560D0AD91B179F0100B03090 /* PopupViewButton.h */,
+				560D0ADA1B179F0100B03090 /* PopupViewButton.m */,
+			);
+			name = Popup;
+			sourceTree = "<group>";
+		};
+		56CF1B001B1B097000A899DB /* Transition Managers */ = {
+			isa = PBXGroup;
+			children = (
+				56CF1B011B1B099D00A899DB /* MenuTransitionManager.h */,
+				56CF1B021B1B099D00A899DB /* MenuTransitionManager.m */,
+				56CF1B041B1B0C2000A899DB /* MenuTransitionAnimator.h */,
+				56CF1B051B1B0C2000A899DB /* MenuTransitionAnimator.m */,
+			);
+			name = "Transition Managers";
+			sourceTree = "<group>";
+		};
 		56D05A391B19D37E0031F2A2 /* Welcome Question views */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +351,8 @@
 				56D05A3B1B19D3980031F2A2 /* QuestionsContainerViewController.m */,
 				56D05A411B19D9740031F2A2 /* MusicGenreSelectionViewController.h */,
 				56D05A421B19D9740031F2A2 /* MusicGenreSelectionViewController.m */,
+				56D05A4A1B19FDCC0031F2A2 /* QuestionsViewController.h */,
+				56D05A4B1B19FDCC0031F2A2 /* QuestionsViewController.m */,
 			);
 			name = "Welcome Question views";
 			sourceTree = "<group>";
@@ -312,6 +364,8 @@
 				560D0AEF1B17C35D00B03090 /* Genre.m */,
 				56D05A3E1B19D43D0031F2A2 /* OnboardingModel.h */,
 				56D05A3F1B19D43D0031F2A2 /* OnboardingModel.m */,
+				56D05A4D1B19FEE50031F2A2 /* OnboardingOption.h */,
+				56D05A4E1B19FEE50031F2A2 /* OnboardingOption.m */,
 			);
 			name = DataModels;
 			sourceTree = "<group>";
@@ -396,7 +450,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				560D0AA11B17951100B03090 /* Main.storyboard in Resources */,
+				56CF1AFD1B1B01BB00A899DB /* Onboarding.storyboard in Resources */,
+				56CF1AFF1B1B01D300A899DB /* Main.storyboard in Resources */,
 				560D0AD81B179CB500B03090 /* PopupView.xib in Resources */,
 				560D0AA61B17951100B03090 /* LaunchScreen.xib in Resources */,
 				560D0AA31B17951100B03090 /* Images.xcassets in Resources */,
@@ -418,13 +473,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D05A3C1B19D3980031F2A2 /* QuestionsContainerViewController.m in Sources */,
+				56D05A4C1B19FDCC0031F2A2 /* QuestionsViewController.m in Sources */,
 				560D0AC01B1799E600B03090 /* WelcomeViewController.m in Sources */,
 				560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */,
+				56CF1B031B1B099D00A899DB /* MenuTransitionManager.m in Sources */,
+				56CF1AF61B1B007700A899DB /* MenuViewController.m in Sources */,
+				56CF1B091B1B0D3200A899DB /* UIImage+ImageEffects.m in Sources */,
+				56CF1B061B1B0C2000A899DB /* MenuTransitionAnimator.m in Sources */,
 				560D0AE71B17C0B300B03090 /* AbstractClient.m in Sources */,
 				56D05A461B19D9CD0031F2A2 /* ContinueButton.m in Sources */,
 				560D0AF01B17C35D00B03090 /* Genre.m in Sources */,
 				560D0AC31B1799FB00B03090 /* StoryboardManager.m in Sources */,
 				560D0AE21B17BD9200B03090 /* LocationManager.m in Sources */,
+				56CF1AF91B1B00C200A899DB /* MenuButton.m in Sources */,
 				560D0A981B17951100B03090 /* AppDelegate.m in Sources */,
 				56D05A401B19D43D0031F2A2 /* OnboardingModel.m in Sources */,
 				560D0AEA1B17C0D200B03090 /* GenreDownloadClient.m in Sources */,
@@ -433,6 +494,7 @@
 				56D05A491B19DBE00031F2A2 /* SelectionCollectionViewCell.m in Sources */,
 				560D0AF31B17C3E600B03090 /* GenreParser.m in Sources */,
 				56D05A431B19D9740031F2A2 /* MusicGenreSelectionViewController.m in Sources */,
+				56D05A4F1B19FEE50031F2A2 /* OnboardingOption.m in Sources */,
 				560D0A951B17951100B03090 /* main.m in Sources */,
 				560D0ADB1B179F0100B03090 /* PopupViewButton.m in Sources */,
 			);
@@ -458,20 +520,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		560D0A9F1B17951100B03090 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				560D0AA01B17951100B03090 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		560D0AA41B17951100B03090 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				560D0AA51B17951100B03090 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		56CF1AFB1B1B01BB00A899DB /* Onboarding.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56CF1AFC1B1B01BB00A899DB /* Base */,
+			);
+			name = Onboarding.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
