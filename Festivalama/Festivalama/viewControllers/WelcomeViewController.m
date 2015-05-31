@@ -9,14 +9,31 @@
 #import "WelcomeViewController.h"
 #import "PopupView.h"
 #import <AVFoundation/AVFoundation.h>
+#import "GenreDownloadClient.h"
+#import "QuestionsContainerViewController.h"
+#import "LocationManager.h"
+
+
+#import "MenuTransitionManager.h"
 
 @interface WelcomeViewController () <PopupViewDelegate>
 @property (nonatomic, strong) PopupView *activePopup;
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (nonatomic) BOOL firstPopupWasDisplayed;
+
+@property (nonatomic, strong) LocationManager *locationManager;
+@property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
+@property (nonatomic, strong) NSArray *genresArray;
+@property (nonatomic, strong) MenuTransitionManager *transitionManager;
 @end
 
 @implementation WelcomeViewController
+
+- (IBAction)showMenu:(id)sender
+{
+    self.transitionManager = [MenuTransitionManager new];
+    [self.transitionManager presentMenuViewControllerOnViewController:self];
+}
 
 - (void)displayFirstPopup
 {
@@ -36,8 +53,22 @@
                                 cancelButtonTitle:nil
                                         viewTitle:@"Location"
                                              text:@"Du möchtest wissen, welche Festivals in Deiner Nähe stattfinden?"
-                                             icon:[UIImage imageNamed:@""]];
+                                             icon:[UIImage imageNamed:@"iconLocation"]];
     [self.activePopup showPopupViewAnimationOnView:self.view];
+}
+
+- (void)downloadGenres
+{
+    self.genreDownloadClient = [GenreDownloadClient new];
+
+    __weak typeof(self) weakSelf = self;
+    [self.genreDownloadClient downloadAllGenresWithCompletionBlock:^(NSArray *sortedGenres, NSString *errorMessage, BOOL completed) {
+        if (completed) {
+            weakSelf.genresArray = [sortedGenres copy];
+        } else {
+
+        }
+    }];
 }
 
 #pragma mark - popup methods
@@ -53,6 +84,19 @@
     } else {
         [self.activePopup dismissViewWithAnimation:YES];
         // show location popup, if agreed go on
+
+        self.locationManager = [LocationManager new];
+        [self.locationManager startLocationDiscoveryWithCompletionBlock:^(CLLocation *userLocation, NSString *errorMessage) {
+            
+        }];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"presentOnboarding"]) {
+        QuestionsContainerViewController *questionsViewController = (QuestionsContainerViewController*)segue.destinationViewController;
+        questionsViewController.genresArray = [self.genresArray copy];
     }
 }
 
@@ -91,6 +135,8 @@
     [super viewDidLoad];
 
 //    [self addVideoBackgroundLayer];
+
+    [self downloadGenres];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self displayFirstPopup];

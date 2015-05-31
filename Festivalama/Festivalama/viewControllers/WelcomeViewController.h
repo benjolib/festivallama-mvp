@@ -12,4 +12,6 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *festivalamaImageView;
 
+- (IBAction)showMenu:(id)sender;
+
 @end
