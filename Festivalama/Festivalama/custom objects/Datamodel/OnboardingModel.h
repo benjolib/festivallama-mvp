@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class Genre;
+
 @interface OnboardingModel : NSObject
+
+@property (nonatomic, strong) NSArray *selectedGenres;
+
+// default values to display
+@property (nonatomic, strong, readonly) NSMutableArray *travelOptionsArray;
+@property (nonatomic, strong, readonly) NSMutableArray *friendsCountArray;
+@property (nonatomic, strong, readonly) NSMutableArray *overnightArray;
 
 @end
