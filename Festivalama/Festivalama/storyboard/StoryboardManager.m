@@ -15,9 +15,20 @@
     return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 }
 
++ (UIStoryboard*)filterStoryboard
+{
+    return [UIStoryboard storyboardWithName:@"Filter" bundle:nil];
+}
+
+#pragma mark - viewControllers
 + (MenuViewController*)menuViewController
 {
    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"MenuViewController"];
+}
+
++ (FilterNavigationController*)filterNavigationController
+{
+    return [[self filterStoryboard] instantiateViewControllerWithIdentifier:@"FilterNavigationController"];
 }
 
 @end
