@@ -10,4 +10,6 @@
 
 @interface MenuButton : UIButton
 
+- (void)setBadgeCounterValue:(NSInteger)value;
+
 @end

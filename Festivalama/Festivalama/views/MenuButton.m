@@ -8,6 +8,11 @@
 
 #import "MenuButton.h"
 #import "UIColor+AppColors.h"
+#import "BadgeCounterView.h"
+
+@interface MenuButton ()
+@property (nonatomic, strong) BadgeCounterView *badgeView;
+@end
 
 @implementation MenuButton
 
@@ -20,6 +25,11 @@
         self.imageView.tintColor = [UIColor globalGreenColor];
     }
     [self setTitleColor:[UIColor globalGreenColor] forState:UIControlStateNormal];
+
+    self.badgeView = [[BadgeCounterView alloc] initWithFrame:CGRectMake(0.0, 0.0, 21.0, 21.0)];
+    self.badgeView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.badgeView];
+    [self setBadgeCounterVisible:NO];
 }
 
 - (void)layoutSubviews
@@ -49,6 +59,34 @@
         self.imageView.tintColor = [UIColor globalGreenColor];
         [self setTitleColor:[UIColor globalGreenColor] forState:UIControlStateNormal];
     }
+}
+
+- (void)updateConstraints
+{
+    if (self.badgeView) {
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.badgeView attribute:NSLayoutAttributeRight multiplier:1.0 constant:18]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.badgeView attribute:NSLayoutAttributeTop multiplier:1.0 constant:-1.0]];
+        [self.badgeView addConstraint:[NSLayoutConstraint constraintWithItem:self.badgeView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:21.0]];
+        [self.badgeView addConstraint:[NSLayoutConstraint constraintWithItem:self.badgeView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:21.0]];
+    }
+
+    [super updateConstraints];
+}
+
+#pragma mark - badge counter
+- (void)setBadgeCounterValue:(NSInteger)value
+{
+    if (value > 0) {
+        [self.badgeView displayCounterValue:value];
+        [self setBadgeCounterVisible:YES];
+    } else {
+        [self setBadgeCounterVisible:NO];
+    }
+}
+
+- (void)setBadgeCounterVisible:(BOOL)visible
+{
+    self.badgeView.hidden = !visible;
 }
 
 @end
