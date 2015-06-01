@@ -31,4 +31,14 @@
     return [[self filterStoryboard] instantiateViewControllerWithIdentifier:@"FilterNavigationController"];
 }
 
++ (FestivalNavigationController*)festivalNavigationController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FestivalNavigationController"];
+}
+
++ (FestivalsViewController*)festivalsViewController
+{
+   return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FestivalsViewController"];
+}
+
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jyX-MO-NHz">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -88,14 +88,203 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cwn-9O-s6d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="47" y="458"/>
+            <point key="canvasLocation" x="-180" y="1053"/>
+        </scene>
+        <!--Festivals View Controller-->
+        <scene sceneID="pFu-Ik-e3m">
+            <objects>
+                <viewController storyboardIdentifier="FestivalsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5e5-bf-Zo2" customClass="FestivalsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aZv-Jh-nUj"/>
+                        <viewControllerLayoutGuide type="bottom" id="N7K-4N-Dtq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tEQ-6b-Gq1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abc-qL-km8" customClass="GreenButton">
+                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="nGx-Qs-C0E"/>
+                                </constraints>
+                                <state key="normal" title="Filter anwenden">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterButtonPressed:" destination="5e5-bf-Zo2" eventType="touchUpInside" id="yp2-0H-TvO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbs-m1-fMd">
+                                <rect key="frame" x="278" y="522" width="37" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="E0T-4R-BCK"/>
+                                    <constraint firstAttribute="width" constant="37" id="JYu-sg-8RA"/>
+                                </constraints>
+                                <state key="normal" image="trashIcon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="trashButtonPressed:" destination="5e5-bf-Zo2" eventType="touchUpInside" id="xtt-PQ-gV9"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7lC-DL-ywz">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="85" id="LgU-3u-7Wb" customClass="FestivalTableViewCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LgU-3u-7Wb" id="keL-wc-xZL">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="festivalLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dQS-Na-l9y">
+                                                    <rect key="frame" x="16" y="35" width="10" height="13"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="10" id="LxI-tl-Z4N"/>
+                                                        <constraint firstAttribute="height" constant="13" id="QaW-89-s51"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="festivalCalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="I1b-TV-FUr">
+                                                    <rect key="frame" x="15" y="58" width="12" height="13"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="12" id="1uP-i4-AXX"/>
+                                                        <constraint firstAttribute="height" constant="13" id="XLx-se-mdw"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAb-en-ZRw">
+                                                    <rect key="frame" x="268" y="21" width="42" height="42"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="42" id="0nR-Qd-eW9"/>
+                                                        <constraint firstAttribute="width" constant="42" id="MXm-7R-1Zd"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="Ta2-Gr-k5Q">
+                                                    <rect key="frame" x="15" y="10" width="243" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="yrB-ny-GCh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gräfenhainichen, DE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHZ-D1-fah">
+                                                    <rect key="frame" x="36" y="31" width="222" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="fap-2S-oER"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in 20 Tagen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnZ-sc-2X9">
+                                                    <rect key="frame" x="36" y="54" width="222" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="8wY-6D-nVq"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FHZ-D1-fah" firstAttribute="leading" secondItem="dQS-Na-l9y" secondAttribute="trailing" constant="10" id="0Rh-Tk-d8b"/>
+                                                <constraint firstItem="Ta2-Gr-k5Q" firstAttribute="leading" secondItem="keL-wc-xZL" secondAttribute="leading" constant="15" id="4vC-IF-R71"/>
+                                                <constraint firstItem="dQS-Na-l9y" firstAttribute="leading" secondItem="keL-wc-xZL" secondAttribute="leading" constant="16" id="8p1-Ah-GXc"/>
+                                                <constraint firstItem="HAb-en-ZRw" firstAttribute="leading" secondItem="Ta2-Gr-k5Q" secondAttribute="trailing" constant="10" id="8xX-mX-Jbj"/>
+                                                <constraint firstItem="FHZ-D1-fah" firstAttribute="top" secondItem="Ta2-Gr-k5Q" secondAttribute="bottom" id="9Uz-ls-OGm"/>
+                                                <constraint firstItem="HAb-en-ZRw" firstAttribute="leading" secondItem="FHZ-D1-fah" secondAttribute="trailing" constant="10" id="LWR-HB-dRS"/>
+                                                <constraint firstItem="HAb-en-ZRw" firstAttribute="leading" secondItem="hnZ-sc-2X9" secondAttribute="trailing" constant="10" id="Pri-75-I5P"/>
+                                                <constraint firstAttribute="centerY" secondItem="HAb-en-ZRw" secondAttribute="centerY" id="QTJ-si-YPU"/>
+                                                <constraint firstItem="hnZ-sc-2X9" firstAttribute="leading" secondItem="I1b-TV-FUr" secondAttribute="trailing" constant="9" id="V1u-Gl-Ike"/>
+                                                <constraint firstItem="Ta2-Gr-k5Q" firstAttribute="top" secondItem="keL-wc-xZL" secondAttribute="top" constant="10" id="aYq-yc-q9R"/>
+                                                <constraint firstAttribute="trailing" secondItem="HAb-en-ZRw" secondAttribute="trailing" constant="10" id="io6-pU-6FU"/>
+                                                <constraint firstItem="dQS-Na-l9y" firstAttribute="top" secondItem="Ta2-Gr-k5Q" secondAttribute="bottom" constant="4" id="mI7-IF-PHK"/>
+                                                <constraint firstItem="hnZ-sc-2X9" firstAttribute="top" secondItem="FHZ-D1-fah" secondAttribute="bottom" constant="2" id="oWX-Nc-hlN"/>
+                                                <constraint firstItem="I1b-TV-FUr" firstAttribute="top" secondItem="dQS-Na-l9y" secondAttribute="bottom" constant="10" id="xaA-TS-GWM"/>
+                                                <constraint firstItem="I1b-TV-FUr" firstAttribute="leading" secondItem="keL-wc-xZL" secondAttribute="leading" constant="15" id="zGq-ha-IdD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="calendarButton" destination="HAb-en-ZRw" id="4i6-Q6-U7U"/>
+                                            <outlet property="locationLabel" destination="FHZ-D1-fah" id="Udk-2q-FFO"/>
+                                            <outlet property="nameLabel" destination="Ta2-Gr-k5Q" id="1T7-OC-xFq"/>
+                                            <outlet property="timeLeftLabel" destination="hnZ-sc-2X9" id="mHI-fs-SWr"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="5e5-bf-Zo2" id="D8B-gS-4EL"/>
+                                    <outlet property="delegate" destination="5e5-bf-Zo2" id="F2w-DY-7vQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7lC-DL-ywz" secondAttribute="trailing" id="2Cq-q3-3Fx"/>
+                            <constraint firstAttribute="trailing" secondItem="Kbs-m1-fMd" secondAttribute="trailing" constant="5" id="4cq-8z-JSf"/>
+                            <constraint firstItem="Abc-qL-km8" firstAttribute="top" secondItem="7lC-DL-ywz" secondAttribute="bottom" id="LNn-ut-y5E"/>
+                            <constraint firstItem="Abc-qL-km8" firstAttribute="leading" secondItem="tEQ-6b-Gq1" secondAttribute="leading" id="NAG-LN-hlg"/>
+                            <constraint firstItem="N7K-4N-Dtq" firstAttribute="top" secondItem="Abc-qL-km8" secondAttribute="bottom" id="PXH-xk-Lea"/>
+                            <constraint firstItem="7lC-DL-ywz" firstAttribute="leading" secondItem="tEQ-6b-Gq1" secondAttribute="leading" id="QOj-TP-OKU"/>
+                            <constraint firstItem="N7K-4N-Dtq" firstAttribute="top" secondItem="Kbs-m1-fMd" secondAttribute="bottom" constant="2" id="cIv-hV-JCC"/>
+                            <constraint firstAttribute="trailing" secondItem="Abc-qL-km8" secondAttribute="trailing" id="ohL-rc-3eb"/>
+                            <constraint firstItem="7lC-DL-ywz" firstAttribute="top" secondItem="aZv-Jh-nUj" secondAttribute="bottom" id="sGg-2Q-0Bz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="aFp-i3-lY1">
+                        <barButtonItem key="leftBarButtonItem" image="menuIcon" id="YNJ-1H-79a">
+                            <connections>
+                                <action selector="menuButtonPressed:" destination="5e5-bf-Zo2" id="d1i-zJ-59p"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="searchIcon" id="C1y-JE-inp">
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="5e5-bf-Zo2" id="It0-Sm-cw7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="applyButton" destination="Abc-qL-km8" id="p5C-L1-I7v"/>
+                        <outlet property="tableView" destination="7lC-DL-ywz" id="V5e-U7-2Mm"/>
+                        <outlet property="trashIcon" destination="Kbs-m1-fMd" id="gdn-vy-WEq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8m-We-uN2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="225" y="415"/>
+        </scene>
+        <!--Festival Navigation Controller-->
+        <scene sceneID="2NP-Ay-aVF">
+            <objects>
+                <navigationController storyboardIdentifier="FestivalNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jyX-MO-NHz" customClass="FestivalNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dqn-vG-wn4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5e5-bf-Zo2" kind="relationship" relationship="rootViewController" id="bfR-kd-w4J"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fGD-ak-X9j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-180" y="415"/>
         </scene>
     </scenes>
     <resources>
         <image name="calendarIcon" width="33" height="39"/>
         <image name="favoriteFestivalsIcon" width="35" height="33"/>
+        <image name="festivalCalendarIcon" width="12" height="13"/>
+        <image name="festivalLocationIcon" width="10" height="13"/>
         <image name="festivalsIcon" width="48" height="36"/>
         <image name="infoButton" width="19" height="19"/>
+        <image name="menuIcon" width="20" height="19"/>
+        <image name="searchIcon" width="20" height="19"/>
+        <image name="trashIcon" width="19" height="23"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
