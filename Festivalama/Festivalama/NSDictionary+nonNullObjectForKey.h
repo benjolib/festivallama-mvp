@@ -1,6 +1,6 @@
 //
 //  NSDictionary+nonNullObjectForKey.h
-//  TakeNote
+//  Festivalama
 //
 //  Created by Sztanyi Szabolcs on 15/12/14.
 //  Copyright (c) 2014 Sztanyi Szabolcs. All rights reserved.

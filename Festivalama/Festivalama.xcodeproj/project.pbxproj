@@ -45,6 +45,17 @@
 		561612141B1BC75E00147093 /* FilterCountriesDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 561612131B1BC75E00147093 /* FilterCountriesDatasource.m */; };
 		561612161B1BC7AE00147093 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 561612151B1BC7AE00147093 /* CountryPicker.bundle */; };
 		561612191B1BCF6500147093 /* FilterGenresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 561612181B1BCF6500147093 /* FilterGenresViewController.m */; };
+		56C44E731B1CCE7D00DFFB6B /* FestivalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E721B1CCE7D00DFFB6B /* FestivalsViewController.m */; };
+		56C44E761B1CCF7F00DFFB6B /* TableviewCounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E751B1CCF7F00DFFB6B /* TableviewCounterView.m */; };
+		56C44E791B1CECC100DFFB6B /* FestivalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E781B1CECC100DFFB6B /* FestivalNavigationController.m */; };
+		56C44E7C1B1CED6400DFFB6B /* BaseGradientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E7B1B1CED6400DFFB6B /* BaseGradientViewController.m */; };
+		56C44E7F1B1CF5F200DFFB6B /* FestivalRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E7E1B1CF5F200DFFB6B /* FestivalRefreshControl.m */; };
+		56C44E821B1D08FD00DFFB6B /* FestivalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E811B1D08FD00DFFB6B /* FestivalTableViewCell.m */; };
+		56C44E851B1D0CC400DFFB6B /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E841B1D0CC400DFFB6B /* BaseTableViewCell.m */; };
+		56C44E881B1D0E6500DFFB6B /* FestivalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E871B1D0E6500DFFB6B /* FestivalModel.m */; };
+		56C44E8C1B1D0FDF00DFFB6B /* FestivalDownloadClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E8B1B1D0FDF00DFFB6B /* FestivalDownloadClient.m */; };
+		56C44E8F1B1D144100DFFB6B /* NSDictionary+nonNullObjectForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E8E1B1D144100DFFB6B /* NSDictionary+nonNullObjectForKey.m */; };
+		56C44E921B1D154B00DFFB6B /* FestivalParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E911B1D154B00DFFB6B /* FestivalParser.m */; };
 		56CF1AF61B1B007700A899DB /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF51B1B007700A899DB /* MenuViewController.m */; };
 		56CF1AF91B1B00C200A899DB /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF81B1B00C200A899DB /* MenuButton.m */; };
 		56CF1AFD1B1B01BB00A899DB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CF1AFB1B1B01BB00A899DB /* Onboarding.storyboard */; };
@@ -137,6 +148,28 @@
 		561612151B1BC7AE00147093 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
 		561612171B1BCF6500147093 /* FilterGenresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterGenresViewController.h; path = viewControllers/FilterGenresViewController.h; sourceTree = "<group>"; };
 		561612181B1BCF6500147093 /* FilterGenresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterGenresViewController.m; path = viewControllers/FilterGenresViewController.m; sourceTree = "<group>"; };
+		56C44E711B1CCE7D00DFFB6B /* FestivalsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalsViewController.h; path = viewControllers/FestivalsViewController.h; sourceTree = "<group>"; };
+		56C44E721B1CCE7D00DFFB6B /* FestivalsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalsViewController.m; path = viewControllers/FestivalsViewController.m; sourceTree = "<group>"; };
+		56C44E741B1CCF7F00DFFB6B /* TableviewCounterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableviewCounterView.h; path = views/TableviewCounterView.h; sourceTree = "<group>"; };
+		56C44E751B1CCF7F00DFFB6B /* TableviewCounterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableviewCounterView.m; path = views/TableviewCounterView.m; sourceTree = "<group>"; };
+		56C44E771B1CECC100DFFB6B /* FestivalNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalNavigationController.h; path = viewControllers/FestivalNavigationController.h; sourceTree = "<group>"; };
+		56C44E781B1CECC100DFFB6B /* FestivalNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalNavigationController.m; path = viewControllers/FestivalNavigationController.m; sourceTree = "<group>"; };
+		56C44E7A1B1CED6400DFFB6B /* BaseGradientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseGradientViewController.h; path = viewControllers/BaseGradientViewController.h; sourceTree = "<group>"; };
+		56C44E7B1B1CED6400DFFB6B /* BaseGradientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseGradientViewController.m; path = viewControllers/BaseGradientViewController.m; sourceTree = "<group>"; };
+		56C44E7D1B1CF5F200DFFB6B /* FestivalRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalRefreshControl.h; path = views/FestivalRefreshControl.h; sourceTree = "<group>"; };
+		56C44E7E1B1CF5F200DFFB6B /* FestivalRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalRefreshControl.m; path = views/FestivalRefreshControl.m; sourceTree = "<group>"; };
+		56C44E801B1D08FD00DFFB6B /* FestivalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalTableViewCell.h; path = views/FestivalTableViewCell.h; sourceTree = "<group>"; };
+		56C44E811B1D08FD00DFFB6B /* FestivalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalTableViewCell.m; path = views/FestivalTableViewCell.m; sourceTree = "<group>"; };
+		56C44E831B1D0CC400DFFB6B /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTableViewCell.h; path = views/BaseTableViewCell.h; sourceTree = "<group>"; };
+		56C44E841B1D0CC400DFFB6B /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTableViewCell.m; path = views/BaseTableViewCell.m; sourceTree = "<group>"; };
+		56C44E861B1D0E6500DFFB6B /* FestivalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalModel.h; path = "custom objects/Datamodel/FestivalModel.h"; sourceTree = "<group>"; };
+		56C44E871B1D0E6500DFFB6B /* FestivalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalModel.m; path = "custom objects/Datamodel/FestivalModel.m"; sourceTree = "<group>"; };
+		56C44E8A1B1D0FDF00DFFB6B /* FestivalDownloadClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalDownloadClient.h; path = "custom objects/networking/FestivalDownloadClient.h"; sourceTree = "<group>"; };
+		56C44E8B1B1D0FDF00DFFB6B /* FestivalDownloadClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalDownloadClient.m; path = "custom objects/networking/FestivalDownloadClient.m"; sourceTree = "<group>"; };
+		56C44E8D1B1D144100DFFB6B /* NSDictionary+nonNullObjectForKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+nonNullObjectForKey.h"; sourceTree = "<group>"; };
+		56C44E8E1B1D144100DFFB6B /* NSDictionary+nonNullObjectForKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+nonNullObjectForKey.m"; sourceTree = "<group>"; };
+		56C44E901B1D154B00DFFB6B /* FestivalParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalParser.h; path = "custom objects/parser/FestivalParser.h"; sourceTree = "<group>"; };
+		56C44E911B1D154B00DFFB6B /* FestivalParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalParser.m; path = "custom objects/parser/FestivalParser.m"; sourceTree = "<group>"; };
 		56CF1AF41B1B007700A899DB /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = viewControllers/MenuViewController.h; sourceTree = "<group>"; };
 		56CF1AF51B1B007700A899DB /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = viewControllers/MenuViewController.m; sourceTree = "<group>"; };
 		56CF1AF71B1B00C200A899DB /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuButton.h; path = views/MenuButton.h; sourceTree = "<group>"; };
@@ -279,6 +312,12 @@
 		560D0ABD1B17953500B03090 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				56C44E7A1B1CED6400DFFB6B /* BaseGradientViewController.h */,
+				56C44E7B1B1CED6400DFFB6B /* BaseGradientViewController.m */,
+				56C44E771B1CECC100DFFB6B /* FestivalNavigationController.h */,
+				56C44E781B1CECC100DFFB6B /* FestivalNavigationController.m */,
+				56C44E711B1CCE7D00DFFB6B /* FestivalsViewController.h */,
+				56C44E721B1CCE7D00DFFB6B /* FestivalsViewController.m */,
 				561611F91B1BB79B00147093 /* Filter screens */,
 				56CF1B001B1B097000A899DB /* Transition Managers */,
 				56CF1AF41B1B007700A899DB /* MenuViewController.h */,
@@ -307,9 +346,15 @@
 		560D0AD31B179BAD00B03090 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				56C44E831B1D0CC400DFFB6B /* BaseTableViewCell.h */,
+				56C44E841B1D0CC400DFFB6B /* BaseTableViewCell.m */,
 				56CF1AFA1B1B00CA00A899DB /* Popup */,
 				56D05A441B19D9CD0031F2A2 /* ContinueButton.h */,
 				56D05A451B19D9CD0031F2A2 /* ContinueButton.m */,
+				56C44E7D1B1CF5F200DFFB6B /* FestivalRefreshControl.h */,
+				56C44E7E1B1CF5F200DFFB6B /* FestivalRefreshControl.m */,
+				56C44E801B1D08FD00DFFB6B /* FestivalTableViewCell.h */,
+				56C44E811B1D08FD00DFFB6B /* FestivalTableViewCell.m */,
 				5616120F1B1BC43900147093 /* FilterTableViewCell.h */,
 				561612101B1BC43900147093 /* FilterTableViewCell.m */,
 				561611FD1B1BB7F800147093 /* GreenButton.h */,
@@ -320,6 +365,8 @@
 				561611F51B1BAE9A00147093 /* BadgeCounterView.m */,
 				56D05A471B19DBE00031F2A2 /* SelectionCollectionViewCell.h */,
 				56D05A481B19DBE00031F2A2 /* SelectionCollectionViewCell.m */,
+				56C44E741B1CCF7F00DFFB6B /* TableviewCounterView.h */,
+				56C44E751B1CCF7F00DFFB6B /* TableviewCounterView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -338,6 +385,8 @@
 		560D0AE31B17BD9900B03090 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				56C44E8D1B1D144100DFFB6B /* NSDictionary+nonNullObjectForKey.h */,
+				56C44E8E1B1D144100DFFB6B /* NSDictionary+nonNullObjectForKey.m */,
 				560D0ADD1B179FBA00B03090 /* UIColor+AppColors.h */,
 				560D0ADE1B179FBA00B03090 /* UIColor+AppColors.m */,
 			);
@@ -347,12 +396,14 @@
 		560D0AE41B17C0A300B03090 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				560D0AEB1B17C11800B03090 /* NetworkConstants.h */,
 				560D0AEC1B17C32700B03090 /* Parsers */,
 				560D0AE51B17C0B300B03090 /* AbstractClient.h */,
 				560D0AE61B17C0B300B03090 /* AbstractClient.m */,
+				56C44E8A1B1D0FDF00DFFB6B /* FestivalDownloadClient.h */,
+				56C44E8B1B1D0FDF00DFFB6B /* FestivalDownloadClient.m */,
 				560D0AE81B17C0D200B03090 /* GenreDownloadClient.h */,
 				560D0AE91B17C0D200B03090 /* GenreDownloadClient.m */,
-				560D0AEB1B17C11800B03090 /* NetworkConstants.h */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -360,6 +411,8 @@
 		560D0AEC1B17C32700B03090 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
+				56C44E901B1D154B00DFFB6B /* FestivalParser.h */,
+				56C44E911B1D154B00DFFB6B /* FestivalParser.m */,
 				560D0AF11B17C3E600B03090 /* GenreParser.h */,
 				560D0AF21B17C3E600B03090 /* GenreParser.m */,
 			);
@@ -383,6 +436,16 @@
 				5616120D1B1BBC2A00147093 /* FilterCountryViewController.m */,
 			);
 			name = "Filter screens";
+			sourceTree = "<group>";
+		};
+		56C44E891B1D0F9E00DFFB6B /* countries */ = {
+			isa = PBXGroup;
+			children = (
+				561612121B1BC75E00147093 /* FilterCountriesDatasource.h */,
+				561612131B1BC75E00147093 /* FilterCountriesDatasource.m */,
+				561612151B1BC7AE00147093 /* CountryPicker.bundle */,
+			);
+			name = countries;
 			sourceTree = "<group>";
 		};
 		56CF1AFA1B1B00CA00A899DB /* Popup */ = {
@@ -424,11 +487,11 @@
 		56D05A3D1B19D4180031F2A2 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
+				56C44E861B1D0E6500DFFB6B /* FestivalModel.h */,
+				56C44E871B1D0E6500DFFB6B /* FestivalModel.m */,
 				561612031B1BBA2E00147093 /* FilterModel.h */,
 				561612041B1BBA2E00147093 /* FilterModel.m */,
-				561612121B1BC75E00147093 /* FilterCountriesDatasource.h */,
-				561612131B1BC75E00147093 /* FilterCountriesDatasource.m */,
-				561612151B1BC7AE00147093 /* CountryPicker.bundle */,
+				56C44E891B1D0F9E00DFFB6B /* countries */,
 				560D0AEE1B17C35D00B03090 /* Genre.h */,
 				560D0AEF1B17C35D00B03090 /* Genre.m */,
 				56D05A3E1B19D43D0031F2A2 /* OnboardingModel.h */,
@@ -544,33 +607,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D05A3C1B19D3980031F2A2 /* QuestionsContainerViewController.m in Sources */,
+				56C44E881B1D0E6500DFFB6B /* FestivalModel.m in Sources */,
 				561612021B1BB9FB00147093 /* FilterNavigationController.m in Sources */,
+				56C44E7F1B1CF5F200DFFB6B /* FestivalRefreshControl.m in Sources */,
 				56D05A4C1B19FDCC0031F2A2 /* QuestionsViewController.m in Sources */,
 				561612051B1BBA2E00147093 /* FilterModel.m in Sources */,
 				560D0AC01B1799E600B03090 /* WelcomeViewController.m in Sources */,
 				560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */,
 				56CF1B031B1B099D00A899DB /* MenuTransitionManager.m in Sources */,
+				56C44E8C1B1D0FDF00DFFB6B /* FestivalDownloadClient.m in Sources */,
+				56C44E7C1B1CED6400DFFB6B /* BaseGradientViewController.m in Sources */,
 				56CF1AF61B1B007700A899DB /* MenuViewController.m in Sources */,
 				561612191B1BCF6500147093 /* FilterGenresViewController.m in Sources */,
 				56CF1B091B1B0D3200A899DB /* UIImage+ImageEffects.m in Sources */,
 				56CF1B061B1B0C2000A899DB /* MenuTransitionAnimator.m in Sources */,
 				560D0AE71B17C0B300B03090 /* AbstractClient.m in Sources */,
 				56D05A461B19D9CD0031F2A2 /* ContinueButton.m in Sources */,
+				56C44E821B1D08FD00DFFB6B /* FestivalTableViewCell.m in Sources */,
 				560D0AF01B17C35D00B03090 /* Genre.m in Sources */,
 				560D0AC31B1799FB00B03090 /* StoryboardManager.m in Sources */,
+				56C44E761B1CCF7F00DFFB6B /* TableviewCounterView.m in Sources */,
 				560D0AE21B17BD9200B03090 /* LocationManager.m in Sources */,
 				56CF1AF91B1B00C200A899DB /* MenuButton.m in Sources */,
 				5616120E1B1BBC2A00147093 /* FilterCountryViewController.m in Sources */,
+				56C44E921B1D154B00DFFB6B /* FestivalParser.m in Sources */,
 				560D0A981B17951100B03090 /* AppDelegate.m in Sources */,
 				56D05A401B19D43D0031F2A2 /* OnboardingModel.m in Sources */,
+				56C44E8F1B1D144100DFFB6B /* NSDictionary+nonNullObjectForKey.m in Sources */,
 				560D0AEA1B17C0D200B03090 /* GenreDownloadClient.m in Sources */,
 				561612081B1BBB0000147093 /* FilterPlacesViewController.m in Sources */,
 				560D0AD61B179CAA00B03090 /* PopupView.m in Sources */,
 				560D0A9B1B17951100B03090 /* Festivalama.xcdatamodeld in Sources */,
+				56C44E851B1D0CC400DFFB6B /* BaseTableViewCell.m in Sources */,
 				561612111B1BC43900147093 /* FilterTableViewCell.m in Sources */,
 				561611FC1B1BB7C100147093 /* FilterViewController.m in Sources */,
 				56D05A491B19DBE00031F2A2 /* SelectionCollectionViewCell.m in Sources */,
 				561611FF1B1BB7F800147093 /* GreenButton.m in Sources */,
+				56C44E791B1CECC100DFFB6B /* FestivalNavigationController.m in Sources */,
 				560D0AF31B17C3E600B03090 /* GenreParser.m in Sources */,
 				561611F61B1BAE9A00147093 /* BadgeCounterView.m in Sources */,
 				561612141B1BC75E00147093 /* FilterCountriesDatasource.m in Sources */,
@@ -579,6 +652,7 @@
 				560D0A951B17951100B03090 /* main.m in Sources */,
 				560D0ADB1B179F0100B03090 /* PopupViewButton.m in Sources */,
 				5616120B1B1BBC1B00147093 /* FilterPostcodeViewController.m in Sources */,
+				56C44E731B1CCE7D00DFFB6B /* FestivalsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
