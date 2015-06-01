@@ -16,4 +16,6 @@
 @property (nonatomic, copy) NSString *selectedCountry;
 @property (nonatomic, copy) NSString *selectedPostCode;
 
+- (void)clearFilters;
+
 @end

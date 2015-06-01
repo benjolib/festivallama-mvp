@@ -10,4 +10,11 @@
 
 @implementation FilterModel
 
+- (void)clearFilters
+{
+    self.selectedCountry = nil;
+    self.selectedGenresArray = nil;
+    self.selectedPostCode = nil;
+}
+
 @end
