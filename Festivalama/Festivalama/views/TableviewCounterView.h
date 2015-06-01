@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+/// UIView that is showing the number of items in the TableView
+
 @interface TableviewCounterView : UIView
+
+- (void)addToView:(UIView*)view;
+
+- (void)setTitle:(NSString*)title;
+
+- (void)setCounterViewVisible:(BOOL)visible;
+
+- (BOOL)hasTitle;
 
 @end

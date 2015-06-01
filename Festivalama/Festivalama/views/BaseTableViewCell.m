@@ -8,16 +8,36 @@
 
 #import "BaseTableViewCell.h"
 
+@interface BaseTableViewCell ()
+@property (nonatomic, strong) CALayer *bottomBorderLayer;
+@end
+
 @implementation BaseTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
+    if (self.bottomBorderLayer.superlayer) {
+        return;
+    }
+
+    CGFloat scaleOfMainScreen = [UIScreen mainScreen].scale;
+    CGFloat alwaysOnePixelInPoints = 1.0 / scaleOfMainScreen;
+
+    self.bottomBorderLayer = [CALayer layer];
+    self.bottomBorderLayer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
+    self.bottomBorderLayer.frame = CGRectMake(0.0, CGRectGetHeight(self.frame)-alwaysOnePixelInPoints, CGRectGetWidth(self.frame), alwaysOnePixelInPoints);
+    [self.layer addSublayer:self.bottomBorderLayer];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
 
-    // Configure the view for the selected state
+    CGFloat scaleOfMainScreen = [UIScreen mainScreen].scale;
+    CGFloat alwaysOnePixelInPoints = 1.0 / scaleOfMainScreen;
+    self.bottomBorderLayer.frame = CGRectMake(0.0, CGRectGetHeight(self.frame)-alwaysOnePixelInPoints, CGRectGetWidth(self.frame), alwaysOnePixelInPoints);
 }
 
 @end

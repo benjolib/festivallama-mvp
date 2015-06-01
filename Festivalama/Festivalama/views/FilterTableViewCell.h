@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface FilterTableViewCell : UITableViewCell
+@interface FilterTableViewCell : BaseTableViewCell
 
 @end
