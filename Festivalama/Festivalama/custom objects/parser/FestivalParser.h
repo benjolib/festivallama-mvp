@@ -10,4 +10,6 @@
 
 @interface FestivalParser : NSObject
 
+- (NSArray*)parseJSONData:(NSData*)data;
+
 @end

@@ -7,31 +7,27 @@
 //
 
 #import "BaseGradientViewController.h"
-
-@interface BaseGradientViewController ()
-
-@end
+#import "UIColor+AppColors.h"
 
 @implementation BaseGradientViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self addGradientBackground];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+- (void)addGradientBackground
+{
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = self.view.frame;
 
-/*
-#pragma mark - Navigation
+    UIColor *topColor = [UIColor gradientGreenColor];
+    UIColor *bottomColor = [UIColor globalOrangeColor];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    gradientLayer.colors = @[(id)topColor.CGColor, (id)bottomColor.CGColor];
+    gradientLayer.locations = @[@0.0, @1.0];
+    [self.view.layer insertSublayer:gradientLayer atIndex:0];
 }
-*/
 
 @end

@@ -8,6 +8,12 @@
 
 #import "AbstractClient.h"
 
+@class FilterModel;
+
 @interface FestivalDownloadClient : AbstractClient
+
+- (void)downloadAllFestivalsWithCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock;
+
+- (void)downloadFestivalsWithFilterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock;
 
 @end
