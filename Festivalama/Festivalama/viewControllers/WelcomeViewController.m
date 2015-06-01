@@ -17,6 +17,7 @@
 #import "MenuTransitionManager.h"
 #import "StoryboardManager.h"
 #import "FilterNavigationController.h"
+#import "FestivalNavigationController.h"
 
 @interface WelcomeViewController () <PopupViewDelegate>
 @property (nonatomic, strong) PopupView *activePopup;
@@ -35,6 +36,12 @@
 {
     self.transitionManager = [MenuTransitionManager new];
     [self.transitionManager presentMenuViewControllerOnViewController:self];
+}
+
+- (IBAction)showHome:(id)sender
+{
+    FestivalNavigationController *festivalsNavC = [StoryboardManager festivalNavigationController];
+    [self presentViewController:festivalsNavC animated:YES completion:nil];
 }
 
 - (IBAction)showFilterView:(id)sender

@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseGradientViewController.h"
 #import "FilterModel.h"
 
 @class GreenButton;
 
-@interface FilterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FilterViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet GreenButton *applyButton;

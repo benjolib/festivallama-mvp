@@ -22,12 +22,13 @@
 
 - (IBAction)applyButtonPressed:(id)sender
 {
-
+    // TODO:
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)trashButtonPressed:(id)sender
 {
-    
+    [self.filterModel clearFilters];
 }
 
 - (void)downloadGenres
@@ -113,21 +114,7 @@
 
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self addGradientBackground];
     [self downloadGenres];
-}
-
-- (void)addGradientBackground
-{
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = self.view.frame;
-
-    UIColor *topColor = [UIColor gradientGreenColor];
-    UIColor *bottomColor = [UIColor globalOrangeColor];
-
-    gradientLayer.colors = @[(id)topColor.CGColor, (id)bottomColor.CGColor];
-    gradientLayer.locations = @[@0.0, @1.0];
-    [self.view.layer insertSublayer:gradientLayer atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning

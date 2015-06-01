@@ -28,7 +28,7 @@
     {
         CGRect frame = fromViewController.view.frame;
         UIGraphicsBeginImageContext(frame.size);
-        [fromViewController.view drawViewHierarchyInRect:frame afterScreenUpdates:YES];
+        [fromViewController.view drawViewHierarchyInRect:frame afterScreenUpdates:NO];
         UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
 
