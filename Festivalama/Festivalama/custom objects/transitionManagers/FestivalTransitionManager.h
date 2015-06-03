@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface FestivalTransitionManager : NSObject
+
+- (void)presentFestivalViewControllerOnViewController:(UIViewController*)baseController;
 
 @end

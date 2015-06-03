@@ -7,7 +7,35 @@
 //
 
 #import "FestivalTransitionManager.h"
+#import "FestivalTransitionAnimator.h"
+#import "FestivalNavigationController.h"
+#import "StoryboardManager.h"
+
+@interface FestivalTransitionManager () <UIViewControllerTransitioningDelegate>
+@end
 
 @implementation FestivalTransitionManager
+
+- (void)presentFestivalViewControllerOnViewController:(UIViewController*)baseController
+{
+    FestivalNavigationController *festivalViewController = [StoryboardManager festivalNavigationController];
+    festivalViewController.transitioningDelegate = self;
+    [baseController presentViewController:festivalViewController animated:YES completion:nil];
+}
+
+#pragma mark - transitioningDelegate methods
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    FestivalTransitionAnimator *animator = [FestivalTransitionAnimator new];
+    animator.isPresenting = YES;
+    return animator;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    FestivalTransitionAnimator *animator = [FestivalTransitionAnimator new];
+    animator.isPresenting = NO;
+    return animator;
+}
 
 @end
