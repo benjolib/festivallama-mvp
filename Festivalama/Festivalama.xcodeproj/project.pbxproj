@@ -60,6 +60,8 @@
 		56CE62DB1B1FAE4A0079570E /* FestivalTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE62DA1B1FAE4A0079570E /* FestivalTransitionManager.m */; };
 		56CE62DE1B1FAE890079570E /* FestivalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE62DD1B1FAE890079570E /* FestivalTransitionAnimator.m */; };
 		56CE62E11B1FC54C0079570E /* GeneralSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE62E01B1FC54C0079570E /* GeneralSettings.m */; };
+		56CE62E51B1FC83F0079570E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CE62E31B1FC83F0079570E /* Fabric.framework */; };
+		56CE62E61B1FC83F0079570E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CE62E41B1FC83F0079570E /* Crashlytics.framework */; };
 		56CF1AF61B1B007700A899DB /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF51B1B007700A899DB /* MenuViewController.m */; };
 		56CF1AF91B1B00C200A899DB /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF81B1B00C200A899DB /* MenuButton.m */; };
 		56CF1AFD1B1B01BB00A899DB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CF1AFB1B1B01BB00A899DB /* Onboarding.storyboard */; };
@@ -190,6 +192,8 @@
 		56CE62DD1B1FAE890079570E /* FestivalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalTransitionAnimator.m; path = "custom objects/transitionManagers/FestivalTransitionAnimator.m"; sourceTree = "<group>"; };
 		56CE62DF1B1FC54C0079570E /* GeneralSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralSettings.h; path = "custom objects/GeneralSettings.h"; sourceTree = "<group>"; };
 		56CE62E01B1FC54C0079570E /* GeneralSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralSettings.m; path = "custom objects/GeneralSettings.m"; sourceTree = "<group>"; };
+		56CE62E31B1FC83F0079570E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		56CE62E41B1FC83F0079570E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		56CF1AF41B1B007700A899DB /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = viewControllers/MenuViewController.h; sourceTree = "<group>"; };
 		56CF1AF51B1B007700A899DB /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = viewControllers/MenuViewController.m; sourceTree = "<group>"; };
 		56CF1AF71B1B00C200A899DB /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuButton.h; path = views/MenuButton.h; sourceTree = "<group>"; };
@@ -237,8 +241,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				560D0AD01B179A6900B03090 /* EventKit.framework in Frameworks */,
+				56CE62E61B1FC83F0079570E /* Crashlytics.framework in Frameworks */,
 				560D0AD11B179A6900B03090 /* EventKitUI.framework in Frameworks */,
 				560D0ACD1B179A3D00B03090 /* QuartzCore.framework in Frameworks */,
+				56CE62E51B1FC83F0079570E /* Fabric.framework in Frameworks */,
 				560D0ACB1B179A3600B03090 /* CoreGraphics.framework in Frameworks */,
 				560D0AC91B179A3000B03090 /* AVFoundation.framework in Frameworks */,
 				560D0AC71B179A2800B03090 /* CoreLocation.framework in Frameworks */,
@@ -294,6 +300,8 @@
 		560D0A921B17951100B03090 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				56CE62E31B1FC83F0079570E /* Fabric.framework */,
+				56CE62E41B1FC83F0079570E /* Crashlytics.framework */,
 				56CF1B071B1B0D3200A899DB /* UIImage+ImageEffects.h */,
 				56CF1B081B1B0D3200A899DB /* UIImage+ImageEffects.m */,
 				560D0AA21B17951100B03090 /* Images.xcassets */,
@@ -575,6 +583,7 @@
 				560D0A8B1B17951100B03090 /* Sources */,
 				560D0A8C1B17951100B03090 /* Frameworks */,
 				560D0A8D1B17951100B03090 /* Resources */,
+				56CE62E21B1FC8220079570E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -663,6 +672,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56CE62E21B1FC8220079570E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 3b3f3d51a8390e528e860d88da4e02f7e081ed52 0a493dcb5c54b890e2ce07c55f80c44745a52c28d30e4b8db9e9afeda95912e2";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		560D0A8B1B17951100B03090 /* Sources */ = {
@@ -846,6 +871,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Festivalama/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -858,6 +887,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Festivalama/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

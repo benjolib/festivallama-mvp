@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "GeneralSettings.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Fabric with:@[CrashlyticsKit]];
+
     UIViewController *vc = nil;
     if ([GeneralSettings onboardingViewed]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
