@@ -15,8 +15,15 @@
 @property (nonatomic, strong) NSArray *selectedGenres;
 
 // default values to display
+@property (nonatomic, strong, readonly) NSMutableArray *visitorOptionsArray;
 @property (nonatomic, strong, readonly) NSMutableArray *travelOptionsArray;
 @property (nonatomic, strong, readonly) NSMutableArray *friendsCountArray;
 @property (nonatomic, strong, readonly) NSMutableArray *overnightArray;
+
+@property (nonatomic) BOOL filterByGermany;
+
+- (NSArray*)onboardingOptionsArrayForIndex:(NSInteger)index;
+- (NSString*)onboardingViewTitleForIndex:(NSInteger)index;
+- (NSString*)onboardingBackgroundImageViewNameForIndex:(NSInteger)index;
 
 @end
