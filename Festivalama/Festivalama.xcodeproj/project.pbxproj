@@ -59,6 +59,7 @@
 		56CE62D71B1F9CCA0079570E /* LoadingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE62D61B1F9CCA0079570E /* LoadingTableView.m */; };
 		56CE62DB1B1FAE4A0079570E /* FestivalTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE62DA1B1FAE4A0079570E /* FestivalTransitionManager.m */; };
 		56CE62DE1B1FAE890079570E /* FestivalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE62DD1B1FAE890079570E /* FestivalTransitionAnimator.m */; };
+		56CE62E11B1FC54C0079570E /* GeneralSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE62E01B1FC54C0079570E /* GeneralSettings.m */; };
 		56CF1AF61B1B007700A899DB /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF51B1B007700A899DB /* MenuViewController.m */; };
 		56CF1AF91B1B00C200A899DB /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF81B1B00C200A899DB /* MenuButton.m */; };
 		56CF1AFD1B1B01BB00A899DB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CF1AFB1B1B01BB00A899DB /* Onboarding.storyboard */; };
@@ -187,6 +188,8 @@
 		56CE62DA1B1FAE4A0079570E /* FestivalTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalTransitionManager.m; path = "custom objects/transitionManagers/FestivalTransitionManager.m"; sourceTree = "<group>"; };
 		56CE62DC1B1FAE890079570E /* FestivalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalTransitionAnimator.h; path = "custom objects/transitionManagers/FestivalTransitionAnimator.h"; sourceTree = "<group>"; };
 		56CE62DD1B1FAE890079570E /* FestivalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalTransitionAnimator.m; path = "custom objects/transitionManagers/FestivalTransitionAnimator.m"; sourceTree = "<group>"; };
+		56CE62DF1B1FC54C0079570E /* GeneralSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralSettings.h; path = "custom objects/GeneralSettings.h"; sourceTree = "<group>"; };
+		56CE62E01B1FC54C0079570E /* GeneralSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralSettings.m; path = "custom objects/GeneralSettings.m"; sourceTree = "<group>"; };
 		56CF1AF41B1B007700A899DB /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = viewControllers/MenuViewController.h; sourceTree = "<group>"; };
 		56CF1AF51B1B007700A899DB /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = viewControllers/MenuViewController.m; sourceTree = "<group>"; };
 		56CF1AF71B1B00C200A899DB /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuButton.h; path = views/MenuButton.h; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 			children = (
 				560D0AE01B17BD9200B03090 /* LocationManager.h */,
 				560D0AE11B17BD9200B03090 /* LocationManager.m */,
+				56CE62DF1B1FC54C0079570E /* GeneralSettings.h */,
+				56CE62E01B1FC54C0079570E /* GeneralSettings.m */,
 				560D0AE41B17C0A300B03090 /* Networking */,
 				560D0AE31B17BD9900B03090 /* Categories */,
 			);
@@ -673,6 +678,7 @@
 				56CE62D71B1F9CCA0079570E /* LoadingTableView.m in Sources */,
 				560D0AC01B1799E600B03090 /* WelcomeViewController.m in Sources */,
 				560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */,
+				56CE62E11B1FC54C0079570E /* GeneralSettings.m in Sources */,
 				56CF1B031B1B099D00A899DB /* MenuTransitionManager.m in Sources */,
 				56C44E8C1B1D0FDF00DFFB6B /* FestivalDownloadClient.m in Sources */,
 				56C44E7C1B1CED6400DFFB6B /* BaseGradientViewController.m in Sources */,

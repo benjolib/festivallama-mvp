@@ -14,6 +14,7 @@
 #import "StoryboardManager.h"
 #import "FestivalNavigationController.h"
 #import "FestivalTransitionManager.h"
+#import "GeneralSettings.h"
 
 @interface QuestionsContainerViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 @property (nonatomic, strong) UIPageViewController *pageViewController;
@@ -55,6 +56,8 @@
                                            animated:YES
                                          completion:nil];
     } else {
+        [GeneralSettings setOnboardingViewed];
+        
         // move to festivals view
         if (!self.festivalTransitionManager) {
             self.festivalTransitionManager = [[FestivalTransitionManager alloc] init];

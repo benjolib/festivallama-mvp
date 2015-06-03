@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11" y="342"/>
+            <point key="canvasLocation" x="-53" y="341"/>
         </scene>
         <!--Questions Container View Controller-->
         <scene sceneID="x8u-K3-5Zb">
@@ -96,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8IW-bw-ZJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="380" y="216"/>
+            <point key="canvasLocation" x="354" y="341"/>
         </scene>
         <!--Music Genre Selection View Controller-->
         <scene sceneID="zvD-6J-VXE">
@@ -220,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73r-UA-EP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="380" y="876"/>
+            <point key="canvasLocation" x="755" y="341"/>
         </scene>
         <!--Questions View Controller-->
         <scene sceneID="q6T-77-y3d">
@@ -325,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sO-5D-zJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="876"/>
+            <point key="canvasLocation" x="1123" y="341"/>
         </scene>
     </scenes>
     <resources>
