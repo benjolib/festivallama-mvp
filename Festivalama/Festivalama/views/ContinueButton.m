@@ -17,6 +17,8 @@
 
     self.imageView.tintColor = [UIColor globalOrangeColor];
     self.backgroundColor = [UIColor whiteColor];
+
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
 }
 
 - (void)layoutSubviews
@@ -37,6 +39,17 @@
     } else {
         [self setTitleColor:[UIColor globalOrangeColor] forState:UIControlStateHighlighted];
         self.imageView.tintColor = [UIColor globalOrangeColor];
+    }
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    if (enabled) {
+        self.backgroundColor = [UIColor whiteColor];
+    } else {
+
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
     }
 }
 

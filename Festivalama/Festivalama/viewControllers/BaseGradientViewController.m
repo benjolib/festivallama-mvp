@@ -30,4 +30,9 @@
     [self.view.layer insertSublayer:gradientLayer atIndex:0];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 @end
