@@ -10,4 +10,6 @@
 
 @interface FilterBandsTableViewCell : FilterTableViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel *bandDetailLabel;
+
 @end

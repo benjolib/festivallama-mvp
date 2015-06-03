@@ -25,7 +25,7 @@
 - (NSMutableArray *)selectedGenresArray
 {
     [self setTrashIconVisible:_selectedGenresArray.count > 0];
-    self.filterModel.selectedGenresArray = [_selectedGenresArray copy];
+    [FilterModel sharedModel].selectedGenresArray = [_selectedGenresArray copy];
     return _selectedGenresArray;
 }
 

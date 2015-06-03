@@ -7,31 +7,101 @@
 //
 
 #import "FilterBandsViewController.h"
+#import "BandsDownloadClient.h"
+#import "Band.h"
+#import "FilterTableViewCell.h"
 
 @interface FilterBandsViewController ()
-
+@property (nonatomic, strong) BandsDownloadClient *bandsDownloadClient;
+@property (nonatomic, strong) NSArray *allBandsArray;
+@property (nonatomic, strong) NSMutableArray *selectedBandsArray;
 @end
 
 @implementation FilterBandsViewController
 
-- (void)viewDidLoad {
+- (void)trashButtonPressed:(id)sender
+{
+    [self.selectedBandsArray removeAllObjects];
+    [self.tableView reloadData];
+    [FilterModel sharedModel].selectedBandsArray = nil;
+}
+
+- (NSMutableArray *)selectedBandsArray
+{
+    [self setTrashIconVisible:_selectedBandsArray.count > 0];
+    [[FilterModel sharedModel] setSelectedBandsArray:[NSArray arrayWithArray:_selectedBandsArray]];
+    return _selectedBandsArray;
+}
+
+#pragma mark - view methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.allBandsArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+    Band *band = self.allBandsArray[indexPath.row];
+    cell.textLabel.text = band.name;
+
+    if ([self.selectedBandsArray containsObject:self.allBandsArray[indexPath.row]]) {
+        UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
+        cell.accessoryView = accessoryView;
+        cell.textLabel.textColor = [UIColor whiteColor];
+    } else {
+        cell.accessoryView = nil;
+        cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (!self.selectedBandsArray) {
+        self.selectedBandsArray = [NSMutableArray array];
+    }
+
+    Band *selectedBand = self.allBandsArray[indexPath.row];
+    if ([self.selectedBandsArray containsObject:selectedBand]) {
+        [self.selectedBandsArray removeObject:selectedBand];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        [self.selectedBandsArray addObject:selectedBand];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"Bands";
+    
+    [self downloadBands];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)downloadBands
+{
+    self.bandsDownloadClient = [BandsDownloadClient new];
+
+    __weak typeof(self) weakSelf = self;
+    [self.bandsDownloadClient downloadAllBandsWithCompletionBlock:^(NSArray *sortedBands, NSString *errorMessage, BOOL completed) {
+        if (completed) {
+            weakSelf.allBandsArray = [sortedBands copy];
+            weakSelf.selectedBandsArray = [[[FilterModel sharedModel] selectedBandsArray] mutableCopy];
+            [weakSelf.tableView reloadData];
+        } else {
+
+        }
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc
+{
+    self.bandsDownloadClient = nil;
 }
-*/
 
 @end

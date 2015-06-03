@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import "FilterViewController.h"
+#import "FilterGenresViewController.h"
 
-@interface FilterBandsViewController : FilterViewController
+@interface FilterBandsViewController : FilterGenresViewController
 
 @end

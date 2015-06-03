@@ -68,7 +68,7 @@
     return self.titleLabel.text.length > 0;
 }
 
-- (void)setCounterViewVisible:(BOOL)visible
+- (void)setCounterViewVisible:(BOOL)visible animated:(BOOL)animated
 {
     if (visible) {
         self.topConstraint.constant = -70.0;
@@ -76,9 +76,13 @@
         self.topConstraint.constant = 100.0;
     }
 
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    if (animated) {
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            [self layoutIfNeeded];
+        } completion:nil];
+    } else {
         [self layoutIfNeeded];
-    } completion:nil];
+    }
 }
 
 - (void)updateConstraints

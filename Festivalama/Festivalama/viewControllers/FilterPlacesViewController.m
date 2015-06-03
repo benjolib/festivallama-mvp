@@ -54,7 +54,7 @@
     [super viewDidLoad];
     self.title = @"Ort";
 
-    if (self.filterModel.selectedCountry || self.filterModel.selectedPostCode) {
+    if (FilterModel.sharedModel.selectedCountry || FilterModel.sharedModel.selectedPostCode) {
         [self setTrashIconVisible:YES];
     } else {
         [self setTrashIconVisible:NO];

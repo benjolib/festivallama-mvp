@@ -39,12 +39,10 @@
     cell.textLabel.text = self.allPostcodesArray[indexPath.row];
 
     if ([self.selectedPostCodesArray containsObject:self.allPostcodesArray[indexPath.row]]) {
-        cell.selected = YES;
         UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
         cell.accessoryView = accessoryView;
         cell.textLabel.textColor = [UIColor whiteColor];
     } else {
-        cell.selected = NO;
         cell.accessoryView = nil;
         cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     }

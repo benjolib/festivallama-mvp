@@ -10,8 +10,10 @@
 #import "GreenButton.h"
 #import "UIColor+AppColors.h"
 #import "FilterTableViewCell.h"
+#import "FilterBandsTableViewCell.h"
 #import "GenreDownloadClient.h"
 #import "FilterGenresViewController.h"
+#import "FilterBandsViewController.h"
 
 @interface FilterViewController ()
 @property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
@@ -64,10 +66,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 1) {
-        FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"multipleCell"];
-        UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"trashIcon"]];
-        cell.accessoryView = accessoryView;
-        cell.backgroundColor = [UIColor clearColor];
+        FilterBandsTableViewCell *cell = (FilterBandsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"bandsCell"];
+
+        NSString *bandsString = [[FilterModel sharedModel] bandsString];
+        if (bandsString.length > 0) {
+            UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"trashIcon"]];
+            cell.accessoryView = accessoryView;
+            cell.backgroundColor = [UIColor clearColor];
+        } else {
+            UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclosureIcon"]];
+            cell.accessoryView = accessoryView;
+        }
+
+        cell.nameLabel.text = @"Nach Künstlern";
+        cell.bandDetailLabel.text = bandsString;
         return cell;
     } else {
         FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"basicCell"];
@@ -90,7 +102,7 @@
     if (indexPath.row == 0) {
         [self performSegueWithIdentifier:@"openGenres" sender:nil];
     } else if (indexPath.row == 1) {
-        // open künstlern...
+        [self performSegueWithIdentifier:@"openBands" sender:nil];
     } else {
         [self performSegueWithIdentifier:@"showLocation" sender:nil];
     }
@@ -110,11 +122,16 @@
     [super viewDidLoad];
     self.title = @"Filter";
 
-    self.filterModel = [FilterModel new];
-
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self downloadGenres];
+    [self setTrashIconVisible:[[FilterModel sharedModel] isFiltering]];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

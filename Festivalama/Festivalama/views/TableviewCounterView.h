@@ -16,7 +16,7 @@
 
 - (void)setTitle:(NSString*)title;
 
-- (void)setCounterViewVisible:(BOOL)visible;
+- (void)setCounterViewVisible:(BOOL)visible animated:(BOOL)animated;
 
 - (BOOL)hasTitle;
 

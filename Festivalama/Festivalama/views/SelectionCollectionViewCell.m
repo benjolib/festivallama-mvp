@@ -21,7 +21,7 @@
     [super awakeFromNib];
 
     self.cellBackgroundView.backgroundColor = [UIColor clearColor];
-    self.cellBackgroundView.layer.cornerRadius = 30;
+    self.cellBackgroundView.layer.cornerRadius = 32;
     self.cellBackgroundView.layer.borderWidth = 1.0;
     self.cellBackgroundView.layer.borderColor = [UIColor whiteColor].CGColor;
 }

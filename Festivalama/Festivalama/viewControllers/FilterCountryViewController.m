@@ -55,8 +55,10 @@
     if (cell.selected || [self.selectedCountriesArray containsObject:countryName]) {
         UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
         cell.accessoryView = accessoryView;
+        cell.textLabel.textColor = [UIColor whiteColor];
     } else {
         cell.accessoryView = nil;
+        cell.textLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.5];
     }
 
     return cell;

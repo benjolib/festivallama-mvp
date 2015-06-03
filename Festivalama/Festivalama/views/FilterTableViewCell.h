@@ -10,4 +10,6 @@
 
 @interface FilterTableViewCell : BaseTableViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+
 @end
