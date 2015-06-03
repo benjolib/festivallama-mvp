@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Welcome View Controller-->
@@ -132,9 +133,12 @@
                                     <color key="titleColor" red="0.88235294117647056" green="0.69019607843137254" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="continueButtonPressed:" destination="DWy-Yl-hJZ" eventType="touchUpInside" id="Zqm-oh-Rt1"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LEL-Gb-hTC">
-                                <rect key="frame" x="0.0" y="80" width="320" height="438"/>
+                                <rect key="frame" x="0.0" y="105" width="320" height="413"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bMI-ve-0nV">
                                     <size key="itemSize" width="150" height="70"/>
@@ -196,18 +200,19 @@
                             <constraint firstItem="EP8-gK-kq4" firstAttribute="top" secondItem="LEL-Gb-hTC" secondAttribute="bottom" id="Cu5-P9-bLm"/>
                             <constraint firstAttribute="trailing" secondItem="Qqf-ZF-kFE" secondAttribute="trailing" id="JAZ-k1-O1t"/>
                             <constraint firstItem="j4f-yq-wDP" firstAttribute="top" secondItem="Qqf-ZF-kFE" secondAttribute="bottom" id="NXl-ul-60Y"/>
+                            <constraint firstItem="LEL-Gb-hTC" firstAttribute="top" secondItem="XqX-Sf-oDM" secondAttribute="top" constant="105" id="YX3-eJ-ujV"/>
                             <constraint firstItem="Qqf-ZF-kFE" firstAttribute="leading" secondItem="XqX-Sf-oDM" secondAttribute="leading" id="Z7U-m7-YwL"/>
                             <constraint firstAttribute="trailing" secondItem="LEL-Gb-hTC" secondAttribute="trailing" id="a2I-J8-vgM"/>
                             <constraint firstItem="1mv-N6-3ce" firstAttribute="leading" secondItem="XqX-Sf-oDM" secondAttribute="leading" constant="15" id="fue-Dh-ZFp"/>
                             <constraint firstItem="1mv-N6-3ce" firstAttribute="top" secondItem="sAD-Wy-kRL" secondAttribute="bottom" constant="20" id="khX-os-NN3"/>
                             <constraint firstItem="LEL-Gb-hTC" firstAttribute="leading" secondItem="XqX-Sf-oDM" secondAttribute="leading" id="lTr-gY-yr9"/>
-                            <constraint firstItem="LEL-Gb-hTC" firstAttribute="top" secondItem="1mv-N6-3ce" secondAttribute="bottom" constant="10" id="lcw-V7-X6s"/>
                             <constraint firstAttribute="trailing" secondItem="1mv-N6-3ce" secondAttribute="trailing" constant="15" id="rwF-d3-NDy"/>
                             <constraint firstItem="Qqf-ZF-kFE" firstAttribute="top" secondItem="sAD-Wy-kRL" secondAttribute="bottom" id="ucJ-dr-bbZ"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="backgroundImageView" destination="Qqf-ZF-kFE" id="1J9-58-dHa"/>
                         <outlet property="collectionView" destination="LEL-Gb-hTC" id="TJX-hQ-7CR"/>
                         <outlet property="continueButton" destination="EP8-gK-kq4" id="SHq-TE-Rbk"/>
                         <outlet property="titleLabel" destination="1mv-N6-3ce" id="SMA-Dy-7s5"/>
@@ -229,6 +234,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="genreBackground" translatesAutoresizingMaskIntoConstraints="NO" id="tDt-h8-Q7x" userLabel="backgroundImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wie viele Besucher sollten an dem Festival teilnehmen?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="l7C-eq-QQO">
                                 <rect key="frame" x="15" y="20" width="290" height="50"/>
                                 <constraints>
@@ -239,7 +247,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JU8-Ie-WGF">
-                                <rect key="frame" x="0.0" y="80" width="320" height="438"/>
+                                <rect key="frame" x="0.0" y="105" width="320" height="383"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="r7J-aj-EyD">
                                     <size key="itemSize" width="284" height="60"/>
@@ -295,16 +303,25 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="FUs-bK-mD5" firstAttribute="top" secondItem="JU8-Ie-WGF" secondAttribute="bottom" constant="50" id="97m-ek-6Bc"/>
+                            <constraint firstAttribute="trailing" secondItem="tDt-h8-Q7x" secondAttribute="trailing" id="6qU-tJ-huh"/>
+                            <constraint firstItem="tDt-h8-Q7x" firstAttribute="top" secondItem="lrn-8G-Ztp" secondAttribute="bottom" id="85h-BY-T49"/>
+                            <constraint firstItem="FUs-bK-mD5" firstAttribute="top" secondItem="JU8-Ie-WGF" secondAttribute="bottom" constant="80" id="97m-ek-6Bc"/>
                             <constraint firstAttribute="trailing" secondItem="l7C-eq-QQO" secondAttribute="trailing" constant="15" id="BHs-rw-L4u"/>
                             <constraint firstAttribute="trailing" secondItem="JU8-Ie-WGF" secondAttribute="trailing" id="Bkn-Ye-fck"/>
                             <constraint firstItem="l7C-eq-QQO" firstAttribute="leading" secondItem="cL2-RM-JTP" secondAttribute="leading" constant="15" id="Ccl-Ns-udL"/>
-                            <constraint firstItem="JU8-Ie-WGF" firstAttribute="top" secondItem="l7C-eq-QQO" secondAttribute="bottom" constant="10" id="KsY-tP-2b1"/>
+                            <constraint firstItem="FUs-bK-mD5" firstAttribute="top" secondItem="tDt-h8-Q7x" secondAttribute="bottom" id="EpE-Qk-sss"/>
                             <constraint firstItem="JU8-Ie-WGF" firstAttribute="leading" secondItem="cL2-RM-JTP" secondAttribute="leading" id="T1o-jP-pa3"/>
                             <constraint firstItem="l7C-eq-QQO" firstAttribute="top" secondItem="lrn-8G-Ztp" secondAttribute="bottom" constant="20" id="bOs-eR-8Mb"/>
+                            <constraint firstItem="JU8-Ie-WGF" firstAttribute="top" secondItem="cL2-RM-JTP" secondAttribute="topMargin" constant="105" id="l3H-JF-0oT"/>
+                            <constraint firstItem="tDt-h8-Q7x" firstAttribute="leading" secondItem="cL2-RM-JTP" secondAttribute="leading" id="sDn-xH-yZd"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="tDt-h8-Q7x" id="Usc-Rv-bOG"/>
+                        <outlet property="collectionView" destination="JU8-Ie-WGF" id="bgv-MM-I7O"/>
+                        <outlet property="titleLabel" destination="l7C-eq-QQO" id="Ikx-z2-TAG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sO-5D-zJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
