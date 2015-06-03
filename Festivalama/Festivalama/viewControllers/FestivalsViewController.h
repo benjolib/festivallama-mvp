@@ -8,11 +8,11 @@
 
 #import "BaseGradientViewController.h"
 
-@class GreenButton;
+@class GreenButton, LoadingTableView;
 
 @interface FestivalsViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet LoadingTableView *tableView;
 @property (nonatomic, weak) IBOutlet GreenButton *applyButton;
 @property (nonatomic, weak) IBOutlet UIButton *trashIcon;
 

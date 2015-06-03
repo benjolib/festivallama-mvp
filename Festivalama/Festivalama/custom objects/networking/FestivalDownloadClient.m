@@ -16,6 +16,36 @@
 
 @implementation FestivalDownloadClient
 
+- (void)downloadFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kFestivalsList, (long)startIndex, (long)numberOfItems];
+    if (filterModel) {
+        // TODO: expand it with filters
+    }
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
+
+    __weak typeof(self) weakSelf = self;
+    NSURLSessionDataTask *task = [self dataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
+        if (completed)
+        {
+            if (!weakSelf.festivalParser) {
+                weakSelf.festivalParser = [FestivalParser new];
+            }
+            NSArray *festivals = [weakSelf.festivalParser parseJSONData:data];
+            completionBlock(festivals, nil, YES);
+        }
+        else
+        {
+
+        }
+    }];
+
+    [self startSessionTask:task];
+}
+
 - (void)downloadAllFestivalsWithCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kBaseURL, kFestivalsList]]];

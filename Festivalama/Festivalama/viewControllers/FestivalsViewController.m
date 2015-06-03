@@ -15,12 +15,18 @@
 #import "FestivalDownloadClient.h"
 #import "MenuTransitionManager.h"
 #import "FestivalModel.h"
+#import "FestivalRefreshControl.h"
+#import "LoadingTableView.h"
+#import "FilterModel.h"
 
 @interface FestivalsViewController ()
 @property (nonatomic, strong) TableviewCounterView *tableCounterView;
-@property (nonatomic, strong) NSArray *festivalsArray;
+@property (nonatomic, strong) NSMutableArray *festivalsArray;
 @property (nonatomic, strong) MenuTransitionManager *menuTransitionManager;
 @property (nonatomic, strong) FestivalDownloadClient *festivalDownloadClient;
+@property (nonatomic, strong) FestivalRefreshControl *refreshController;
+@property (nonatomic) NSInteger limit;
+@property (nonatomic) NSInteger startIndex;
 @end
 
 @implementation FestivalsViewController
@@ -77,20 +83,37 @@
 }
 
 #pragma mark - downloading methods
+- (void)refreshView
+{
+    self.startIndex = 0;
+    [self.refreshController startRefreshing];
+
+    [self.tableCounterView setCounterViewVisible:NO animated:NO];
+    [self downloadAllFestivals];
+}
+
 - (void)downloadAllFestivals
 {
     if (!self.festivalDownloadClient) {
         self.festivalDownloadClient = [FestivalDownloadClient new];
     }
 
+    self.limit = 40.0;
+
+    if (!self.festivalsArray) {
+        self.festivalsArray = [NSMutableArray array];
+    }
     __weak typeof(self) weakSelf = self;
-    [self.festivalDownloadClient downloadAllFestivalsWithCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
+    [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex limit:self.limit filterModel:nil andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
         if (completed) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.festivalsArray = [festivalsArray copy];
-                [weakSelf.tableView reloadData];
+                [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
+
                 [weakSelf.tableCounterView setTitle:[NSString stringWithFormat:@"%ld festivals", festivalsArray.count]];
-                [weakSelf.tableCounterView setCounterViewVisible:YES];
+                [weakSelf.tableCounterView setCounterViewVisible:YES animated:YES];
+                [weakSelf.tableView reloadData];
+                [weakSelf.refreshController endRefreshing];
+                weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
             });
         } else {
             // Handle errors
@@ -98,19 +121,34 @@
     }];
 }
 
+- (void)downloadNextFestivals
+{
+    self.startIndex = self.startIndex + self.limit;
+    [self downloadAllFestivals];
+}
+
 #pragma mark - view methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y > 30.0) {
-        [self.tableCounterView setCounterViewVisible:NO];
-    } else {
-        [self.tableCounterView setCounterViewVisible:YES];
-    }
+//    if (scrollView.contentOffset.y > 30.0) {
+        [self.tableCounterView setCounterViewVisible:NO animated:NO];
+//    } else {
+//        [self.tableCounterView setCounterViewVisible:YES animated:YES];
+//    }
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
 {
-    [self.tableCounterView setCounterViewVisible:YES];
+    [self.tableCounterView setCounterViewVisible:YES animated:YES];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    CGFloat minOffsetToTriggerRefresh = 50.0f;
+    if (scrollView.contentOffset.y <= -minOffsetToTriggerRefresh) {
+        [self.tableCounterView setCounterViewVisible:NO animated:NO];
+        [self.refreshController containingScrollViewDidEndDragging:scrollView];
+    }
 }
 
 - (void)viewDidLoad
@@ -118,28 +156,30 @@
     [super viewDidLoad];
     self.title = @"Festivals";
 
+    [self.tableView registerNib:[UINib nibWithNibName:@"FestivalTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"cell"];
+
     self.tableCounterView = [[TableviewCounterView alloc] initWithFrame:CGRectZero];
     [self.tableCounterView addToView:self.view];
 
-    [self downloadAllFestivals];
+    self.refreshController = [[FestivalRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
+    [self.tableView addSubview:self.refreshController];
+
+    [self.refreshController addTarget:self
+                               action:@selector(refreshView)
+                     forControlEvents:UIControlEventValueChanged];
+
+    [self refreshView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (self.tableView.contentOffset.y < 30.0 && [self.tableCounterView hasTitle]) {
-        [self.tableCounterView setCounterViewVisible:YES];
-    }
+    self.trashIcon.hidden = ![FilterModel.sharedModel isFiltering];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
 }
 
 - (void)dealloc
