@@ -13,9 +13,14 @@
 @interface FilterModel : NSObject
 
 @property (nonatomic, strong) NSArray *selectedGenresArray;
+@property (nonatomic, strong) NSArray *selectedBandsArray;
 @property (nonatomic, copy) NSString *selectedCountry;
 @property (nonatomic, copy) NSString *selectedPostCode;
 
++ (instancetype)sharedModel;
+
+- (BOOL)isFiltering;
 - (void)clearFilters;
+- (NSString*)bandsString;
 
 @end
