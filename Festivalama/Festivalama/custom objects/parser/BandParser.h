@@ -10,4 +10,6 @@
 
 @interface BandParser : NSObject
 
+- (NSArray*)parseJSONData:(NSData*)data;
+
 @end

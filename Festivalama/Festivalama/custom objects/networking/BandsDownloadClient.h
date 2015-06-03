@@ -10,4 +10,6 @@
 
 @interface BandsDownloadClient : AbstractClient
 
+- (void)downloadAllBandsWithCompletionBlock:(void (^)(NSArray *sortedBands, NSString *errorMessage, BOOL completed))completionBlock;
+
 @end

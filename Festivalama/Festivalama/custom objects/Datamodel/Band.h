@@ -10,4 +10,8 @@
 
 @interface Band : NSObject
 
+@property (nonatomic, copy) NSString *name;
+
++ (Band*)bandWithName:(NSString*)name;
+
 @end

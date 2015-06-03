@@ -10,4 +10,11 @@
 
 @implementation Band
 
++ (Band*)bandWithName:(NSString*)name
+{
+    Band *band = [Band new];
+    band.name = name;
+    return band;
+}
+
 @end
