@@ -12,4 +12,13 @@
 
 @property (nonatomic, strong) NSArray *genresArray;
 
+- (void)showNextViewController;
+- (void)setFilterByLocationEnabled:(BOOL)enabled;
+
+@end
+
+@protocol QuestionsContainerViewControllerChild <NSObject>
+
+@property (nonatomic) NSInteger pageIndex;
+
 @end

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuestionsContainerViewController.h"
 
-@interface WelcomeBaseViewController : UIViewController
+// Base viewController for all the viewController in the onboarding section
+
+@interface WelcomeBaseViewController : UIViewController <QuestionsContainerViewControllerChild>
+
+@property (nonatomic, strong) QuestionsContainerViewController *rootViewController;
 
 @end

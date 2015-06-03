@@ -13,6 +13,8 @@
 
 @interface MusicGenreSelectionViewController ()
 @property (nonatomic, strong, readwrite) NSMutableArray *selectedGenresArray;
+@property (nonatomic, copy) NSString *titleString;
+@property (nonatomic, copy) NSString *imageNameString;
 @end
 
 @implementation MusicGenreSelectionViewController
@@ -20,6 +22,11 @@
 - (Genre*)genreAtIndexPath:(NSIndexPath*)indexPath
 {
     return self.allGenresArray[indexPath.row];
+}
+
+- (IBAction)continueButtonPressed:(id)sender
+{
+    [self.rootViewController showNextViewController];
 }
 
 #pragma mark - collectionView methods
@@ -42,6 +49,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Genre *genre = [self genreAtIndexPath:indexPath];
+    if (!self.selectedGenresArray) {
+        self.selectedGenresArray = [NSMutableArray array];
+    }
+
     if ([self.selectedGenresArray containsObject:genre]) {
         [self.selectedGenresArray removeObject:genre];
         [collectionView reloadItemsAtIndexPaths:@[indexPath]];
@@ -70,25 +81,32 @@
     return CGSizeMake((CGRectGetWidth(collectionView.frame) / 2) - 30, 60.0);
 }
 
+- (NSMutableArray *)selectedGenresArray
+{
+    self.continueButton.enabled = _selectedGenresArray.count > 0;
+    return _selectedGenresArray;
+}
+
 #pragma mark - view methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.selectedGenresArray = [NSMutableArray array];
 
-    self.titleLabel.text = @"Welche Musik hörst du auf einem Festival? (1/2)";
+    self.continueButton.enabled = self.selectedGenresArray.count > 0;
+    self.titleLabel.text = self.titleString;
+    self.backgroundImageView.image = [UIImage imageNamed:self.imageNameString];
+}
+
+- (void)setViewTitle:(NSString*)title backgroundImage:(NSString*)imageName
+{
+    self.titleString = title;
+    self.imageNameString = imageName;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-#pragma mark - Navigation
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
 - (BOOL)prefersStatusBarHidden

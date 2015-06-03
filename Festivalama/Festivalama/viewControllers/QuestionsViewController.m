@@ -12,13 +12,16 @@
 
 @interface QuestionsViewController ()
 @property (nonatomic, strong, readwrite) NSMutableArray *selectedOptionsArray;
+@property (nonatomic, copy) NSString *titleString;
+@property (nonatomic, copy) NSString *imageNameString;
 @end
 
 @implementation QuestionsViewController
 
-- (void)setViewTitle:(NSString*)title
+- (void)setViewTitle:(NSString*)title backgroundImage:(NSString*)imageName
 {
-    self.titleLabel.text = title;
+    self.titleString = title;
+    self.imageNameString = imageName;
 }
 
 #pragma mark - collectionView methods
@@ -48,38 +51,54 @@
     } else {
         [self.selectedOptionsArray addObject:option];
         [collectionView reloadItemsAtIndexPaths:@[indexPath]];
-    }
-}
 
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    OnboardingOption *option = self.optionsToDisplay[indexPath.row];
+        switch (self.pageNumber) {
+            case 0:
+                // Irrelevant
+                break;
+            case 1: {
+                if (indexPath.row == 0 || indexPath.row == 1) {
+                    // filter by Germany
+                    [self.rootViewController setFilterByLocationEnabled:YES];
+                } else {
+                    // no location filter
+                    [self.rootViewController setFilterByLocationEnabled:NO];
+                }
+                break;
+            }
+            case 2:
+                // Irrelevant
+                break;
+            case 3:
+                // Irrelevant
+                break;
+            default:
+                break;
+        }
 
-    if ([self.selectedOptionsArray containsObject:option]) {
-        [self.selectedOptionsArray removeObject:option];
-        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [self.rootViewController showNextViewController];
     }
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0.0, 20.0, 0.0, 20.0);
+    return UIEdgeInsetsMake(10.0, 20.0, 10.0, 20.0);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((CGRectGetWidth(collectionView.frame) / 2) - 36, 60.0);
+    return CGSizeMake(CGRectGetWidth(collectionView.frame) - 40.0, (CGRectGetHeight(collectionView.frame) / self.optionsToDisplay.count) - 20.0);
 }
 
 #pragma mark - view methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+    self.titleLabel.text = self.titleString;
+    self.backgroundImageView.image = [UIImage imageNamed:self.imageNameString];
+
+    [self.collectionView reloadData];
 }
 
 @end

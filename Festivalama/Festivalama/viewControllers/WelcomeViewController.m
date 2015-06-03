@@ -102,7 +102,10 @@
 
         self.locationManager = [LocationManager new];
         [self.locationManager startLocationDiscoveryWithCompletionBlock:^(CLLocation *userLocation, NSString *errorMessage) {
-            
+            if (userLocation) {
+                [self.locationManager stopLocationDiscovery];
+                [self performSegueWithIdentifier:@"presentOnboarding" sender:nil];
+            }
         }];
     }
 }
