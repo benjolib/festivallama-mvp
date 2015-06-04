@@ -76,6 +76,8 @@
 		56D05A491B19DBE00031F2A2 /* SelectionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A481B19DBE00031F2A2 /* SelectionCollectionViewCell.m */; };
 		56D05A4C1B19FDCC0031F2A2 /* QuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A4B1B19FDCC0031F2A2 /* QuestionsViewController.m */; };
 		56D05A4F1B19FEE50031F2A2 /* OnboardingOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A4E1B19FEE50031F2A2 /* OnboardingOption.m */; };
+		56D2A7B91B20D95D0085CEDA /* festivalama_video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 56D2A7B81B20D95D0085CEDA /* festivalama_video.mov */; };
+		56D2A7BC1B20F6380085CEDA /* FestivalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D2A7BB1B20F6380085CEDA /* FestivalDetailViewController.m */; };
 		56D587E41B1E17D8007B3F5B /* FestivalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56D587E31B1E17D8007B3F5B /* FestivalTableViewCell.xib */; };
 		56D587E71B1E197D007B3F5B /* PopularFestivalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D587E61B1E197D007B3F5B /* PopularFestivalsViewController.m */; };
 		56D587EA1B1E5C65007B3F5B /* FilterBandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D587E91B1E5C65007B3F5B /* FilterBandsViewController.m */; };
@@ -220,6 +222,9 @@
 		56D05A4B1B19FDCC0031F2A2 /* QuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsViewController.m; path = viewControllers/QuestionsViewController.m; sourceTree = "<group>"; };
 		56D05A4D1B19FEE50031F2A2 /* OnboardingOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingOption.h; path = "custom objects/Datamodel/OnboardingOption.h"; sourceTree = "<group>"; };
 		56D05A4E1B19FEE50031F2A2 /* OnboardingOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingOption.m; path = "custom objects/Datamodel/OnboardingOption.m"; sourceTree = "<group>"; };
+		56D2A7B81B20D95D0085CEDA /* festivalama_video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = festivalama_video.mov; sourceTree = "<group>"; };
+		56D2A7BA1B20F6380085CEDA /* FestivalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalDetailViewController.h; path = viewControllers/FestivalDetailViewController.h; sourceTree = "<group>"; };
+		56D2A7BB1B20F6380085CEDA /* FestivalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalDetailViewController.m; path = viewControllers/FestivalDetailViewController.m; sourceTree = "<group>"; };
 		56D587E31B1E17D8007B3F5B /* FestivalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FestivalTableViewCell.xib; path = views/FestivalTableViewCell.xib; sourceTree = "<group>"; };
 		56D587E51B1E197D007B3F5B /* PopularFestivalsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopularFestivalsViewController.h; path = viewControllers/PopularFestivalsViewController.h; sourceTree = "<group>"; };
 		56D587E61B1E197D007B3F5B /* PopularFestivalsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopularFestivalsViewController.m; path = viewControllers/PopularFestivalsViewController.m; sourceTree = "<group>"; };
@@ -300,6 +305,7 @@
 		560D0A921B17951100B03090 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				56D2A7B81B20D95D0085CEDA /* festivalama_video.mov */,
 				56CE62E31B1FC83F0079570E /* Fabric.framework */,
 				56CE62E41B1FC83F0079570E /* Crashlytics.framework */,
 				56CF1B071B1B0D3200A899DB /* UIImage+ImageEffects.h */,
@@ -332,8 +338,8 @@
 		560D0ABB1B17952100B03090 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				56CF1AFB1B1B01BB00A899DB /* Onboarding.storyboard */,
 				56CF1AFE1B1B01D300A899DB /* Main.storyboard */,
+				56CF1AFB1B1B01BB00A899DB /* Onboarding.storyboard */,
 				561611F71B1BB69400147093 /* Filter.storyboard */,
 				560D0AC11B1799FB00B03090 /* StoryboardManager.h */,
 				560D0AC21B1799FB00B03090 /* StoryboardManager.m */,
@@ -358,6 +364,8 @@
 				56C44E781B1CECC100DFFB6B /* FestivalNavigationController.m */,
 				56C44E711B1CCE7D00DFFB6B /* FestivalsViewController.h */,
 				56C44E721B1CCE7D00DFFB6B /* FestivalsViewController.m */,
+				56D2A7BA1B20F6380085CEDA /* FestivalDetailViewController.h */,
+				56D2A7BB1B20F6380085CEDA /* FestivalDetailViewController.m */,
 				56D587E51B1E197D007B3F5B /* PopularFestivalsViewController.h */,
 				56D587E61B1E197D007B3F5B /* PopularFestivalsViewController.m */,
 				561611F91B1BB79B00147093 /* Filter screens */,
@@ -654,6 +662,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D2A7B91B20D95D0085CEDA /* festivalama_video.mov in Resources */,
 				561612161B1BC7AE00147093 /* CountryPicker.bundle in Resources */,
 				56CF1AFD1B1B01BB00A899DB /* Onboarding.storyboard in Resources */,
 				56CF1AFF1B1B01D300A899DB /* Main.storyboard in Resources */,
@@ -696,6 +705,7 @@
 			files = (
 				56D05A3C1B19D3980031F2A2 /* QuestionsContainerViewController.m in Sources */,
 				56C44E881B1D0E6500DFFB6B /* FestivalModel.m in Sources */,
+				56D2A7BC1B20F6380085CEDA /* FestivalDetailViewController.m in Sources */,
 				561612021B1BB9FB00147093 /* FilterNavigationController.m in Sources */,
 				56C44E7F1B1CF5F200DFFB6B /* FestivalRefreshControl.m in Sources */,
 				56D05A4C1B19FDCC0031F2A2 /* QuestionsViewController.m in Sources */,

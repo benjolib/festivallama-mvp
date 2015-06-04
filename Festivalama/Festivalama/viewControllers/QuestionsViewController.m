@@ -10,6 +10,8 @@
 #import "OnboardingOption.h"
 #import "SelectionCollectionViewCell.h"
 
+static NSInteger cellHeight = 60.0;
+
 @interface QuestionsViewController ()
 @property (nonatomic, strong, readwrite) NSMutableArray *selectedOptionsArray;
 @property (nonatomic, copy) NSString *titleString;
@@ -80,14 +82,14 @@
     }
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10.0, 20.0, 10.0, 20.0);
+    return (CGRectGetHeight(collectionView.frame) / self.optionsToDisplay.count) - cellHeight;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(CGRectGetWidth(collectionView.frame) - 40.0, (CGRectGetHeight(collectionView.frame) / self.optionsToDisplay.count) - 20.0);
+    return CGSizeMake(CGRectGetWidth(collectionView.frame) - 40.0, cellHeight);
 }
 
 #pragma mark - view methods

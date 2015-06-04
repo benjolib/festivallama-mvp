@@ -11,8 +11,9 @@
 
 // Base viewController for all the viewController in the onboarding section
 
-@interface WelcomeBaseViewController : UIViewController <QuestionsContainerViewControllerChild>
+@interface WelcomeBaseViewController : UIViewController
 
 @property (nonatomic, strong) QuestionsContainerViewController *rootViewController;
+@property (nonatomic) NSInteger indexOfView;
 
 @end

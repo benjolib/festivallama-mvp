@@ -16,9 +16,3 @@
 - (void)setFilterByLocationEnabled:(BOOL)enabled;
 
 @end
-
-@protocol QuestionsContainerViewControllerChild <NSObject>
-
-@property (nonatomic) NSInteger pageIndex;
-
-@end

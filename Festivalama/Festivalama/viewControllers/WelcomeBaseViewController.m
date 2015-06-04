@@ -12,6 +12,5 @@
 @end
 
 @implementation WelcomeBaseViewController
-@synthesize pageIndex;
 
 @end

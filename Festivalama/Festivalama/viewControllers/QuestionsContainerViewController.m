@@ -69,17 +69,23 @@
 - (UIViewController*)nextViewController
 {
     // Get index of current view controller
-    UIViewController<QuestionsContainerViewControllerChild> *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
-    NSString *vcRestorationID = currentViewController.restorationIdentifier;
-    NSUInteger index = [self.viewControllerIdentitiesArray indexOfObject:vcRestorationID];
+    WelcomeBaseViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
+    NSUInteger index = currentViewController.indexOfView;
 
-    if (index <= self.currentIndex) {
-        self.currentIndex++;
-    }
+//    if (index <= self.currentIndex) {
+//        self.currentIndex++;
+//    }
     NSLog(@"Current index: %ld", (long)self.currentIndex);
 
-    UIViewController *nextViewController = [self viewControllerAtIndex:self.currentIndex];
-    self.pageControl.currentPage = self.currentIndex;
+//    self.currentIndex = index+1;
+
+    UIViewController *nextViewController = [self viewControllerAtIndex:index+1];
+    self.pageControl.currentPage = index + 1;
+
+    if (index+1 >= 2) {
+        self.pageControl.hidden = NO;
+    }
+
     return nextViewController;
 }
 
@@ -95,18 +101,23 @@
     contentViewController.rootViewController = self;
 
     if ([contentViewController isKindOfClass:[MusicGenreSelectionViewController class]]) {
-        if (index == 1) {
-            MusicGenreSelectionViewController *genreViewController = (MusicGenreSelectionViewController*)contentViewController;
+        MusicGenreSelectionViewController *genreViewController = (MusicGenreSelectionViewController*)contentViewController;
+        if (index == 0) {
+            [genreViewController setViewTitle:@"Welche Musik hörst du auf einem Festival? (1/2)" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
+            genreViewController.allGenresArray = [self.genresArray copy]; // TODO: don't pass on all the genres
+        } else {
             [genreViewController setViewTitle:@"Welche Musik hörst du auf einem Festival? (2/2)" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:1]];
             genreViewController.allGenresArray = [self.genresArray copy]; // TODO: don't pass on all the genres
-            contentViewController = genreViewController;
         }
+        genreViewController.indexOfView = index;
+        contentViewController = genreViewController;
     } else {
         QuestionsViewController *questionsViewController = (QuestionsViewController*)contentViewController;
         [questionsViewController setOptionsToDisplay:[[self.onboardingModel onboardingOptionsArrayForIndex:index-2] copy]];
         [questionsViewController setViewTitle:[self.onboardingModel onboardingViewTitleForIndex:index-2]
                               backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:index]];
         questionsViewController.pageNumber = index - 2;
+        questionsViewController.indexOfView = index;
         contentViewController = questionsViewController;
     }
 
@@ -114,38 +125,45 @@
 }
 
 #pragma mark - pageViewController methods
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController<QuestionsContainerViewControllerChild> *)viewController
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(WelcomeBaseViewController*)viewController
 {
-    NSInteger pageIndex = viewController.pageIndex;
-
-    if (pageIndex == self.viewControllerIdentitiesArray.count - 1) {
+    NSUInteger currentViewIndex = viewController.indexOfView;
+    if (currentViewIndex > 1) {
         return nil;
     }
 
-    if (self.currentIndex > pageIndex) {
-        pageIndex = self.currentIndex;
-    }
-
-    self.currentIndex = pageIndex + 1;
-    return [self viewControllerAtIndex:pageIndex + 1];
+//    if (currentViewIndex == self.viewControllerIdentitiesArray.count - 1) {
+//        return nil;
+//    }
+//
+    return [self viewControllerAtIndex:currentViewIndex + 1];
 }
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController<QuestionsContainerViewControllerChild> *)viewController
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(WelcomeBaseViewController *)viewController
 {
-    const NSInteger pageIndex = viewController.pageIndex;
+    NSUInteger currentViewIndex = viewController.indexOfView;
 
-    if (pageIndex == 0) {
-        return [self viewControllerAtIndex:0];
+    if (currentViewIndex == 0) {
+        return nil;
     }
 
-    self.currentIndex = pageIndex - 1;
-    return [self viewControllerAtIndex:pageIndex - 1];
+    return [self viewControllerAtIndex:currentViewIndex - 1];
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
     self.pageControl.currentPage = self.currentIndex;
     self.pageControl.hidden = self.currentIndex < 2;
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
+{
+    if (pendingViewControllers.count > 0) {
+        if ([pendingViewControllers[0] isKindOfClass:[WelcomeBaseViewController class]]) {
+            WelcomeBaseViewController *baseViewController = (WelcomeBaseViewController*)pendingViewControllers[0];
+            self.currentIndex = baseViewController.indexOfView;
+        }
+    }
 }
 
 #pragma mark - helper methods
@@ -168,6 +186,7 @@
     musicGenreSelectionViewController.allGenresArray = [self.genresArray copy];
     [musicGenreSelectionViewController setViewTitle:@"Welche Musik hörst du auf einem Festival? (1/2)" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
     musicGenreSelectionViewController.rootViewController = self;
+    musicGenreSelectionViewController.indexOfView = 0;
     self.currentIndex = 0;
 
     [self.pageViewController setViewControllers:@[musicGenreSelectionViewController]
