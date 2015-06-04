@@ -7,112 +7,87 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PopupView">
-            <rect key="frame" x="0.0" y="-1" width="320" height="387"/>
+        <view alpha="0.5" contentMode="scaleToFill" id="iN0-l3-epB" customClass="PopupView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fxz-uC-afI">
-                    <rect key="frame" x="0.0" y="41" width="320" height="346"/>
+                    <rect key="frame" x="22" y="121" width="276" height="346"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="iv5-1t-Sr9">
-                            <rect key="frame" x="10" y="60" width="300" height="30"/>
+                            <rect key="frame" x="10" y="60" width="256" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="ftz-Bk-CwB"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="dSc-8q-kcp">
-                            <rect key="frame" x="20" y="110" width="280" height="82"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="dSc-8q-kcp">
+                            <rect key="frame" x="30" y="110" width="216" height="81"/>
                             <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="82" id="3HB-UB-eUv"/>
+                                <constraint firstAttribute="height" constant="81" id="3HB-UB-eUv"/>
                             </constraints>
                             <string key="text">Und tauche ein in den Festival Sommer Deines Lebens. 
 Mit 5 Fragen erstellen wir 
 Dir Deinen individuellen 
 Festival-Kalender.</string>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AoM-X7-VEt" customClass="PopupViewButton">
-                            <rect key="frame" x="20" y="274" width="280" height="52"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aky-Yq-T4A" userLabel="buttonsContainerView">
+                            <rect key="frame" x="0.0" y="206" width="276" height="140"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="52" id="TUr-eF-4ab"/>
+                                <constraint firstAttribute="height" constant="140" id="1Yx-eH-UyL"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                            <state key="normal" title="Cancel">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="cancelButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="eom-Pk-owo"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQx-Re-1Vz" customClass="PopupViewButton">
-                            <rect key="frame" x="20" y="212" width="280" height="52"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="52" id="mQ5-jg-fnj"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                            <state key="normal" title="Confirm">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="confirmButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="YoT-hB-gVW"/>
-                            </connections>
-                        </button>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="DQx-Re-1Vz" firstAttribute="top" secondItem="dSc-8q-kcp" secondAttribute="bottom" constant="20" id="1je-RO-uZP"/>
-                        <constraint firstAttribute="trailing" secondItem="dSc-8q-kcp" secondAttribute="trailing" constant="20" id="3rl-wk-F00"/>
+                        <constraint firstAttribute="trailing" secondItem="dSc-8q-kcp" secondAttribute="trailing" constant="30" id="3rl-wk-F00"/>
                         <constraint firstItem="iv5-1t-Sr9" firstAttribute="top" secondItem="Fxz-uC-afI" secondAttribute="top" constant="60" id="7ck-GA-eEf"/>
-                        <constraint firstItem="dSc-8q-kcp" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" constant="20" id="AFt-um-W2p"/>
-                        <constraint firstItem="AoM-X7-VEt" firstAttribute="top" secondItem="DQx-Re-1Vz" secondAttribute="bottom" constant="10" id="DOZ-MC-5SX"/>
+                        <constraint firstItem="dSc-8q-kcp" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" constant="30" id="AFt-um-W2p"/>
                         <constraint firstItem="dSc-8q-kcp" firstAttribute="top" secondItem="iv5-1t-Sr9" secondAttribute="bottom" constant="20" id="Vhg-Wq-oiQ"/>
-                        <constraint firstItem="AoM-X7-VEt" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" constant="20" id="bt3-HG-Ly4"/>
-                        <constraint firstItem="DQx-Re-1Vz" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" constant="20" id="gEm-Yu-rTT"/>
+                        <constraint firstAttribute="bottom" secondItem="aky-Yq-T4A" secondAttribute="bottom" id="XXE-Oe-bG6"/>
+                        <constraint firstItem="aky-Yq-T4A" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" id="YJp-bD-mbH"/>
+                        <constraint firstItem="aky-Yq-T4A" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dSc-8q-kcp" secondAttribute="bottom" constant="15" id="bt4-va-xjp"/>
+                        <constraint firstAttribute="trailing" secondItem="aky-Yq-T4A" secondAttribute="trailing" id="fsg-Jh-RUG"/>
                         <constraint firstItem="iv5-1t-Sr9" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" constant="10" id="jbf-nl-qrq"/>
-                        <constraint firstAttribute="bottom" secondItem="AoM-X7-VEt" secondAttribute="bottom" constant="20" id="lMO-bE-rQA"/>
-                        <constraint firstAttribute="trailing" secondItem="AoM-X7-VEt" secondAttribute="trailing" constant="20" id="pQd-uW-HHR"/>
-                        <constraint firstAttribute="trailing" secondItem="DQx-Re-1Vz" secondAttribute="trailing" constant="20" id="zLi-vN-Eet"/>
+                        <constraint firstAttribute="height" constant="346" id="mz6-aq-Pbd"/>
                         <constraint firstAttribute="trailing" secondItem="iv5-1t-Sr9" secondAttribute="trailing" constant="10" id="zR2-3e-Zyk"/>
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconLocation" translatesAutoresizingMaskIntoConstraints="NO" id="YGO-s8-RRa">
-                    <rect key="frame" x="119" y="0.0" width="82" height="82"/>
+                    <rect key="frame" x="119" y="81" width="82" height="82"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="82" id="2uJ-Fj-ILq"/>
                         <constraint firstAttribute="width" constant="82" id="djq-3a-otq"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Fxz-uC-afI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="41" id="TUX-jH-DSD"/>
-                <constraint firstItem="YGO-s8-RRa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fFV-CG-NbG"/>
+                <constraint firstAttribute="centerX" secondItem="Fxz-uC-afI" secondAttribute="centerX" id="BpB-kZ-yck"/>
+                <constraint firstItem="Fxz-uC-afI" firstAttribute="top" secondItem="YGO-s8-RRa" secondAttribute="bottom" constant="-42" id="Nqe-Ue-fVo"/>
                 <constraint firstAttribute="centerX" secondItem="YGO-s8-RRa" secondAttribute="centerX" id="ktA-v3-7NX"/>
-                <constraint firstAttribute="bottom" secondItem="Fxz-uC-afI" secondAttribute="bottom" id="qex-wT-h3b"/>
-                <constraint firstItem="Fxz-uC-afI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vl9-Wn-g52"/>
-                <constraint firstAttribute="trailing" secondItem="Fxz-uC-afI" secondAttribute="trailing" id="wfh-v1-esD"/>
+                <constraint firstAttribute="centerY" secondItem="Fxz-uC-afI" secondAttribute="centerY" constant="-10" id="tKq-lY-YmP"/>
+                <constraint firstItem="Fxz-uC-afI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="vl9-Wn-g52"/>
+                <constraint firstAttribute="trailing" secondItem="Fxz-uC-afI" secondAttribute="trailing" constant="22" id="wfh-v1-esD"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="cancelButton" destination="AoM-X7-VEt" id="HcO-d7-kM7"/>
-                <outlet property="confirmButton" destination="DQx-Re-1Vz" id="uGf-J7-2QP"/>
+                <outlet property="buttonsContainerView" destination="aky-Yq-T4A" id="w5e-dT-qvy"/>
+                <outlet property="buttonsContainerViewHeightConstraint" destination="1Yx-eH-UyL" id="Wy2-N2-FWF"/>
                 <outlet property="iconImageView" destination="YGO-s8-RRa" id="oyq-mM-q3E"/>
                 <outlet property="popupBackgroundView" destination="Fxz-uC-afI" id="e4l-45-ujK"/>
+                <outlet property="popupBackgroundViewHeightConstraint" destination="mz6-aq-Pbd" id="Zrn-TX-XlL"/>
                 <outlet property="textLabel" destination="dSc-8q-kcp" id="N1s-sd-oSq"/>
                 <outlet property="textLabelHeightConstraint" destination="3HB-UB-eUv" id="eGN-ks-IIk"/>
                 <outlet property="titleLabel" destination="iv5-1t-Sr9" id="WeJ-I1-i91"/>
             </connections>
-            <point key="canvasLocation" x="388" y="209.5"/>
+            <point key="canvasLocation" x="208" y="120"/>
         </view>
     </objects>
     <resources>

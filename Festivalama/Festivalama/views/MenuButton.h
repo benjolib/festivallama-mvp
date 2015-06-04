@@ -12,4 +12,6 @@
 
 - (void)setBadgeCounterValue:(NSInteger)value;
 
+- (void)setActive:(BOOL)active;
+
 @end

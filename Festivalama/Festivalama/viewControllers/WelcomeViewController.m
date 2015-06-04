@@ -13,11 +13,7 @@
 #import "QuestionsContainerViewController.h"
 #import "LocationManager.h"
 
-
-#import "MenuTransitionManager.h"
 #import "StoryboardManager.h"
-#import "FilterNavigationController.h"
-#import "FestivalNavigationController.h"
 
 @interface WelcomeViewController () <PopupViewDelegate>
 @property (nonatomic, strong) PopupView *activePopup;
@@ -27,28 +23,9 @@
 @property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
 @property (nonatomic, strong) NSArray *genresArray;
-@property (nonatomic, strong) MenuTransitionManager *transitionManager;
 @end
 
 @implementation WelcomeViewController
-
-- (IBAction)showMenu:(id)sender
-{
-    self.transitionManager = [MenuTransitionManager new];
-    [self.transitionManager presentMenuViewControllerOnViewController:self];
-}
-
-- (IBAction)showHome:(id)sender
-{
-    FestivalNavigationController *festivalsNavC = [StoryboardManager festivalNavigationController];
-    [self presentViewController:festivalsNavC animated:YES completion:nil];
-}
-
-- (IBAction)showFilterView:(id)sender
-{
-    FilterNavigationController *filterNav = [StoryboardManager filterNavigationController];
-    [self presentViewController:filterNav animated:YES completion:nil];
-}
 
 - (void)displayFirstPopup
 {
@@ -57,7 +34,7 @@
                                 cancelButtonTitle:nil
                                         viewTitle:@"Vergiss den Alltag"
                                              text:@"Und tauche ein in den Festival Sommer Deines Lebens. Mit 5 Fragen erstellen wir Dir Deinen individuellen Festival-Kalender."
-                                             icon:[UIImage imageNamed:@""]];
+                                             icon:[UIImage imageNamed:@"iconTent"]];
     [self.activePopup showPopupViewAnimationOnView:self.view];
 }
 
@@ -122,10 +99,12 @@
 - (AVPlayerLayer*)playerLayer
 {
     if (!_playerLayer) {
-        NSString *moviePath = [[NSBundle mainBundle] pathForResource:@"arenaVideo" ofType:@"mp4"];
+        NSString *moviePath = [[NSBundle mainBundle] pathForResource:@"festivalama_video" ofType:@"mov"];
         NSURL *movieURL = [NSURL fileURLWithPath:moviePath];
-        _playerLayer = [AVPlayerLayer playerLayerWithPlayer:[[AVPlayer alloc] initWithURL:movieURL]];
-        _playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+        AVPlayer *player = [[AVPlayer alloc] initWithURL:movieURL];
+        player.rate = 0.6;
+        _playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+        _playerLayer.frame = CGRectMake(-CGRectGetWidth(self.view.frame), -2.5*CGRectGetHeight(self.view.frame), CGRectGetWidth(self.view.frame) * 4, CGRectGetHeight(self.view.frame) * 6);
         [_playerLayer.player play];
         return _playerLayer;
     }
@@ -134,7 +113,16 @@
 
 - (void)replayMovie:(NSNotification *)notification
 {
-    [self.playerLayer.player play];
+    self.festivalamaImageView.alpha = 0.0;
+    self.festivalamaImageView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    [self.view bringSubviewToFront:self.festivalamaImageView];
+
+    [UIView animateWithDuration:0.3 animations:^{
+        self.festivalamaImageView.transform = CGAffineTransformIdentity;
+        self.festivalamaImageView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        [self displayFirstPopup];
+    }];
 }
 
 - (void)addVideoBackgroundLayer
@@ -152,13 +140,10 @@
 {
     [super viewDidLoad];
 
-//    [self addVideoBackgroundLayer];
+    self.festivalamaImageView.alpha = 0.0;
+    [self addVideoBackgroundLayer];
 
     [self downloadGenres];
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self displayFirstPopup];
-    });
 }
 
 - (BOOL)prefersStatusBarHidden

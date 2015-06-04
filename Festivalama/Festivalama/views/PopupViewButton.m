@@ -11,11 +11,13 @@
 
 @implementation PopupViewButton
 
-- (void)awakeFromNib
+- (instancetype)init
 {
-    [super awakeFromNib];
-
-    self.layer.cornerRadius = 17;
+    self = [super init];
+    if (self) {
+        self.layer.cornerRadius = 17;
+    }
+    return self;
 }
 
 - (void)setupAsConfirmButton

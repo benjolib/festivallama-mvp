@@ -50,6 +50,11 @@
     self.titleLabel.frame = titleFrame;
 }
 
+- (void)setActive:(BOOL)active
+{
+    self.alpha = active ? 1.0 : 0.5;
+}
+
 - (void)setHighlighted:(BOOL)highlighted
 {
     if (highlighted) {
