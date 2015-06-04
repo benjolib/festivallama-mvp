@@ -10,4 +10,7 @@
 
 @interface LoadingTableView : UITableView
 
+- (void)showLoadingIndicator;
+- (void)hideLoadingIndicator;
+
 @end

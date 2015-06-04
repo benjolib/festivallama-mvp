@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FestivalRefreshControl : UIRefreshControl
+typedef NS_ENUM(NSUInteger, RefreshState) {
+    RefreshStateNormal,
+    RefreshStatePulling,
+    RefreshStateLoading,
+};
+
+@interface FestivalRefreshControl : UIControl
+
+@property (nonatomic) BOOL isLoading;
+
+- (void)startRefreshing;
+- (void)endRefreshing;
+
+- (void)parentScrollViewDidEndDragging:(UIScrollView *)parentScrollView;
+- (void)parentScrollViewDidScroll:(UIScrollView *)parentScrollView;
 
 @end
