@@ -22,6 +22,11 @@
 
 @implementation FilterViewController
 
+- (IBAction)backButtonPressed:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)applyButtonPressed:(id)sender
 {
     // TODO:

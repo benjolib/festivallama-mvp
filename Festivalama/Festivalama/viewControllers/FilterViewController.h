@@ -25,4 +25,6 @@
 
 - (void)setTrashIconVisible:(BOOL)visible;
 
+- (IBAction)backButtonPressed:(id)sender;
+
 @end

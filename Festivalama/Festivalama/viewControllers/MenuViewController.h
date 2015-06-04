@@ -17,4 +17,6 @@
 @property (nonatomic, weak) IBOutlet MenuButton *calendarButton;
 @property (nonatomic, weak) IBOutlet UIButton *infoButton;
 
+- (void)saveSourceViewController:(UIViewController*)sourceViewController;
+
 @end

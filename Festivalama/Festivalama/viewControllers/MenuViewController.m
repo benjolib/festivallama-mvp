@@ -8,14 +8,46 @@
 
 #import "MenuViewController.h"
 #import "MenuButton.h"
+#import "FestivalsViewController.h"
 
 @interface MenuViewController ()
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic, weak) UIViewController *sourceViewController;
 @end
 
 @implementation MenuViewController
 
 - (void)updateCalendarButton
+{
+
+}
+
+- (void)saveSourceViewController:(UIViewController*)sourceViewController
+{
+    self.sourceViewController = sourceViewController;
+
+    if ([sourceViewController isKindOfClass:[FestivalsViewController class]]) {
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.festivalButton setActive:YES];
+            [self.calendarButton setActive:NO];
+            [self.favoriteFestivalButton setActive:NO];
+        }];
+    } else {
+        // TODO:
+    }
+}
+
+- (IBAction)festivalButtonPressed:(id)sender
+{
+
+}
+
+- (IBAction)calendarButtonPressed:(id)sender
+{
+
+}
+
+- (IBAction)favoriteButtonPressed:(id)sender
 {
 
 }
