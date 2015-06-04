@@ -7,31 +7,75 @@
 //
 
 #import "FestivalDetailViewController.h"
+#import "FestivalModel.h"
 
 @interface FestivalDetailViewController ()
-
+@property (nonatomic, strong) UIViewController *displayViewController;
 @end
 
 @implementation FestivalDetailViewController
 
-- (void)viewDidLoad {
+- (IBAction)shareButtonPressed:(id)sender
+{
+
+}
+
+- (IBAction)infoButtonPressed:(id)sender
+{
+
+}
+
+- (IBAction)bandsButtonPressed:(id)sender
+{
+
+}
+
+- (IBAction)locationButtonPressed:(id)sender
+{
+
+}
+
+- (void)switchCurrentViewControllerTo:(UIViewController*)toViewController
+{
+    [self transitionFromViewController:self.displayViewController
+                      toViewController:toViewController
+                              duration:0.0
+                               options:UIViewAnimationOptionTransitionCrossDissolve
+                            animations:^{
+                                toViewController.view.frame = self.view.bounds;
+                            }
+                            completion:^(BOOL finished) {
+                                [toViewController didMoveToParentViewController:self];
+                                self.displayViewController = toViewController;
+                            }];
+}
+
+- (void)loadViewControllerWithIdentifier:(NSString*)identifier
+{
+
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = self.festivalToDisplay.name;
+
+    [self loadViewControllerWithIdentifier:@""];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 @end

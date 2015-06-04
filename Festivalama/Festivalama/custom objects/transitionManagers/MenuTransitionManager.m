@@ -21,7 +21,9 @@
 {
     MenuViewController *menuViewController = [StoryboardManager menuViewController];
     menuViewController.transitioningDelegate = self;
-    [baseController presentViewController:menuViewController animated:YES completion:nil];
+    [baseController presentViewController:menuViewController animated:YES completion:^{
+        [menuViewController saveSourceViewController:baseController];
+    }];
 }
 
 #pragma mark - transitioningDelegate methods

@@ -18,6 +18,7 @@
 #import "FestivalRefreshControl.h"
 #import "LoadingTableView.h"
 #import "FilterModel.h"
+#import "FestivalDetailViewController.h"
 
 @interface FestivalsViewController ()
 @property (nonatomic, strong) TableviewCounterView *tableCounterView;
@@ -72,7 +73,7 @@
 
     cell.nameLabel.text = festival.name;
     cell.locationLabel.text = [festival locationAddress];
-    cell.timeLeftLabel.text = @"In Some stuff";
+    cell.timeLeftLabel.text = [festival calendarDaysTillEndDateString];
 
     return cell;
 }
@@ -80,6 +81,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+
+    [self performSegueWithIdentifier:@"openFestivalDetailView" sender:cell];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([sender isKindOfClass:[UITableViewCell class]] && [segue.identifier isEqualToString:@"openFestivalDetailView"]) {
+        UITableViewCell *cell = (UITableViewCell*)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+
+        FestivalModel *festival = self.festivalsArray[indexPath.row];
+
+        FestivalDetailViewController *detailViewController = (FestivalDetailViewController*)segue.destinationViewController;
+        detailViewController.festivalToDisplay = festival;
+    }
 }
 
 #pragma mark - downloading methods
@@ -103,10 +121,12 @@
     if (!self.festivalsArray) {
         self.festivalsArray = [NSMutableArray array];
     }
+
     __weak typeof(self) weakSelf = self;
     [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex limit:self.limit filterModel:nil andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
         if (completed) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.tableView hideLoadingIndicator];
                 [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
 
                 [weakSelf.tableCounterView setTitle:[NSString stringWithFormat:@"%ld festivals", festivalsArray.count]];
@@ -130,11 +150,8 @@
 #pragma mark - view methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    if (scrollView.contentOffset.y > 30.0) {
-        [self.tableCounterView setCounterViewVisible:NO animated:NO];
-//    } else {
-//        [self.tableCounterView setCounterViewVisible:YES animated:YES];
-//    }
+    [self.refreshController parentScrollViewDidScroll:scrollView];
+    [self.tableCounterView setCounterViewVisible:NO animated:NO];
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
@@ -144,11 +161,8 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    CGFloat minOffsetToTriggerRefresh = 50.0f;
-    if (scrollView.contentOffset.y <= -minOffsetToTriggerRefresh) {
-        [self.tableCounterView setCounterViewVisible:NO animated:NO];
-        [self.refreshController containingScrollViewDidEndDragging:scrollView];
-    }
+    [self.tableCounterView setCounterViewVisible:NO animated:NO];
+    [self.refreshController parentScrollViewDidEndDragging:scrollView];
 }
 
 - (void)viewDidLoad
@@ -168,12 +182,13 @@
                                action:@selector(refreshView)
                      forControlEvents:UIControlEventValueChanged];
 
+    [self.tableView showLoadingIndicator];
     [self refreshView];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     self.trashIcon.hidden = ![FilterModel.sharedModel isFiltering];
 }
 

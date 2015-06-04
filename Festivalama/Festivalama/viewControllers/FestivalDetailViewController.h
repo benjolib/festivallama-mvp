@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class FestivalModel;
+
 @interface FestivalDetailViewController : UIViewController
+
+@property (nonatomic, strong) FestivalModel *festivalToDisplay;
+@property (nonatomic, weak) IBOutlet UIView *containerView;
+
+- (IBAction)shareButtonPressed:(id)sender;
 
 @end

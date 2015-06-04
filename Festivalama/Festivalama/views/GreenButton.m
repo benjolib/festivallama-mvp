@@ -17,7 +17,7 @@
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.6] forState:UIControlStateHighlighted];
 
-    self.backgroundColor = [UIColor globalGreenColor];
+    self.backgroundColor = [UIColor globalGreenColorWithAlpha:0.8];
 }
 
 @end
