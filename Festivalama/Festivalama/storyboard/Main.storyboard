@@ -28,6 +28,9 @@
                                     <color key="titleColor" red="0.2666666667" green="0.64705882349999999" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="festivalButtonPressed:" destination="uPf-gQ-NDb" eventType="touchUpInside" id="S2j-yr-Trq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvB-w5-ouz" customClass="MenuButton">
                                 <rect key="frame" x="135" y="518" width="50" height="50"/>
@@ -52,6 +55,9 @@
                                     <color key="titleColor" red="0.26666666666666666" green="0.6470588235294118" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="calendarButtonPressed:" destination="uPf-gQ-NDb" eventType="touchUpInside" id="GZx-Fp-zv6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzL-3h-W9q" customClass="MenuButton">
                                 <rect key="frame" x="115" y="170" width="90" height="90"/>
@@ -64,6 +70,9 @@
                                     <color key="titleColor" red="0.2666666667" green="0.64705882349999999" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="favoriteButtonPressed:" destination="uPf-gQ-NDb" eventType="touchUpInside" id="0va-9M-mKo"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -167,11 +176,99 @@
                         <outlet property="applyButton" destination="Abc-qL-km8" id="p5C-L1-I7v"/>
                         <outlet property="tableView" destination="7lC-DL-ywz" id="V5e-U7-2Mm"/>
                         <outlet property="trashIcon" destination="Kbs-m1-fMd" id="gdn-vy-WEq"/>
+                        <segue destination="h2g-GF-iOi" kind="push" identifier="openFestivalDetailView" id="EEV-8u-Yp5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8m-We-uN2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="225" y="415"/>
+        </scene>
+        <!--Festival Detail View Controller-->
+        <scene sceneID="Fu5-ot-yVn">
+            <objects>
+                <viewController id="h2g-GF-iOi" customClass="FestivalDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tAM-cJ-RLp"/>
+                        <viewControllerLayoutGuide type="bottom" id="GIu-0C-8eE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Afy-Wg-Hl0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LoL-5S-ZYJ">
+                                <rect key="frame" x="0.0" y="64" width="106" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3nk-CM-E88"/>
+                                </constraints>
+                                <state key="normal" title="Info">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="infoButtonPressed:" destination="h2g-GF-iOi" eventType="touchUpInside" id="XCC-gO-qZJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7WZ-64-ggZ">
+                                <rect key="frame" x="107" y="64" width="106" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NBc-VC-PdT"/>
+                                </constraints>
+                                <state key="normal" title="Bands">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bandsButtonPressed:" destination="h2g-GF-iOi" eventType="touchUpInside" id="wW6-m8-7NJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcc-o8-HAJ">
+                                <rect key="frame" x="214" y="64" width="106" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="iQy-hH-Td0"/>
+                                </constraints>
+                                <state key="normal" title="Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="locationButtonPressed:" destination="h2g-GF-iOi" eventType="touchUpInside" id="LQ3-4Y-Kmq"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8h-Y3-IhJ">
+                                <rect key="frame" x="0.0" y="114" width="320" height="454"/>
+                                <connections>
+                                    <segue destination="K0Z-xC-PFh" kind="embed" id="34x-MV-0p6"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7WZ-64-ggZ" firstAttribute="width" secondItem="LoL-5S-ZYJ" secondAttribute="width" id="0kT-Zy-xwN"/>
+                            <constraint firstItem="G8h-Y3-IhJ" firstAttribute="leading" secondItem="Afy-Wg-Hl0" secondAttribute="leading" id="0wP-X1-iDE"/>
+                            <constraint firstItem="7WZ-64-ggZ" firstAttribute="width" secondItem="gcc-o8-HAJ" secondAttribute="width" id="28F-mo-qcM"/>
+                            <constraint firstAttribute="trailing" secondItem="gcc-o8-HAJ" secondAttribute="trailing" id="3JJ-Nk-BWc"/>
+                            <constraint firstItem="7WZ-64-ggZ" firstAttribute="top" secondItem="tAM-cJ-RLp" secondAttribute="bottom" id="3Wc-g9-fH6"/>
+                            <constraint firstItem="7WZ-64-ggZ" firstAttribute="leading" secondItem="LoL-5S-ZYJ" secondAttribute="trailing" constant="1" id="6g6-LV-4MJ"/>
+                            <constraint firstItem="LoL-5S-ZYJ" firstAttribute="top" secondItem="tAM-cJ-RLp" secondAttribute="bottom" id="P6B-ML-4Bz"/>
+                            <constraint firstAttribute="centerX" secondItem="7WZ-64-ggZ" secondAttribute="centerX" id="RKw-fD-q5F"/>
+                            <constraint firstItem="LoL-5S-ZYJ" firstAttribute="leading" secondItem="Afy-Wg-Hl0" secondAttribute="leading" id="YIX-NQ-8fD"/>
+                            <constraint firstItem="G8h-Y3-IhJ" firstAttribute="top" secondItem="gcc-o8-HAJ" secondAttribute="bottom" id="cXW-lv-1PF"/>
+                            <constraint firstItem="gcc-o8-HAJ" firstAttribute="top" secondItem="tAM-cJ-RLp" secondAttribute="bottom" id="e4C-Zz-MgJ"/>
+                            <constraint firstAttribute="trailing" secondItem="G8h-Y3-IhJ" secondAttribute="trailing" id="oCN-yT-A2v"/>
+                            <constraint firstItem="GIu-0C-8eE" firstAttribute="top" secondItem="G8h-Y3-IhJ" secondAttribute="bottom" id="oG3-Wl-Lza"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="oS7-69-z0L">
+                        <barButtonItem key="rightBarButtonItem" image="shareButton" id="b5h-L0-Y8h">
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="h2g-GF-iOi" id="xub-bF-24f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="containerView" destination="G8h-Y3-IhJ" id="OvB-ey-RDV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kcg-ZU-W6B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="621" y="415"/>
         </scene>
         <!--Festival Navigation Controller-->
         <scene sceneID="2NP-Ay-aVF">
@@ -189,6 +286,25 @@
             </objects>
             <point key="canvasLocation" x="-180" y="415"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="LBq-ZZ-6cc">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="K0Z-xC-PFh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kjI-Bf-UJV"/>
+                        <viewControllerLayoutGuide type="bottom" id="uvK-2u-rEJ"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jEP-k5-uN9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="454"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IND-pd-ekt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1011" y="472"/>
+        </scene>
     </scenes>
     <resources>
         <image name="calendarIcon" width="33" height="39"/>
@@ -197,6 +313,7 @@
         <image name="infoButton" width="19" height="19"/>
         <image name="menuIcon" width="20" height="19"/>
         <image name="searchIcon" width="20" height="19"/>
+        <image name="shareButton" width="23" height="20"/>
         <image name="trashIcon" width="19" height="23"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

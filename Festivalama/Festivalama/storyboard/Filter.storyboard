@@ -89,13 +89,13 @@
                                                         <constraint firstAttribute="height" constant="21" id="F2k-m3-0MD"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="262" translatesAutoresizingMaskIntoConstraints="NO" id="pw3-6I-gdn">
                                                     <rect key="frame" x="15" y="36" width="262" height="14"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -134,7 +134,13 @@
                             <constraint firstItem="uUO-rJ-pBB" firstAttribute="top" secondItem="KV4-CN-p1V" secondAttribute="bottom" constant="2" id="zlr-LC-cgD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cMg-qp-kA8"/>
+                    <navigationItem key="navigationItem" id="cMg-qp-kA8">
+                        <barButtonItem key="leftBarButtonItem" image="backbutton" id="hAq-AV-U1L">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="Jy7-EL-XNz" id="UTi-oe-MMD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="applyButton" destination="Emp-eu-7bA" id="wnE-JB-c9v"/>
                         <outlet property="tableView" destination="p28-Ta-V1g" id="j8u-UV-W66"/>
@@ -622,6 +628,7 @@ Ortes in dem du ein Festival besuchen willst</string>
         </scene>
     </scenes>
     <resources>
+        <image name="backbutton" width="10" height="16"/>
         <image name="trashIcon" width="19" height="23"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
