@@ -55,4 +55,30 @@
     return [NSString stringWithFormat:@"%@, %@", self.city, self.country];
 }
 
+- (NSString*)calendarDaysTillEndDateString
+{
+    if (!self.endDate) {
+        return nil;
+    }
+    NSInteger numberOfDaysLeft = [self daysTillEndDate];
+    if (numberOfDaysLeft == 0) {
+        // TODO: 
+    }
+    return [NSString stringWithFormat:@"In %ld Tagen", (long)numberOfDaysLeft];
+}
+
+- (NSInteger)daysTillEndDate
+{
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
+                                                        fromDate:[NSDate date]
+                                                          toDate:self.endDate
+                                                         options:0];
+    NSInteger numberOfDays = components.day;
+    if (numberOfDays < 0) {
+        numberOfDays *= -1;
+    }
+    return numberOfDays;
+}
+
 @end

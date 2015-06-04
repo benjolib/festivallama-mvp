@@ -38,4 +38,7 @@
 
 - (NSString*)locationAddress;
 
+- (NSString*)calendarDaysTillEndDateString;
+- (NSInteger)daysTillEndDate;
+
 @end
