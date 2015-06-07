@@ -33,12 +33,37 @@
 
 + (FestivalNavigationController*)festivalNavigationController
 {
-    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FestivalNavigationController"];
+    return [self festivalNavigationControllerWithID:@"FestivalNavigationController"];
+}
+
++ (FestivalNavigationController*)festivalNavigationControllerWithID:(NSString*)identifier
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:identifier];
 }
 
 + (FestivalsViewController*)festivalsViewController
 {
    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FestivalsViewController"];
+}
+
++ (PopularFestivalsViewController*)popularFestivalsViewController
+{
+   return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"PopularFestivalsViewController"];
+}
+
++ (FestivalDetailInfoViewController*)festivalDetailInfoViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FestivalDetailInfoViewController"];
+}
+
++ (FestivalDetailBandsViewController*)festivalDetailBandsViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FestivalDetailBandsViewController"];
+}
+
++ (FestivalDetailLocationViewController*)festivalDetailLocationViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FestivalDetailLocationViewController"];
 }
 
 @end

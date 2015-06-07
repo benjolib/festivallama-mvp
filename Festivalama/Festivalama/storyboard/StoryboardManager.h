@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class FilterNavigationController, MenuViewController, FestivalNavigationController, FestivalsViewController;
+@class FilterNavigationController, MenuViewController, FestivalNavigationController, FestivalsViewController, PopularFestivalsViewController,
+FestivalDetailInfoViewController, FestivalDetailBandsViewController, FestivalDetailLocationViewController;
 
 @interface StoryboardManager : NSObject
 
@@ -18,7 +19,13 @@
 + (MenuViewController*)menuViewController;
 + (FilterNavigationController*)filterNavigationController;
 
++ (FestivalNavigationController*)festivalNavigationControllerWithID:(NSString*)identifier;
 + (FestivalNavigationController*)festivalNavigationController;
 + (FestivalsViewController*)festivalsViewController;
++ (PopularFestivalsViewController*)popularFestivalsViewController;
+
++ (FestivalDetailInfoViewController*)festivalDetailInfoViewController;
++ (FestivalDetailBandsViewController*)festivalDetailBandsViewController;
++ (FestivalDetailLocationViewController*)festivalDetailLocationViewController;
 
 @end

@@ -84,7 +84,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nach Künstlern" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="262" translatesAutoresizingMaskIntoConstraints="NO" id="7ja-Hf-cze">
-                                                    <rect key="frame" x="15" y="10" width="262" height="21"/>
+                                                    <rect key="frame" x="15" y="10" width="222" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="F2k-m3-0MD"/>
                                                     </constraints>
@@ -93,17 +93,29 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="262" translatesAutoresizingMaskIntoConstraints="NO" id="pw3-6I-gdn">
-                                                    <rect key="frame" x="15" y="36" width="262" height="14"/>
+                                                    <rect key="frame" x="15" y="36" width="222" height="14"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSl-9J-FZb">
+                                                    <rect key="frame" x="247" y="30" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="UmW-81-cgC"/>
+                                                        <constraint firstAttribute="width" constant="40" id="yT8-zo-VQg"/>
+                                                    </constraints>
+                                                    <state key="normal" image="trashIcon">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="OSl-9J-FZb" firstAttribute="leading" secondItem="pw3-6I-gdn" secondAttribute="trailing" constant="10" id="1Z6-0G-eQG"/>
+                                                <constraint firstAttribute="centerY" secondItem="OSl-9J-FZb" secondAttribute="centerY" id="31K-oa-Ony"/>
                                                 <constraint firstItem="7ja-Hf-cze" firstAttribute="top" secondItem="glH-VI-QXV" secondAttribute="top" constant="10" id="4NZ-rf-dQC"/>
-                                                <constraint firstAttribute="trailing" secondItem="7ja-Hf-cze" secondAttribute="trailing" constant="10" id="F9m-tT-OKd"/>
+                                                <constraint firstAttribute="trailing" secondItem="OSl-9J-FZb" secondAttribute="trailing" id="D0N-Bf-eSo"/>
+                                                <constraint firstAttribute="trailing" secondItem="7ja-Hf-cze" secondAttribute="trailing" constant="50" id="JfK-iy-rZH"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pw3-6I-gdn" secondAttribute="bottom" constant="10" id="Lr3-2h-xJe"/>
-                                                <constraint firstAttribute="trailing" secondItem="pw3-6I-gdn" secondAttribute="trailing" constant="10" id="Nct-nn-s7P"/>
                                                 <constraint firstItem="pw3-6I-gdn" firstAttribute="leading" secondItem="glH-VI-QXV" secondAttribute="leading" constant="15" id="TCU-lz-OPi"/>
                                                 <constraint firstItem="pw3-6I-gdn" firstAttribute="top" secondItem="7ja-Hf-cze" secondAttribute="bottom" constant="5" id="hTr-dL-svc"/>
                                                 <constraint firstItem="7ja-Hf-cze" firstAttribute="leading" secondItem="glH-VI-QXV" secondAttribute="leading" constant="15" id="ssR-gd-Fud"/>
@@ -112,6 +124,7 @@
                                         <connections>
                                             <outlet property="bandDetailLabel" destination="pw3-6I-gdn" id="XZ8-NK-ypS"/>
                                             <outlet property="nameLabel" destination="7ja-Hf-cze" id="O3k-1u-irF"/>
+                                            <outlet property="trashButton" destination="OSl-9J-FZb" id="X43-kY-F0c"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
