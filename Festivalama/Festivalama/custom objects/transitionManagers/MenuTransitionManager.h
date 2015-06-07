@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface MenuTransitionManager : NSObject 
+@interface MenuTransitionManager : NSObject <UIViewControllerTransitioningDelegate>
 
 - (void)presentMenuViewControllerOnViewController:(UIViewController*)baseController;
 

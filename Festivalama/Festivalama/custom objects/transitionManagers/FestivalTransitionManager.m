@@ -11,7 +11,7 @@
 #import "FestivalNavigationController.h"
 #import "StoryboardManager.h"
 
-@interface FestivalTransitionManager () <UIViewControllerTransitioningDelegate>
+@interface FestivalTransitionManager ()
 @end
 
 @implementation FestivalTransitionManager
@@ -19,6 +19,13 @@
 - (void)presentFestivalViewControllerOnViewController:(UIViewController*)baseController
 {
     FestivalNavigationController *festivalViewController = [StoryboardManager festivalNavigationController];
+    festivalViewController.transitioningDelegate = self;
+    [baseController presentViewController:festivalViewController animated:YES completion:nil];
+}
+
+- (void)presentInfoViewControllerOnViewController:(UIViewController*)baseController
+{
+    FestivalNavigationController *festivalViewController = [StoryboardManager festivalNavigationControllerWithID:@"infoFestivalNavigationID"];
     festivalViewController.transitioningDelegate = self;
     [baseController presentViewController:festivalViewController animated:YES completion:nil];
 }

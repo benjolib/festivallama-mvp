@@ -11,7 +11,7 @@
 #import "StoryboardManager.h"
 #import "MenuTransitionAnimator.h"
 
-@interface MenuTransitionManager () <UIViewControllerTransitioningDelegate>
+@interface MenuTransitionManager ()
 
 @end
 

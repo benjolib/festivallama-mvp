@@ -46,7 +46,23 @@
     }
     else
     {
+        CGFloat width = fromViewController.view.frame.size.width;
+        CGRect originalFrame = fromViewController.view.frame;
+        CGRect rightFrame = originalFrame;
+        rightFrame.origin.x += width;
 
+        CGRect leftFrame = originalFrame;
+        leftFrame.origin.x -= width;
+
+        [containerView addSubview:toViewController.view];
+        toViewController.view.frame = leftFrame;
+
+        [UIView animateWithDuration:transitonDuration animations:^{
+            fromViewController.view.frame = rightFrame;
+            toViewController.view.frame = originalFrame;
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:YES];
+        }];
     }
 }
 

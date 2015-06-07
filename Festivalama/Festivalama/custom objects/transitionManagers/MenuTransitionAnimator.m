@@ -35,6 +35,10 @@
         UIImageView *blurredImageView = [[UIImageView alloc] initWithFrame:toViewController.view.frame];
         blurredImageView.image = [snapshotImage applyLightEffect];
 
+        UIView *glassWhiteView = [[UIView alloc] initWithFrame:toViewController.view.frame];
+        glassWhiteView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+        [blurredImageView addSubview:glassWhiteView];
+
         toViewController.view.alpha = 0.0;
         [toViewController.view insertSubview:blurredImageView atIndex:0];
         [containerView addSubview:toViewController.view];

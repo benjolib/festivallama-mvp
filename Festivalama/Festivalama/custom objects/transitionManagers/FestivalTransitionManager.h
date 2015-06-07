@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface FestivalTransitionManager : NSObject
+@interface FestivalTransitionManager : NSObject <UIViewControllerTransitioningDelegate>
 
 - (void)presentFestivalViewControllerOnViewController:(UIViewController*)baseController;
+- (void)presentInfoViewControllerOnViewController:(UIViewController*)baseController;
 
 @end
