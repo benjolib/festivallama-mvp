@@ -13,4 +13,7 @@
 + (void)setOnboardingViewed;
 + (BOOL)onboardingViewed;
 
++ (void)setTutorialsShown;
++ (BOOL)wasTutorialShown;
+
 @end

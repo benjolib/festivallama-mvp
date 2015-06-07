@@ -9,6 +9,7 @@
 #import "GeneralSettings.h"
 
 static NSString * const kOnboardingViewedKey = @"onboardingViewed";
+static NSString * const kTutorialShownKey = @"tutorialShownKey";
 
 @implementation GeneralSettings
 
@@ -18,9 +19,20 @@ static NSString * const kOnboardingViewedKey = @"onboardingViewed";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (void)setTutorialsShown
+{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kTutorialShownKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 + (BOOL)onboardingViewed
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:kOnboardingViewedKey];
+}
+
++ (BOOL)wasTutorialShown
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kTutorialShownKey];
 }
 
 @end
