@@ -8,6 +8,21 @@
 
 #import "BaseGradientViewController.h"
 
+@class FestivalModel;
+
 @interface FestivalDetailInfoViewController : BaseGradientViewController
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *infoTextLabelHeightConstraint;
+@property (nonatomic, weak) IBOutlet UILabel *infoTextLabel;
+@property (nonatomic, weak) IBOutlet UILabel *festivalTypeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *festivalTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *festivalLocationLabel;
+@property (nonatomic, weak) IBOutlet UILabel *festivalCostsLabel;
+
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UIView *containerView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *containerViewHeightConstraint;
+
+@property (nonatomic, weak) FestivalModel *festivalToDisplay;
 
 @end

@@ -16,10 +16,9 @@
 @property (nonatomic, weak) IBOutlet GreenButton *applyButton;
 @property (nonatomic, weak) IBOutlet UIButton *trashIcon;
 
+@property (nonatomic, strong) NSMutableArray *festivalsArray;
+
 - (IBAction)filterButtonPressed:(id)sender;
 - (IBAction)trashButtonPressed:(id)sender;
-
-- (IBAction)menuButtonPressed:(id)sender;
-- (IBAction)searchButtonPressed:(id)sender;
 
 @end

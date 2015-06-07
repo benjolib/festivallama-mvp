@@ -7,6 +7,7 @@
 //
 
 #import "FestivalDetailInfoViewController.h"
+#import "FestivalModel.h"
 
 @interface FestivalDetailInfoViewController ()
 
@@ -14,24 +15,36 @@
 
 @implementation FestivalDetailInfoViewController
 
-- (void)viewDidLoad {
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self displayFestivalInfo];
+
+    [self adjustViewSizes];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)displayFestivalInfo
+{
+    self.infoTextLabel.text = self.festivalToDisplay.festivalDescription;
+    self.festivalTypeLabel.text = [self.festivalToDisplay category];
+    self.festivalTimeLabel.text = [self.festivalToDisplay festivalInfoDateString];
+    self.festivalLocationLabel.text = [self.festivalToDisplay infoLocationString];
+    self.festivalCostsLabel.text = [self.festivalToDisplay admission];
 }
 
-/*
-#pragma mark - Navigation
+- (void)adjustViewSizes
+{
+    NSDictionary *attributes = @{NSFontAttributeName:self.infoTextLabel.font};
+    NSInteger options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesLineFragmentOrigin;
+    CGRect labelRect = [self.infoTextLabel.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.infoTextLabel.frame), CGFLOAT_MAX) options:options attributes:attributes context:NULL];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    self.infoTextLabelHeightConstraint.constant = labelRect.size.height + 20.0;
+
+    CGFloat viewHeight = CGRectGetMaxY(self.festivalCostsLabel.frame) + 20.0;
+    self.containerViewHeightConstraint.constant = viewHeight;
+
+    [self.view layoutIfNeeded];
 }
-*/
 
 @end

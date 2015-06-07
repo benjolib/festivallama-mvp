@@ -19,10 +19,11 @@
 #import "LoadingTableView.h"
 #import "FilterModel.h"
 #import "FestivalDetailViewController.h"
+#import "TutorialPopupView.h"
+#import "GeneralSettings.h"
 
 @interface FestivalsViewController ()
 @property (nonatomic, strong) TableviewCounterView *tableCounterView;
-@property (nonatomic, strong) NSMutableArray *festivalsArray;
 @property (nonatomic, strong) MenuTransitionManager *menuTransitionManager;
 @property (nonatomic, strong) FestivalDownloadClient *festivalDownloadClient;
 @property (nonatomic, strong) FestivalRefreshControl *refreshController;
@@ -31,17 +32,6 @@
 @end
 
 @implementation FestivalsViewController
-
-- (IBAction)menuButtonPressed:(id)sender
-{
-    self.menuTransitionManager = [MenuTransitionManager new];
-    [self.menuTransitionManager presentMenuViewControllerOnViewController:self];
-}
-
-- (IBAction)searchButtonPressed:(id)sender
-{
-    
-}
 
 - (IBAction)filterButtonPressed:(id)sender
 {
@@ -124,20 +114,21 @@
 
     __weak typeof(self) weakSelf = self;
     [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex limit:self.limit filterModel:nil andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
-        if (completed) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.tableView hideLoadingIndicator];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.tableView hideLoadingIndicator];
+            if (completed) {
                 [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
 
-                [weakSelf.tableCounterView setTitle:[NSString stringWithFormat:@"%ld festivals", festivalsArray.count]];
+                [weakSelf.tableCounterView setTitle:[NSString stringWithFormat:@"%ld festivals", (unsigned long)festivalsArray.count]];
                 [weakSelf.tableCounterView setCounterViewVisible:YES animated:YES];
-                [weakSelf.tableView reloadData];
-                [weakSelf.refreshController endRefreshing];
-                weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
-            });
-        } else {
-            // Handle errors
-        }
+            } else {
+                // Handle errors
+
+            }
+            [weakSelf.tableView reloadData];
+            [weakSelf.refreshController endRefreshing];
+            weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
+        });
     }];
 }
 
@@ -168,7 +159,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Festivals";
+    super.title = @"Festivals";
 
     [self.tableView registerNib:[UINib nibWithNibName:@"FestivalTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"cell"];
 
@@ -184,6 +175,23 @@
 
     [self.tableView showLoadingIndicator];
     [self refreshView];
+}
+
+- (void)showTutorialPopup
+{
+    TutorialPopupView *tutorial2 = [[TutorialPopupView alloc] init];
+    [tutorial2 showWithText:@"Filtere die Ergebniss nach Musik Genre, Künstler oder Ort"
+                    atPoint:CGPointMake(CGRectGetMidX(self.applyButton.frame), CGRectGetMinY(self.applyButton.frame)-50.0)
+              highLightArea:self.applyButton.frame];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    if (![GeneralSettings wasTutorialShown]) {
+        [self showTutorialPopup];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
