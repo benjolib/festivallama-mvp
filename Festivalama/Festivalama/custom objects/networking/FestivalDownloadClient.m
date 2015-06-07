@@ -39,7 +39,9 @@
         }
         else
         {
-
+            if (completionBlock) {
+                completionBlock(nil, errorMessage, NO);
+            }
         }
     }];
 
