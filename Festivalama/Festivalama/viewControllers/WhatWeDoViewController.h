@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseGradientViewController.h"
 
-@interface WhatWeDoViewController : UIViewController
+@interface WhatWeDoViewController : BaseGradientViewController
+
+@property (nonatomic, weak) IBOutlet UITextView *textView;
 
 @end
