@@ -8,6 +8,11 @@
 
 #import "BaseGradientViewController.h"
 
-@interface FestivalDetailBandsViewController : BaseGradientViewController
+@class FestivalModel;
+
+@interface FestivalDetailBandsViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) FestivalModel *festivalToDisplay;
 
 @end

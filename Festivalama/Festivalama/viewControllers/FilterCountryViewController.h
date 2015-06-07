@@ -10,6 +10,4 @@
 
 @interface FilterCountryViewController : FilterViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-
 @end

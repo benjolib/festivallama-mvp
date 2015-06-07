@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseGradientViewController.h"
 
-@interface InfoViewController : UIViewController
+@interface InfoViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

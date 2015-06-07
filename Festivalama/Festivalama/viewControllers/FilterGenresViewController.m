@@ -81,7 +81,7 @@
     [super viewDidLoad];
     self.title = @"Musik Genres";
 
-    
+    self.selectedGenresArray = [[[FilterModel sharedModel] selectedGenresArray] mutableCopy];
     [self.tableView reloadData];
 }
 

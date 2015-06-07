@@ -57,6 +57,12 @@
     self.trashIcon.hidden = !visible;
 }
 
+- (void)bandCellTrashButtonPressed:(UIButton*)button
+{
+    [FilterModel sharedModel].selectedBandsArray = [NSArray array];
+    [self.tableView reloadData];
+}
+
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -75,14 +81,15 @@
 
         NSString *bandsString = [[FilterModel sharedModel] bandsString];
         if (bandsString.length > 0) {
-            UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"trashIcon"]];
-            cell.accessoryView = accessoryView;
-            cell.backgroundColor = [UIColor clearColor];
+            cell.trashButton.hidden = NO;
+            [cell.trashButton addTarget:self action:@selector(bandCellTrashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         } else {
-            UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclosureIcon"]];
-            cell.accessoryView = accessoryView;
+            cell.trashButton.hidden = YES;
         }
 
+        UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclosureIcon"]];
+        cell.accessoryView = accessoryView;
+        cell.backgroundColor = [UIColor clearColor];
         cell.nameLabel.text = @"Nach Künstlern";
         cell.bandDetailLabel.text = bandsString;
         return cell;
