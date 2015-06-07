@@ -49,7 +49,7 @@
 
 - (void)displayCounterValue:(NSInteger)counterValue
 {
-    self.counterLabel.text = [NSString stringWithFormat:@"%ld", counterValue];
+    self.counterLabel.text = [NSString stringWithFormat:@"%ld", (long)counterValue];
 }
 
 @end

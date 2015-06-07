@@ -11,5 +11,6 @@
 @interface FilterBandsTableViewCell : FilterTableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *bandDetailLabel;
+@property (nonatomic, weak) IBOutlet UIButton *trashButton;
 
 @end

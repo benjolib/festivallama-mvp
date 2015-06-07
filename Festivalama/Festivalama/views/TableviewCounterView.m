@@ -71,7 +71,7 @@
 - (void)setCounterViewVisible:(BOOL)visible animated:(BOOL)animated
 {
     if (visible) {
-        self.topConstraint.constant = -70.0;
+        self.topConstraint.constant = -10.0;
     } else {
         self.topConstraint.constant = 100.0;
     }

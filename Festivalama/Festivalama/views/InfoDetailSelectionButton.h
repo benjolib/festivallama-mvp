@@ -10,4 +10,5 @@
 
 @interface InfoDetailSelectionButton : UIButton
 
+
 @end
