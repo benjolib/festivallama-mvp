@@ -8,6 +8,8 @@
 
 #import "FestivalsViewController.h"
 
+@class LoadingTableView;
+
 @interface PopularFestivalsViewController : FestivalsViewController
 
 @end

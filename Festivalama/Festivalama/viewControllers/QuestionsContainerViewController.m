@@ -72,12 +72,7 @@
     WelcomeBaseViewController *currentViewController = [self.pageViewController.viewControllers objectAtIndex:0];
     NSUInteger index = currentViewController.indexOfView;
 
-//    if (index <= self.currentIndex) {
-//        self.currentIndex++;
-//    }
     NSLog(@"Current index: %ld", (long)self.currentIndex);
-
-//    self.currentIndex = index+1;
 
     UIViewController *nextViewController = [self viewControllerAtIndex:index+1];
     self.pageControl.currentPage = index + 1;
