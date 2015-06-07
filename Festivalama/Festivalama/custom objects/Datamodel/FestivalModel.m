@@ -60,19 +60,20 @@
     if (!self.endDate) {
         return nil;
     }
-    NSInteger numberOfDaysLeft = [self daysTillEndDate];
+    NSInteger numberOfDaysLeft = [self daysTillStartDate];
     if (numberOfDaysLeft == 0) {
-        // TODO: 
+        // TODO:
+        return nil;
     }
     return [NSString stringWithFormat:@"In %ld Tagen", (long)numberOfDaysLeft];
 }
 
-- (NSInteger)daysTillEndDate
+- (NSInteger)daysTillStartDate
 {
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
                                                         fromDate:[NSDate date]
-                                                          toDate:self.endDate
+                                                          toDate:self.startDate
                                                          options:0];
     NSInteger numberOfDays = components.day;
     if (numberOfDays < 0) {
@@ -80,5 +81,39 @@
     }
     return numberOfDays;
 }
+
+
+#pragma mark - info view methods
+- (NSString*)infoLocationString
+{
+    return [NSString stringWithFormat:@"%@ (%@)", self.city, self.country];
+}
+
+- (NSString*)festivalInfoDateString
+{
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *startComponents = [gregorianCalendar components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self.startDate];
+    NSInteger startDay = startComponents.day;
+    NSInteger startMonth = startComponents.month;
+    NSInteger startYear = startComponents.year;
+
+    NSDateComponents *endComponents = [gregorianCalendar components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self.endDate];
+    NSInteger endDay = endComponents.day;
+//    NSInteger endMonth = endComponents.month;
+//    NSInteger endYear = endComponents.year;
+
+    NSString *formattedInfoDateString = nil;
+    if (startDay && endDay)
+    {
+        formattedInfoDateString = [NSString stringWithFormat:@"%ld.-%ld. %ld %ld", (long)startDay, (long)endDay, (long)startMonth, (long)startYear];
+        return formattedInfoDateString;
+    } else {
+        formattedInfoDateString = [NSString stringWithFormat:@"%ld. %ld %ld", (long)startDay, (long)startMonth, (long)startYear];
+        return formattedInfoDateString;
+    }
+
+    return formattedInfoDateString;
+}
+
 
 @end

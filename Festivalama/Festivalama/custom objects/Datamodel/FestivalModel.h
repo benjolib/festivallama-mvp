@@ -39,6 +39,9 @@
 - (NSString*)locationAddress;
 
 - (NSString*)calendarDaysTillEndDateString;
-- (NSInteger)daysTillEndDate;
+- (NSInteger)daysTillStartDate;
+
+- (NSString*)festivalInfoDateString;
+- (NSString*)infoLocationString;
 
 @end
