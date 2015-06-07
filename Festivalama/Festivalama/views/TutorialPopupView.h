@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+static NSString * const kNotificationTutorialDismissed = @"kTutorialDismissed";
+
 @interface TutorialPopupView : UIView
+
+@property (nonatomic, weak) IBOutlet UIButton *actionButton;
+@property (nonatomic, weak) IBOutlet UILabel *textLabel;
+@property (nonatomic, weak) IBOutlet UIView *separatorView;
+
+- (void)showWithText:(NSString*)text atPoint:(CGPoint)point highLightArea:(CGRect)highlightedArea;
 
 @end
