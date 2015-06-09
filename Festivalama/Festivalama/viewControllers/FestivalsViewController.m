@@ -68,6 +68,17 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger lastSectionIndex = [tableView numberOfSections] - 1;
+    NSInteger lastRowIndex = [tableView numberOfRowsInSection:lastSectionIndex] - 1;
+    if ((indexPath.section == lastSectionIndex) && (indexPath.row == lastRowIndex))
+    {
+        // This is the last cell
+        [self downloadNextFestivals];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -119,7 +130,7 @@
             if (completed) {
                 [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
 
-                [weakSelf.tableCounterView setTitle:[NSString stringWithFormat:@"%ld festivals", (unsigned long)festivalsArray.count]];
+                [weakSelf.tableCounterView setTitle:[NSString stringWithFormat:@"%ld festivals", (unsigned long)weakSelf.festivalsArray.count]];
                 [weakSelf.tableCounterView setCounterViewVisible:YES animated:YES];
             } else {
                 // Handle errors
@@ -127,7 +138,9 @@
             }
             [weakSelf.tableView reloadData];
             [weakSelf.refreshController endRefreshing];
-            weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
+            if (weakSelf.tableView.contentOffset.y < 0) {
+                weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
+            }
         });
     }];
 }
@@ -142,7 +155,11 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.refreshController parentScrollViewDidScroll:scrollView];
-    [self.tableCounterView setCounterViewVisible:NO animated:NO];
+    if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= 30.0) {
+        [self.tableCounterView setCounterViewVisible:YES animated:YES];
+    } else {
+        [self.tableCounterView setCounterViewVisible:NO animated:YES];
+    }
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
@@ -152,8 +169,12 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    [self.tableCounterView setCounterViewVisible:NO animated:NO];
     [self.refreshController parentScrollViewDidEndDragging:scrollView];
+    if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= 30.0) {
+        [self.tableCounterView setCounterViewVisible:YES animated:YES];
+    } else {
+        [self.tableCounterView setCounterViewVisible:NO animated:YES];
+    }
 }
 
 - (void)viewDidLoad

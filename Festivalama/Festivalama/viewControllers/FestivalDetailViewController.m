@@ -14,21 +14,39 @@
 #import "FestivalDetailLocationViewController.h"
 #import "GreenButton.h"
 #import "StoryboardManager.h"
+#import "FestivalDetailBaseViewController.h"
+#import "InfoDetailSelectionButton.h"
+#import "PopupView.h"
 
-@interface FestivalDetailViewController ()
-@property (nonatomic, strong) UIViewController *displayViewController;
+@interface FestivalDetailViewController () <PopupViewDelegate>
+@property (nonatomic, strong) FestivalDetailBaseViewController *displayViewController;
+@property (nonatomic, strong) PopupView *activePopup;
 @end
 
 @implementation FestivalDetailViewController
 
 - (IBAction)ticketShopButtonPressed:(id)sender
 {
-
+    [self showToTicketShopPopup];
 }
 
 - (IBAction)shareButtonPressed:(id)sender
 {
+    if (!self.festivalToDisplay.name) {
+        return;
+    }
 
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.festivalToDisplay.name]
+                                                                                         applicationActivities:nil];
+    activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,
+                                                     UIActivityTypePrint,
+                                                     UIActivityTypeCopyToPasteboard,
+                                                     UIActivityTypeAssignToContact,
+                                                     UIActivityTypePostToVimeo,
+                                                     UIActivityTypePostToTencentWeibo,
+                                                     UIActivityTypePostToFlickr,
+                                                     UIActivityTypeSaveToCameraRoll];
+    [self presentViewController:activityViewController animated:YES completion:NULL];
 }
 
 - (IBAction)backButtonPressed:(id)sender
@@ -45,6 +63,10 @@
         [self switchCurrentViewControllerTo:festivalInfoController];
         festivalInfoController.festivalToDisplay = self.festivalToDisplay;
     }
+
+    [self.infoButton setButtonPosition:0 selectedPosition:0 active:YES];
+    [self.bandsButton setButtonPosition:1 selectedPosition:0 active:NO];
+    [self.locationButton setButtonPosition:2 selectedPosition:0 active:NO];
 }
 
 - (IBAction)bandsButtonPressed:(id)sender
@@ -56,6 +78,10 @@
         [self switchCurrentViewControllerTo:festivalBandsController];
         festivalBandsController.festivalToDisplay = self.festivalToDisplay;
     }
+
+    [self.infoButton setButtonPosition:0 selectedPosition:1 active:NO];
+    [self.bandsButton setButtonPosition:1 selectedPosition:1 active:YES];
+    [self.locationButton setButtonPosition:2 selectedPosition:1 active:NO];
 }
 
 - (IBAction)locationButtonPressed:(id)sender
@@ -65,11 +91,15 @@
     } else {
         FestivalDetailLocationViewController *festivalLocationController = [StoryboardManager festivalDetailLocationViewController];
         [self switchCurrentViewControllerTo:festivalLocationController];
-//        festivalBandsController.festivalToDisplay = self.festivalToDisplay;
+        festivalLocationController.festivalToDisplay = self.festivalToDisplay;
     }
+
+    [self.infoButton setButtonPosition:0 selectedPosition:2 active:NO];
+    [self.bandsButton setButtonPosition:1 selectedPosition:2 active:NO];
+    [self.locationButton setButtonPosition:2 selectedPosition:2 active:YES];
 }
 
-- (void)switchCurrentViewControllerTo:(UIViewController*)toViewController
+- (void)switchCurrentViewControllerTo:(FestivalDetailBaseViewController*)toViewController
 {
     [self addChildViewController:toViewController];
 
@@ -89,6 +119,28 @@
                             }];
 }
 
+#pragma mark - popup handling
+- (void)showToTicketShopPopup
+{
+    self.activePopup = [[PopupView alloc] initWithDelegate:self];
+    [self.activePopup setupWithConfirmButtonTitle:@"OK"
+                                cancelButtonTitle:nil
+                                        viewTitle:@"R.S.V.P"
+                                             text:@"Teile uns mit wie viele Tickets Du benötigtst und wir schicken Dir das Angebot mit dem besten Preis innerhalb weniger Stunden per E-Mail."
+                                             icon:[UIImage imageNamed:@"iconTent"]];
+    [self.activePopup showPopupViewAnimationOnView:self.view withBlurredBackground:YES];
+}
+
+- (void)popupViewConfirmButtonPressed
+{
+
+}
+
+- (void)popupViewCancelButtonPressed
+{
+
+}
+
 #pragma mark - view methods
 - (void)viewDidLoad
 {
@@ -97,6 +149,8 @@
 
     self.titleLabel.textColor = [UIColor globalGreenColor];
     self.titleLabel.text = self.festivalToDisplay.name;
+
+    self.ticketShopButton.layer.cornerRadius = 30.0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,6 +165,10 @@
         if ([self.displayViewController isKindOfClass:[FestivalDetailInfoViewController class]]) {
             FestivalDetailInfoViewController *infoViewController = (FestivalDetailInfoViewController*)self.displayViewController;
             infoViewController.festivalToDisplay = self.festivalToDisplay;
+
+            [self.infoButton setButtonPosition:0 selectedPosition:0 active:YES];
+            [self.bandsButton setButtonPosition:1 selectedPosition:0 active:NO];
+            [self.locationButton setButtonPosition:2 selectedPosition:0 active:NO];
         }
     }
 }
