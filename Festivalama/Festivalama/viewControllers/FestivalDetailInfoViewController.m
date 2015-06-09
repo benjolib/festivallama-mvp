@@ -10,7 +10,6 @@
 #import "FestivalModel.h"
 
 @interface FestivalDetailInfoViewController ()
-
 @end
 
 @implementation FestivalDetailInfoViewController
@@ -19,8 +18,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self displayFestivalInfo];
+    self.view.backgroundColor = [UIColor clearColor];
+    self.containerView.backgroundColor = [UIColor clearColor];
 
+    [self refreshView];
+}
+
+- (void)refreshView
+{
+    [super refreshView];
+    [self displayFestivalInfo];
     [self adjustViewSizes];
 }
 
@@ -35,16 +42,26 @@
 
 - (void)adjustViewSizes
 {
+    if (!self.infoTextLabel) {
+        return;
+    }
+
     NSDictionary *attributes = @{NSFontAttributeName:self.infoTextLabel.font};
     NSInteger options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesLineFragmentOrigin;
     CGRect labelRect = [self.infoTextLabel.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.infoTextLabel.frame), CGFLOAT_MAX) options:options attributes:attributes context:NULL];
 
-    self.infoTextLabelHeightConstraint.constant = labelRect.size.height + 20.0;
+    self.infoTextLabelHeightConstraint.constant = labelRect.size.height;
+
+    CGRect infoTextLabelFrame = self.infoTextLabel.frame;
+    infoTextLabelFrame.size.height = self.infoTextLabelHeightConstraint.constant;
+    self.infoTextLabel.frame = infoTextLabelFrame;
+
+    [self.view setNeedsDisplay];
 
     CGFloat viewHeight = CGRectGetMaxY(self.festivalCostsLabel.frame) + 20.0;
     self.containerViewHeightConstraint.constant = viewHeight;
 
-    [self.view layoutIfNeeded];
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), self.containerViewHeightConstraint.constant);
 }
 
 @end

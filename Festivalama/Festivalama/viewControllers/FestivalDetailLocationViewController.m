@@ -10,7 +10,6 @@
 #import "FestivalModel.h"
 
 @interface FestivalDetailLocationViewController ()
-
 @end
 
 @implementation FestivalDetailLocationViewController
@@ -24,7 +23,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
+    [self refreshView];
+}
 
+- (void)refreshView
+{
+    [super refreshView];
     self.locationNameLabel.text = self.festivalToDisplay.locationName;
     self.streetLabel.text = self.festivalToDisplay.address;
     self.postCodeLabel.text = self.festivalToDisplay.postcode;

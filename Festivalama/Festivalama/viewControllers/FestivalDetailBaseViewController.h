@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FestivalModel.h"
 
 @interface FestivalDetailBaseViewController : UIViewController
+
+@property (nonatomic, weak) FestivalModel *festivalToDisplay;
+
+- (void)refreshView;
 
 @end

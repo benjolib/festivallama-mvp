@@ -6,11 +6,9 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import "BaseGradientViewController.h"
+#import "FestivalDetailBaseViewController.h"
 
-@class FestivalModel;
-
-@interface FestivalDetailInfoViewController : BaseGradientViewController
+@interface FestivalDetailInfoViewController : FestivalDetailBaseViewController
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *infoTextLabelHeightConstraint;
 @property (nonatomic, weak) IBOutlet UILabel *infoTextLabel;
@@ -22,7 +20,5 @@
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UIView *containerView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *containerViewHeightConstraint;
-
-@property (nonatomic, weak) FestivalModel *festivalToDisplay;
 
 @end

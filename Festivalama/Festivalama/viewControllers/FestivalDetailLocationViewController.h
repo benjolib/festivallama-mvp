@@ -6,18 +6,16 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import "BaseGradientViewController.h"
+#import "FestivalDetailBaseViewController.h"
 
-@class FestivalModel;
+@class WebsiteButton;
 
-@interface FestivalDetailLocationViewController : BaseGradientViewController
-
-@property (nonatomic, weak) FestivalModel *festivalToDisplay;
+@interface FestivalDetailLocationViewController : FestivalDetailBaseViewController
 
 @property (nonatomic, weak) IBOutlet UILabel *locationNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *streetLabel;
 @property (nonatomic, weak) IBOutlet UILabel *postCodeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *cityLabel;
-@property (nonatomic, weak) IBOutlet UIButton *websiteButton;
+@property (nonatomic, weak) IBOutlet WebsiteButton *websiteButton;
 
 @end
