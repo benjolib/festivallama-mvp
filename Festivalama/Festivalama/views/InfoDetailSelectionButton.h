@@ -10,5 +10,6 @@
 
 @interface InfoDetailSelectionButton : UIButton
 
+- (void)setButtonPosition:(NSInteger)position selectedPosition:(NSInteger)selectedPosition active:(BOOL)active;
 
 @end

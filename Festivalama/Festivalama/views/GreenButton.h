@@ -10,6 +10,4 @@
 
 @interface GreenButton : UIButton
 
-
-
 @end

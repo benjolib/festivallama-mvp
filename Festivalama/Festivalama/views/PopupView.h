@@ -39,7 +39,7 @@
 
 - (void)setupWithConfirmButtonTitle:(NSString*)confirmTitle cancelButtonTitle:(NSString*)cancelTitle viewTitle:(NSString*)viewTitle text:(NSString*)text icon:(UIImage*)icon;
 
-- (void)showPopupViewAnimationOnView:(UIView*)parentView;
+- (void)showPopupViewAnimationOnView:(UIView*)parentView withBlurredBackground:(BOOL)blurBackground;
 - (void)dismissViewWithAnimation:(BOOL)animated;
 
 @end

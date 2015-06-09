@@ -77,7 +77,7 @@
     }
 
     if (animated) {
-        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             [self layoutIfNeeded];
         } completion:nil];
     } else {

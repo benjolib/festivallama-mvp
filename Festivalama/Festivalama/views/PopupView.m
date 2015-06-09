@@ -8,9 +8,11 @@
 
 #import "PopupView.h"
 #import "PopupViewButton.h"
+#import "UIImage+ImageEffects.h"
 
 @interface PopupView ()
 @property (nonatomic, strong) UIView *parentView;
+@property (nonatomic, strong) UIImageView *blurredBackgroundView;
 @end
 
 @implementation PopupView
@@ -111,11 +113,15 @@
 }
 
 #pragma mark - showing/hiding methods
-- (void)showPopupViewAnimationOnView:(UIView*)parentView
+- (void)showPopupViewAnimationOnView:(UIView*)parentView withBlurredBackground:(BOOL)blurBackground
 {
     self.parentView = parentView;
     self.frame = parentView.frame;
     [parentView addSubview:self];
+
+    if (blurBackground) {
+        [parentView insertSubview:[self createBlurredSnapshotOfView:parentView] belowSubview:self];
+    }
 
     self.alpha = 0.0;
     self.transform = CGAffineTransformMakeScale(1.1, 1.1);
@@ -127,29 +133,32 @@
     }];
 }
 
+- (UIImageView*)createBlurredSnapshotOfView:(UIView*)view
+{
+    CGRect frame = view.frame;
+    UIGraphicsBeginImageContext(frame.size);
+    [view drawViewHierarchyInRect:frame afterScreenUpdates:NO];
+    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    UIImageView *blurredImageView = [[UIImageView alloc] initWithFrame:view.frame];
+    blurredImageView.image = [snapshotImage applyLightEffect];
+    self.blurredBackgroundView = blurredImageView;
+    self.blurredBackgroundView.alpha = 0.95;
+    return self.blurredBackgroundView;
+}
+
 - (void)dismissViewWithAnimation:(BOOL)animated
 {
     [UIView animateWithDuration:0.2 animations:^{
         self.transform = CGAffineTransformMakeScale(0.1, 0.1);
         self.alpha = 0.0;
+        self.blurredBackgroundView.alpha = 0.0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
+        [self.blurredBackgroundView removeFromSuperview];
         self.parentView = nil;
     }];
 }
-
-//- (void)updateConstraints
-//{
-//    if (self.parentView)
-//    {
-//        [self.parentView addConstraint:[NSLayoutConstraint constraintWithItem:self.parentView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0]];
-//        [self addConstraint:[NSLayoutConstraint constraintWithItem:self.parentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0]];
-//
-//        [self.parentView addConstraint:[NSLayoutConstraint constraintWithItem:self.parentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-//
-//        [self.parentView addConstraint:[NSLayoutConstraint constraintWithItem:self.parentView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
-//    }
-//    [super updateConstraints];
-//}
 
 @end

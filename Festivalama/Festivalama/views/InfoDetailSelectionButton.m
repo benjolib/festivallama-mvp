@@ -15,7 +15,11 @@
     if (active) {
         self.backgroundColor = [UIColor clearColor];
     } else {
-        
+        if (selectedPosition == 0 && position == selectedPosition+1) {
+            self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        } else {
+            self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.1];
+        }
     }
 }
 
