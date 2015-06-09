@@ -10,4 +10,9 @@
 
 @implementation FestivalModelGroup
 
+- (NSString*)groupTitleString
+{
+    return [NSString stringWithFormat:@"%ld - %ld", (long)self.month, (long)self.year];
+}
+
 @end

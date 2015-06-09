@@ -91,12 +91,18 @@
 
 - (NSString*)festivalInfoDateString
 {
+    if (!self.startDate) {
+        return nil;
+    }
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *startComponents = [gregorianCalendar components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self.startDate];
     NSInteger startDay = startComponents.day;
     NSInteger startMonth = startComponents.month;
     NSInteger startYear = startComponents.year;
 
+    if (!self.endDate) {
+        return nil;
+    }
     NSDateComponents *endComponents = [gregorianCalendar components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self.endDate];
     NSInteger endDay = endComponents.day;
 //    NSInteger endMonth = endComponents.month;

@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class FestivalModel;
+
 @interface CoreDataHandler : NSObject
+
+- (void)addFestivalToFavorites:(FestivalModel*)festivalModel;
+- (void)removeFestivalFromFavorites:(FestivalModel*)festivalModel;
 
 @end

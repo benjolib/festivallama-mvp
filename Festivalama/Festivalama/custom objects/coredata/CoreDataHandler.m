@@ -7,7 +7,23 @@
 //
 
 #import "CoreDataHandler.h"
+#import "FestivalModel.h"
 
 @implementation CoreDataHandler
+
+- (void)addFestivalToFavorites:(FestivalModel*)festivalModel
+{
+
+}
+
+- (void)removeFestivalFromFavorites:(FestivalModel*)festivalModel
+{
+
+}
+
+
+
+#pragma mark - private methods
+
 
 @end
