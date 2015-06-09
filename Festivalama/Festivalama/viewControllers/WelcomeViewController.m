@@ -35,7 +35,7 @@
                                         viewTitle:@"Vergiss den Alltag"
                                              text:@"Und tauche ein in den Festival Sommer Deines Lebens. Mit 5 Fragen erstellen wir Dir Deinen individuellen Festival-Kalender."
                                              icon:[UIImage imageNamed:@"iconTent"]];
-    [self.activePopup showPopupViewAnimationOnView:self.view];
+    [self.activePopup showPopupViewAnimationOnView:self.view withBlurredBackground:NO];
 }
 
 - (void)displaySecondPopup
@@ -46,7 +46,7 @@
                                         viewTitle:@"Location"
                                              text:@"Du möchtest wissen, welche Festivals in Deiner Nähe stattfinden?"
                                              icon:[UIImage imageNamed:@"iconLocation"]];
-    [self.activePopup showPopupViewAnimationOnView:self.view];
+    [self.activePopup showPopupViewAnimationOnView:self.view withBlurredBackground:NO];
 }
 
 - (void)downloadGenres
