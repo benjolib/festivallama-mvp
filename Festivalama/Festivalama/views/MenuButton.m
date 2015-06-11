@@ -91,6 +91,19 @@
 
 - (void)setBadgeCounterVisible:(BOOL)visible
 {
+    if (!visible) {
+        self.badgeView.transform = CGAffineTransformMakeScale(0.6, 0.6);
+    }
+
+    [UIView animateWithDuration:0.3 animations:^{
+        if (visible) {
+            self.badgeView.transform = CGAffineTransformIdentity;
+            self.badgeView.alpha = 1.0;
+        } else {
+            self.badgeView.alpha = 0.0;
+            self.badgeView.transform = CGAffineTransformMakeScale(0.6, 0.6);
+        }
+    }];
     self.badgeView.hidden = !visible;
 }
 

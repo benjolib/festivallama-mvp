@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -24,7 +24,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="xb0-mI-9pw">
-                        <rect key="frame" x="15" y="10" width="243" height="21"/>
+                        <rect key="frame" x="42" y="10" width="216" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="fda-rp-QLk"/>
                         </constraints>
@@ -60,12 +60,33 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="AlW-mv-6Be"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTt-OJ-whG" userLabel="popularity view">
+                        <rect key="frame" x="16" y="14" width="21" height="12"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="gKi-aO-QOI">
+                                <rect key="frame" x="1" y="0.0" width="19" height="12"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="7"/>
+                                <color key="textColor" red="0.31372549020000001" green="0.68627450980000004" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="gKi-aO-QOI" secondAttribute="bottom" id="17g-Kt-nMq"/>
+                            <constraint firstAttribute="height" constant="12" id="Yxn-d1-0Qg"/>
+                            <constraint firstItem="gKi-aO-QOI" firstAttribute="top" secondItem="fTt-OJ-whG" secondAttribute="top" id="if9-JO-xZi"/>
+                            <constraint firstItem="gKi-aO-QOI" firstAttribute="leading" secondItem="fTt-OJ-whG" secondAttribute="leading" constant="1" id="mKR-37-D71"/>
+                            <constraint firstAttribute="trailing" secondItem="gKi-aO-QOI" secondAttribute="trailing" constant="1" id="sIz-iO-PMy"/>
+                            <constraint firstAttribute="width" priority="900" constant="21" id="tfI-zE-JOF"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="xb0-mI-9pw" firstAttribute="leading" secondItem="fTt-OJ-whG" secondAttribute="trailing" constant="5" id="0pg-JZ-XkH"/>
                     <constraint firstItem="n9S-4l-Yss" firstAttribute="leading" secondItem="ewS-JE-1XP" secondAttribute="trailing" constant="10" id="18D-jt-4Fs"/>
                     <constraint firstItem="H9E-Mf-coj" firstAttribute="top" secondItem="f28-og-3nm" secondAttribute="bottom" constant="8" id="2Dc-Gx-QQL"/>
                     <constraint firstItem="AYE-i4-DxP" firstAttribute="leading" secondItem="H9E-Mf-coj" secondAttribute="trailing" constant="8" id="6pm-LZ-RXv"/>
@@ -73,24 +94,30 @@
                     <constraint firstItem="H9E-Mf-coj" firstAttribute="leading" secondItem="zas-ah-5HL" secondAttribute="leading" constant="15" id="9oE-va-BeZ"/>
                     <constraint firstItem="ewS-JE-1XP" firstAttribute="leading" secondItem="f28-og-3nm" secondAttribute="trailing" constant="9" id="Cnu-ER-3Dj"/>
                     <constraint firstItem="n9S-4l-Yss" firstAttribute="leading" secondItem="xb0-mI-9pw" secondAttribute="trailing" constant="10" id="IEg-iX-bab"/>
+                    <constraint firstItem="fTt-OJ-whG" firstAttribute="leading" secondItem="zas-ah-5HL" secondAttribute="leading" constant="16" id="Kc7-Px-clc"/>
                     <constraint firstItem="AYE-i4-DxP" firstAttribute="top" secondItem="ewS-JE-1XP" secondAttribute="bottom" id="PD9-8K-xm4"/>
                     <constraint firstItem="f28-og-3nm" firstAttribute="top" secondItem="xb0-mI-9pw" secondAttribute="bottom" constant="5" id="Rec-f1-HwM"/>
                     <constraint firstItem="f28-og-3nm" firstAttribute="leading" secondItem="zas-ah-5HL" secondAttribute="leading" constant="16" id="Uja-jU-WVl"/>
                     <constraint firstAttribute="trailing" secondItem="n9S-4l-Yss" secondAttribute="trailing" constant="10" id="W3o-b9-4Bh"/>
                     <constraint firstItem="ewS-JE-1XP" firstAttribute="top" secondItem="xb0-mI-9pw" secondAttribute="bottom" constant="1" id="e9K-eB-zVV"/>
+                    <constraint firstItem="fTt-OJ-whG" firstAttribute="centerY" secondItem="xb0-mI-9pw" secondAttribute="centerY" id="lcq-IC-1WW"/>
                     <constraint firstItem="n9S-4l-Yss" firstAttribute="leading" secondItem="AYE-i4-DxP" secondAttribute="trailing" constant="10" id="t4E-nP-Clw"/>
-                    <constraint firstItem="xb0-mI-9pw" firstAttribute="leading" secondItem="zas-ah-5HL" secondAttribute="leading" constant="15" id="tqf-ag-aec"/>
                     <constraint firstItem="xb0-mI-9pw" firstAttribute="top" secondItem="zas-ah-5HL" secondAttribute="top" constant="10" id="v59-3Z-fy0"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="calendarButton" destination="n9S-4l-Yss" id="HGe-nx-U1b"/>
+                <outlet property="calendarIcon" destination="H9E-Mf-coj" id="1Bm-Ud-98C"/>
                 <outlet property="locationLabel" destination="ewS-JE-1XP" id="Fmz-8d-Fk3"/>
                 <outlet property="nameLabel" destination="xb0-mI-9pw" id="Hqu-Gb-Z3L"/>
+                <outlet property="nameLabelLeadingConstraint" destination="0pg-JZ-XkH" id="JUE-Qp-p13"/>
+                <outlet property="popularityLabel" destination="gKi-aO-QOI" id="gF0-b2-670"/>
+                <outlet property="popularityLabelWidthConstraint" destination="tfI-zE-JOF" id="AFl-ap-D03"/>
+                <outlet property="popularityView" destination="fTt-OJ-whG" id="e6O-cJ-yAI"/>
                 <outlet property="timeLeftLabel" destination="AYE-i4-DxP" id="kHO-kB-HaW"/>
             </connections>
-            <point key="canvasLocation" x="338" y="249.5"/>
+            <point key="canvasLocation" x="442" y="506.5"/>
         </tableViewCell>
     </objects>
     <resources>
@@ -98,4 +125,9 @@
         <image name="festivalCalendarIcon" width="12" height="13"/>
         <image name="festivalLocationIcon" width="10" height="13"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

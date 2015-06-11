@@ -50,6 +50,11 @@
     self.titleLabel.text = title;
 }
 
+- (void)displayTheNumberOfItems:(NSInteger)festivalCount
+{
+    self.titleLabel.text = [NSString stringWithFormat:@"%ld Festival%@", (long)festivalCount, (festivalCount <= 1 ? @"" : @"s")];
+}
+
 - (void)addToView:(UIView*)view
 {
     [view addSubview:self];

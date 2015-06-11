@@ -15,6 +15,7 @@
 - (void)addToView:(UIView*)view;
 
 - (void)setTitle:(NSString*)title;
+- (void)displayTheNumberOfItems:(NSInteger)festivalCount;
 
 - (void)setCounterViewVisible:(BOOL)visible animated:(BOOL)animated;
 

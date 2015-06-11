@@ -7,15 +7,18 @@
 //
 
 #import "WhiteButton.h"
+#import "UIColor+AppColors.h"
 
 @implementation WhiteButton
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self setTitleColor:[UIColor globalOrangeColor] forState:UIControlStateNormal];
+    [self setTitleColor:[[UIColor globalOrangeColor] lighterColorWithAlpha:0.6] forState:UIControlStateHighlighted];
+    [self setTitleColor:[[UIColor globalOrangeColor] lighterColorWithAlpha:0.1] forState:UIControlStateDisabled];
+
+    self.backgroundColor = [UIColor whiteColor];
 }
-*/
 
 @end
