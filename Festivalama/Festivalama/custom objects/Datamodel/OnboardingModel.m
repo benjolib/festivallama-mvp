@@ -101,7 +101,6 @@
 
 - (NSString*)onboardingBackgroundImageViewNameForIndex:(NSInteger)index
 {
-    // TODO:
     switch (index) {
         case 0:
             return @"screen1";

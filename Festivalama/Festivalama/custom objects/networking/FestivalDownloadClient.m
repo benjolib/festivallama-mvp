@@ -9,6 +9,7 @@
 #import "FestivalDownloadClient.h"
 #import "FestivalModel.h"
 #import "FestivalParser.h"
+#import "FilterModel.h"
 
 @interface FestivalDownloadClient ()
 @property (nonatomic, strong) FestivalParser *festivalParser;
@@ -16,14 +17,8 @@
 
 @implementation FestivalDownloadClient
 
-- (void)downloadFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
+- (void)downloadFestivalsWithURL:(NSURL*)url andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kFestivalsList, (long)startIndex, (long)numberOfItems];
-    if (filterModel) {
-        // TODO: expand it with filters
-    }
-
-    NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
 
@@ -46,6 +41,27 @@
     }];
 
     [self startSessionTask:task];
+}
+
+- (void)downloadFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
+{
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kFestivalsList, (long)startIndex, (long)numberOfItems];
+    if (filterModel) {
+        if (filterModel.selectedCountry) {
+            [urlString appendString:[NSString stringWithFormat:@"&country=%@", filterModel.selectedCountry]];
+        }
+        if (filterModel.selectedPostCode) {
+            [urlString appendString:[NSString stringWithFormat:@"&city=%@", filterModel.selectedPostCode]];
+        }
+        if (filterModel.selectedGenresArray.count > 0) {
+            [urlString appendString:[NSString stringWithFormat:@"&genre=%@", filterModel.selectedGenresArray]];
+        }
+        if (filterModel.selectedBandsArray.count > 0) {
+            [urlString appendString:[NSString stringWithFormat:@"&band=%@", filterModel.selectedBandsArray]];
+        }
+    }
+
+    [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
 }
 
 - (void)downloadAllFestivalsWithCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
@@ -74,7 +90,13 @@
 
 - (void)downloadFestivalsWithFilterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
 {
+    // TODO:
+}
 
+- (void)downloadPopularFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kPopularFestivalsList, (long)startIndex, (long)numberOfItems];
+    [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
 }
 
 @end
