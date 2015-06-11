@@ -7,6 +7,8 @@
 //
 
 #import "TicketShopDetailViewController.h"
+#import "FestivalModel.h"
+#import "WhiteButton.h"
 
 @interface TicketShopDetailViewController ()
 
@@ -14,9 +16,33 @@
 
 @implementation TicketShopDetailViewController
 
-- (void)viewDidLoad {
+- (IBAction)sendButtonTapped:(id)sender
+{
+
+}
+
+#pragma mark - tableView methods
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.titleLabel.text = self.festivalToDisplay.name;
 }
 
 - (void)didReceiveMemoryWarning {
