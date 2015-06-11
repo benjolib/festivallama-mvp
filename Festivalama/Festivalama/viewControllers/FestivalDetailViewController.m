@@ -108,7 +108,7 @@
                               duration:0.0
                                options:UIViewAnimationOptionTransitionCrossDissolve
                             animations:^{
-                                toViewController.view.frame = self.view.bounds;
+                                toViewController.view.frame = self.containerView.bounds;
                             }
                             completion:^(BOOL finished) {
                                 [self.displayViewController willMoveToParentViewController:nil];
@@ -127,18 +127,22 @@
                                 cancelButtonTitle:nil
                                         viewTitle:@"R.S.V.P"
                                              text:@"Teile uns mit wie viele Tickets Du benötigtst und wir schicken Dir das Angebot mit dem besten Preis innerhalb weniger Stunden per E-Mail."
-                                             icon:[UIImage imageNamed:@"iconTent"]];
+                                             icon:[UIImage imageNamed:@"Service"]];
     [self.activePopup showPopupViewAnimationOnView:self.view withBlurredBackground:YES];
 }
 
 - (void)popupViewConfirmButtonPressed
 {
-
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"showTicketShopView" sender:nil];
+    });
 }
 
 - (void)popupViewCancelButtonPressed
 {
-
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"showTicketShopView" sender:nil];
+    });
 }
 
 #pragma mark - view methods

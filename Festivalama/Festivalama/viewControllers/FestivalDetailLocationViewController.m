@@ -8,6 +8,7 @@
 
 #import "FestivalDetailLocationViewController.h"
 #import "FestivalModel.h"
+#import "WebsiteButton.h"
 
 @interface FestivalDetailLocationViewController ()
 @end
@@ -16,7 +17,7 @@
 
 - (IBAction)openWebsiteButtonPressed:(id)sender
 {
-
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.festivalToDisplay.website]];
 }
 
 #pragma mark - view methods
@@ -34,6 +35,8 @@
     self.streetLabel.text = self.festivalToDisplay.address;
     self.postCodeLabel.text = self.festivalToDisplay.postcode;
     self.cityLabel.text = self.festivalToDisplay.city;
+
+    self.websiteButton.hidden = self.festivalToDisplay.website.length == 0;
 }
 
 @end

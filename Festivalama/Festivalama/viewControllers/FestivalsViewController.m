@@ -21,12 +21,11 @@
 #import "FestivalDetailViewController.h"
 #import "TutorialPopupView.h"
 #import "GeneralSettings.h"
+#import "CoreDataHandler.h"
 
 @interface FestivalsViewController ()
-@property (nonatomic, strong) TableviewCounterView *tableCounterView;
 @property (nonatomic, strong) MenuTransitionManager *menuTransitionManager;
 @property (nonatomic, strong) FestivalDownloadClient *festivalDownloadClient;
-@property (nonatomic, strong) FestivalRefreshControl *refreshController;
 @property (nonatomic) NSInteger limit;
 @property (nonatomic) NSInteger startIndex;
 @end
@@ -41,7 +40,23 @@
 
 - (IBAction)trashButtonPressed:(id)sender
 {
+    [[FilterModel sharedModel] clearFilters];
+    self.trashIcon.hidden = ![FilterModel.sharedModel isFiltering];
+    [self downloadAllFestivals];
+}
 
+- (void)calenderButtonTapped:(UIButton*)button
+{
+    if (![button.superview.superview isKindOfClass:[FestivalTableViewCell class]]) {
+        return;
+    }
+
+    FestivalTableViewCell *cell = (FestivalTableViewCell*)button.superview.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    FestivalModel *festival = self.festivalsArray[indexPath.row];
+
+    [[CoreDataHandler sharedHandler] addFestivalToFavorites:festival];
+    [self.tableView reloadData];
 }
 
 #pragma mark - tableView methods
@@ -58,24 +73,32 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FestivalTableViewCell *cell = (FestivalTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
-
     FestivalModel *festival = self.festivalsArray[indexPath.row];
 
     cell.nameLabel.text = festival.name;
     cell.locationLabel.text = [festival locationAddress];
-    cell.timeLeftLabel.text = [festival calendarDaysTillEndDateString];
+    NSString *timeString = [festival calendarDaysTillEndDateString];
+    cell.timeLeftLabel.text = timeString;
+    cell.calendarIcon.hidden = timeString.length == 0;
+
+    [cell showSavedState:[[CoreDataHandler sharedHandler] isFestivalSaved:festival]];
+
+    [cell.calendarButton addTarget:self action:@selector(calenderButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    [(FestivalTableViewCell*)cell hidePopularityView];
+
     NSInteger lastSectionIndex = [tableView numberOfSections] - 1;
     NSInteger lastRowIndex = [tableView numberOfRowsInSection:lastSectionIndex] - 1;
-    if ((indexPath.section == lastSectionIndex) && (indexPath.row == lastRowIndex))
+    if ((indexPath.section == lastSectionIndex) && (indexPath.row == lastRowIndex) && (tableView.visibleCells.count < self.festivalsArray.count))
     {
-        // This is the last cell
-        [self downloadNextFestivals];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self downloadNextFestivals];
+        });
     }
 }
 
@@ -84,7 +107,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-
     [self performSegueWithIdentifier:@"openFestivalDetailView" sender:cell];
 }
 
@@ -124,18 +146,19 @@
     }
 
     __weak typeof(self) weakSelf = self;
-    [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex limit:self.limit filterModel:nil andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
+    [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex limit:self.limit filterModel:[FilterModel sharedModel] andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.tableView hideLoadingIndicator];
             if (completed) {
                 [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
 
-                [weakSelf.tableCounterView setTitle:[NSString stringWithFormat:@"%ld festivals", (unsigned long)weakSelf.festivalsArray.count]];
+                [weakSelf.tableCounterView displayTheNumberOfItems:weakSelf.festivalsArray.count];
                 [weakSelf.tableCounterView setCounterViewVisible:YES animated:YES];
             } else {
                 // Handle errors
 
             }
+            weakSelf.showLoadingIndicatorCell = NO;
             [weakSelf.tableView reloadData];
             [weakSelf.refreshController endRefreshing];
             if (weakSelf.tableView.contentOffset.y < 0) {
@@ -149,6 +172,13 @@
 {
     self.startIndex = self.startIndex + self.limit;
     [self downloadAllFestivals];
+}
+
+- (void)filterContent:(NSNotification*)notification
+{
+    if([FilterModel.sharedModel isFiltering]) {
+        [self downloadAllFestivals];
+    }
 }
 
 #pragma mark - view methods
@@ -182,6 +212,15 @@
     [super viewDidLoad];
     super.title = @"Festivals";
 
+    [self prepareView];
+    [self.tableView showLoadingIndicator];
+    [self refreshView];
+
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filterContent:) name:@"festivalFilterEnabled" object:nil];
+}
+
+- (void)prepareView
+{
     [self.tableView registerNib:[UINib nibWithNibName:@"FestivalTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"cell"];
 
     self.tableCounterView = [[TableviewCounterView alloc] initWithFrame:CGRectZero];
@@ -193,9 +232,6 @@
     [self.refreshController addTarget:self
                                action:@selector(refreshView)
                      forControlEvents:UIControlEventValueChanged];
-
-    [self.tableView showLoadingIndicator];
-    [self refreshView];
 }
 
 - (void)showTutorialPopup
@@ -228,7 +264,7 @@
 
 - (void)dealloc
 {
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

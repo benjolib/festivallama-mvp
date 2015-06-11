@@ -8,7 +8,7 @@
 
 #import "BaseGradientViewController.h"
 
-@class GreenButton, LoadingTableView;
+@class GreenButton, LoadingTableView, FestivalRefreshControl, TableviewCounterView;
 
 @interface FestivalsViewController : BaseGradientViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -17,8 +17,14 @@
 @property (nonatomic, weak) IBOutlet UIButton *trashIcon;
 
 @property (nonatomic, strong) NSMutableArray *festivalsArray;
+@property (nonatomic, strong) FestivalRefreshControl *refreshController;
+@property (nonatomic, strong) TableviewCounterView *tableCounterView;
+@property (nonatomic) BOOL showLoadingIndicatorCell;
 
 - (IBAction)filterButtonPressed:(id)sender;
 - (IBAction)trashButtonPressed:(id)sender;
+
+- (void)prepareView;
+- (void)downloadNextFestivals;
 
 @end
