@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Sztanyi Szabolcs. All rights reserved.
 //
 
-#import "BaseGradientViewController.h"
+#import "FestivalsViewController.h"
 
-@interface CalendarViewController : BaseGradientViewController
+@interface CalendarViewController : FestivalsViewController
 
 @end

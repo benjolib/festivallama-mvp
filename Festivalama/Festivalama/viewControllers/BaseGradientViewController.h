@@ -10,4 +10,6 @@
 
 @interface BaseGradientViewController : UIViewController
 
+- (void)addGradientBackground;
+
 @end

@@ -7,31 +7,221 @@
 //
 
 #import "CalendarViewController.h"
+#import "CoreDataHandler.h"
+#import "LoadingTableView.h"
+#import "FestivalTableViewCell.h"
+#import "TableviewCounterView.h"
+#import "CDFestival+CDFestivalHelper.h"
+#import "FestivalModel.h"
+#import "FestivalDetailViewController.h"
 
-@interface CalendarViewController ()
-
+@interface CalendarViewController () <NSFetchedResultsControllerDelegate>
+@property (nonatomic, strong) NSArray *savedFestivalsArray;
+@property (nonatomic, strong) NSFetchedResultsController *fetchController;
 @end
 
 @implementation CalendarViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (NSFetchedResultsController *)fetchController
+{
+    if (_fetchController) {
+        return _fetchController;
+    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"CDFestival"];
+//    [fetchRequest setPredicate:predicate];
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES]]];
+
+    [fetchRequest setFetchLimit:20];
+    fetchRequest.includesSubentities = YES;
+
+    _fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                           managedObjectContext:[[CoreDataHandler sharedHandler] mainManagedObjectContext]
+                                                             sectionNameKeyPath:@"startDate"
+                                                                      cacheName:nil];
+    _fetchController.delegate = self;
+    return _fetchController;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)fetchAllFestivals
+{
+    NSError *fetchError = nil;
+    if (![self.fetchController performFetch:&fetchError]) {
+        NSLog(@"Error occured during fetching projects: %@", fetchError.localizedDescription);
+    }
+
+    if (self.fetchController.fetchedObjects.count == 0) {
+        [self.tableCounterView setCounterViewVisible:NO animated:NO];
+    } else {
+        [self.tableCounterView displayTheNumberOfItems:self.fetchController.fetchedObjects.count];
+        [self.tableCounterView setCounterViewVisible:YES animated:YES];
+    }
+    [self.tableView hideLoadingIndicator];
+    [self.tableView reloadData];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - fetchController delegate methods
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
 }
-*/
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    UITableView *tableView = self.tableView;
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    UITableView *tableView = self.tableView;
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:sectionIndex];
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationLeft];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationRight];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        case NSFetchedResultsChangeMove:
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
+#pragma mark - tableView methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchController.sections objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.fetchController.sections.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30.0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return self.fetchController.sections[section];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.frame), 30.0)];
+    headerView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
+
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 0.0, CGRectGetWidth(tableView.frame) - 30.0, 30.0)];
+    titleLabel.textColor = [UIColor whiteColor];
+//    titleLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0];
+    [headerView addSubview:titleLabel];
+
+    return headerView;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FestivalTableViewCell *cell = (FestivalTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    CDFestival *savedFestival = [self.fetchController objectAtIndexPath:indexPath];
+
+    FestivalModel *festival = [savedFestival festivalModel];
+
+    cell.nameLabel.text = festival.name;
+    cell.locationLabel.text = [festival locationAddress];
+    NSString *timeString = [festival calendarDaysTillEndDateString];
+    cell.timeLeftLabel.text = timeString;
+    cell.calendarIcon.hidden = timeString.length == 0;
+
+    [cell showSavedState:YES];
+
+    [cell.calendarButton addTarget:self action:@selector(calenderButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+    return cell;
+}
+
+- (void)calenderButtonTapped:(UIButton*)button
+{
+    if (![button.superview.superview isKindOfClass:[FestivalTableViewCell class]]) {
+        return;
+    }
+
+    FestivalTableViewCell *cell = (FestivalTableViewCell*)button.superview.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    CDFestival *festival = [self.fetchController objectAtIndexPath:indexPath];
+
+    [[CoreDataHandler sharedHandler] removeFestivalObject:festival];
+//    [self.tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"openFestivalDetailView" sender:cell];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([sender isKindOfClass:[UITableViewCell class]] && [segue.identifier isEqualToString:@"openFestivalDetailView"]) {
+        UITableViewCell *cell = (UITableViewCell*)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+
+        CDFestival *savedFestival = [self.fetchController objectAtIndexPath:indexPath];
+        FestivalModel *festival = [savedFestival festivalModel];
+
+        FestivalDetailViewController *detailViewController = (FestivalDetailViewController*)segue.destinationViewController;
+        detailViewController.festivalToDisplay = festival;
+    }
+}
+
+- (void)downloadNextFestivals
+{
+}
+
+#pragma mark - view methods
+- (void)viewDidLoad
+{
+    [self addGradientBackground];
+    [self.tableView registerNib:[UINib nibWithNibName:@"FestivalTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"cell"];
+
+    self.tableCounterView = [[TableviewCounterView alloc] initWithFrame:CGRectZero];
+    [self.tableCounterView addToView:self.view];
+    [self loadAllSavedFestivals];
+}
+
+- (void)loadAllSavedFestivals
+{
+    [self fetchAllFestivals];
+}
 
 @end
