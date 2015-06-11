@@ -36,13 +36,6 @@ Festival-Kalender.</string>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aky-Yq-T4A" userLabel="buttonsContainerView">
-                            <rect key="frame" x="0.0" y="206" width="276" height="140"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="140" id="1Yx-eH-UyL"/>
-                            </constraints>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -50,13 +43,16 @@ Festival-Kalender.</string>
                         <constraint firstItem="iv5-1t-Sr9" firstAttribute="top" secondItem="Fxz-uC-afI" secondAttribute="top" constant="60" id="7ck-GA-eEf"/>
                         <constraint firstItem="dSc-8q-kcp" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" constant="30" id="AFt-um-W2p"/>
                         <constraint firstItem="dSc-8q-kcp" firstAttribute="top" secondItem="iv5-1t-Sr9" secondAttribute="bottom" constant="20" id="Vhg-Wq-oiQ"/>
-                        <constraint firstAttribute="bottom" secondItem="aky-Yq-T4A" secondAttribute="bottom" id="XXE-Oe-bG6"/>
-                        <constraint firstItem="aky-Yq-T4A" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" id="YJp-bD-mbH"/>
-                        <constraint firstItem="aky-Yq-T4A" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dSc-8q-kcp" secondAttribute="bottom" constant="15" id="bt4-va-xjp"/>
-                        <constraint firstAttribute="trailing" secondItem="aky-Yq-T4A" secondAttribute="trailing" id="fsg-Jh-RUG"/>
                         <constraint firstItem="iv5-1t-Sr9" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" constant="10" id="jbf-nl-qrq"/>
                         <constraint firstAttribute="height" constant="346" id="mz6-aq-Pbd"/>
                         <constraint firstAttribute="trailing" secondItem="iv5-1t-Sr9" secondAttribute="trailing" constant="10" id="zR2-3e-Zyk"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aky-Yq-T4A" userLabel="buttonsContainerView">
+                    <rect key="frame" x="22" y="327" width="276" height="140"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="140" id="1Yx-eH-UyL"/>
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconLocation" translatesAutoresizingMaskIntoConstraints="NO" id="YGO-s8-RRa">
@@ -70,10 +66,13 @@ Festival-Kalender.</string>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="Fxz-uC-afI" secondAttribute="centerX" id="BpB-kZ-yck"/>
+                <constraint firstItem="aky-Yq-T4A" firstAttribute="bottom" secondItem="Fxz-uC-afI" secondAttribute="bottom" id="Cvy-gl-w7a"/>
                 <constraint firstItem="Fxz-uC-afI" firstAttribute="top" secondItem="YGO-s8-RRa" secondAttribute="bottom" constant="-42" id="Nqe-Ue-fVo"/>
                 <constraint firstAttribute="centerX" secondItem="YGO-s8-RRa" secondAttribute="centerX" id="ktA-v3-7NX"/>
                 <constraint firstAttribute="centerY" secondItem="Fxz-uC-afI" secondAttribute="centerY" constant="-10" id="tKq-lY-YmP"/>
+                <constraint firstItem="aky-Yq-T4A" firstAttribute="trailing" secondItem="Fxz-uC-afI" secondAttribute="trailing" id="teP-YC-a80"/>
                 <constraint firstItem="Fxz-uC-afI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="vl9-Wn-g52"/>
+                <constraint firstItem="aky-Yq-T4A" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" id="vyv-hI-9ku"/>
                 <constraint firstAttribute="trailing" secondItem="Fxz-uC-afI" secondAttribute="trailing" constant="22" id="wfh-v1-esD"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

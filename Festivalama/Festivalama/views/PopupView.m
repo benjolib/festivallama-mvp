@@ -9,6 +9,7 @@
 #import "PopupView.h"
 #import "PopupViewButton.h"
 #import "UIImage+ImageEffects.h"
+#import "UIColor+AppColors.h"
 
 @interface PopupView ()
 @property (nonatomic, strong) UIView *parentView;
@@ -39,6 +40,9 @@
     [super awakeFromNib];
     self.popupBackgroundView.layer.cornerRadius = 15.0;
     self.popupBackgroundView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+
+    self.titleLabel.textColor = [UIColor globalGreenColor];
+    self.textLabel.textColor = [UIColor globalGreenColor];
 }
 
 #pragma mark - button methods

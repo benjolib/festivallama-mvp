@@ -15,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-        self.layer.cornerRadius = 17;
+        self.layer.cornerRadius = 30;
     }
     return self;
 }
