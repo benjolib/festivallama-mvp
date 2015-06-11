@@ -8,6 +8,8 @@
 
 #import "FestivalModel.h"
 #import "NSDictionary+nonNullObjectForKey.h"
+#import "Band.h"
+#import "Genre.h"
 
 @implementation FestivalModel
 
@@ -28,6 +30,7 @@
     festival.festivalDescription = [dictionary nonNullObjectForKey:@"description"];
     festival.admission = [dictionary nonNullObjectForKey:@"admission"];
     festival.category = [dictionary nonNullObjectForKey:@"category"];
+    festival.rank = [dictionary nonNullObjectForKey:@"rank"];
 
     // TODO: dates
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -44,8 +47,11 @@
         festival.endDate = endDate;
     }
 
-    festival.bandsArray = [dictionary nonNullObjectForKey:@"bands"];
-    festival.genresArray = [dictionary nonNullObjectForKey:@"genre"];
+    NSArray *bandsArray = [dictionary nonNullObjectForKey:@"bands"];
+    festival.bandsArray = [Band bandsArrayFromStringArray:bandsArray];
+
+    NSArray *genresArray = [dictionary nonNullObjectForKey:@"genre"];
+    festival.genresArray = [Genre genresFromArray:genresArray];
 
     return festival;
 }
@@ -121,5 +127,16 @@
     return formattedInfoDateString;
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[self class]]) {
+        FestivalModel *model = (FestivalModel*)object;
+        if ([model.festivalID isEqualToString:self.festivalID]) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
 
 @end

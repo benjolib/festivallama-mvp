@@ -17,6 +17,15 @@
     return genre;
 }
 
++ (NSArray*)genresFromArray:(NSArray*)array
+{
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (NSString *genreName in array) {
+        [tempArray addObject:[self genreWithName:genreName]];
+    }
+    return tempArray;
+}
+
 - (NSString *)debugDescription
 {
     return [NSString stringWithFormat:@"Genre: %@", self.name];

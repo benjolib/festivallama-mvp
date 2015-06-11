@@ -7,12 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@class FestivalModel;
+@class FestivalModel, CDFestival;
 
 @interface CoreDataHandler : NSObject
 
+@property (readonly, strong, nonatomic) NSManagedObjectContext *mainManagedObjectContext;
+
++ (instancetype)sharedHandler;
+- (NSArray*)allSavedFestivals;
+
 - (void)addFestivalToFavorites:(FestivalModel*)festivalModel;
 - (void)removeFestivalFromFavorites:(FestivalModel*)festivalModel;
+- (void)removeFestivalObject:(CDFestival*)festival;
+
+- (BOOL)isFestivalSaved:(FestivalModel*)festivalModel;
+
+- (NSInteger)numberOfSavedFestivals;
+- (void)clearDatabase;
 
 @end

@@ -58,6 +58,12 @@
 		564D21361B222EEB009FBF88 /* MainContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564D21351B222EEB009FBF88 /* MainContainerViewController.m */; };
 		5677036C1B2788D300DC34AC /* FestivalDetailBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677036B1B2788D300DC34AC /* FestivalDetailBaseViewController.m */; };
 		5677036F1B278DBD00DC34AC /* WebsiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677036E1B278DBD00DC34AC /* WebsiteButton.m */; };
+		567703731B27A8E000DC34AC /* TicketShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567703721B27A8E000DC34AC /* TicketShopDetailViewController.m */; };
+		567703761B27AADD00DC34AC /* WhiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567703751B27AADD00DC34AC /* WhiteButton.m */; };
+		569B47821B28F34F0076C3B2 /* CDFestival.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47811B28F34F0076C3B2 /* CDFestival.m */; };
+		569B47851B28F3500076C3B2 /* CDBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47841B28F3500076C3B2 /* CDBand.m */; };
+		569B47881B28F3500076C3B2 /* CDGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47871B28F3500076C3B2 /* CDGenre.m */; };
+		569B478B1B28F3850076C3B2 /* CDFestival+CDFestivalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B478A1B28F3850076C3B2 /* CDFestival+CDFestivalHelper.m */; };
 		56C44E731B1CCE7D00DFFB6B /* FestivalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E721B1CCE7D00DFFB6B /* FestivalsViewController.m */; };
 		56C44E761B1CCF7F00DFFB6B /* TableviewCounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E751B1CCF7F00DFFB6B /* TableviewCounterView.m */; };
 		56C44E791B1CECC100DFFB6B /* FestivalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C44E781B1CECC100DFFB6B /* FestivalNavigationController.m */; };
@@ -203,6 +209,18 @@
 		5677036B1B2788D300DC34AC /* FestivalDetailBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalDetailBaseViewController.m; path = viewControllers/FestivalDetailBaseViewController.m; sourceTree = "<group>"; };
 		5677036D1B278DBD00DC34AC /* WebsiteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebsiteButton.h; path = views/WebsiteButton.h; sourceTree = "<group>"; };
 		5677036E1B278DBD00DC34AC /* WebsiteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebsiteButton.m; path = views/WebsiteButton.m; sourceTree = "<group>"; };
+		567703711B27A8E000DC34AC /* TicketShopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketShopDetailViewController.h; path = viewControllers/TicketShopDetailViewController.h; sourceTree = "<group>"; };
+		567703721B27A8E000DC34AC /* TicketShopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketShopDetailViewController.m; path = viewControllers/TicketShopDetailViewController.m; sourceTree = "<group>"; };
+		567703741B27AADD00DC34AC /* WhiteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhiteButton.h; path = views/WhiteButton.h; sourceTree = "<group>"; };
+		567703751B27AADD00DC34AC /* WhiteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhiteButton.m; path = views/WhiteButton.m; sourceTree = "<group>"; };
+		569B47801B28F34F0076C3B2 /* CDFestival.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDFestival.h; path = "custom objects/coredata/CDFestival.h"; sourceTree = "<group>"; };
+		569B47811B28F34F0076C3B2 /* CDFestival.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDFestival.m; path = "custom objects/coredata/CDFestival.m"; sourceTree = "<group>"; };
+		569B47831B28F3500076C3B2 /* CDBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDBand.h; path = "custom objects/coredata/CDBand.h"; sourceTree = "<group>"; };
+		569B47841B28F3500076C3B2 /* CDBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDBand.m; path = "custom objects/coredata/CDBand.m"; sourceTree = "<group>"; };
+		569B47861B28F3500076C3B2 /* CDGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDGenre.h; path = "custom objects/coredata/CDGenre.h"; sourceTree = "<group>"; };
+		569B47871B28F3500076C3B2 /* CDGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDGenre.m; path = "custom objects/coredata/CDGenre.m"; sourceTree = "<group>"; };
+		569B47891B28F3850076C3B2 /* CDFestival+CDFestivalHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CDFestival+CDFestivalHelper.h"; path = "custom objects/coredata/CDFestival+CDFestivalHelper.h"; sourceTree = "<group>"; };
+		569B478A1B28F3850076C3B2 /* CDFestival+CDFestivalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CDFestival+CDFestivalHelper.m"; path = "custom objects/coredata/CDFestival+CDFestivalHelper.m"; sourceTree = "<group>"; };
 		56C44E711B1CCE7D00DFFB6B /* FestivalsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalsViewController.h; path = viewControllers/FestivalsViewController.h; sourceTree = "<group>"; };
 		56C44E721B1CCE7D00DFFB6B /* FestivalsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalsViewController.m; path = viewControllers/FestivalsViewController.m; sourceTree = "<group>"; };
 		56C44E741B1CCF7F00DFFB6B /* TableviewCounterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableviewCounterView.h; path = views/TableviewCounterView.h; sourceTree = "<group>"; };
@@ -394,6 +412,14 @@
 				560D0A991B17951100B03090 /* Festivalama.xcdatamodeld */,
 				562352461B248BE8000ABCAC /* CoreDataHandler.h */,
 				562352471B248BE8000ABCAC /* CoreDataHandler.m */,
+				569B47801B28F34F0076C3B2 /* CDFestival.h */,
+				569B47811B28F34F0076C3B2 /* CDFestival.m */,
+				569B47891B28F3850076C3B2 /* CDFestival+CDFestivalHelper.h */,
+				569B478A1B28F3850076C3B2 /* CDFestival+CDFestivalHelper.m */,
+				569B47861B28F3500076C3B2 /* CDGenre.h */,
+				569B47871B28F3500076C3B2 /* CDGenre.m */,
+				569B47831B28F3500076C3B2 /* CDBand.h */,
+				569B47841B28F3500076C3B2 /* CDBand.m */,
 			);
 			name = "Core data";
 			sourceTree = "<group>";
@@ -474,6 +500,8 @@
 				5623524F1B24C601000ABCAC /* TutorialPopupView.xib */,
 				5677036D1B278DBD00DC34AC /* WebsiteButton.h */,
 				5677036E1B278DBD00DC34AC /* WebsiteButton.m */,
+				567703741B27AADD00DC34AC /* WhiteButton.h */,
+				567703751B27AADD00DC34AC /* WhiteButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -556,6 +584,7 @@
 		562352321B24407F000ABCAC /* Festival detail view */ = {
 			isa = PBXGroup;
 			children = (
+				567703701B27A8C900DC34AC /* Ticketshop views */,
 				56D2A7BA1B20F6380085CEDA /* FestivalDetailViewController.h */,
 				56D2A7BB1B20F6380085CEDA /* FestivalDetailViewController.m */,
 				5677036A1B2788D300DC34AC /* FestivalDetailBaseViewController.h */,
@@ -589,6 +618,15 @@
 				564D21321B22260D009FBF88 /* WhatWeDoViewController.m */,
 			);
 			name = "Info views";
+			sourceTree = "<group>";
+		};
+		567703701B27A8C900DC34AC /* Ticketshop views */ = {
+			isa = PBXGroup;
+			children = (
+				567703711B27A8E000DC34AC /* TicketShopDetailViewController.h */,
+				567703721B27A8E000DC34AC /* TicketShopDetailViewController.m */,
+			);
+			name = "Ticketshop views";
 			sourceTree = "<group>";
 		};
 		56C44E891B1D0F9E00DFFB6B /* countries */ = {
@@ -830,7 +868,9 @@
 				56C44E921B1D154B00DFFB6B /* FestivalParser.m in Sources */,
 				56CE62DB1B1FAE4A0079570E /* FestivalTransitionManager.m in Sources */,
 				5623524E1B248FC3000ABCAC /* TutorialPopupView.m in Sources */,
+				569B478B1B28F3850076C3B2 /* CDFestival+CDFestivalHelper.m in Sources */,
 				56CE62DE1B1FAE890079570E /* FestivalTransitionAnimator.m in Sources */,
+				569B47821B28F34F0076C3B2 /* CDFestival.m in Sources */,
 				560D0A981B17951100B03090 /* AppDelegate.m in Sources */,
 				56D587F31B1E5D22007B3F5B /* Band.m in Sources */,
 				56D05A401B19D43D0031F2A2 /* OnboardingModel.m in Sources */,
@@ -843,6 +883,7 @@
 				560D0AD61B179CAA00B03090 /* PopupView.m in Sources */,
 				56D587F91B1E64E3007B3F5B /* FilterBandsTableViewCell.m in Sources */,
 				560D0A9B1B17951100B03090 /* Festivalama.xcdatamodeld in Sources */,
+				569B47851B28F3500076C3B2 /* CDBand.m in Sources */,
 				56C44E851B1D0CC400DFFB6B /* BaseTableViewCell.m in Sources */,
 				561612111B1BC43900147093 /* FilterTableViewCell.m in Sources */,
 				561611FC1B1BB7C100147093 /* FilterViewController.m in Sources */,
@@ -856,13 +897,16 @@
 				561612141B1BC75E00147093 /* FilterCountriesDatasource.m in Sources */,
 				5623523C1B2440EB000ABCAC /* FestivalDetailBandsViewController.m in Sources */,
 				56D05A431B19D9740031F2A2 /* MusicGenreSelectionViewController.m in Sources */,
+				567703761B27AADD00DC34AC /* WhiteButton.m in Sources */,
 				5677036C1B2788D300DC34AC /* FestivalDetailBaseViewController.m in Sources */,
 				56D587ED1B1E5C90007B3F5B /* BandsDownloadClient.m in Sources */,
 				562352351B24409E000ABCAC /* CalendarViewController.m in Sources */,
 				56D05A4F1B19FEE50031F2A2 /* OnboardingOption.m in Sources */,
 				560D0A951B17951100B03090 /* main.m in Sources */,
+				569B47881B28F3500076C3B2 /* CDGenre.m in Sources */,
 				56D587F01B1E5D08007B3F5B /* BandParser.m in Sources */,
 				562352481B248BE8000ABCAC /* CoreDataHandler.m in Sources */,
+				567703731B27A8E000DC34AC /* TicketShopDetailViewController.m in Sources */,
 				56D587E71B1E197D007B3F5B /* PopularFestivalsViewController.m in Sources */,
 				560D0ADB1B179F0100B03090 /* PopupViewButton.m in Sources */,
 				562352391B2440DE000ABCAC /* FestivalDetailInfoViewController.m in Sources */,

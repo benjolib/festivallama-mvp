@@ -14,4 +14,6 @@
 
 + (Band*)bandWithName:(NSString*)name;
 
++ (NSArray*)bandsArrayFromStringArray:(NSArray*)array;
+
 @end

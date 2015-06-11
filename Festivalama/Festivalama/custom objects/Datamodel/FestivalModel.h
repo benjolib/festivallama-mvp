@@ -28,6 +28,8 @@
 @property (nonatomic, copy) NSString *admission;
 @property (nonatomic, copy) NSString *category;
 
+@property (nonatomic, strong) NSNumber *rank;
+
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
 

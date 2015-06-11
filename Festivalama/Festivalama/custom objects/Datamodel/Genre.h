@@ -13,5 +13,6 @@
 @property (nonatomic, copy) NSString *name;
 
 + (Genre*)genreWithName:(NSString*)name;
++ (NSArray*)genresFromArray:(NSArray*)array;
 
 @end
