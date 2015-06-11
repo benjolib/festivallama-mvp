@@ -60,6 +60,7 @@
 		5677036F1B278DBD00DC34AC /* WebsiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677036E1B278DBD00DC34AC /* WebsiteButton.m */; };
 		567703731B27A8E000DC34AC /* TicketShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567703721B27A8E000DC34AC /* TicketShopDetailViewController.m */; };
 		567703761B27AADD00DC34AC /* WhiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567703751B27AADD00DC34AC /* WhiteButton.m */; };
+		567C23AF1B2A0304002EB7B4 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567C23AE1B2A0304002EB7B4 /* FilterButton.m */; };
 		569B47821B28F34F0076C3B2 /* CDFestival.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47811B28F34F0076C3B2 /* CDFestival.m */; };
 		569B47851B28F3500076C3B2 /* CDBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47841B28F3500076C3B2 /* CDBand.m */; };
 		569B47881B28F3500076C3B2 /* CDGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47871B28F3500076C3B2 /* CDGenre.m */; };
@@ -213,6 +214,8 @@
 		567703721B27A8E000DC34AC /* TicketShopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketShopDetailViewController.m; path = viewControllers/TicketShopDetailViewController.m; sourceTree = "<group>"; };
 		567703741B27AADD00DC34AC /* WhiteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhiteButton.h; path = views/WhiteButton.h; sourceTree = "<group>"; };
 		567703751B27AADD00DC34AC /* WhiteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhiteButton.m; path = views/WhiteButton.m; sourceTree = "<group>"; };
+		567C23AD1B2A0304002EB7B4 /* FilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterButton.h; path = views/FilterButton.h; sourceTree = "<group>"; };
+		567C23AE1B2A0304002EB7B4 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = views/FilterButton.m; sourceTree = "<group>"; };
 		569B47801B28F34F0076C3B2 /* CDFestival.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDFestival.h; path = "custom objects/coredata/CDFestival.h"; sourceTree = "<group>"; };
 		569B47811B28F34F0076C3B2 /* CDFestival.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDFestival.m; path = "custom objects/coredata/CDFestival.m"; sourceTree = "<group>"; };
 		569B47831B28F3500076C3B2 /* CDBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDBand.h; path = "custom objects/coredata/CDBand.h"; sourceTree = "<group>"; };
@@ -502,6 +505,8 @@
 				5677036E1B278DBD00DC34AC /* WebsiteButton.m */,
 				567703741B27AADD00DC34AC /* WhiteButton.h */,
 				567703751B27AADD00DC34AC /* WhiteButton.m */,
+				567C23AD1B2A0304002EB7B4 /* FilterButton.h */,
+				567C23AE1B2A0304002EB7B4 /* FilterButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -887,6 +892,7 @@
 				56C44E851B1D0CC400DFFB6B /* BaseTableViewCell.m in Sources */,
 				561612111B1BC43900147093 /* FilterTableViewCell.m in Sources */,
 				561611FC1B1BB7C100147093 /* FilterViewController.m in Sources */,
+				567C23AF1B2A0304002EB7B4 /* FilterButton.m in Sources */,
 				56D05A491B19DBE00031F2A2 /* SelectionCollectionViewCell.m in Sources */,
 				564D21361B222EEB009FBF88 /* MainContainerViewController.m in Sources */,
 				562352421B244128000ABCAC /* FestivalDetailLocationViewController.m in Sources */,
