@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @class FilterNavigationController, MenuViewController, FestivalNavigationController, FestivalsViewController, PopularFestivalsViewController,
-FestivalDetailInfoViewController, FestivalDetailBandsViewController, FestivalDetailLocationViewController;
+FestivalDetailInfoViewController, FestivalDetailBandsViewController, FestivalDetailLocationViewController, CalendarViewController;
 
 @interface StoryboardManager : NSObject
 
@@ -23,6 +23,7 @@ FestivalDetailInfoViewController, FestivalDetailBandsViewController, FestivalDet
 + (FestivalNavigationController*)festivalNavigationController;
 + (FestivalsViewController*)festivalsViewController;
 + (PopularFestivalsViewController*)popularFestivalsViewController;
++ (CalendarViewController*)calendarViewController;
 
 + (FestivalDetailInfoViewController*)festivalDetailInfoViewController;
 + (FestivalDetailBandsViewController*)festivalDetailBandsViewController;

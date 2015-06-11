@@ -66,4 +66,9 @@
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"FestivalDetailLocationViewController"];
 }
 
++ (CalendarViewController*)calendarViewController
+{
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"CalendarViewController"];
+}
+
 @end

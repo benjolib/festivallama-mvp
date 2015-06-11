@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14A386a" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="CDFestival" syncable="YES"/>
+    <entity name="CDBand" representedClassName="CDBand" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="festival" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDFestival" inverseName="bands" inverseEntity="CDFestival" syncable="YES"/>
+    </entity>
+    <entity name="CDFestival" representedClassName="CDFestival" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="admission" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="festivalDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="festivalID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="festivalKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sourceURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bands" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBand" inverseName="festival" inverseEntity="CDBand" syncable="YES"/>
+        <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDGenre" inverseName="festival" inverseEntity="CDGenre" syncable="YES"/>
+    </entity>
+    <entity name="CDGenre" representedClassName="CDGenre" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="festival" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDFestival" inverseName="genres" inverseEntity="CDFestival" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="CDFestival" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="CDFestival" positionX="-443" positionY="-333" width="128" height="328"/>
+        <element name="CDBand" positionX="-308" positionY="102" width="128" height="73"/>
+        <element name="CDGenre" positionX="-630" positionY="90" width="128" height="73"/>
     </elements>
 </model>
