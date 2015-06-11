@@ -252,6 +252,7 @@
                                             <constraint firstAttribute="bottom" secondItem="p7Q-OG-OCj" secondAttribute="bottom" id="kPo-ZA-xkF"/>
                                             <constraint firstAttribute="trailing" secondItem="p7Q-OG-OCj" secondAttribute="trailing" id="mHl-H7-Ydy"/>
                                         </constraints>
+                                        <size key="customSize" width="284" height="60"/>
                                         <connections>
                                             <outlet property="cellBackgroundView" destination="p7Q-OG-OCj" id="ejn-p3-HWc"/>
                                             <outlet property="titleLabel" destination="0M3-Di-fCN" id="Jqa-rF-Ool"/>
