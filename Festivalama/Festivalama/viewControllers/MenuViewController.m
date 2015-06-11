@@ -13,6 +13,8 @@
 #import "FestivalNavigationController.h"
 #import "PopularFestivalsViewController.h"
 #import "MainContainerViewController.h"
+#import "CalendarViewController.h"
+#import "CoreDataHandler.h"
 
 @interface MenuViewController ()
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
@@ -24,7 +26,8 @@
 
 - (void)updateCalendarButton
 {
-
+    NSInteger savedFestivals = [[CoreDataHandler sharedHandler] numberOfSavedFestivals];
+    [self.calendarButton setBadgeCounterValue:savedFestivals];
 }
 
 - (void)saveSourceViewController:(UIViewController*)sourceViewController
@@ -40,11 +43,21 @@
     return nil;
 }
 
+- (BOOL)isSourceViewControllerFestivalsView
+{
+    return [self.sourceViewController isKindOfClass:[FestivalsViewController class]]
+    && ![self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]]
+    && ![self.sourceViewController isKindOfClass:[CalendarViewController class]];
+}
+
 - (IBAction)festivalButtonPressed:(id)sender
 {
-    if ([self.sourceViewController isKindOfClass:[FestivalsViewController class]] && ![self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]]) {
+    if ([self isSourceViewControllerFestivalsView])
+    {
         [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
+    }
+    else
+    {
         [self switchCurrentSourceWithMenuItem:MenuItemFestivals];
     }
 }
@@ -60,11 +73,11 @@
 
 - (IBAction)calendarButtonPressed:(id)sender
 {
-//    if ([self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]]) {
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    } else {
-//        [self switchCurrentSourceControllerTo:[PopularFestivalsViewController class]];
-//    }
+    if ([self.sourceViewController isKindOfClass:[CalendarViewController class]]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self switchCurrentSourceWithMenuItem:MenuItemFestivalsCalendar];
+    }
 }
 
 - (void)switchCurrentSourceWithMenuItem:(MenuItem)menuItem
@@ -104,26 +117,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self updateCalendarButton];
     [self addRecognizer];
 
-    [self.calendarButton setBadgeCounterValue:99];
-
-    if ([self.sourceViewController isKindOfClass:[FestivalsViewController class]] && ![self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]]) {
+    if ([self isSourceViewControllerFestivalsView])
+    {
         [UIView animateWithDuration:0.2 animations:^{
             [self.festivalButton setActive:YES];
             [self.favoriteFestivalButton setActive:NO];
             [self.calendarButton setActive:NO];
         }];
-    } else if ([self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]]) {
+    }
+    else if ([self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]])
+    {
         [UIView animateWithDuration:0.2 animations:^{
             [self.festivalButton setActive:NO];
             [self.favoriteFestivalButton setActive:YES];
             [self.calendarButton setActive:NO];
         }];
-    } else {
-
     }
+    else
+    {
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.festivalButton setActive:NO];
+            [self.favoriteFestivalButton setActive:NO];
+            [self.calendarButton setActive:YES];
+        }];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateCalendarButton];
 }
 
 - (void)didReceiveMemoryWarning

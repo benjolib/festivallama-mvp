@@ -15,6 +15,7 @@
 #import "UIColor+AppColors.h"
 #import "TutorialPopupView.h"
 #import "GeneralSettings.h"
+#import "CalendarViewController.h"
 
 @interface MainContainerViewController ()
 @property (nonatomic, strong) UIViewController *mainViewController;
@@ -59,11 +60,13 @@
             [self setParentTitle:@"Beliebte Festivals"];
             break;
         }
-        case MenuItemFestivalsCalendar:
-            // TODO:
+        case MenuItemFestivalsCalendar: {
+            CalendarViewController *calendarViewController = [StoryboardManager calendarViewController];
+            [self startTransitionToViewController:calendarViewController];
             self.currentMenuItem = MenuItemFestivalsCalendar;
             [self setParentTitle:@"Kalender"];
             break;
+        }
         default:
             break;
     }

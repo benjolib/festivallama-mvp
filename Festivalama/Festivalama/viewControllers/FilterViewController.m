@@ -29,7 +29,7 @@
 
 - (IBAction)applyButtonPressed:(id)sender
 {
-    // TODO:
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"festivalFilterEnabled" object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -137,13 +137,14 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self downloadGenres];
-    [self setTrashIconVisible:[[FilterModel sharedModel] isFiltering]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
+
+    [self setTrashIconVisible:[[FilterModel sharedModel] isFiltering]];
 }
 
 - (void)didReceiveMemoryWarning
