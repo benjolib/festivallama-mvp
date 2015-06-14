@@ -10,4 +10,7 @@
 
 @interface LoadMoreTableViewCell : UITableViewCell
 
+- (void)showLoadingIndicator;
+- (void)hideLoadingIndicator;
+
 @end

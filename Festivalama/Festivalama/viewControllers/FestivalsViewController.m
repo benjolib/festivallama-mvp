@@ -7,7 +7,7 @@
 //
 
 #import "FestivalsViewController.h"
-#import "GreenButton.h"
+#import "FilterButton.h"
 #import "TableviewCounterView.h"
 #import "StoryboardManager.h"
 #import "FilterNavigationController.h"
@@ -22,10 +22,13 @@
 #import "TutorialPopupView.h"
 #import "GeneralSettings.h"
 #import "CoreDataHandler.h"
+#import "LoadMoreTableViewCell.h"
+#import "FestivalRankClient.h"
 
 @interface FestivalsViewController ()
 @property (nonatomic, strong) MenuTransitionManager *menuTransitionManager;
 @property (nonatomic, strong) FestivalDownloadClient *festivalDownloadClient;
+@property (nonatomic, strong) FestivalRankClient *rankClient;
 @property (nonatomic) NSInteger limit;
 @property (nonatomic) NSInteger startIndex;
 @end
@@ -55,24 +58,53 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     FestivalModel *festival = self.festivalsArray[indexPath.row];
 
-    [[CoreDataHandler sharedHandler] addFestivalToFavorites:festival];
+    BOOL alreadyExisting = [[CoreDataHandler sharedHandler] addFestivalToFavorites:festival];
+    [self sendRankInformationAboutSelectedFestival:festival increment:!alreadyExisting];
     [self.tableView reloadData];
+}
+
+- (void)sendRankInformationAboutSelectedFestival:(FestivalModel*)festival increment:(BOOL)increment
+{
+    self.rankClient = [[FestivalRankClient alloc] init];
+    [self.rankClient sendRankingForFestival:festival increment:increment withCompletionBlock:^(BOOL succeeded, NSString *errorMessage) {
+        if (!succeeded) {
+            // TODO: error handling
+        }
+    }];
 }
 
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+//        return self.festivalsArray.count + 1;
     return self.festivalsArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    if (indexPath.row == self.festivalsArray.count) {
+//        return 44.0;
+//    }
     return 85.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FestivalTableViewCell *cell = (FestivalTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+//    if (/*self.showLoadingIndicatorCell && */ indexPath.row == self.festivalsArray.count) {
+//        LoadMoreTableViewCell *reloadCell = (LoadMoreTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"reloadCell"];
+//        if (!reloadCell) {
+//            reloadCell = [[LoadMoreTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reloadCell"];
+//        }
+//
+//        reloadCell.textLabel.text = @"Loading more...";
+//        reloadCell.backgroundColor = [UIColor clearColor];
+//        reloadCell.textLabel.textColor = [UIColor whiteColor];
+//
+//        return reloadCell;
+//    }
+
     FestivalModel *festival = self.festivalsArray[indexPath.row];
 
     cell.nameLabel.text = festival.name;
@@ -97,6 +129,11 @@
     if ((indexPath.section == lastSectionIndex) && (indexPath.row == lastRowIndex) && (tableView.visibleCells.count < self.festivalsArray.count))
     {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.showLoadingIndicatorCell = YES;
+
+//            LoadMoreTableViewCell *reloadCell = (LoadMoreTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+//            [reloadCell showLoadingIndicator];
+
             [self downloadNextFestivals];
         });
     }
@@ -170,8 +207,10 @@
 
 - (void)downloadNextFestivals
 {
-    self.startIndex = self.startIndex + self.limit;
-    [self downloadAllFestivals];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.startIndex = self.startIndex + self.limit;
+        [self downloadAllFestivals];
+//    });
 }
 
 - (void)filterContent:(NSNotification*)notification
