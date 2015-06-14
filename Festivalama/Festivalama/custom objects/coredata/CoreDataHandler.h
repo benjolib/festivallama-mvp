@@ -18,7 +18,7 @@
 + (instancetype)sharedHandler;
 - (NSArray*)allSavedFestivals;
 
-- (void)addFestivalToFavorites:(FestivalModel*)festivalModel;
+- (BOOL)addFestivalToFavorites:(FestivalModel*)festivalModel;
 - (void)removeFestivalFromFavorites:(FestivalModel*)festivalModel;
 - (void)removeFestivalObject:(CDFestival*)festival;
 
