@@ -82,9 +82,6 @@
                                                           toDate:self.startDate
                                                          options:0];
     NSInteger numberOfDays = components.day;
-    if (numberOfDays < 0) {
-        numberOfDays *= -1;
-    }
     return numberOfDays;
 }
 

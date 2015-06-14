@@ -30,8 +30,8 @@
         <relationship name="festival" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDFestival" inverseName="genres" inverseEntity="CDFestival" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CDFestival" positionX="-443" positionY="-333" width="128" height="328"/>
         <element name="CDBand" positionX="-308" positionY="102" width="128" height="73"/>
+        <element name="CDFestival" positionX="-443" positionY="-333" width="128" height="330"/>
         <element name="CDGenre" positionX="-630" positionY="90" width="128" height="73"/>
     </elements>
 </model>

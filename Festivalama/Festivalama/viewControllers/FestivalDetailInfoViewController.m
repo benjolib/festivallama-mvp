@@ -22,6 +22,7 @@
     self.containerView.backgroundColor = [UIColor clearColor];
 
     [self refreshView];
+    [self.scrollView flashScrollIndicators];
 }
 
 - (void)refreshView
@@ -58,7 +59,7 @@
 
     [self.view setNeedsDisplay];
 
-    CGFloat viewHeight = CGRectGetMaxY(self.festivalCostsLabel.frame) + 20.0;
+    CGFloat viewHeight = CGRectGetMaxY(self.festivalCostsLabel.frame) + 20.0 + labelRect.size.height;
     self.containerViewHeightConstraint.constant = viewHeight;
 
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), self.containerViewHeightConstraint.constant);
