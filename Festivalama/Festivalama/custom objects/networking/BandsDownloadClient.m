@@ -33,7 +33,9 @@
         }
         else
         {
-            // TODO:
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, errorMessage, NO);
+            });
         }
     }];
 

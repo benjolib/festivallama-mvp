@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Mqa-mw-wFp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E33b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Mqa-mw-wFp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -780,7 +780,7 @@
         <!--Ticket Shop Detail View Controller-->
         <scene sceneID="rbG-qs-Mcy">
             <objects>
-                <viewController id="JJe-SS-8fA" customClass="TicketShopDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TicketShopDetailViewController" id="JJe-SS-8fA" customClass="TicketShopDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mU1-O1-GGL"/>
                         <viewControllerLayoutGuide type="bottom" id="yUN-HT-hS1"/>
@@ -831,11 +831,42 @@
                                 <rect key="frame" x="0.0" y="52" width="320" height="369"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="76" id="PIp-LD-efe">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="70" id="PIp-LD-efe" customClass="TicketShopTableViewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PIp-LD-efe" id="UF8-Ym-crn">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dWK-NL-I0b">
+                                                    <rect key="frame" x="15" y="15" width="265" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="eru-X1-bjo"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="JJe-SS-8fA" id="BwR-bT-tia"/>
+                                                    </connections>
+                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qNA-O8-XOu">
+                                                    <rect key="frame" x="280" y="15" width="30" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="ECh-oX-ts9"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dWK-NL-I0b" firstAttribute="leading" secondItem="UF8-Ym-crn" secondAttribute="leading" constant="15" id="5F5-wJ-PW3"/>
+                                                <constraint firstAttribute="centerY" secondItem="qNA-O8-XOu" secondAttribute="centerY" id="5Vj-zM-lb1"/>
+                                                <constraint firstItem="qNA-O8-XOu" firstAttribute="leading" secondItem="dWK-NL-I0b" secondAttribute="trailing" id="DJB-jo-h45"/>
+                                                <constraint firstAttribute="trailing" secondItem="dWK-NL-I0b" secondAttribute="trailing" constant="40" id="Qda-qa-joM"/>
+                                                <constraint firstAttribute="centerY" secondItem="dWK-NL-I0b" secondAttribute="centerY" id="RVv-ih-NaI"/>
+                                                <constraint firstAttribute="trailing" secondItem="qNA-O8-XOu" secondAttribute="trailing" constant="10" id="oEM-ay-uyN"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkmarkView" destination="qNA-O8-XOu" id="uXX-qc-nn6"/>
+                                            <outlet property="textfield" destination="dWK-NL-I0b" id="FAO-ij-IAo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
