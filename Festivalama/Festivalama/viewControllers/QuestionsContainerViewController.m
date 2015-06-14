@@ -9,7 +9,6 @@
 #import "QuestionsContainerViewController.h"
 #import "MusicGenreSelectionViewController.h"
 #import "QuestionsViewController.h"
-#import "OnboardingModel.h"
 
 #import "StoryboardManager.h"
 #import "FestivalNavigationController.h"
@@ -21,7 +20,6 @@
 @property (nonatomic, strong) NSArray *viewControllerIdentitiesArray;
 @property (nonatomic) NSInteger currentIndex;
 @property (nonatomic, strong) UIPageControl *pageControl;
-@property (nonatomic, strong) OnboardingModel *onboardingModel;
 @property (nonatomic, strong) FestivalTransitionManager *festivalTransitionManager;
 @end
 
@@ -111,7 +109,6 @@
         [questionsViewController setOptionsToDisplay:[[self.onboardingModel onboardingOptionsArrayForIndex:index-2] copy]];
         [questionsViewController setViewTitle:[self.onboardingModel onboardingViewTitleForIndex:index-2]
                               backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:index]];
-        questionsViewController.pageNumber = index - 2;
         questionsViewController.indexOfView = index;
         contentViewController = questionsViewController;
     }
@@ -127,10 +124,6 @@
         return nil;
     }
 
-//    if (currentViewIndex == self.viewControllerIdentitiesArray.count - 1) {
-//        return nil;
-//    }
-//
     return [self viewControllerAtIndex:currentViewIndex + 1];
 }
 
