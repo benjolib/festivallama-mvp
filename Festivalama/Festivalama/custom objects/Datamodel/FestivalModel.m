@@ -41,10 +41,12 @@
     if (startDateString) {
         NSDate *startDate = [dateFormatter dateFromString:startDateString];
         festival.startDate = startDate;
+        festival.startDateString = startDateString;
     }
     if (endDateString) {
         NSDate *endDate = [dateFormatter dateFromString:endDateString];
         festival.endDate = endDate;
+        festival.startDateString = endDateString;
     }
 
     NSArray *bandsArray = [dictionary nonNullObjectForKey:@"bands"];

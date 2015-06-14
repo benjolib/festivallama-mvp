@@ -8,8 +8,10 @@
 
 #import "AbstractClient.h"
 
+@class FestivalModel;
+
 @interface TicketShopperClient : AbstractClient
 
-- (void)sendTicketShopWithNumberOfTickets:(NSInteger)ticketNumber name:(NSString*)name email:(NSString*)email completionBlock:(void (^)(NSString *errorMessage, BOOL completed))completionBlock;
+- (void)sendTicketShopWithNumberOfTickets:(NSInteger)ticketNumber festival:(FestivalModel*)festival name:(NSString*)name email:(NSString*)email completionBlock:(void (^)(NSString *errorMessage, BOOL completed))completionBlock;
 
 @end

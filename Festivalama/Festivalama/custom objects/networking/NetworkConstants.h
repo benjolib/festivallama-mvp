@@ -15,7 +15,7 @@ static NSString * const kGenresList = @"genre/list";
 static NSString * const kBandsList = @"band/list";
 static NSString * const kFestivalsList = @"list";
 static NSString * const kPopularFestivalsList = @"rank/list";
-static NSString * const kTicketShop = @"";
+static NSString * const kTicketShop = @"tickets/order";
 static NSString * const kFestivalIncrement = @"rank/increment";
 static NSString * const kFestivalDecrement = @"rank/decrement";
 

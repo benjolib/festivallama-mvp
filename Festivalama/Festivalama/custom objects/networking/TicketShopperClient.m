@@ -7,12 +7,19 @@
 //
 
 #import "TicketShopperClient.h"
+#import "FestivalModel.h"
 
 @implementation TicketShopperClient
 
-- (void)sendTicketShopWithNumberOfTickets:(NSInteger)ticketNumber name:(NSString*)name email:(NSString*)email completionBlock:(void (^)(NSString *errorMessage, BOOL completed))completionBlock
+- (void)sendTicketShopWithNumberOfTickets:(NSInteger)ticketNumber festival:(FestivalModel*)festival name:(NSString*)name email:(NSString*)email completionBlock:(void (^)(NSString *errorMessage, BOOL completed))completionBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kBaseURL, kTicketShop]]];
+    NSString *dateString = festival.startDateString ? festival.startDateString : festival.endDateString;
+    NSString *urlSuffixString = [NSString stringWithFormat:@"?dates[]=%@&customer_name=%@&customer_email=%@&tickets_count=%ld&festival_name=%@", dateString, [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], email, ticketNumber, [festival.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", kBaseURL, kTicketShop, urlSuffixString];
+    NSURL *url = [NSURL URLWithString:urlString];
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
     
     NSURLSessionDataTask *task = [self dataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {

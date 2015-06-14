@@ -12,6 +12,7 @@
 #import "TicketShopTableViewCell.h"
 #import "TicketShopperClient.h"
 #import "PopupView.h"
+#import "UIColor+AppColors.h"
 
 @interface TicketShopDetailViewController () <UITextFieldDelegate, PopupViewDelegate>
 @property (nonatomic, strong) TicketShopperClient *shopperClient;
@@ -20,12 +21,47 @@
 
 @implementation TicketShopDetailViewController
 
+- (IBAction)backButtonTapped:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)sendButtonTapped:(id)sender
+{
+    BOOL allFieldsAreValid = [self allFieldsAreValid];
+    
+    if (allFieldsAreValid)
+    {
+        TicketShopTableViewCell *cell1 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        TicketShopTableViewCell *cell2 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        TicketShopTableViewCell *cell3 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+
+        // send the request
+        self.shopperClient = [[TicketShopperClient alloc] init];
+        [self.shopperClient sendTicketShopWithNumberOfTickets:[cell1.textfield.text integerValue]
+                                                     festival:self.festivalToDisplay
+                                                         name:cell2.textfield.text
+                                                        email:cell3.textfield.text
+                                              completionBlock:^(NSString *errorMessage, BOOL completed) {
+                                                  if (completed) {
+                                                      [self showConfirmationPopup];
+                                                  } else {
+                                                  // TODO: needs input
+                                                  }
+        }];
+    }
+    else
+    {
+        
+    }
+}
+
+- (BOOL)allFieldsAreValid
 {
     TicketShopTableViewCell *cell1 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     TicketShopTableViewCell *cell2 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     TicketShopTableViewCell *cell3 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
-    
+
     BOOL allFieldsAreValid = YES;
     if ([cell1 isFieldEmpty]) {
         allFieldsAreValid = NO;
@@ -36,25 +72,8 @@
     if ([cell3 isFieldEmpty] || ![cell3 isEmailValid]) {
         allFieldsAreValid = NO;
     }
-    
-    if (allFieldsAreValid)
-    {
-        // send the request
-        self.shopperClient = [[TicketShopperClient alloc] init];
-        [self.shopperClient sendTicketShopWithNumberOfTickets:[cell1.textfield.text integerValue]
-                                                         name:cell2.textfield.text
-                                                        email:cell3.textfield.text
-                                              completionBlock:^(NSString *errorMessage, BOOL completed) {
-                                                  if (completed)
-                                                  {
-                                                      
-                                                  }
-                                                  else
-                                                  {
-                                                      
-                                                  }
-        }];
-    }
+
+    return allFieldsAreValid;
 }
 
 - (void)showConfirmationPopup
@@ -64,8 +83,18 @@
                                 cancelButtonTitle:nil
                                         viewTitle:@"Unser Versprechen"
                                              text:@"Wir haben deine Anfrage erhalten und Du erhältst innerhalb 24 Stunden ein Angebot mit dem besten Preis per E-Mail"
-                                             icon:[UIImage imageNamed:@""]];
+                                             icon:[UIImage imageNamed:@"iconEmail"]];
     [self.confirmPopup showPopupViewAnimationOnView:self.view withBlurredBackground:YES];
+}
+
+- (void)popupViewConfirmButtonPressed
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setTicketButtonEnabled:(BOOL)enabled
+{
+    self.sendButton.enabled = enabled;
 }
 
 #pragma mark - textField delegate methods
@@ -75,20 +104,38 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+//    if ([textField.superview.superview isKindOfClass:[TicketShopTableViewCell class]]) {
+//        TicketShopTableViewCell *cell = (TicketShopTableViewCell*)textField.superview.superview;
+////        [self.tableView reloadRowsAtIndexPaths:@[[self.tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadData];
+//    }
+
+    [self setTicketButtonEnabled:[self allFieldsAreValid]];
+}
+
 #pragma mark - tableView methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TicketShopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+
     if (indexPath.row == 0) {
         cell.textfield.placeholder = @"Wie viele Tickets benötigst du?";
-        cell.textfield.keyboardType = UIKeyboardTypeDefault;
+        cell.textfield.keyboardType = UIKeyboardTypeDecimalPad;
+        [cell setFieldIsValid:![cell isFieldEmpty]];
     } else if (indexPath.row == 1) {
         cell.textfield.placeholder = @"Wie ist dein Vorname?";
         cell.textfield.keyboardType = UIKeyboardTypeDefault;
+        [cell setFieldIsValid:![cell isFieldEmpty]];
     } else {
         cell.textfield.placeholder = @"Wie ist deine E-mail Adresse?";
         cell.textfield.keyboardType = UIKeyboardTypeEmailAddress;
+        [cell setFieldIsValid:[cell isEmailValid]];
     }
+    cell.textfield.attributedPlaceholder = [[NSAttributedString alloc] initWithString:cell.textfield.placeholder
+                                                                           attributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.5]}];
+
     return cell;
 }
 
@@ -109,6 +156,10 @@
 {
     [super viewDidLoad];
     self.titleLabel.text = self.festivalToDisplay.name;
+    self.titleLabel.textColor = [UIColor globalGreenColor];
+
+    self.sendButton.enabled = NO;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning

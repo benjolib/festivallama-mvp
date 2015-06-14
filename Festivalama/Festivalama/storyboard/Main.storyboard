@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E33b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Mqa-mw-wFp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Mqa-mw-wFp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -204,7 +204,6 @@
                                         </state>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="h2g-GF-iOi" eventType="touchUpInside" id="Amx-sI-V6Q"/>
-                                            <action selector="leftNavigationButtonPressed:" destination="ksn-ZF-vpZ" eventType="touchUpInside" id="uTc-44-4GX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVg-nV-KLM">
@@ -217,7 +216,6 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="rightNavigationButtonPressed:" destination="ksn-ZF-vpZ" eventType="touchUpInside" id="6vV-wn-5aa"/>
                                             <action selector="shareButtonPressed:" destination="h2g-GF-iOi" eventType="touchUpInside" id="LUa-Qq-d6O"/>
                                         </connections>
                                     </button>
@@ -803,6 +801,7 @@
                                         </state>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="h2g-GF-iOi" eventType="touchUpInside" id="lDS-a9-9RI"/>
+                                            <action selector="backButtonTapped:" destination="JJe-SS-8fA" eventType="touchUpInside" id="cv2-yT-phr"/>
                                             <action selector="leftNavigationButtonPressed:" destination="ksn-ZF-vpZ" eventType="touchUpInside" id="gaS-8o-PBa"/>
                                         </connections>
                                     </button>
@@ -827,7 +826,7 @@
                                     <constraint firstAttribute="centerY" secondItem="RXY-FJ-TKc" secondAttribute="centerY" id="wY1-c5-mZW"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fdi-kb-h6m">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fdi-kb-h6m">
                                 <rect key="frame" x="0.0" y="52" width="320" height="421"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -837,20 +836,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dWK-NL-I0b">
-                                                    <rect key="frame" x="15" y="15" width="265" height="40"/>
+                                                    <rect key="frame" x="15" y="15" width="268" height="40"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="eru-X1-bjo"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="JJe-SS-8fA" id="BwR-bT-tia"/>
                                                     </connections>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qNA-O8-XOu">
-                                                    <rect key="frame" x="280" y="15" width="30" height="40"/>
+                                                    <rect key="frame" x="283" y="25" width="27" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="ECh-oX-ts9"/>
+                                                        <constraint firstAttribute="height" constant="20" id="ECh-oX-ts9"/>
+                                                        <constraint firstAttribute="width" constant="27" id="xWX-fV-Goo"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -858,7 +860,6 @@
                                                 <constraint firstItem="dWK-NL-I0b" firstAttribute="leading" secondItem="UF8-Ym-crn" secondAttribute="leading" constant="15" id="5F5-wJ-PW3"/>
                                                 <constraint firstAttribute="centerY" secondItem="qNA-O8-XOu" secondAttribute="centerY" id="5Vj-zM-lb1"/>
                                                 <constraint firstItem="qNA-O8-XOu" firstAttribute="leading" secondItem="dWK-NL-I0b" secondAttribute="trailing" id="DJB-jo-h45"/>
-                                                <constraint firstAttribute="trailing" secondItem="dWK-NL-I0b" secondAttribute="trailing" constant="40" id="Qda-qa-joM"/>
                                                 <constraint firstAttribute="centerY" secondItem="dWK-NL-I0b" secondAttribute="centerY" id="RVv-ih-NaI"/>
                                                 <constraint firstAttribute="trailing" secondItem="qNA-O8-XOu" secondAttribute="trailing" constant="10" id="oEM-ay-uyN"/>
                                             </constraints>

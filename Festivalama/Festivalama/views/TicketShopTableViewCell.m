@@ -15,11 +15,12 @@
 {
     [super awakeFromNib];
     self.textfield.textColor = [UIColor whiteColor];
+    self.textfield.tintColor = [UIColor whiteColor];
 }
 
 - (void)setFieldIsValid:(BOOL)valid
 {
-    self.checkmarkView.image = valid ? [UIImage imageNamed:@""] : nil;
+    self.checkmarkView.image = valid ? [UIImage imageNamed:@"checkMarkIcon"] : nil;
 }
 
 - (BOOL)isFieldEmpty

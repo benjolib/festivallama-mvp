@@ -33,6 +33,9 @@
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
 
+@property (nonatomic, strong) NSString *startDateString;
+@property (nonatomic, strong) NSString *endDateString;
+
 @property (nonatomic, strong) NSArray *bandsArray;
 @property (nonatomic, strong) NSArray *genresArray;
 

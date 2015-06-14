@@ -50,7 +50,6 @@
 		562352421B244128000ABCAC /* FestivalDetailLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562352411B244128000ABCAC /* FestivalDetailLocationViewController.m */; };
 		562352451B2457F3000ABCAC /* InfoDetailSelectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 562352441B2457F3000ABCAC /* InfoDetailSelectionButton.m */; };
 		562352481B248BE8000ABCAC /* CoreDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 562352471B248BE8000ABCAC /* CoreDataHandler.m */; };
-		5623524B1B248F04000ABCAC /* FestivalModelGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5623524A1B248F04000ABCAC /* FestivalModelGroup.m */; };
 		5623524E1B248FC3000ABCAC /* TutorialPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5623524D1B248FC3000ABCAC /* TutorialPopupView.m */; };
 		562352501B24C601000ABCAC /* TutorialPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5623524F1B24C601000ABCAC /* TutorialPopupView.xib */; };
 		562919161B2A13D000613C38 /* SelectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 562919151B2A13D000613C38 /* SelectionTableViewCell.m */; };
@@ -201,8 +200,6 @@
 		562352441B2457F3000ABCAC /* InfoDetailSelectionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoDetailSelectionButton.m; path = views/InfoDetailSelectionButton.m; sourceTree = "<group>"; };
 		562352461B248BE8000ABCAC /* CoreDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataHandler.h; path = "custom objects/coredata/CoreDataHandler.h"; sourceTree = "<group>"; };
 		562352471B248BE8000ABCAC /* CoreDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataHandler.m; path = "custom objects/coredata/CoreDataHandler.m"; sourceTree = "<group>"; };
-		562352491B248F04000ABCAC /* FestivalModelGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalModelGroup.h; path = "custom objects/Datamodel/FestivalModelGroup.h"; sourceTree = "<group>"; };
-		5623524A1B248F04000ABCAC /* FestivalModelGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalModelGroup.m; path = "custom objects/Datamodel/FestivalModelGroup.m"; sourceTree = "<group>"; };
 		5623524C1B248FC3000ABCAC /* TutorialPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialPopupView.h; path = views/TutorialPopupView.h; sourceTree = "<group>"; };
 		5623524D1B248FC3000ABCAC /* TutorialPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialPopupView.m; path = views/TutorialPopupView.m; sourceTree = "<group>"; };
 		5623524F1B24C601000ABCAC /* TutorialPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TutorialPopupView.xib; path = views/TutorialPopupView.xib; sourceTree = "<group>"; };
@@ -730,8 +727,6 @@
 			children = (
 				56C44E861B1D0E6500DFFB6B /* FestivalModel.h */,
 				56C44E871B1D0E6500DFFB6B /* FestivalModel.m */,
-				562352491B248F04000ABCAC /* FestivalModelGroup.h */,
-				5623524A1B248F04000ABCAC /* FestivalModelGroup.m */,
 				561612031B1BBA2E00147093 /* FilterModel.h */,
 				561612041B1BBA2E00147093 /* FilterModel.m */,
 				56C44E891B1D0F9E00DFFB6B /* countries */,
@@ -872,7 +867,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				564D21331B22260D009FBF88 /* WhatWeDoViewController.m in Sources */,
-				5623524B1B248F04000ABCAC /* FestivalModelGroup.m in Sources */,
 				56D05A3C1B19D3980031F2A2 /* QuestionsContainerViewController.m in Sources */,
 				56C44E881B1D0E6500DFFB6B /* FestivalModel.m in Sources */,
 				56D2A7BC1B20F6380085CEDA /* FestivalDetailViewController.m in Sources */,

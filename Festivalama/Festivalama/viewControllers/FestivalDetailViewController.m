@@ -17,6 +17,7 @@
 #import "FestivalDetailBaseViewController.h"
 #import "InfoDetailSelectionButton.h"
 #import "PopupView.h"
+#import "TicketShopDetailViewController.h"
 
 @interface FestivalDetailViewController () <PopupViewDelegate>
 @property (nonatomic, strong) FestivalDetailBaseViewController *displayViewController;
@@ -127,20 +128,13 @@
                                 cancelButtonTitle:nil
                                         viewTitle:@"R.S.V.P"
                                              text:@"Teile uns mit wie viele Tickets Du benötigtst und wir schicken Dir das Angebot mit dem besten Preis innerhalb weniger Stunden per E-Mail."
-                                             icon:[UIImage imageNamed:@"Service"]];
+                                             icon:[UIImage imageNamed:@"iconShop"]];
     [self.activePopup showPopupViewAnimationOnView:self.view withBlurredBackground:YES];
 }
 
 - (void)popupViewConfirmButtonPressed
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"showTicketShopView" sender:nil];
-    });
-}
-
-- (void)popupViewCancelButtonPressed
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"showTicketShopView" sender:nil];
     });
 }
@@ -174,6 +168,9 @@
             [self.bandsButton setButtonPosition:1 selectedPosition:0 active:NO];
             [self.locationButton setButtonPosition:2 selectedPosition:0 active:NO];
         }
+    } else if ([segue.identifier isEqualToString:@"showTicketShopView"]) {
+        TicketShopDetailViewController *ticketShop = (TicketShopDetailViewController*)segue.destinationViewController;
+        ticketShop.festivalToDisplay = self.festivalToDisplay;
     }
 }
 

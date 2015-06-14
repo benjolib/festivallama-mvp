@@ -16,9 +16,20 @@
     [super awakeFromNib];
     [self setTitleColor:[UIColor globalOrangeColor] forState:UIControlStateNormal];
     [self setTitleColor:[[UIColor globalOrangeColor] lighterColorWithAlpha:0.6] forState:UIControlStateHighlighted];
-    [self setTitleColor:[[UIColor globalOrangeColor] lighterColorWithAlpha:0.1] forState:UIControlStateDisabled];
 
     self.backgroundColor = [UIColor whiteColor];
+
+    self.layer.cornerRadius = 30.0;
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    if (enabled) {
+        self.backgroundColor = [UIColor whiteColor];
+    } else {
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+    }
 }
 
 @end
