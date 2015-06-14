@@ -13,4 +13,7 @@
 - (void)showLoadingIndicator;
 - (void)hideLoadingIndicator;
 
+- (void)showEmptySearchView;
+- (void)hideEmptySearchView;
+
 @end

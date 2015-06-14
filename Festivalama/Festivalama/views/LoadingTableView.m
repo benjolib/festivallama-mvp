@@ -7,9 +7,11 @@
 //
 
 #import "LoadingTableView.h"
+#import "SearchEmptyView.h"
 
 @interface LoadingTableView ()
 @property (nonatomic, strong) UIImageView *loadingIndicatorView;
+@property (nonatomic, strong) SearchEmptyView *emptyView;
 @end
 
 @implementation LoadingTableView
@@ -37,11 +39,25 @@
     }
 }
 
+- (void)showEmptySearchView
+{
+    self.emptyView.hidden = NO;
+    if (self.emptyView) {
+        [self bringSubviewToFront:self.emptyView];
+    }
+}
+
+- (void)hideEmptySearchView
+{
+    self.emptyView.hidden = YES;
+}
+
 #pragma mark - private methods
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     [self setupView];
+    [self setupEmptyView];
 }
 
 - (void)setupView
@@ -49,6 +65,14 @@
     self.loadingIndicatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reloadIcon"]];
     self.loadingIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.loadingIndicatorView];
+}
+
+- (void)setupEmptyView
+{
+    self.emptyView = [[SearchEmptyView alloc] init];
+    self.emptyView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.emptyView];
+    self.emptyView.hidden = YES;
 }
 
 - (void)updateConstraints
@@ -71,6 +95,23 @@
                                                        multiplier:1
                                                          constant:0]]
      ];
+
+    [self addConstraints:@[
+                           [NSLayoutConstraint constraintWithItem:self.emptyView
+                                                        attribute:NSLayoutAttributeCenterX
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self
+                                                        attribute:NSLayoutAttributeCenterX
+                                                       multiplier:1
+                                                         constant:0],
+                           [NSLayoutConstraint constraintWithItem:self.emptyView
+                                                        attribute:NSLayoutAttributeCenterY
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self
+                                                        attribute:NSLayoutAttributeCenterY
+                                                       multiplier:1
+                                                         constant:-100]
+                           ]];
 }
 
 - (void)startRefreshing
