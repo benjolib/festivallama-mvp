@@ -7,78 +7,58 @@
 //
 
 #import "FilterCountriesDatasource.h"
+#import "Country.h"
 
 @interface FilterCountriesDatasource ()
 @property (nonatomic, strong) NSArray *allCountriesArray;
+@property (nonatomic, strong) NSArray *countriesArray;
 @end
 
 @implementation FilterCountriesDatasource
 
-- (NSArray *)countryNames
+- (instancetype)init
 {
-    if (!_allCountriesArray) {
-        _allCountriesArray = [[[[self countryNamesByCode] allValues] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] copy];
+    self = [super init];
+    if (self) {
+        [self setup];
     }
-    return _allCountriesArray;
+    return self;
 }
 
-- (NSArray *)countryCodes
+- (void)setup
 {
-    static NSArray *_countryCodes = nil;
-    if (!_countryCodes) {
-        _countryCodes = [[[self countryCodesByName] objectsForKeys:[self countryNames] notFoundMarker:@""] copy];
-    }
-    return _countryCodes;
+    NSMutableArray *tempArray = [NSMutableArray array];
+
+    [tempArray addObject:[Country countryWithName:@"Österreich" flag:@"autria"]];
+    [tempArray addObject:[Country countryWithName:@"Belgien" flag:@"belgium"]];
+    [tempArray addObject:[Country countryWithName:@"Kroatien" flag:@""]];
+    [tempArray addObject:[Country countryWithName:@"Tschechien" flag:@""]];
+    [tempArray addObject:[Country countryWithName:@"Dänemark" flag:@"denmark"]];
+    [tempArray addObject:[Country countryWithName:@"Finnland" flag:@"finnland"]];
+    [tempArray addObject:[Country countryWithName:@"Frankreich" flag:@"france"]];
+    [tempArray addObject:[Country countryWithName:@"Deutschland" flag:@"germany"]];
+    [tempArray addObject:[Country countryWithName:@"Ungarn" flag:@"hungary"]];
+    [tempArray addObject:[Country countryWithName:@"Island" flag:@"iceland"]];
+    [tempArray addObject:[Country countryWithName:@"Italien" flag:@"italy"]];
+    [tempArray addObject:[Country countryWithName:@"Luxemburg" flag:@"luxemburg"]];
+    [tempArray addObject:[Country countryWithName:@"Niederlande" flag:@"netherlands"]];
+    [tempArray addObject:[Country countryWithName:@"Norwegen" flag:@"norway"]];
+    [tempArray addObject:[Country countryWithName:@"Polen" flag:@"poland"]];
+    [tempArray addObject:[Country countryWithName:@"Portugal" flag:@"portugal"]];
+    [tempArray addObject:[Country countryWithName:@"Rumänien" flag:@"romania"]];
+    [tempArray addObject:[Country countryWithName:@"Slowakai" flag:@"slovakia"]];
+    [tempArray addObject:[Country countryWithName:@"Slowenien" flag:@"slovenia"]];
+    [tempArray addObject:[Country countryWithName:@"Spanien" flag:@"spain"]];
+    [tempArray addObject:[Country countryWithName:@"Schweden" flag:@"sweden"]];
+    [tempArray addObject:[Country countryWithName:@"Grossbritannien" flag:@"united_kingdom"]];
+    [tempArray addObject:[Country countryWithName:@"Schweiz" flag:@"switzerland"]];
+
+    self.countriesArray = [tempArray sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
 }
 
-- (NSDictionary *)countryNamesByCode
+- (NSArray*)allCountries
 {
-    static NSDictionary *_countryNamesByCode = nil;
-    if (!_countryNamesByCode)
-    {
-        NSMutableDictionary *namesByCode = [NSMutableDictionary dictionary];
-        for (NSString *code in [NSLocale ISOCountryCodes])
-        {
-            NSString *countryName = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:code];
-
-            //workaround for simulator bug
-            if (!countryName)
-            {
-                countryName = [[NSLocale localeWithLocaleIdentifier:@"en_US"] displayNameForKey:NSLocaleCountryCode value:code];
-            }
-
-            namesByCode[code] = countryName ?: code;
-        }
-        _countryNamesByCode = [namesByCode copy];
-    }
-    return _countryNamesByCode;
-}
-
-- (NSDictionary *)countryCodesByName
-{
-    static NSDictionary *_countryCodesByName = nil;
-    if (!_countryCodesByName)
-    {
-        NSDictionary *countryNamesByCode = [self countryNamesByCode];
-        NSMutableDictionary *codesByName = [NSMutableDictionary dictionary];
-        for (NSString *code in countryNamesByCode)
-        {
-            codesByName[countryNamesByCode[code]] = code;
-        }
-        _countryCodesByName = [codesByName copy];
-    }
-    return _countryCodesByName;
-}
-
-- (NSString *)countryNameAtIndex:(NSInteger)index
-{
-    return [self allCountriesArray][index];
-}
-
-- (UIImage*)flagIconAtIndex:(NSInteger)index
-{
-    NSString *imagePath = [NSString stringWithFormat:@"CountryPicker.bundle/%@", [self countryCodes][index]];
-    return [UIImage imageNamed:imagePath];
+    return self.countriesArray;
 }
 
 @end

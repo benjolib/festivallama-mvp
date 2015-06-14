@@ -7,13 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 @interface FilterCountriesDatasource : NSObject
 
-- (NSArray *)countryNames;
-- (UIImage*)flagIconAtIndex:(NSInteger)index;
-
-- (NSString *)countryNameAtIndex:(NSInteger)index;
+- (NSArray*)allCountries;
 
 @end
