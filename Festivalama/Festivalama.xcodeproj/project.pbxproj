@@ -53,6 +53,8 @@
 		5623524B1B248F04000ABCAC /* FestivalModelGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5623524A1B248F04000ABCAC /* FestivalModelGroup.m */; };
 		5623524E1B248FC3000ABCAC /* TutorialPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5623524D1B248FC3000ABCAC /* TutorialPopupView.m */; };
 		562352501B24C601000ABCAC /* TutorialPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5623524F1B24C601000ABCAC /* TutorialPopupView.xib */; };
+		562919161B2A13D000613C38 /* SelectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 562919151B2A13D000613C38 /* SelectionTableViewCell.m */; };
+		5629191A1B2A42BC00613C38 /* LoadMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 562919191B2A42BC00613C38 /* LoadMoreTableViewCell.m */; };
 		564D21301B22246C009FBF88 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564D212F1B22246C009FBF88 /* InfoViewController.m */; };
 		564D21331B22260D009FBF88 /* WhatWeDoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564D21321B22260D009FBF88 /* WhatWeDoViewController.m */; };
 		564D21361B222EEB009FBF88 /* MainContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564D21351B222EEB009FBF88 /* MainContainerViewController.m */; };
@@ -83,6 +85,7 @@
 		56CE62E11B1FC54C0079570E /* GeneralSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CE62E01B1FC54C0079570E /* GeneralSettings.m */; };
 		56CE62E51B1FC83F0079570E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CE62E31B1FC83F0079570E /* Fabric.framework */; };
 		56CE62E61B1FC83F0079570E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CE62E41B1FC83F0079570E /* Crashlytics.framework */; };
+		56CF0EC51B2C24EB000E6C34 /* FestivalRankClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF0EC41B2C24EB000E6C34 /* FestivalRankClient.m */; };
 		56CF1AF61B1B007700A899DB /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF51B1B007700A899DB /* MenuViewController.m */; };
 		56CF1AF91B1B00C200A899DB /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF1AF81B1B00C200A899DB /* MenuButton.m */; };
 		56CF1AFD1B1B01BB00A899DB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CF1AFB1B1B01BB00A899DB /* Onboarding.storyboard */; };
@@ -200,6 +203,11 @@
 		5623524C1B248FC3000ABCAC /* TutorialPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialPopupView.h; path = views/TutorialPopupView.h; sourceTree = "<group>"; };
 		5623524D1B248FC3000ABCAC /* TutorialPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialPopupView.m; path = views/TutorialPopupView.m; sourceTree = "<group>"; };
 		5623524F1B24C601000ABCAC /* TutorialPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TutorialPopupView.xib; path = views/TutorialPopupView.xib; sourceTree = "<group>"; };
+		562919141B2A13D000613C38 /* SelectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectionTableViewCell.h; path = views/SelectionTableViewCell.h; sourceTree = "<group>"; };
+		562919151B2A13D000613C38 /* SelectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectionTableViewCell.m; path = views/SelectionTableViewCell.m; sourceTree = "<group>"; };
+		562919171B2A3AC300613C38 /* Festivalama 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Festivalama 2.xcdatamodel"; sourceTree = "<group>"; };
+		562919181B2A42BC00613C38 /* LoadMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadMoreTableViewCell.h; path = views/LoadMoreTableViewCell.h; sourceTree = "<group>"; };
+		562919191B2A42BC00613C38 /* LoadMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadMoreTableViewCell.m; path = views/LoadMoreTableViewCell.m; sourceTree = "<group>"; };
 		564D212E1B22246C009FBF88 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewController.h; path = viewControllers/InfoViewController.h; sourceTree = "<group>"; };
 		564D212F1B22246C009FBF88 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoViewController.m; path = viewControllers/InfoViewController.m; sourceTree = "<group>"; };
 		564D21311B22260D009FBF88 /* WhatWeDoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhatWeDoViewController.h; path = viewControllers/WhatWeDoViewController.h; sourceTree = "<group>"; };
@@ -258,6 +266,8 @@
 		56CE62E01B1FC54C0079570E /* GeneralSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralSettings.m; path = "custom objects/GeneralSettings.m"; sourceTree = "<group>"; };
 		56CE62E31B1FC83F0079570E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		56CE62E41B1FC83F0079570E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		56CF0EC31B2C24EB000E6C34 /* FestivalRankClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalRankClient.h; path = "custom objects/networking/FestivalRankClient.h"; sourceTree = "<group>"; };
+		56CF0EC41B2C24EB000E6C34 /* FestivalRankClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalRankClient.m; path = "custom objects/networking/FestivalRankClient.m"; sourceTree = "<group>"; };
 		56CF1AF41B1B007700A899DB /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = viewControllers/MenuViewController.h; sourceTree = "<group>"; };
 		56CF1AF51B1B007700A899DB /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = viewControllers/MenuViewController.m; sourceTree = "<group>"; };
 		56CF1AF71B1B00C200A899DB /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuButton.h; path = views/MenuButton.h; sourceTree = "<group>"; };
@@ -490,12 +500,16 @@
 				562352441B2457F3000ABCAC /* InfoDetailSelectionButton.m */,
 				56CE62D51B1F9CCA0079570E /* LoadingTableView.h */,
 				56CE62D61B1F9CCA0079570E /* LoadingTableView.m */,
+				562919181B2A42BC00613C38 /* LoadMoreTableViewCell.h */,
+				562919191B2A42BC00613C38 /* LoadMoreTableViewCell.m */,
 				56CF1AF71B1B00C200A899DB /* MenuButton.h */,
 				56CF1AF81B1B00C200A899DB /* MenuButton.m */,
 				561611F41B1BAE9A00147093 /* BadgeCounterView.h */,
 				561611F51B1BAE9A00147093 /* BadgeCounterView.m */,
 				56D05A471B19DBE00031F2A2 /* SelectionCollectionViewCell.h */,
 				56D05A481B19DBE00031F2A2 /* SelectionCollectionViewCell.m */,
+				562919141B2A13D000613C38 /* SelectionTableViewCell.h */,
+				562919151B2A13D000613C38 /* SelectionTableViewCell.m */,
 				56C44E741B1CCF7F00DFFB6B /* TableviewCounterView.h */,
 				56C44E751B1CCF7F00DFFB6B /* TableviewCounterView.m */,
 				5623524C1B248FC3000ABCAC /* TutorialPopupView.h */,
@@ -546,6 +560,8 @@
 				56D587EC1B1E5C90007B3F5B /* BandsDownloadClient.m */,
 				56C44E8A1B1D0FDF00DFFB6B /* FestivalDownloadClient.h */,
 				56C44E8B1B1D0FDF00DFFB6B /* FestivalDownloadClient.m */,
+				56CF0EC31B2C24EB000E6C34 /* FestivalRankClient.h */,
+				56CF0EC41B2C24EB000E6C34 /* FestivalRankClient.m */,
 				560D0AE81B17C0D200B03090 /* GenreDownloadClient.h */,
 				560D0AE91B17C0D200B03090 /* GenreDownloadClient.m */,
 			);
@@ -852,11 +868,13 @@
 				56CE62D71B1F9CCA0079570E /* LoadingTableView.m in Sources */,
 				560D0AC01B1799E600B03090 /* WelcomeViewController.m in Sources */,
 				560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */,
+				562919161B2A13D000613C38 /* SelectionTableViewCell.m in Sources */,
 				56CE62E11B1FC54C0079570E /* GeneralSettings.m in Sources */,
 				56CF1B031B1B099D00A899DB /* MenuTransitionManager.m in Sources */,
 				56C44E8C1B1D0FDF00DFFB6B /* FestivalDownloadClient.m in Sources */,
 				56C44E7C1B1CED6400DFFB6B /* BaseGradientViewController.m in Sources */,
 				56CF1AF61B1B007700A899DB /* MenuViewController.m in Sources */,
+				56CF0EC51B2C24EB000E6C34 /* FestivalRankClient.m in Sources */,
 				5677036F1B278DBD00DC34AC /* WebsiteButton.m in Sources */,
 				561612191B1BCF6500147093 /* FilterGenresViewController.m in Sources */,
 				56CF1B091B1B0D3200A899DB /* UIImage+ImageEffects.m in Sources */,
@@ -918,6 +936,7 @@
 				562352391B2440DE000ABCAC /* FestivalDetailInfoViewController.m in Sources */,
 				5616120B1B1BBC1B00147093 /* FilterPostcodeViewController.m in Sources */,
 				562352451B2457F3000ABCAC /* InfoDetailSelectionButton.m in Sources */,
+				5629191A1B2A42BC00613C38 /* LoadMoreTableViewCell.m in Sources */,
 				56C44E731B1CCE7D00DFFB6B /* FestivalsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1138,9 +1157,10 @@
 		560D0A991B17951100B03090 /* Festivalama.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				562919171B2A3AC300613C38 /* Festivalama 2.xcdatamodel */,
 				560D0A9A1B17951100B03090 /* Festivalama.xcdatamodel */,
 			);
-			currentVersion = 560D0A9A1B17951100B03090 /* Festivalama.xcdatamodel */;
+			currentVersion = 562919171B2A3AC300613C38 /* Festivalama 2.xcdatamodel */;
 			path = Festivalama.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
