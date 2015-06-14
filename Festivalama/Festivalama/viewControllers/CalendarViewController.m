@@ -212,7 +212,46 @@
 
 - (void)downloadNextFestivals
 {
+
 }
+
+#pragma mark - searching
+- (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText
+{
+    [self searchWithText:searchText];
+}
+
+- (void)searchNavigationViewUserEnteredNewCharacter:(NSString *)searchText
+{
+    [self searchWithText:searchText];
+}
+
+- (void)searchNavigationViewCancelButtonPressed
+{
+    [self.tableView hideEmptySearchView];
+
+    [self.fetchController.fetchRequest setPredicate:nil];
+    [self fetchAllFestivals];
+}
+
+- (void)searchWithText:(NSString*)searchText
+{
+    if (searchText.length > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchText];
+        [self.fetchController.fetchRequest setPredicate:predicate];
+    } else {
+        [self.fetchController.fetchRequest setPredicate:nil];
+    }
+
+    [self fetchAllFestivals];
+
+    if (self.fetchController.fetchedObjects.count == 0) {
+        [self.tableView showEmptySearchView];
+    } else {
+        [self.tableView hideEmptySearchView];
+    }
+}
+
 
 #pragma mark - view methods
 - (void)viewDidLoad

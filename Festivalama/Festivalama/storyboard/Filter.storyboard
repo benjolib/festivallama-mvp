@@ -469,33 +469,6 @@ Ortes in dem du ein Festival besuchen willst</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9S8-Xm-Q40">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="a4M-fr-ZUV" style="IBUITableViewCellStyleDefault" id="j2T-Jf-ncq" customClass="FilterTableViewCell">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j2T-Jf-ncq" id="wCK-7c-TpF">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a4M-fr-ZUV">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="nameLabel" destination="a4M-fr-ZUV" id="FnU-KH-CnU"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="VU5-OP-Ja8" id="fer-Ap-s1W"/>
-                                    <outlet property="delegate" destination="VU5-OP-Ja8" id="3uO-ny-kTN"/>
-                                </connections>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJc-rH-aaH" customClass="GreenButton">
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -523,24 +496,32 @@ Ortes in dem du ein Festival besuchen willst</string>
                                     <action selector="trashButtonPressed:" destination="VU5-OP-Ja8" eventType="touchUpInside" id="8TE-mj-dkP"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JZz-2s-W3S">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="VU5-OP-Ja8" id="MAz-ip-oNg"/>
+                                    <outlet property="delegate" destination="VU5-OP-Ja8" id="LPW-k4-icn"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="TJc-rH-aaH" firstAttribute="top" secondItem="9S8-Xm-Q40" secondAttribute="bottom" id="JcF-dL-Kry"/>
                             <constraint firstItem="onv-Im-apN" firstAttribute="top" secondItem="Xxd-0o-q8y" secondAttribute="bottom" constant="2" id="MbT-RK-sLL"/>
-                            <constraint firstItem="9S8-Xm-Q40" firstAttribute="leading" secondItem="gCs-sa-ehw" secondAttribute="leading" id="X1L-83-AIn"/>
+                            <constraint firstItem="TJc-rH-aaH" firstAttribute="top" secondItem="JZz-2s-W3S" secondAttribute="bottom" id="NiW-dh-sWk"/>
+                            <constraint firstAttribute="trailing" secondItem="JZz-2s-W3S" secondAttribute="trailing" id="XMt-XR-LOb"/>
                             <constraint firstItem="onv-Im-apN" firstAttribute="top" secondItem="TJc-rH-aaH" secondAttribute="bottom" id="e2e-HE-1IR"/>
                             <constraint firstAttribute="trailing" secondItem="Xxd-0o-q8y" secondAttribute="trailing" constant="5" id="ghr-5y-RFN"/>
                             <constraint firstItem="TJc-rH-aaH" firstAttribute="leading" secondItem="gCs-sa-ehw" secondAttribute="leading" id="jRQ-3Y-aa2"/>
                             <constraint firstAttribute="trailing" secondItem="TJc-rH-aaH" secondAttribute="trailing" id="jwE-ec-mUC"/>
-                            <constraint firstItem="9S8-Xm-Q40" firstAttribute="top" secondItem="Pr3-gH-ARo" secondAttribute="bottom" id="nJT-bo-8oC"/>
-                            <constraint firstAttribute="trailing" secondItem="9S8-Xm-Q40" secondAttribute="trailing" id="sUK-hT-Fg4"/>
+                            <constraint firstItem="JZz-2s-W3S" firstAttribute="top" secondItem="Pr3-gH-ARo" secondAttribute="bottom" id="tRC-Bz-DKn"/>
+                            <constraint firstItem="JZz-2s-W3S" firstAttribute="leading" secondItem="gCs-sa-ehw" secondAttribute="leading" id="wav-Wy-9Mg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lul-Di-Qe2"/>
                     <connections>
                         <outlet property="applyButton" destination="TJc-rH-aaH" id="WU8-f1-HWU"/>
-                        <outlet property="tableView" destination="9S8-Xm-Q40" id="94j-vo-TbA"/>
+                        <outlet property="tableView" destination="JZz-2s-W3S" id="Z5F-IN-YDx"/>
                         <outlet property="trashIcon" destination="Xxd-0o-q8y" id="1Ty-Bo-4AO"/>
                     </connections>
                 </viewController>

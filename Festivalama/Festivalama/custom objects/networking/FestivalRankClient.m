@@ -22,13 +22,13 @@
 
 - (void)incrementRankForFestival:(FestivalModel*)festival withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?name=%@", kBaseURL, kFestivalIncrement, festival.name]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?name=%@", kBaseURL, kFestivalIncrement, [festival.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
     [self sendRequest:request withCompletionBlock:completionBlock];
 }
 
 - (void)decrementRankForFestival:(FestivalModel*)festival withCompletionBlock:(void (^)(BOOL succeeded, NSString *errorMessage))completionBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?name=%@", kBaseURL, kFestivalDecrement, festival.name]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?name=%@", kBaseURL, kFestivalDecrement, [festival.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
     [self sendRequest:request withCompletionBlock:completionBlock];
 }
 

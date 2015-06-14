@@ -65,10 +65,9 @@ Festival-Kalender.</string>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="Fxz-uC-afI" secondAttribute="centerX" id="BpB-kZ-yck"/>
                 <constraint firstItem="aky-Yq-T4A" firstAttribute="bottom" secondItem="Fxz-uC-afI" secondAttribute="bottom" id="Cvy-gl-w7a"/>
                 <constraint firstItem="Fxz-uC-afI" firstAttribute="top" secondItem="YGO-s8-RRa" secondAttribute="bottom" constant="-42" id="Nqe-Ue-fVo"/>
-                <constraint firstAttribute="centerX" secondItem="YGO-s8-RRa" secondAttribute="centerX" id="ktA-v3-7NX"/>
+                <constraint firstItem="YGO-s8-RRa" firstAttribute="centerX" secondItem="Fxz-uC-afI" secondAttribute="centerX" id="qmx-qA-Zkq"/>
                 <constraint firstAttribute="centerY" secondItem="Fxz-uC-afI" secondAttribute="centerY" constant="-10" id="tKq-lY-YmP"/>
                 <constraint firstItem="aky-Yq-T4A" firstAttribute="trailing" secondItem="Fxz-uC-afI" secondAttribute="trailing" id="teP-YC-a80"/>
                 <constraint firstItem="Fxz-uC-afI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="vl9-Wn-g52"/>

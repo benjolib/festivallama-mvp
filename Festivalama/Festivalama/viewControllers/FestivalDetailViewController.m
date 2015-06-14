@@ -37,7 +37,8 @@
         return;
     }
 
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.festivalToDisplay.name]
+    NSString *stringToShare = @"Hab ein cooles Festival gefunden: (Name Festival). Die App findest Du übrigens unter www.FestivaLama.io";
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
                                                                                          applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,
                                                      UIActivityTypePrint,

@@ -17,33 +17,7 @@
 
 @implementation FestivalDownloadClient
 
-- (void)downloadFestivalsWithURL:(NSURL*)url andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
-{
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
-
-    __weak typeof(self) weakSelf = self;
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
-        if (completed)
-        {
-            if (!weakSelf.festivalParser) {
-                weakSelf.festivalParser = [FestivalParser new];
-            }
-            NSArray *festivals = [weakSelf.festivalParser parseJSONData:data];
-            completionBlock(festivals, nil, YES);
-        }
-        else
-        {
-            if (completionBlock) {
-                completionBlock(nil, errorMessage, NO);
-            }
-        }
-    }];
-
-    [self startSessionTask:task];
-}
-
-- (void)downloadFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
+- (void)downloadFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel searchText:(NSString*)searchText andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
 {
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kFestivalsList, (long)startIndex, (long)numberOfItems];
     if (filterModel) {
@@ -61,12 +35,23 @@
         }
     }
 
+    if (searchText.length > 0) {
+        [urlString appendString:[NSString stringWithFormat:@"&name=%@", searchText]];
+    }
+
     [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
 }
 
-- (void)downloadAllFestivalsWithCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
+- (void)downloadPopularFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kBaseURL, kFestivalsList]]];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kPopularFestivalsList, (long)startIndex, (long)numberOfItems];
+    [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
+}
+
+#pragma mark - private methods
+- (void)downloadFestivalsWithURL:(NSURL*)url andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
 
     __weak typeof(self) weakSelf = self;
@@ -77,26 +62,23 @@
                 weakSelf.festivalParser = [FestivalParser new];
             }
             NSArray *festivals = [weakSelf.festivalParser parseJSONData:data];
-            completionBlock(festivals, nil, YES);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completionBlock) {
+                    completionBlock(festivals, nil, YES);
+                }
+            });
         }
         else
         {
-
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completionBlock) {
+                    completionBlock(nil, errorMessage, YES);
+                }
+            });
         }
     }];
 
     [self startSessionTask:task];
-}
-
-- (void)downloadFestivalsWithFilterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
-{
-    // TODO:
-}
-
-- (void)downloadPopularFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kPopularFestivalsList, (long)startIndex, (long)numberOfItems];
-    [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
 }
 
 @end

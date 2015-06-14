@@ -18,15 +18,9 @@ typedef NS_ENUM(NSUInteger, MenuItem) {
 @interface MainContainerViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIView *containerView;
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic, weak) IBOutlet UIButton *leftButton;
-@property (nonatomic, weak) IBOutlet UIButton *rightButton;
 @property (nonatomic, weak) IBOutlet UIView *navigationView;
 
 - (void)changeToMenuItem:(MenuItem)menuItem;
-
-- (IBAction)leftNavigationButtonPressed:(id)sender;
-- (IBAction)rightNavigationButtonPressed:(id)sender;
 
 - (void)setParentTitle:(NSString*)title;
 

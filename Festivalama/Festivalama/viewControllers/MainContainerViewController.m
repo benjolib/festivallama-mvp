@@ -16,30 +16,21 @@
 #import "TutorialPopupView.h"
 #import "GeneralSettings.h"
 #import "CalendarViewController.h"
+#import "SearchNavigationView.h"
+#import "BaseGradientViewController.h"
 
 @interface MainContainerViewController ()
-@property (nonatomic, strong) UIViewController *mainViewController;
+@property (nonatomic, strong) BaseGradientViewController *mainViewController;
 @property (nonatomic, strong) MenuTransitionManager *menuTransitionManager;
 @property (nonatomic) MenuItem currentMenuItem;
+@property (nonatomic, strong) SearchNavigationView *searchView;
 @end
 
 @implementation MainContainerViewController
 
 - (void)setParentTitle:(NSString*)title
 {
-    self.titleLabel.text = title;
-}
-
-- (IBAction)leftNavigationButtonPressed:(id)sender
-{
-    // open menu, can be used in a subclass
-}
-
-- (IBAction)rightNavigationButtonPressed:(id)sender
-{
-    if ([self.mainViewController respondsToSelector:@selector(searchButtonPressed:)]) {
-        [self.mainViewController performSelector:@selector(searchButtonPressed:) withObject:nil];
-    }
+    [self.searchView setTitle:title];
 }
 
 - (void)changeToMenuItem:(MenuItem)menuItem
@@ -77,8 +68,9 @@
     NSString *segueID = segue.identifier;
     if ([segueID isEqualToString:@"embedView"])
     {
-        UIViewController *controller = [segue destinationViewController];
+        BaseGradientViewController *controller = (BaseGradientViewController*)[segue destinationViewController];
         self.mainViewController = controller;
+        self.searchView.delegate = self.mainViewController;
         self.currentMenuItem = MenuItemFestivals;
         [self setParentTitle:@"Festivals"];
     }
@@ -93,7 +85,7 @@
     }
 }
 
-- (void)startTransitionToViewController:(UIViewController*)toDisplayViewController
+- (void)startTransitionToViewController:(BaseGradientViewController*)toDisplayViewController
 {
     [self addChildViewController:toDisplayViewController];
 
@@ -110,15 +102,38 @@
 
                                 [toDisplayViewController didMoveToParentViewController:self];
                                 self.mainViewController = toDisplayViewController;
+                                self.searchView.delegate = self.mainViewController;
                             }];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.titleLabel.textColor = [UIColor globalGreenColor];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTutorialPopups) name:kNotificationTutorialDismissed object:nil];
+
+    [self setupSearchView];
+}
+
+- (void)setupSearchView
+{
+    self.searchView = [[SearchNavigationView alloc] initWithTitle:@"Festivals" andDelegate:self.mainViewController];
+    self.searchView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.navigationView addSubview:self.searchView];
+
+    [self.navigationView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_searchView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_searchView)]];
+    [self.navigationView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_searchView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_searchView)]];
+
+    [self.searchView assignLeftButtonWithSelector:@selector(leftNavigationButtonPressed) toTarget:self];
+}
+
+- (void)leftNavigationButtonPressed
+{
+    [self performSegueWithIdentifier:@"presentMenuView" sender:nil];
+}
+
+- (void)searchNavigationViewMenuButtonPressed
+{
+    [self performSegueWithIdentifier:@"presentMenuView" sender:nil];
 }
 
 - (void)showTutorialPopups
@@ -126,7 +141,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         TutorialPopupView *tutorial = [[TutorialPopupView alloc] init];
         [tutorial showWithText:@"Suche nach Festivals, Künstlern, Orten oder Musik Genres"
-                       atPoint:CGPointMake(CGRectGetWidth(self.view.frame) - 50.0, CGRectGetMaxY(self.rightButton.frame) + 20.0)
+                       atPoint:CGPointMake(CGRectGetWidth(self.view.frame) - 50.0, CGRectGetMaxY(self.searchView.searchButton.frame) + 20.0)
                  highLightArea:self.navigationView.frame];
 
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationTutorialDismissed object:nil];

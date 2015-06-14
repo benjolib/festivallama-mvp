@@ -9,6 +9,7 @@
 #import "FilterCountryViewController.h"
 #import "FilterCountriesDatasource.h"
 #import "FilterTableViewCell.h"
+#import "Country.h"
 
 @interface FilterCountryViewController ()
 @property (nonatomic, strong) FilterCountriesDatasource *countriesDatasource;
@@ -21,15 +22,16 @@
 - (void)trashButtonPressed:(id)sender
 {
     [self.selectedCountriesArray removeAllObjects];
+    [FilterModel sharedModel].selectedCountry = nil;
     [self.tableView reloadData];
 }
 
 - (void)setupDatasource
 {
     if (!self.countriesDatasource) {
-        self.countriesDatasource = [FilterCountriesDatasource new];
+        self.countriesDatasource = [[FilterCountriesDatasource alloc] init];
     }
-    self.allCountriesArray = [self.countriesDatasource countryNames];
+    self.allCountriesArray = [self.countriesDatasource allCountries];
 
     if (!self.selectedCountriesArray) {
         self.selectedCountriesArray = [NSMutableArray array];
@@ -47,13 +49,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[FilterTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
 
-    NSString *countryName = [self.countriesDatasource countryNameAtIndex:indexPath.row];
+    Country *country = self.allCountriesArray[indexPath.row];
 
-    cell.textLabel.text = countryName;
-    cell.imageView.image = [self.countriesDatasource flagIconAtIndex:indexPath.row];
+    cell.textLabel.text = country.name;
+    cell.imageView.image = [UIImage imageNamed:country.flag];
 
-    if (cell.selected || [self.selectedCountriesArray containsObject:countryName]) {
+    if (cell.selected || [self.selectedCountriesArray containsObject:country]) {
         UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
         cell.accessoryView = accessoryView;
         cell.textLabel.textColor = [UIColor whiteColor];
@@ -72,7 +77,10 @@
     if (!self.selectedCountriesArray) {
         self.selectedCountriesArray = [NSMutableArray array];
     }
-    NSString *selectedCountry = self.allCountriesArray[indexPath.row];
+
+    Country *selectedCountry = self.allCountriesArray[indexPath.row];
+
+    NSString *selectedCountryName = selectedCountry.name;
     if ([self.selectedCountriesArray containsObject:selectedCountry]) {
         [self.selectedCountriesArray removeObject:selectedCountry];
         [FilterModel sharedModel].selectedCountry = nil;
@@ -80,7 +88,7 @@
     } else {
         if (self.selectedCountriesArray.count == 0) {
             [self.selectedCountriesArray addObject:selectedCountry];
-            [FilterModel sharedModel].selectedCountry = selectedCountry;
+            [FilterModel sharedModel].selectedCountry = selectedCountryName;
             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }

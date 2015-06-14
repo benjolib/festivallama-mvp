@@ -8,8 +8,9 @@
 
 #import "InfoViewController.h"
 #import "BaseTableViewCell.h"
+#import <StoreKit/StoreKit.h>
 
-@interface InfoViewController ()
+@interface InfoViewController () <SKStoreProductViewControllerDelegate>
 @property (nonatomic, strong) NSArray *cellTitlesArray;
 @end
 
@@ -54,10 +55,49 @@
     if (indexPath.row == 0) {
         [self performSegueWithIdentifier:@"openWhatWeDo" sender:nil];
     } else if (indexPath.row == 1) {
-//        [self performSegueWithIdentifier:@"openShareTheApp" sender:nil];
+        [self shareTheApp];
     } else {
-//        [self performSegueWithIdentifier:@"openRateTheApp" sender:nil];
+        [self rateTheApp];
     }
+}
+
+- (void)shareTheApp
+{
+    NSString *stringToShare = @"FestivaLama App besorgt Dir die besten Festival Deals für Dich und Deine Freunde www.FestivaLama.io";
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
+                                                                                         applicationActivities:nil];
+    activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,
+                                                     UIActivityTypePrint,
+                                                     UIActivityTypeCopyToPasteboard,
+                                                     UIActivityTypeAssignToContact,
+                                                     UIActivityTypePostToVimeo,
+                                                     UIActivityTypePostToTencentWeibo,
+                                                     UIActivityTypePostToFlickr,
+                                                     UIActivityTypeSaveToCameraRoll,
+                                                     UIActivityTypeAddToReadingList];
+    [self presentViewController:activityViewController animated:YES completion:NULL];
+}
+
+- (void)rateTheApp
+{
+    SKStoreProductViewController *storeProductViewController = [[SKStoreProductViewController alloc] init];
+    [storeProductViewController setDelegate:self];
+
+    // TODO: needs App id
+    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"594467299"} completionBlock:^(BOOL result, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
+
+        } else {
+            // Present Store Product View Controller
+            [self presentViewController:storeProductViewController animated:YES completion:nil];
+        }
+    }];
+}
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
+{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - view methods
@@ -67,13 +107,6 @@
     self.title = @"Über uns";
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-}
-
-#pragma mark - Navigation
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
 @end

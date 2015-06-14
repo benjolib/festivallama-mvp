@@ -29,6 +29,9 @@
 @property (nonatomic, strong) MenuTransitionManager *menuTransitionManager;
 @property (nonatomic, strong) FestivalDownloadClient *festivalDownloadClient;
 @property (nonatomic, strong) FestivalRankClient *rankClient;
+@property (nonatomic, strong) NSTimer *searchTimer;
+@property (nonatomic, copy) NSString *searchText;
+@property (nonatomic) BOOL isSearching;
 @property (nonatomic) NSInteger limit;
 @property (nonatomic) NSInteger startIndex;
 @end
@@ -126,7 +129,7 @@
 
     NSInteger lastSectionIndex = [tableView numberOfSections] - 1;
     NSInteger lastRowIndex = [tableView numberOfRowsInSection:lastSectionIndex] - 1;
-    if ((indexPath.section == lastSectionIndex) && (indexPath.row == lastRowIndex) && (tableView.visibleCells.count < self.festivalsArray.count))
+    if ((indexPath.section == lastSectionIndex) && (indexPath.row == lastRowIndex) && (tableView.visibleCells.count < self.festivalsArray.count) && !self.isSearching)
     {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.showLoadingIndicatorCell = YES;
@@ -183,25 +186,37 @@
     }
 
     __weak typeof(self) weakSelf = self;
-    [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex limit:self.limit filterModel:[FilterModel sharedModel] andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.tableView hideLoadingIndicator];
-            if (completed) {
-                [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
-
-                [weakSelf.tableCounterView displayTheNumberOfItems:weakSelf.festivalsArray.count];
-                [weakSelf.tableCounterView setCounterViewVisible:YES animated:YES];
+    [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex limit:self.limit filterModel:[FilterModel sharedModel] searchText:self.searchText andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
+        [weakSelf.tableView hideLoadingIndicator];
+        if (completed) {
+            if (weakSelf.isSearching) {
+                weakSelf.festivalsArray = [festivalsArray mutableCopy];
             } else {
-                // Handle errors
+                [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
+            }
 
+            if (weakSelf.festivalsArray.count == 0 && weakSelf.isSearching) {
+                [weakSelf.tableCounterView setCounterViewVisible:NO animated:YES];
+            } else {
+                [weakSelf.tableCounterView setCounterViewVisible:YES animated:YES];
+                [weakSelf.tableCounterView displayTheNumberOfItems:weakSelf.festivalsArray.count];
             }
-            weakSelf.showLoadingIndicatorCell = NO;
-            [weakSelf.tableView reloadData];
-            [weakSelf.refreshController endRefreshing];
-            if (weakSelf.tableView.contentOffset.y < 0) {
-                weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
-            }
-        });
+        } else {
+            // Handle errors
+
+        }
+        weakSelf.showLoadingIndicatorCell = NO;
+        [weakSelf.tableView reloadData];
+        [weakSelf.refreshController endRefreshing];
+        if (weakSelf.tableView.contentOffset.y < 0) {
+            weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
+        }
+
+        if (weakSelf.festivalsArray.count == 0 && weakSelf.isSearching) {
+            [weakSelf.tableView showEmptySearchView];
+        } else {
+            [weakSelf.tableView hideEmptySearchView];
+        }
     }];
 }
 
@@ -218,6 +233,53 @@
     if([FilterModel.sharedModel isFiltering]) {
         [self downloadAllFestivals];
     }
+}
+
+#pragma mark - searching
+- (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText
+{
+    self.isSearching = YES;
+    self.searchText = searchText;
+
+    [self searchForFestivals];
+}
+
+- (void)searchNavigationViewUserEnteredNewCharacter:(NSString *)searchText
+{
+    self.isSearching = YES;
+    self.searchText = searchText;
+
+    [self stopSearchTimer];
+    [self startSearchTimer];
+}
+
+- (void)searchNavigationViewCancelButtonPressed
+{
+    self.isSearching = NO;
+    self.searchText = @"";
+    [self.tableView hideEmptySearchView];
+
+    [self.festivalsArray removeAllObjects];
+    [self searchForFestivals];
+}
+
+- (void)searchForFestivals
+{
+    self.startIndex = 0;
+    [self downloadAllFestivals];
+}
+
+#pragma mark - search timer
+- (void)startSearchTimer
+{
+    [self stopSearchTimer];
+    self.searchTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(searchForFestivals) userInfo:nil repeats:NO];
+}
+
+- (void)stopSearchTimer
+{
+    [self.searchTimer invalidate];
+    self.searchTimer = nil;
 }
 
 #pragma mark - view methods

@@ -11,6 +11,27 @@
 
 @implementation BaseGradientViewController
 
+#pragma mark - searchnavigation view delegate methods
+- (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText
+{
+
+}
+
+- (void)searchNavigationViewUserEnteredNewCharacter:(NSString *)searchText
+{
+
+}
+
+- (void)searchNavigationViewCancelButtonPressed
+{
+
+}
+
+- (void)searchNavigationViewMenuButtonPressed
+{
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

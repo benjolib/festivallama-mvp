@@ -26,5 +26,6 @@
 
 - (NSInteger)numberOfSavedFestivals;
 - (void)clearDatabase;
+- (void)saveMasterContext;
 
 @end
