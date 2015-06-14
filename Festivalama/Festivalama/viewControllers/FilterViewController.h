@@ -24,6 +24,7 @@
 - (IBAction)trashButtonPressed:(id)sender;
 
 - (void)setTrashIconVisible:(BOOL)visible;
+- (void)adjustButtonToFilterModel;
 
 - (IBAction)backButtonPressed:(id)sender;
 

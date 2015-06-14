@@ -73,6 +73,8 @@
         [self.selectedGenresArray addObject:selectedGenre];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+
+    [self adjustButtonToFilterModel];
 }
 
 #pragma mark - view methods

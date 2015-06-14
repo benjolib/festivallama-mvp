@@ -24,18 +24,19 @@
     [self.tableView reloadData];
 }
 
-- (NSMutableArray *)selectedCountriesArray
-{
-    [self setTrashIconVisible:_selectedCountriesArray.count > 0];
-    return _selectedCountriesArray;
-}
-
 - (void)setupDatasource
 {
     if (!self.countriesDatasource) {
         self.countriesDatasource = [FilterCountriesDatasource new];
     }
     self.allCountriesArray = [self.countriesDatasource countryNames];
+
+    if (!self.selectedCountriesArray) {
+        self.selectedCountriesArray = [NSMutableArray array];
+    }
+    if ([[FilterModel sharedModel] selectedCountry]) {
+        [self.selectedCountriesArray addObject:[[FilterModel sharedModel] selectedCountry]];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -74,15 +75,17 @@
     NSString *selectedCountry = self.allCountriesArray[indexPath.row];
     if ([self.selectedCountriesArray containsObject:selectedCountry]) {
         [self.selectedCountriesArray removeObject:selectedCountry];
-        self.filterModel.selectedCountry = nil;
+        [FilterModel sharedModel].selectedCountry = nil;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else {
         if (self.selectedCountriesArray.count == 0) {
             [self.selectedCountriesArray addObject:selectedCountry];
-            self.filterModel.selectedCountry = selectedCountry;
+            [FilterModel sharedModel].selectedCountry = selectedCountry;
             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }
+
+    [self adjustButtonToFilterModel];
 }
 
 #pragma mark - view methods

@@ -57,6 +57,17 @@
     self.trashIcon.hidden = !visible;
 }
 
+- (void)adjustButtonToFilterModel
+{
+    if ([[FilterModel sharedModel] isFiltering]) {
+        [self setTrashIconVisible:YES];
+        [self.applyButton setTitle:@"Filter anwenden" forState:UIControlStateNormal];
+    } else {
+        [self setTrashIconVisible:NO];
+        [self.applyButton setTitle:@"Filter" forState:UIControlStateNormal];
+    }
+}
+
 - (void)bandCellTrashButtonPressed:(UIButton*)button
 {
     [FilterModel sharedModel].selectedBandsArray = [NSArray array];
@@ -143,8 +154,7 @@
 {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
-
-    [self setTrashIconVisible:[[FilterModel sharedModel] isFiltering]];
+    [self adjustButtonToFilterModel];
 }
 
 - (void)didReceiveMemoryWarning
