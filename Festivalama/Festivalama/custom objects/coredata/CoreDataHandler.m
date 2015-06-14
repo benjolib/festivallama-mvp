@@ -17,6 +17,8 @@
 @property (readwrite, strong, nonatomic) NSManagedObjectContext *masterManagedObjectContext;
 @property (readwrite, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readwrite, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+@property (nonatomic, strong) NSDateFormatter *sectionDateFormatter;
 @end
 
 @implementation CoreDataHandler
@@ -31,12 +33,13 @@
     return sharedHandler;
 }
 
-- (void)addFestivalToFavorites:(FestivalModel*)festivalModel
+/// Return YES, if it is already exists in Core Data, otherwise save it
+- (BOOL)addFestivalToFavorites:(FestivalModel*)festivalModel
 {
     CDFestival *festival = [self festivalForFestivalModel:festivalModel];
     if (festival) {
         [self removeFestivalObject:festival];
-        return;
+        return YES;
     }
 
     festival = [NSEntityDescription insertNewObjectForEntityForName:@"CDFestival" inManagedObjectContext:self.mainManagedObjectContext];
@@ -58,7 +61,16 @@
     festival.startDate = festivalModel.startDate;
     festival.endDate = festivalModel.endDate;
 
+    if (!self.sectionDateFormatter) {
+        self.sectionDateFormatter = [[NSDateFormatter alloc] init];
+        self.sectionDateFormatter.dateFormat = @"MMM - YYYY";
+    }
+
+    festival.sectionTitle = [self.sectionDateFormatter stringFromDate:festivalModel.startDate];
+
     [self saveMainContext];
+
+    return NO;
 }
 
 - (void)removeFestivalFromFavorites:(FestivalModel*)festivalModel

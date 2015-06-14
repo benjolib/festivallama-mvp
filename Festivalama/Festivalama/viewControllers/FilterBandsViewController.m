@@ -28,7 +28,7 @@
 
 - (NSMutableArray *)selectedBandsArray
 {
-    [self setTrashIconVisible:_selectedBandsArray.count > 0];
+//    [self setTrashIconVisible:_selectedBandsArray.count > 0];
     [[FilterModel sharedModel] setSelectedBandsArray:[NSArray arrayWithArray:_selectedBandsArray]];
     return _selectedBandsArray;
 }
@@ -72,6 +72,8 @@
         [self.selectedBandsArray addObject:selectedBand];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+
+    [self adjustButtonToFilterModel];
 }
 
 #pragma mark - view methods

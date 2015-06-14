@@ -18,4 +18,15 @@
     return option;
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[self class]]) {
+        OnboardingOption *option = (OnboardingOption*)object;
+        if ([option.title isEqualToString:self.title] && (option.optionIndex == self.optionIndex)) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end

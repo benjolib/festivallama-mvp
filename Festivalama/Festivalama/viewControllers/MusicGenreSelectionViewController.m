@@ -84,6 +84,8 @@
 - (NSMutableArray *)selectedGenresArray
 {
     self.continueButton.enabled = _selectedGenresArray.count > 0;
+
+    self.rootViewController.onboardingModel.selectedGenres = [_selectedGenresArray copy];
     return _selectedGenresArray;
 }
 
@@ -96,6 +98,15 @@
     self.continueButton.enabled = self.selectedGenresArray.count > 0;
     self.titleLabel.text = self.titleString;
     self.backgroundImageView.image = [UIImage imageNamed:self.imageNameString];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.rootViewController.onboardingModel.selectedGenres.count > 0) {
+        self.selectedGenresArray = [self.rootViewController.onboardingModel.selectedGenres copy];
+    }
+    [self.collectionView reloadData];
 }
 
 - (void)setViewTitle:(NSString*)title backgroundImage:(NSString*)imageName

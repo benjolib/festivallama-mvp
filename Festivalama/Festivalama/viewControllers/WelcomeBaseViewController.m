@@ -8,9 +8,11 @@
 
 #import "WelcomeBaseViewController.h"
 
-@interface WelcomeBaseViewController ()
-@end
-
 @implementation WelcomeBaseViewController
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 @end

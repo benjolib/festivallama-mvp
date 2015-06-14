@@ -36,7 +36,7 @@
 
     _fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                            managedObjectContext:[[CoreDataHandler sharedHandler] mainManagedObjectContext]
-                                                             sectionNameKeyPath:@"startDate"
+                                                             sectionNameKeyPath:@"sectionTitle"
                                                                       cacheName:nil];
     _fetchController.delegate = self;
     return _fetchController;
@@ -49,14 +49,19 @@
         NSLog(@"Error occured during fetching projects: %@", fetchError.localizedDescription);
     }
 
+    [self updateTableCounterView];
+    [self.tableView hideLoadingIndicator];
+    [self.tableView reloadData];
+}
+
+- (void)updateTableCounterView
+{
     if (self.fetchController.fetchedObjects.count == 0) {
         [self.tableCounterView setCounterViewVisible:NO animated:NO];
     } else {
         [self.tableCounterView displayTheNumberOfItems:self.fetchController.fetchedObjects.count];
         [self.tableCounterView setCounterViewVisible:YES animated:YES];
     }
-    [self.tableView hideLoadingIndicator];
-    [self.tableView reloadData];
 }
 
 #pragma mark - fetchController delegate methods
@@ -109,6 +114,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+    [self updateTableCounterView];
 }
 
 #pragma mark - tableView methods
@@ -130,7 +136,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return self.fetchController.sections[section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchController.sections objectAtIndex:section];
+    return [sectionInfo name];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -140,7 +147,7 @@
 
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 0.0, CGRectGetWidth(tableView.frame) - 30.0, 30.0)];
     titleLabel.textColor = [UIColor whiteColor];
-//    titleLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+    titleLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0];
     [headerView addSubview:titleLabel];
@@ -179,7 +186,6 @@
     CDFestival *festival = [self.fetchController objectAtIndexPath:indexPath];
 
     [[CoreDataHandler sharedHandler] removeFestivalObject:festival];
-//    [self.tableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

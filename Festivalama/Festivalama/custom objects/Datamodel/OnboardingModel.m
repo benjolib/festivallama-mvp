@@ -126,4 +126,14 @@
     }
 }
 
+#pragma mark - handling selection
+- (void)userSelectedOption:(OnboardingOption*)option atScreenIndex:(NSInteger)index
+{
+    if (!self.selectedOptionAtScreensDictionary) {
+        self.selectedOptionAtScreensDictionary = [NSMutableDictionary dictionary];
+    }
+
+    [self.selectedOptionAtScreensDictionary setObject:option forKey:@(index)];
+}
+
 @end

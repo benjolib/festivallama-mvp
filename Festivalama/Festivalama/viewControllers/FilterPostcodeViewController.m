@@ -24,7 +24,7 @@
 
 - (NSMutableArray *)selectedPostCodesArray
 {
-    [self setTrashIconVisible:_selectedPostCodesArray.count > 0];
+//    [self setTrashIconVisible:_selectedPostCodesArray.count > 0];
     return _selectedPostCodesArray;
 }
 
@@ -68,6 +68,8 @@
             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }
+
+    [self adjustButtonToFilterModel];
 }
 
 #pragma mark - view methods

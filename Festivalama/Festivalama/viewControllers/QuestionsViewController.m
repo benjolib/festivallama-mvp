@@ -9,6 +9,9 @@
 #import "QuestionsViewController.h"
 #import "OnboardingOption.h"
 #import "SelectionCollectionViewCell.h"
+#import "SelectionTableViewCell.h"
+#import "NSDictionary+nonNullObjectForKey.h"
+#import "UIColor+AppColors.h"
 
 static NSInteger cellHeight = 60.0;
 
@@ -16,6 +19,7 @@ static NSInteger cellHeight = 60.0;
 @property (nonatomic, strong, readwrite) NSMutableArray *selectedOptionsArray;
 @property (nonatomic, copy) NSString *titleString;
 @property (nonatomic, copy) NSString *imageNameString;
+@property (nonatomic, strong) OnboardingOption *selectedOption;
 @end
 
 @implementation QuestionsViewController
@@ -26,35 +30,63 @@ static NSInteger cellHeight = 60.0;
     self.imageNameString = imageName;
 }
 
-#pragma mark - collectionView methods
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+#pragma mark - tableView methods
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SelectionTableViewCell *cell = (SelectionTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+    OnboardingOption *option = self.optionsToDisplay[indexPath.section];
+    cell.titleLabel.text = option.title;
+
+    BOOL cellSelected = [option isEqual:self.selectedOption];
+    [cell setSelected:cellSelected animated:YES];
+    cell.backgroundColor = [UIColor clearColor];
+
+    return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.optionsToDisplay.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    OnboardingOption *option = self.optionsToDisplay[indexPath.row];
-
-    SelectionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[SelectionCollectionViewCell cellIdentifier] forIndexPath:indexPath];
-    cell.titleLabel.text = option.title;
-
-    cell.selected = [self.selectedOptionsArray containsObject:option];
-    return cell;
+    return 1;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    return cellHeight;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return (CGRectGetHeight(tableView.frame) / self.optionsToDisplay.count) - cellHeight;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor clearColor];
+    return headerView;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     OnboardingOption *option = self.optionsToDisplay[indexPath.row];
 
     if ([self.selectedOptionsArray containsObject:option]) {
         [self.selectedOptionsArray removeObject:option];
-        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     } else {
         [self.selectedOptionsArray addObject:option];
-        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
-        switch (self.pageNumber) {
+        [self.rootViewController.onboardingModel userSelectedOption:option atScreenIndex:self.indexOfView];
+        switch (self.indexOfView) {
             case 0:
                 // Irrelevant
                 break;
@@ -82,16 +114,6 @@ static NSInteger cellHeight = 60.0;
     }
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return (CGRectGetHeight(collectionView.frame) / self.optionsToDisplay.count) - cellHeight;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake(CGRectGetWidth(collectionView.frame) - 40.0, cellHeight);
-}
-
 #pragma mark - view methods
 - (void)viewDidLoad
 {
@@ -99,8 +121,24 @@ static NSInteger cellHeight = 60.0;
 
     self.titleLabel.text = self.titleString;
     self.backgroundImageView.image = [UIImage imageNamed:self.imageNameString];
+}
 
-    [self.collectionView reloadData];
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    if (self.rootViewController.onboardingModel.selectedOptionAtScreensDictionary) {
+        OnboardingOption *option = [self.rootViewController.onboardingModel.selectedOptionAtScreensDictionary nonNullObjectForKey:@(self.indexOfView)];
+        if (option) {
+            self.selectedOption = option;
+            [self.tableView reloadData];
+        }
+    }
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 @end

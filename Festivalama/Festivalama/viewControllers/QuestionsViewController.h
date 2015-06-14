@@ -8,15 +8,14 @@
 
 #import "WelcomeBaseViewController.h"
 
-@interface QuestionsViewController : WelcomeBaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface QuestionsViewController : WelcomeBaseViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @property (nonatomic, strong) NSArray *optionsToDisplay;
 @property (nonatomic, strong, readonly) NSMutableArray *selectedOptionsArray;
-@property (nonatomic) NSInteger pageNumber;
 
 - (void)setViewTitle:(NSString*)title backgroundImage:(NSString*)imageName;
 

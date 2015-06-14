@@ -31,4 +31,16 @@
     return [NSString stringWithFormat:@"Genre: %@", self.name];
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[self class]])
+    {
+        Genre *genre = (Genre*)object;
+        if ([genre.name isEqualToString:self.name]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end

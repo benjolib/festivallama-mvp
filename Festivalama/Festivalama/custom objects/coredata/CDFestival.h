@@ -30,6 +30,7 @@
 @property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * category;
+@property (nonatomic, retain) NSString * sectionTitle;
 @property (nonatomic, retain) NSSet *bands;
 @property (nonatomic, retain) NSSet *genres;
 @end

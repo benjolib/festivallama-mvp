@@ -29,5 +29,6 @@
 @dynamic category;
 @dynamic bands;
 @dynamic genres;
+@dynamic sectionTitle;
 
 @end

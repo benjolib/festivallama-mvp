@@ -19,6 +19,7 @@
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postcode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sectionTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sourceURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,7 +32,7 @@
     </entity>
     <elements>
         <element name="CDBand" positionX="-308" positionY="102" width="128" height="73"/>
-        <element name="CDFestival" positionX="-443" positionY="-333" width="128" height="330"/>
+        <element name="CDFestival" positionX="-443" positionY="-333" width="128" height="345"/>
         <element name="CDGenre" positionX="-630" positionY="90" width="128" height="73"/>
     </elements>
 </model>
