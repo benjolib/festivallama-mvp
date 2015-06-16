@@ -12,6 +12,7 @@
 static NSString * const kBaseURL = @"http://api-eventim.makers.do/festivals/";
 
 static NSString * const kGenresList = @"genre/list";
+static NSString * const kCategoriesList = @"category/list";
 static NSString * const kBandsList = @"band/list";
 static NSString * const kFestivalsList = @"list";
 static NSString * const kPopularFestivalsList = @"rank/list";

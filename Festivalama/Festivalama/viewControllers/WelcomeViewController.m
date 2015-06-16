@@ -9,7 +9,7 @@
 #import "WelcomeViewController.h"
 #import "PopupView.h"
 #import <AVFoundation/AVFoundation.h>
-#import "GenreDownloadClient.h"
+#import "CategoryDownloadClient.h"
 #import "QuestionsContainerViewController.h"
 #import "LocationManager.h"
 
@@ -21,7 +21,7 @@
 @property (nonatomic) BOOL firstPopupWasDisplayed;
 
 @property (nonatomic, strong) LocationManager *locationManager;
-@property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
+@property (nonatomic, strong) CategoryDownloadClient *categoryDownloadClient;
 @property (nonatomic, strong) NSArray *genresArray;
 @end
 
@@ -51,14 +51,14 @@
 
 - (void)downloadGenres
 {
-    self.genreDownloadClient = [GenreDownloadClient new];
+    self.categoryDownloadClient = [CategoryDownloadClient new];
 
     __weak typeof(self) weakSelf = self;
-    [self.genreDownloadClient downloadAllGenresWithCompletionBlock:^(NSArray *sortedGenres, NSString *errorMessage, BOOL completed) {
+    [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
         if (completed) {
-            weakSelf.genresArray = [sortedGenres copy];
+            weakSelf.genresArray = [sortedCategories copy];
         } else {
-
+            // TODO: error handling
         }
     }];
 }

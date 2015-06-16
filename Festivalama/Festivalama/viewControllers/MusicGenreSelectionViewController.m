@@ -15,13 +15,16 @@
 @property (nonatomic, strong, readwrite) NSMutableArray *selectedGenresArray;
 @property (nonatomic, copy) NSString *titleString;
 @property (nonatomic, copy) NSString *imageNameString;
+
+@property (nonatomic, strong) NSArray *firstScreenGenresArray; // array of Genres for the first screen
+@property (nonatomic, strong) NSArray *secondScreenGenresArray; // array of Genres for the second screen
 @end
 
 @implementation MusicGenreSelectionViewController
 
 - (Genre*)genreAtIndexPath:(NSIndexPath*)indexPath
 {
-    return self.allGenresArray[indexPath.row];
+    return [self arrayToUse][indexPath.row];
 }
 
 - (IBAction)continueButtonPressed:(id)sender
@@ -29,10 +32,15 @@
     [self.rootViewController showNextViewController];
 }
 
+- (NSArray*)arrayToUse
+{
+    return self.indexOfView == 0 ? self.firstScreenGenresArray : self.secondScreenGenresArray;
+}
+
 #pragma mark - collectionView methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.allGenresArray.count;
+    return [self arrayToUse].count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -42,7 +50,9 @@
     SelectionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[SelectionCollectionViewCell cellIdentifier] forIndexPath:indexPath];
     cell.titleLabel.text = genre.name;
 
-    cell.selected = [self.selectedGenresArray containsObject:genre];
+    BOOL contained = [self.selectedGenresArray containsObject:genre];
+    cell.selected = contained;
+    
     return cell;
 }
 
@@ -56,9 +66,11 @@
     if ([self.selectedGenresArray containsObject:genre]) {
         [self.selectedGenresArray removeObject:genre];
         [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [self updateOnboardingModel];
     } else {
         [self.selectedGenresArray addObject:genre];
         [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [self updateOnboardingModel];
     }
 }
 
@@ -68,6 +80,7 @@
     if ([self.selectedGenresArray containsObject:genre]) {
         [self.selectedGenresArray removeObject:genre];
         [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [self updateOnboardingModel];
     }
 }
 
@@ -81,12 +94,10 @@
     return CGSizeMake((CGRectGetWidth(collectionView.frame) / 2) - 30, 60.0);
 }
 
-- (NSMutableArray *)selectedGenresArray
+- (void)updateOnboardingModel
 {
-    self.continueButton.enabled = _selectedGenresArray.count > 0;
-
     self.rootViewController.onboardingModel.selectedGenres = [_selectedGenresArray copy];
-    return _selectedGenresArray;
+    self.continueButton.enabled = self.selectedGenresArray.count > 0;
 }
 
 #pragma mark - view methods
@@ -98,13 +109,22 @@
     self.continueButton.enabled = self.selectedGenresArray.count > 0;
     self.titleLabel.text = self.titleString;
     self.backgroundImageView.image = [UIImage imageNamed:self.imageNameString];
+    
+    [self divideAllGenresIntoArrays];
+}
+
+- (void)divideAllGenresIntoArrays
+{
+    self.firstScreenGenresArray = [self.allGenresArray subarrayWithRange:NSMakeRange(0, self.allGenresArray.count/2)];
+    self.secondScreenGenresArray = [self.allGenresArray subarrayWithRange:NSMakeRange(self.allGenresArray.count/2, self.allGenresArray.count/2)];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     if (self.rootViewController.onboardingModel.selectedGenres.count > 0) {
-        self.selectedGenresArray = [self.rootViewController.onboardingModel.selectedGenres copy];
+        self.selectedGenresArray = [self.rootViewController.onboardingModel.selectedGenres mutableCopy];
+        self.continueButton.enabled = self.selectedGenresArray.count > 0;
     }
     [self.collectionView reloadData];
 }

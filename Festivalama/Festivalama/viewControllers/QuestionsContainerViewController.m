@@ -14,6 +14,7 @@
 #import "FestivalNavigationController.h"
 #import "FestivalTransitionManager.h"
 #import "GeneralSettings.h"
+#import "FilterModel.h"
 
 @interface QuestionsContainerViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 @property (nonatomic, strong) UIPageViewController *pageViewController;
@@ -55,6 +56,9 @@
                                          completion:nil];
     } else {
         [GeneralSettings setOnboardingViewed];
+        
+        // TODO: Copy all the settings from OnboardingModel to Filtermodel
+        [[FilterModel sharedModel] copySettingsFromOnboardingModel:self.onboardingModel];
         
         // move to festivals view
         if (!self.festivalTransitionManager) {

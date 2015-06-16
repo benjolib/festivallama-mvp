@@ -8,6 +8,7 @@
 
 #import "FilterModel.h"
 #import "Band.h"
+#import "OnboardingModel.h"
 
 @implementation FilterModel
 
@@ -29,6 +30,14 @@
         self.selectedGenresArray = [NSArray array];
     }
     return self;
+}
+
+- (void)copySettingsFromOnboardingModel:(OnboardingModel*)onboarding
+{
+    self.selectedGenresArray = [[onboarding selectedGenres] copy];
+    if (onboarding.filterByGermany) {
+        self.selectedCountry = @"germany";
+    }
 }
 
 - (void)clearFilters

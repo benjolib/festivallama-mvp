@@ -118,6 +118,7 @@
 		E19FA3ED1B2C58930057A049 /* TicketShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3EC1B2C58930057A049 /* TicketShopTableViewCell.m */; };
 		E19FA3F01B2C5AC60057A049 /* UITextField+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3EF1B2C5AC60057A049 /* UITextField+Helper.m */; };
 		E19FA3F31B2C5BA50057A049 /* TicketShopperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3F21B2C5BA50057A049 /* TicketShopperClient.m */; };
+		E1F891351B303ACE00C4E6BA /* CategoryDownloadClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F891341B303ACE00C4E6BA /* CategoryDownloadClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -334,6 +335,8 @@
 		E19FA3EF1B2C5AC60057A049 /* UITextField+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Helper.m"; sourceTree = "<group>"; };
 		E19FA3F11B2C5BA50057A049 /* TicketShopperClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketShopperClient.h; path = "custom objects/networking/TicketShopperClient.h"; sourceTree = "<group>"; };
 		E19FA3F21B2C5BA50057A049 /* TicketShopperClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketShopperClient.m; path = "custom objects/networking/TicketShopperClient.m"; sourceTree = "<group>"; };
+		E1F891331B303ACE00C4E6BA /* CategoryDownloadClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryDownloadClient.h; path = "custom objects/networking/CategoryDownloadClient.h"; sourceTree = "<group>"; };
+		E1F891341B303ACE00C4E6BA /* CategoryDownloadClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryDownloadClient.m; path = "custom objects/networking/CategoryDownloadClient.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -596,6 +599,8 @@
 				560D0AE61B17C0B300B03090 /* AbstractClient.m */,
 				56D587EB1B1E5C90007B3F5B /* BandsDownloadClient.h */,
 				56D587EC1B1E5C90007B3F5B /* BandsDownloadClient.m */,
+				E1F891331B303ACE00C4E6BA /* CategoryDownloadClient.h */,
+				E1F891341B303ACE00C4E6BA /* CategoryDownloadClient.m */,
 				56C44E8A1B1D0FDF00DFFB6B /* FestivalDownloadClient.h */,
 				56C44E8B1B1D0FDF00DFFB6B /* FestivalDownloadClient.m */,
 				56CF0EC31B2C24EB000E6C34 /* FestivalRankClient.h */,
@@ -922,6 +927,7 @@
 				561612191B1BCF6500147093 /* FilterGenresViewController.m in Sources */,
 				56CF1B091B1B0D3200A899DB /* UIImage+ImageEffects.m in Sources */,
 				56CF1B061B1B0C2000A899DB /* MenuTransitionAnimator.m in Sources */,
+				E1F891351B303ACE00C4E6BA /* CategoryDownloadClient.m in Sources */,
 				E19FA3ED1B2C58930057A049 /* TicketShopTableViewCell.m in Sources */,
 				560D0AE71B17C0B300B03090 /* AbstractClient.m in Sources */,
 				56D05A461B19D9CD0031F2A2 /* ContinueButton.m in Sources */,
