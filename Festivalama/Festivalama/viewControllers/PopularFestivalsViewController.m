@@ -14,7 +14,7 @@
 #import "FestivalRefreshControl.h"
 #import "LoadingTableView.h"
 #import "FestivalModel.h"
-
+#import "CoreDataHandler.h"
 
 @interface PopularFestivalsViewController ()
 @property (nonatomic, strong) FestivalDownloadClient *festivalDownloadClient;
@@ -40,6 +40,8 @@
     cell.timeLeftLabel.text = timeString;
     cell.calendarIcon.hidden = timeString.length == 0;
 
+    [cell.calendarButton addTarget:self action:@selector(calenderButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [cell showSavedState:[[CoreDataHandler sharedHandler] isFestivalSaved:festival]];
 //    [cell setPopularityValue:festival.rank];
 
     return cell;

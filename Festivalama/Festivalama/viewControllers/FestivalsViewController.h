@@ -26,5 +26,6 @@
 
 - (void)prepareView;
 - (void)downloadNextFestivals;
+- (void)calenderButtonTapped:(UIButton*)button;
 
 @end
