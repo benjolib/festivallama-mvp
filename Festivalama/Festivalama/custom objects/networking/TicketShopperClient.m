@@ -14,7 +14,7 @@
 - (void)sendTicketShopWithNumberOfTickets:(NSInteger)ticketNumber festival:(FestivalModel*)festival name:(NSString*)name email:(NSString*)email completionBlock:(void (^)(NSString *errorMessage, BOOL completed))completionBlock
 {
     NSString *dateString = festival.startDateString ? festival.startDateString : festival.endDateString;
-    NSString *urlSuffixString = [NSString stringWithFormat:@"?dates[]=%@&customer_name=%@&customer_email=%@&tickets_count=%ld&festival_name=%@", dateString, [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], email, ticketNumber, [festival.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *urlSuffixString = [NSString stringWithFormat:@"?dates[]=%@&customer_name=%@&customer_email=%@&tickets_count=%ld&festival_name=%@", dateString, [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], email, (long)ticketNumber, [festival.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", kBaseURL, kTicketShop, urlSuffixString];
     NSURL *url = [NSURL URLWithString:urlString];
