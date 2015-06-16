@@ -10,6 +10,8 @@
 
 // Object to hold all the selected filtering options
 
+@class OnboardingModel;
+
 @interface FilterModel : NSObject
 
 @property (nonatomic, strong) NSArray *selectedGenresArray;
@@ -18,6 +20,8 @@
 @property (nonatomic, copy) NSString *selectedPostCode;
 
 + (instancetype)sharedModel;
+
+- (void)copySettingsFromOnboardingModel:(OnboardingModel*)onboarding;
 
 - (BOOL)isFiltering;
 - (void)clearFilters;

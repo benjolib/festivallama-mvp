@@ -65,7 +65,7 @@
 
 - (NSString*)calendarDaysTillEndDateString
 {
-    if (!self.endDate) {
+    if (!self.endDate || !self.startDate) {
         return nil;
     }
     NSInteger numberOfDaysLeft = [self daysTillStartDate];
@@ -78,6 +78,9 @@
 
 - (NSInteger)daysTillStartDate
 {
+    if (!self.startDate) {
+        return 0;
+    }
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
                                                         fromDate:[NSDate date]
