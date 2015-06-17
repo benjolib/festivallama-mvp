@@ -10,4 +10,6 @@
 
 @interface SearchEmptyView : UIView
 
+- (void)setText:(NSString*)text;
+
 @end

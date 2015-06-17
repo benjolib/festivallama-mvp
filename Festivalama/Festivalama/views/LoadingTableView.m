@@ -34,6 +34,7 @@
 - (void)reloadData
 {
     [super reloadData];
+    self.userInteractionEnabled = YES;
     if (self.loadingIndicatorView) {
         [self bringSubviewToFront:self.loadingIndicatorView];
     }
@@ -41,6 +42,7 @@
 
 - (void)showEmptySearchView
 {
+    self.userInteractionEnabled = NO;
     self.emptyView.hidden = NO;
     if (self.emptyView) {
         [self bringSubviewToFront:self.emptyView];
@@ -49,6 +51,7 @@
 
 - (void)hideEmptySearchView
 {
+    self.userInteractionEnabled = YES;
     self.emptyView.hidden = YES;
 }
 

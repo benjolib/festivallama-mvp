@@ -23,12 +23,12 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="MzI-sW-GkL"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wir haben leider keine Ergebnisse für Deine Suche gefunden" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-Kd-8di">
-                    <rect key="frame" x="50" y="152" width="220" height="100"/>
+                    <rect key="frame" x="70" y="152" width="180" height="100"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -39,9 +39,9 @@
                 <constraint firstAttribute="centerX" secondItem="apT-lM-Dap" secondAttribute="centerX" id="1W5-IH-ueS"/>
                 <constraint firstAttribute="bottom" secondItem="fp1-Kd-8di" secondAttribute="bottom" id="5sH-FH-PSs"/>
                 <constraint firstItem="GNc-9P-4lM" firstAttribute="top" secondItem="apT-lM-Dap" secondAttribute="bottom" constant="20" id="A8c-zc-5qN"/>
-                <constraint firstAttribute="trailing" secondItem="fp1-Kd-8di" secondAttribute="trailing" constant="50" id="GXk-zT-akB"/>
+                <constraint firstAttribute="trailing" secondItem="fp1-Kd-8di" secondAttribute="trailing" constant="70" id="GXk-zT-akB"/>
                 <constraint firstItem="fp1-Kd-8di" firstAttribute="top" secondItem="GNc-9P-4lM" secondAttribute="bottom" constant="20" id="OaR-To-EHU"/>
-                <constraint firstItem="fp1-Kd-8di" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="Prs-2q-d6R"/>
+                <constraint firstItem="fp1-Kd-8di" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="70" id="Prs-2q-d6R"/>
                 <constraint firstItem="GNc-9P-4lM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Vux-Fh-qJb"/>
                 <constraint firstItem="apT-lM-Dap" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Yae-6b-AHh"/>
                 <constraint firstAttribute="trailing" secondItem="GNc-9P-4lM" secondAttribute="trailing" constant="10" id="lUM-ad-lSl"/>

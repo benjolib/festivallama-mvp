@@ -8,6 +8,10 @@
 
 #import "SearchEmptyView.h"
 
+@interface SearchEmptyView ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
 @implementation SearchEmptyView
 
 - (instancetype)init
@@ -29,6 +33,11 @@
 {
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
+}
+
+- (void)setText:(NSString*)text
+{
+    self.textLabel.text = text;
 }
 
 @end
