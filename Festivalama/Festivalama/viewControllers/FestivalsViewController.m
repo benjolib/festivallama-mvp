@@ -124,7 +124,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger lastRowIndex = [tableView numberOfRowsInSection:0] - 1;
-    if ((indexPath.row == lastRowIndex) && (lastRowIndex < self.festivalsArray.count) && !self.isSearching)
+    if ((indexPath.row == lastRowIndex) && (self.festivalsArray.count >= self.limit) && !self.isSearching)
     {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.showLoadingIndicatorCell = YES;
@@ -238,7 +238,6 @@
 - (void)filterContent:(NSNotification*)notification
 {
     if ([[FilterModel sharedModel] isFiltering]) {
-        [self.festivalsArray removeAllObjects];
         [self downloadAllFestivals];
     }
 }

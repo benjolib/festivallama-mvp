@@ -20,7 +20,7 @@
 - (void)downloadFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel searchText:(NSString*)searchText andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
 {
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kFestivalsList, (long)startIndex, (long)numberOfItems];
-    if (filterModel) {
+    if (filterModel && searchText.length == 0) {
         if (filterModel.selectedCountry) {
             [urlString appendString:[NSString stringWithFormat:@"&country=%@", filterModel.selectedCountry]];
         }
