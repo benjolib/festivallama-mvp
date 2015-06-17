@@ -10,6 +10,6 @@
 
 @interface WhatWeDoViewController : BaseGradientViewController
 
-@property (nonatomic, weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UIWebView *webview;
 
 @end

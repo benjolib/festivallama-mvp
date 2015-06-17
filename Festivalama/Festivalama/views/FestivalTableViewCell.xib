@@ -68,7 +68,7 @@
                         <rect key="frame" x="16" y="14" width="21" height="12"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="gKi-aO-QOI">
-                                <rect key="frame" x="1" y="0.0" width="19" height="12"/>
+                                <rect key="frame" x="0.0" y="0.0" width="21" height="12"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="7"/>
                                 <color key="textColor" red="0.31372549020000001" green="0.68627450980000004" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -79,9 +79,9 @@
                             <constraint firstAttribute="bottom" secondItem="gKi-aO-QOI" secondAttribute="bottom" id="17g-Kt-nMq"/>
                             <constraint firstAttribute="height" constant="12" id="Yxn-d1-0Qg"/>
                             <constraint firstItem="gKi-aO-QOI" firstAttribute="top" secondItem="fTt-OJ-whG" secondAttribute="top" id="if9-JO-xZi"/>
-                            <constraint firstItem="gKi-aO-QOI" firstAttribute="leading" secondItem="fTt-OJ-whG" secondAttribute="leading" constant="1" id="mKR-37-D71"/>
-                            <constraint firstAttribute="trailing" secondItem="gKi-aO-QOI" secondAttribute="trailing" constant="1" id="sIz-iO-PMy"/>
-                            <constraint firstAttribute="width" priority="900" constant="21" id="tfI-zE-JOF"/>
+                            <constraint firstItem="gKi-aO-QOI" firstAttribute="leading" secondItem="fTt-OJ-whG" secondAttribute="leading" id="mKR-37-D71"/>
+                            <constraint firstAttribute="trailing" secondItem="gKi-aO-QOI" secondAttribute="trailing" id="sIz-iO-PMy"/>
+                            <constraint firstAttribute="width" constant="21" id="tfI-zE-JOF"/>
                         </constraints>
                     </view>
                 </subviews>

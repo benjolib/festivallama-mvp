@@ -42,7 +42,7 @@
 
     [cell.calendarButton addTarget:self action:@selector(calenderButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cell showSavedState:[[CoreDataHandler sharedHandler] isFestivalSaved:festival]];
-//    [cell setPopularityValue:festival.rank];
+    [cell setPopularityValue:festival.rank];
 
     return cell;
 }
