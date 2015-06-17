@@ -18,19 +18,21 @@
 
 - (void)trashButtonPressed:(id)sender
 {
+    [FilterModel sharedModel].selectedPostCode = nil;
     [self.selectedPostCodesArray removeAllObjects];
     [self.tableView reloadData];
-}
 
-- (NSMutableArray *)selectedPostCodesArray
-{
-//    [self setTrashIconVisible:_selectedPostCodesArray.count > 0];
-    return _selectedPostCodesArray;
+    [super adjustButtonToFilterModel];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.allPostcodesArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,6 +71,7 @@
         }
     }
 
+    [[FilterModel sharedModel] setSelectedPostCode:selectedPostcode];
     [self adjustButtonToFilterModel];
 }
 
@@ -80,6 +83,7 @@
 
     self.allPostcodesArray = @[@"1...", @"2...", @"3...", @"4...", @"5...", @"6...", @"7...", @"8...", @"9..."];
     [self.tableView reloadData];
+    [self.tableView hideLoadingIndicator];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,7 @@
 
 #import "FilterModel.h"
 #import "Band.h"
+#import "Genre.h"
 #import "OnboardingModel.h"
 
 @implementation FilterModel
@@ -69,12 +70,36 @@
     for (int i = 0; i < self.selectedBandsArray.count; i++) {
         Band *band = self.selectedBandsArray[i];
         [bandsString appendString:band.name];
-        if (i-1 != self.selectedBandsArray.count) {
-            [bandsString appendString:@","];
+        if (i != self.selectedBandsArray.count-1) {
+            [bandsString appendString:@", "];
         }
     }
 
     return bandsString;
+}
+
+- (NSString*)genresString
+{
+    NSMutableString *genresString = [[NSMutableString alloc] init];
+    for (int i = 0; i < self.selectedGenresArray.count; i++) {
+        Genre *genre = self.selectedGenresArray[i];
+        [genresString appendString:genre.name];
+        if (i != self.selectedBandsArray.count-1) {
+            [genresString appendString:@", "];
+        }
+    }
+
+    return genresString;
+}
+
+- (NSString*)bandsStringForAPICall
+{
+    return [[self bandsString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (NSString*)genresStringForAPICall
+{
+    return [[self genresString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end

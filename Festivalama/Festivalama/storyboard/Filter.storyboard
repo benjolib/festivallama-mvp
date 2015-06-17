@@ -64,21 +64,33 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicCell" textLabel="0R4-kK-1ed" rowHeight="70" style="IBUITableViewCellStyleDefault" id="mpu-KQ-FVh" customClass="FilterTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basicCell" rowHeight="70" id="mpu-KQ-FVh" customClass="FilterTableViewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mpu-KQ-FVh" id="nsg-vX-oih">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0R4-kK-1ed">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="272" translatesAutoresizingMaskIntoConstraints="NO" id="1kN-f2-Y6R">
+                                                    <rect key="frame" x="15" y="0.0" width="272" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="70" id="Blv-oO-HwV"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1kN-f2-Y6R" firstAttribute="top" secondItem="nsg-vX-oih" secondAttribute="top" id="3gg-n9-UdC"/>
+                                                <constraint firstAttribute="bottom" secondItem="1kN-f2-Y6R" secondAttribute="bottom" id="6OA-5a-8fV"/>
+                                                <constraint firstItem="1kN-f2-Y6R" firstAttribute="leading" secondItem="nsg-vX-oih" secondAttribute="leading" constant="15" id="HmV-1Q-0NK"/>
+                                                <constraint firstAttribute="trailing" secondItem="1kN-f2-Y6R" secondAttribute="trailing" id="xZL-re-dMB"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="1kN-f2-Y6R" id="k3o-bE-xua"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bandsCell" rowHeight="100" id="gnE-Rb-9yF" customClass="FilterBandsTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bandsCell" rowHeight="81" id="gnE-Rb-9yF" customClass="FilterBandsTableViewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gnE-Rb-9yF" id="glH-VI-QXV">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -93,13 +105,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="262" translatesAutoresizingMaskIntoConstraints="NO" id="pw3-6I-gdn">
-                                                    <rect key="frame" x="15" y="36" width="222" height="14"/>
+                                                    <rect key="frame" x="15" y="36" width="222" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="lv1-oY-c2C"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSl-9J-FZb">
-                                                    <rect key="frame" x="247" y="30" width="40" height="40"/>
+                                                    <rect key="frame" x="247" y="21" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="UmW-81-cgC"/>
                                                         <constraint firstAttribute="width" constant="40" id="yT8-zo-VQg"/>
@@ -206,7 +221,7 @@
                                     <action selector="trashButtonPressed:" destination="4gw-Ps-4sg" eventType="touchUpInside" id="vPS-5J-mOn"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x5M-An-NH3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x5M-An-NH3" customClass="LoadingTableView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="456"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -273,19 +288,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNd-4i-2ib">
-                                <rect key="frame" x="278" y="522" width="37" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="7QR-2B-r2O"/>
-                                    <constraint firstAttribute="width" constant="37" id="Txt-it-o6a"/>
-                                </constraints>
-                                <state key="normal" image="trashIcon">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="trashButtonPressed:" destination="TnQ-de-GmV" eventType="touchUpInside" id="cgi-Uy-IHi"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.60000000000000009" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="Aup-jz-IP2">
                                 <rect key="frame" x="15" y="70" width="290" height="40"/>
                                 <constraints>
@@ -297,7 +299,7 @@ Ortes in dem du ein Festival besuchen willst</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fih-Z8-nFx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fih-Z8-nFx" customClass="LoadingTableView">
                                 <rect key="frame" x="0.0" y="120" width="320" height="399"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -336,6 +338,19 @@ Ortes in dem du ein Festival besuchen willst</string>
                                 </state>
                                 <connections>
                                     <action selector="applyButtonPressed:" destination="TnQ-de-GmV" eventType="touchUpInside" id="qff-36-Eo1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNd-4i-2ib">
+                                <rect key="frame" x="278" y="522" width="37" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7QR-2B-r2O"/>
+                                    <constraint firstAttribute="width" constant="37" id="Txt-it-o6a"/>
+                                </constraints>
+                                <state key="normal" image="trashIcon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="trashButtonPressed:" destination="TnQ-de-GmV" eventType="touchUpInside" id="cgi-Uy-IHi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -405,8 +420,45 @@ Ortes in dem du ein Festival besuchen willst</string>
                                     <action selector="trashButtonPressed:" destination="QKo-rd-fXL" eventType="touchUpInside" id="Kck-nC-BhW"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="K8s-4T-ope">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yT-yM-AdD" userLabel="search wrapper view">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="200" horizontalCompressionResistancePriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Suche" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z2C-gI-cdF">
+                                        <rect key="frame" x="10" y="7" width="220" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="QKo-rd-fXL" id="x5u-jR-ZMX"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWf-fm-5t7">
+                                        <rect key="frame" x="240" y="8" width="70" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="fCe-ui-e8s"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Abbrechen">
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="searchCancelButtonTapped:" destination="QKo-rd-fXL" eventType="touchUpInside" id="dWC-Qt-rq6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="nWf-fm-5t7" firstAttribute="top" secondItem="3yT-yM-AdD" secondAttribute="top" constant="8" id="AAz-Tw-3Fe"/>
+                                    <constraint firstItem="Z2C-gI-cdF" firstAttribute="leading" secondItem="3yT-yM-AdD" secondAttribute="leading" constant="10" id="Chm-Se-h0x"/>
+                                    <constraint firstItem="nWf-fm-5t7" firstAttribute="leading" secondItem="Z2C-gI-cdF" secondAttribute="trailing" constant="10" id="KRD-MP-paJ"/>
+                                    <constraint firstItem="Z2C-gI-cdF" firstAttribute="top" secondItem="3yT-yM-AdD" secondAttribute="top" constant="7" id="Q6I-sx-3g9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Z2C-gI-cdF" secondAttribute="bottom" constant="7" id="bBm-k0-37a"/>
+                                    <constraint firstAttribute="height" constant="44" id="hTY-uB-BrN"/>
+                                    <constraint firstAttribute="trailing" secondItem="nWf-fm-5t7" secondAttribute="trailing" constant="10" id="mFZ-Lo-ZKK"/>
+                                    <constraint firstAttribute="bottom" secondItem="nWf-fm-5t7" secondAttribute="bottom" constant="8" id="z8U-HB-22D"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="K8s-4T-ope" customClass="LoadingTableView">
+                                <rect key="frame" x="0.0" y="108" width="320" height="411"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="kgq-l2-2qK" style="IBUITableViewCellStyleDefault" id="Sfp-p7-Sc5" customClass="FilterTableViewCell">
@@ -437,10 +489,13 @@ Ortes in dem du ein Festival besuchen willst</string>
                         <constraints>
                             <constraint firstItem="XHX-zl-dqa" firstAttribute="leading" secondItem="GlG-Rr-v9n" secondAttribute="leading" id="7zA-iq-yhN"/>
                             <constraint firstItem="bcu-O5-B4Z" firstAttribute="top" secondItem="lEb-rR-z6O" secondAttribute="bottom" constant="2" id="8Mv-uh-OgI"/>
+                            <constraint firstItem="K8s-4T-ope" firstAttribute="top" secondItem="3yT-yM-AdD" secondAttribute="bottom" id="HUH-FH-Cyt"/>
                             <constraint firstAttribute="trailing" secondItem="XHX-zl-dqa" secondAttribute="trailing" id="KI6-ss-ptf"/>
+                            <constraint firstAttribute="trailing" secondItem="3yT-yM-AdD" secondAttribute="trailing" id="OlM-3o-BMo"/>
                             <constraint firstItem="K8s-4T-ope" firstAttribute="leading" secondItem="GlG-Rr-v9n" secondAttribute="leading" id="Psp-WF-AKD"/>
+                            <constraint firstItem="3yT-yM-AdD" firstAttribute="leading" secondItem="GlG-Rr-v9n" secondAttribute="leading" id="TwT-Lw-JVU"/>
                             <constraint firstAttribute="trailing" secondItem="lEb-rR-z6O" secondAttribute="trailing" constant="5" id="WtR-NX-1ex"/>
-                            <constraint firstItem="K8s-4T-ope" firstAttribute="top" secondItem="gmh-4Z-waZ" secondAttribute="bottom" id="rFj-1D-J8U"/>
+                            <constraint firstItem="3yT-yM-AdD" firstAttribute="top" secondItem="gmh-4Z-waZ" secondAttribute="bottom" id="hU1-jo-hT0"/>
                             <constraint firstAttribute="trailing" secondItem="K8s-4T-ope" secondAttribute="trailing" id="sLN-He-UHl"/>
                             <constraint firstItem="bcu-O5-B4Z" firstAttribute="top" secondItem="XHX-zl-dqa" secondAttribute="bottom" id="st5-3Z-lQg"/>
                             <constraint firstItem="XHX-zl-dqa" firstAttribute="top" secondItem="K8s-4T-ope" secondAttribute="bottom" id="yJb-vs-1uw"/>
@@ -449,6 +504,11 @@ Ortes in dem du ein Festival besuchen willst</string>
                     <navigationItem key="navigationItem" id="dPc-bm-kWr"/>
                     <connections>
                         <outlet property="applyButton" destination="XHX-zl-dqa" id="dQ3-lL-FLK"/>
+                        <outlet property="searchCancelButton" destination="nWf-fm-5t7" id="Ut7-0Q-YRi"/>
+                        <outlet property="searchCancelButtonWidthConstraint" destination="fCe-ui-e8s" id="O6v-a9-ioS"/>
+                        <outlet property="searchField" destination="Z2C-gI-cdF" id="d2j-bA-ZM1"/>
+                        <outlet property="searchWrapperView" destination="3yT-yM-AdD" id="U3B-Mz-Aiz"/>
+                        <outlet property="searchWrapperViewTrailingConstraint" destination="KRD-MP-paJ" id="Mzn-ty-Srm"/>
                         <outlet property="tableView" destination="K8s-4T-ope" id="pVM-Tx-fDI"/>
                         <outlet property="trashIcon" destination="lEb-rR-z6O" id="n9W-Ic-AQJ"/>
                     </connections>
@@ -496,7 +556,7 @@ Ortes in dem du ein Festival besuchen willst</string>
                                     <action selector="trashButtonPressed:" destination="VU5-OP-Ja8" eventType="touchUpInside" id="8TE-mj-dkP"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JZz-2s-W3S">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JZz-2s-W3S" customClass="LoadingTableView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -568,8 +628,45 @@ Ortes in dem du ein Festival besuchen willst</string>
                                     <action selector="trashButtonPressed:" destination="FXL-sA-RzV" eventType="touchUpInside" id="UzB-SG-6wh"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Va3-CJ-Vf4">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lor-81-u1F" userLabel="search wrapper view">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="200" horizontalCompressionResistancePriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Suche" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ggq-Mw-XTV">
+                                        <rect key="frame" x="10" y="7" width="220" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="FXL-sA-RzV" id="Sga-Nn-UBS"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCG-C7-RWj">
+                                        <rect key="frame" x="240" y="8" width="70" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="Dbp-Hx-vcR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Abbrechen">
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="searchCancelButtonTapped:" destination="FXL-sA-RzV" eventType="touchUpInside" id="cWP-NF-TvW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="XCG-C7-RWj" firstAttribute="leading" secondItem="ggq-Mw-XTV" secondAttribute="trailing" constant="10" id="3Gf-ZV-brp"/>
+                                    <constraint firstItem="ggq-Mw-XTV" firstAttribute="top" secondItem="lor-81-u1F" secondAttribute="top" constant="7" id="5Qm-1U-WW4"/>
+                                    <constraint firstAttribute="bottom" secondItem="ggq-Mw-XTV" secondAttribute="bottom" constant="7" id="D1x-KR-uPl"/>
+                                    <constraint firstAttribute="bottom" secondItem="XCG-C7-RWj" secondAttribute="bottom" constant="8" id="GHz-ab-QdA"/>
+                                    <constraint firstItem="XCG-C7-RWj" firstAttribute="top" secondItem="lor-81-u1F" secondAttribute="top" constant="8" id="KpA-yj-zHS"/>
+                                    <constraint firstAttribute="height" constant="44" id="PZ7-WM-smH"/>
+                                    <constraint firstAttribute="trailing" secondItem="XCG-C7-RWj" secondAttribute="trailing" constant="10" id="v7E-eO-2ai"/>
+                                    <constraint firstItem="ggq-Mw-XTV" firstAttribute="leading" secondItem="lor-81-u1F" secondAttribute="leading" constant="10" id="vfO-aw-eVp"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Va3-CJ-Vf4" customClass="LoadingTableView">
+                                <rect key="frame" x="0.0" y="108" width="320" height="411"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="8dJ-Vc-li6" style="IBUITableViewCellStyleDefault" id="v8g-JD-ixP" customClass="FilterTableViewCell">
@@ -600,18 +697,26 @@ Ortes in dem du ein Festival besuchen willst</string>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Va3-CJ-Vf4" secondAttribute="trailing" id="53d-UD-QXm"/>
                             <constraint firstItem="Va3-CJ-Vf4" firstAttribute="leading" secondItem="ECZ-Ax-lzf" secondAttribute="leading" id="6xT-gV-Fwr"/>
+                            <constraint firstItem="Va3-CJ-Vf4" firstAttribute="top" secondItem="lor-81-u1F" secondAttribute="bottom" id="FnU-Rd-fBP"/>
                             <constraint firstAttribute="trailing" secondItem="LOR-10-ydg" secondAttribute="trailing" constant="5" id="Iig-rv-8oP"/>
                             <constraint firstItem="6ee-Fu-HTb" firstAttribute="leading" secondItem="ECZ-Ax-lzf" secondAttribute="leading" id="Nfe-fo-RGI"/>
                             <constraint firstAttribute="trailing" secondItem="6ee-Fu-HTb" secondAttribute="trailing" id="O8d-YW-g9c"/>
                             <constraint firstItem="6ee-Fu-HTb" firstAttribute="top" secondItem="Va3-CJ-Vf4" secondAttribute="bottom" id="PLm-L6-cAX"/>
+                            <constraint firstItem="lor-81-u1F" firstAttribute="trailing" secondItem="Va3-CJ-Vf4" secondAttribute="trailing" id="SXV-Px-PCn"/>
                             <constraint firstItem="qyC-DD-Qo1" firstAttribute="top" secondItem="6ee-Fu-HTb" secondAttribute="bottom" id="U2u-pq-PBb"/>
-                            <constraint firstItem="Va3-CJ-Vf4" firstAttribute="top" secondItem="NLG-gX-8Co" secondAttribute="bottom" id="c2s-A6-09S"/>
+                            <constraint firstItem="lor-81-u1F" firstAttribute="leading" secondItem="Va3-CJ-Vf4" secondAttribute="leading" id="Wnj-eV-EQq"/>
+                            <constraint firstItem="lor-81-u1F" firstAttribute="top" secondItem="NLG-gX-8Co" secondAttribute="bottom" id="cST-1s-oHo"/>
                             <constraint firstItem="qyC-DD-Qo1" firstAttribute="top" secondItem="LOR-10-ydg" secondAttribute="bottom" constant="2" id="wxi-MU-RJb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vHB-Ye-SOC"/>
                     <connections>
                         <outlet property="applyButton" destination="6ee-Fu-HTb" id="BJ8-8E-EOy"/>
+                        <outlet property="searchCancelButton" destination="XCG-C7-RWj" id="7lj-HQ-Aca"/>
+                        <outlet property="searchCancelButtonWidthConstraint" destination="Dbp-Hx-vcR" id="j3k-Kf-4yY"/>
+                        <outlet property="searchField" destination="ggq-Mw-XTV" id="U0P-Eb-cCy"/>
+                        <outlet property="searchWrapperView" destination="lor-81-u1F" id="aJh-ck-6je"/>
+                        <outlet property="searchWrapperViewTrailingConstraint" destination="3Gf-ZV-brp" id="baF-fo-qRU"/>
                         <outlet property="tableView" destination="Va3-CJ-Vf4" id="Qgq-fL-5BE"/>
                         <outlet property="trashIcon" destination="LOR-10-ydg" id="Dqw-sq-gxg"/>
                     </connections>

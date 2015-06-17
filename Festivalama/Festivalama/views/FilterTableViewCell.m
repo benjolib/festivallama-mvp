@@ -14,6 +14,7 @@
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
     self.textLabel.textColor = [UIColor whiteColor];
+    self.nameLabel.textColor = [UIColor whiteColor];
 }
 
 - (void)layoutSubviews

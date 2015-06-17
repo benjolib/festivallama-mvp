@@ -22,9 +22,12 @@
 + (instancetype)sharedModel;
 
 - (void)copySettingsFromOnboardingModel:(OnboardingModel*)onboarding;
+- (void)clearFilters;
 
 - (BOOL)isFiltering;
-- (void)clearFilters;
 - (NSString*)bandsString;
+- (NSString*)genresString;
+- (NSString*)bandsStringForAPICall;
+- (NSString*)genresStringForAPICall;
 
 @end

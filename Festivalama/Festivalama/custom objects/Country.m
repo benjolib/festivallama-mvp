@@ -19,4 +19,16 @@
     return country;
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[self class]])
+    {
+        Country *country = (Country*)object;
+        if ([country.name isEqualToString:self.name]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end

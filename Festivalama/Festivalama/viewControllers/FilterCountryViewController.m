@@ -21,8 +21,10 @@
 
 - (void)trashButtonPressed:(id)sender
 {
-    [self.selectedCountriesArray removeAllObjects];
     [FilterModel sharedModel].selectedCountry = nil;
+    [self.selectedCountriesArray removeAllObjects];
+    self.trashIcon.hidden = YES;
+    [self adjustButtonToFilterModel];
     [self.tableView reloadData];
 }
 
@@ -36,9 +38,16 @@
     if (!self.selectedCountriesArray) {
         self.selectedCountriesArray = [NSMutableArray array];
     }
+    
     if ([[FilterModel sharedModel] selectedCountry]) {
         [self.selectedCountriesArray addObject:[[FilterModel sharedModel] selectedCountry]];
     }
+    [self.tableView reloadData];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44.0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -58,7 +67,7 @@
     cell.textLabel.text = country.name;
     cell.imageView.image = [UIImage imageNamed:country.flag];
 
-    if (cell.selected || [self.selectedCountriesArray containsObject:country]) {
+    if ([self.selectedCountriesArray containsObject:country.name]) {
         UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
         cell.accessoryView = accessoryView;
         cell.textLabel.textColor = [UIColor whiteColor];
@@ -81,13 +90,13 @@
     Country *selectedCountry = self.allCountriesArray[indexPath.row];
 
     NSString *selectedCountryName = selectedCountry.name;
-    if ([self.selectedCountriesArray containsObject:selectedCountry]) {
-        [self.selectedCountriesArray removeObject:selectedCountry];
+    if ([self.selectedCountriesArray containsObject:selectedCountryName]) {
+        [self.selectedCountriesArray removeObject:selectedCountryName];
         [FilterModel sharedModel].selectedCountry = nil;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else {
         if (self.selectedCountriesArray.count == 0) {
-            [self.selectedCountriesArray addObject:selectedCountry];
+            [self.selectedCountriesArray addObject:selectedCountryName];
             [FilterModel sharedModel].selectedCountry = selectedCountryName;
             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
@@ -104,6 +113,7 @@
 
     [self setupDatasource];
     [self.tableView reloadData];
+    [self.tableView hideLoadingIndicator];
 }
 
 - (void)didReceiveMemoryWarning

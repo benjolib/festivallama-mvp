@@ -59,6 +59,7 @@
     } else {
         [self setTrashIconVisible:NO];
     }
+    [self.tableView hideLoadingIndicator];
 }
 
 - (void)didReceiveMemoryWarning
