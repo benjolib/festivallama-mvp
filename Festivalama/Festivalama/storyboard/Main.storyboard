@@ -420,26 +420,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OsT-aC-JJX">
+                            <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-fr-4Em">
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="OsT-aC-JJX" secondAttribute="bottom" id="8Bw-Na-Evi"/>
-                            <constraint firstItem="OsT-aC-JJX" firstAttribute="leading" secondItem="FEA-9a-f6d" secondAttribute="leading" id="TOB-68-zvZ"/>
-                            <constraint firstItem="OsT-aC-JJX" firstAttribute="top" secondItem="60l-KV-haS" secondAttribute="bottom" id="fl4-Hb-8yN"/>
-                            <constraint firstAttribute="trailing" secondItem="OsT-aC-JJX" secondAttribute="trailing" id="pqh-9e-Fwo"/>
+                            <constraint firstAttribute="trailing" secondItem="1F9-fr-4Em" secondAttribute="trailing" id="7Fw-gz-n6T"/>
+                            <constraint firstItem="6UT-be-vbr" firstAttribute="top" secondItem="1F9-fr-4Em" secondAttribute="bottom" id="EWQ-rg-sFp"/>
+                            <constraint firstItem="1F9-fr-4Em" firstAttribute="top" secondItem="60l-KV-haS" secondAttribute="bottom" id="ZDp-Fu-u1M"/>
+                            <constraint firstItem="1F9-fr-4Em" firstAttribute="leading" secondItem="FEA-9a-f6d" secondAttribute="leading" id="wQR-W7-8Ky"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UYK-1G-eTi"/>
                     <connections>
-                        <outlet property="textView" destination="OsT-aC-JJX" id="t59-EQ-POv"/>
+                        <outlet property="webview" destination="1F9-fr-4Em" id="iXH-IE-cuU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceD-LK-ZeO" userLabel="First Responder" sceneMemberID="firstResponder"/>

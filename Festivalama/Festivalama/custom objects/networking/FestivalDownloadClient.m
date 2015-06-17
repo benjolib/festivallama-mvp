@@ -28,10 +28,10 @@
             [urlString appendString:[NSString stringWithFormat:@"&city=%@", filterModel.selectedPostCode]];
         }
         if (filterModel.selectedGenresArray.count > 0) {
-            [urlString appendString:[NSString stringWithFormat:@"&genre=%@", filterModel.selectedGenresArray]];
+            [urlString appendString:[NSString stringWithFormat:@"&genre=%@", [filterModel genresStringForAPICall]]];
         }
         if (filterModel.selectedBandsArray.count > 0) {
-            [urlString appendString:[NSString stringWithFormat:@"&band=%@", filterModel.selectedBandsArray]];
+            [urlString appendString:[NSString stringWithFormat:@"&band=%@", [filterModel bandsStringForAPICall]]];
         }
     }
 

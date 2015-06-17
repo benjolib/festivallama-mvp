@@ -56,12 +56,10 @@
 
 - (void)updateTableCounterView
 {
-    if (self.fetchController.fetchedObjects.count == 0) {
-        [self.tableCounterView setCounterViewVisible:NO animated:NO];
-    } else {
-        [self.tableCounterView displayTheNumberOfItems:self.fetchController.fetchedObjects.count];
-        [self.tableCounterView setCounterViewVisible:YES animated:YES];
-    }
+    NSInteger numberOfItems = self.fetchController.fetchedObjects.count;
+    [self.tableCounterView displayTheNumberOfItems:(numberOfItems == 0 ? 0 : numberOfItems)];
+
+    [self.tableCounterView setCounterViewVisible:(numberOfItems != 0) animated:YES];
 }
 
 #pragma mark - fetchController delegate methods

@@ -22,7 +22,7 @@
 {
     if ([object isKindOfClass:[self class]]) {
         OnboardingOption *option = (OnboardingOption*)object;
-        if ([option.title isEqualToString:self.title] && (option.optionIndex == self.optionIndex)) {
+        if ([option.title isEqualToString:self.title]) {
             return YES;
         }
     }

@@ -48,7 +48,7 @@
 {
     [[FilterModel sharedModel] clearFilters];
     self.trashIcon.hidden = ![FilterModel.sharedModel isFiltering];
-    [self downloadAllFestivals];
+    [self refreshView];
 }
 
 - (void)calenderButtonTapped:(UIButton*)button
@@ -119,17 +119,15 @@
     [cell showSavedState:[[CoreDataHandler sharedHandler] isFestivalSaved:festival]];
 
     [cell.calendarButton addTarget:self action:@selector(calenderButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [cell setPopularityValue:0];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [(FestivalTableViewCell*)cell hidePopularityView];
-
-    NSInteger lastSectionIndex = [tableView numberOfSections] - 1;
-    NSInteger lastRowIndex = [tableView numberOfRowsInSection:lastSectionIndex] - 1;
-    if ((indexPath.section == lastSectionIndex) && (indexPath.row == lastRowIndex) && (tableView.visibleCells.count < self.festivalsArray.count) && !self.isSearching)
+    NSInteger lastRowIndex = [tableView numberOfRowsInSection:0] - 1;
+    if ((indexPath.row == lastRowIndex) && (lastRowIndex < self.festivalsArray.count) && !self.isSearching)
     {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.showLoadingIndicatorCell = YES;
@@ -185,6 +183,7 @@
         self.festivalsArray = [NSMutableArray array];
     }
 
+    NSInteger numberOfItemsBeforeUpdate = self.festivalsArray.count;
     __weak typeof(self) weakSelf = self;
     [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex limit:self.limit filterModel:[FilterModel sharedModel] searchText:self.searchText andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
         [weakSelf.tableView hideLoadingIndicator];
@@ -199,14 +198,16 @@
                 [weakSelf.tableCounterView setCounterViewVisible:NO animated:YES];
             } else {
                 [weakSelf.tableCounterView setCounterViewVisible:YES animated:YES];
-                [weakSelf.tableCounterView displayTheNumberOfItems:weakSelf.festivalsArray.count];
+                [weakSelf.tableCounterView displayTheNumberOfItems:(weakSelf.festivalsArray.count == 0 ? 0 : weakSelf.festivalsArray.count)];
             }
         } else {
             // Handle errors
 
         }
         weakSelf.showLoadingIndicatorCell = NO;
-        [weakSelf.tableView reloadData];
+        if (numberOfItemsBeforeUpdate != weakSelf.festivalsArray.count) {
+            [weakSelf.tableView reloadData];
+        }
         [weakSelf.refreshController endRefreshing];
         if (weakSelf.tableView.contentOffset.y < 0) {
             weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
@@ -223,16 +224,20 @@
 - (void)downloadNextFestivals
 {
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+    if ((self.startIndex + self.limit) < self.festivalsArray.count) {
+        self.startIndex = self.festivalsArray.count;
+    } else {
         self.startIndex = self.startIndex + self.limit;
-        [self downloadAllFestivals];
+    }
+    [self downloadAllFestivals];
 //    });
 }
 
 - (void)filterContent:(NSNotification*)notification
 {
-    if([FilterModel.sharedModel isFiltering]) {
-        [self downloadAllFestivals];
-    }
+    [self.festivalsArray removeAllObjects];
+    [self downloadAllFestivals];
 }
 
 #pragma mark - searching
@@ -317,7 +322,7 @@
     [self.tableView showLoadingIndicator];
     [self refreshView];
 
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filterContent:) name:@"festivalFilterEnabled" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filterContent:) name:@"festivalFilterEnabled" object:nil];
 }
 
 - (void)prepareView
