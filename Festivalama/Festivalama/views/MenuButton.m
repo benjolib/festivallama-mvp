@@ -9,6 +9,7 @@
 #import "MenuButton.h"
 #import "UIColor+AppColors.h"
 #import "BadgeCounterView.h"
+#import "UIFont+LatoFonts.h"
 
 @interface MenuButton ()
 @property (nonatomic, strong) BadgeCounterView *badgeView;
@@ -20,6 +21,7 @@
 {
     [super awakeFromNib];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont latoRegularFontWithSize:13.0];
 
     if (self.titleLabel.text) {
         self.imageView.tintColor = [UIColor globalGreenColor];

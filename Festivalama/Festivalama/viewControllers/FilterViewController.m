@@ -14,6 +14,7 @@
 #import "GenreDownloadClient.h"
 #import "FilterGenresViewController.h"
 #import "FilterBandsViewController.h"
+#import "UIFont+LatoFonts.h"
 
 @interface FilterViewController ()
 @property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
@@ -35,7 +36,9 @@
 
 - (IBAction)trashButtonPressed:(id)sender
 {
-    [self.filterModel clearFilters];
+    [[FilterModel sharedModel] clearFilters];
+    [self adjustButtonToFilterModel];
+    [self.tableView reloadData];
 }
 
 - (void)downloadGenres
@@ -141,6 +144,8 @@
 {
     [super viewDidLoad];
     self.title = @"Filter";
+
+    self.applyButton.titleLabel.font = [UIFont latoRegularFontWithSize:17.0];
 
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

@@ -7,6 +7,7 @@
 //
 
 #import "FilterBandsTableViewCell.h"
+#import "UIFont+LatoFonts.h"
 
 @implementation FilterBandsTableViewCell
 
@@ -15,6 +16,8 @@
     self.backgroundColor = [UIColor clearColor];
     self.nameLabel.textColor = [UIColor whiteColor];
     self.bandDetailLabel.textColor = [UIColor whiteColor];
+    self.textLabel.font = [UIFont latoRegularFontWithSize:16];
+    self.nameLabel.font = [UIFont latoRegularFontWithSize:16];
 }
 
 @end

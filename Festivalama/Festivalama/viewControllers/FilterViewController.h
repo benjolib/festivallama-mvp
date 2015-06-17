@@ -19,7 +19,6 @@
 @property (nonatomic, weak) IBOutlet UIButton *trashIcon;
 
 @property (nonatomic, strong, readonly) NSArray *genresArray;
-@property (nonatomic, strong) FilterModel *filterModel;
 
 // search views
 @property (nonatomic, weak) IBOutlet UIView *searchWrapperView;

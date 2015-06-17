@@ -48,16 +48,16 @@
 #pragma mark - button methods
 - (void)confirmButtonPressed:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(popupViewConfirmButtonPressed)]) {
-        [self.delegate popupViewConfirmButtonPressed];
+    if ([self.delegate respondsToSelector:@selector(popupViewConfirmButtonPressed:)]) {
+        [self.delegate popupViewConfirmButtonPressed:self];
     }
     [self dismissViewWithAnimation:YES];
 }
 
 - (void)cancelButtonPressed:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(popupViewCancelButtonPressed)]) {
-        [self.delegate popupViewCancelButtonPressed];
+    if ([self.delegate respondsToSelector:@selector(popupViewCancelButtonPressed:)]) {
+        [self.delegate popupViewCancelButtonPressed:self];
     }
     [self dismissViewWithAnimation:YES];
 }

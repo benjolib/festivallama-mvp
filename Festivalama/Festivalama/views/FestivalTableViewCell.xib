@@ -4,6 +4,16 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
+            <string>Lato-Bold</string>
+        </mutableArray>
+        <mutableArray key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -23,12 +33,12 @@
                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="xb0-mI-9pw">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="xb0-mI-9pw">
                         <rect key="frame" x="42" y="10" width="216" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="fda-rp-QLk"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -44,7 +54,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="5Zo-Jf-tsd"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -60,16 +70,16 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="AlW-mv-6Be"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTt-OJ-whG" userLabel="popularity view">
-                        <rect key="frame" x="16" y="14" width="21" height="12"/>
+                        <rect key="frame" x="16" y="16" width="21" height="12"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="gKi-aO-QOI">
                                 <rect key="frame" x="0.0" y="0.0" width="21" height="12"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="7"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="7"/>
                                 <color key="textColor" red="0.31372549020000001" green="0.68627450980000004" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -100,7 +110,7 @@
                     <constraint firstItem="f28-og-3nm" firstAttribute="leading" secondItem="zas-ah-5HL" secondAttribute="leading" constant="16" id="Uja-jU-WVl"/>
                     <constraint firstAttribute="trailing" secondItem="n9S-4l-Yss" secondAttribute="trailing" constant="10" id="W3o-b9-4Bh"/>
                     <constraint firstItem="ewS-JE-1XP" firstAttribute="top" secondItem="xb0-mI-9pw" secondAttribute="bottom" constant="1" id="e9K-eB-zVV"/>
-                    <constraint firstItem="fTt-OJ-whG" firstAttribute="centerY" secondItem="xb0-mI-9pw" secondAttribute="centerY" id="lcq-IC-1WW"/>
+                    <constraint firstItem="fTt-OJ-whG" firstAttribute="centerY" secondItem="xb0-mI-9pw" secondAttribute="centerY" constant="1" id="lcq-IC-1WW"/>
                     <constraint firstItem="n9S-4l-Yss" firstAttribute="leading" secondItem="AYE-i4-DxP" secondAttribute="trailing" constant="10" id="t4E-nP-Clw"/>
                     <constraint firstItem="xb0-mI-9pw" firstAttribute="top" secondItem="zas-ah-5HL" secondAttribute="top" constant="10" id="v59-3Z-fy0"/>
                 </constraints>

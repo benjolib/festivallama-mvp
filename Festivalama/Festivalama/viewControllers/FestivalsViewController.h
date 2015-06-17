@@ -21,6 +21,10 @@
 @property (nonatomic, strong) TableviewCounterView *tableCounterView;
 @property (nonatomic) BOOL showLoadingIndicatorCell;
 
+@property (nonatomic, strong) NSTimer *searchTimer;
+@property (nonatomic, copy) NSString *searchText;
+@property (nonatomic) BOOL isSearching;
+
 - (IBAction)filterButtonPressed:(id)sender;
 - (IBAction)trashButtonPressed:(id)sender;
 

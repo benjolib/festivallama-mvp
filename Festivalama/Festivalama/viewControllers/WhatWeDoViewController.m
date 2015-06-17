@@ -8,10 +8,6 @@
 
 #import "WhatWeDoViewController.h"
 
-@interface WhatWeDoViewController ()
-
-@end
-
 @implementation WhatWeDoViewController
 
 

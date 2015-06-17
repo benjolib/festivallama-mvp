@@ -28,7 +28,7 @@
             [urlString appendString:[NSString stringWithFormat:@"&city=%@", filterModel.selectedPostCode]];
         }
         if (filterModel.selectedGenresArray.count > 0) {
-            [urlString appendString:[NSString stringWithFormat:@"&genre=%@", [filterModel genresStringForAPICall]]];
+            [urlString appendString:[NSString stringWithFormat:@"&category=%@", [filterModel genresStringForAPICall]]];
         }
         if (filterModel.selectedBandsArray.count > 0) {
             [urlString appendString:[NSString stringWithFormat:@"&band=%@", [filterModel bandsStringForAPICall]]];
@@ -36,7 +36,7 @@
     }
 
     if (searchText.length > 0) {
-        [urlString appendString:[NSString stringWithFormat:@"&name=%@", searchText]];
+        [urlString appendString:[NSString stringWithFormat:@"&name=%@", [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     }
 
     [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];

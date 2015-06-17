@@ -18,6 +18,7 @@
 #import "InfoDetailSelectionButton.h"
 #import "PopupView.h"
 #import "TicketShopDetailViewController.h"
+#import "UIFont+LatoFonts.h"
 
 @interface FestivalDetailViewController () <PopupViewDelegate>
 @property (nonatomic, strong) FestivalDetailBaseViewController *displayViewController;
@@ -133,7 +134,7 @@
     [self.activePopup showPopupViewAnimationOnView:self.view withBlurredBackground:YES];
 }
 
-- (void)popupViewConfirmButtonPressed
+- (void)popupViewConfirmButtonPressed:(PopupView *)popupView
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"showTicketShopView" sender:nil];
@@ -146,6 +147,7 @@
     [super viewDidLoad];
     self.title = self.festivalToDisplay.name;
 
+    self.titleLabel.font = [UIFont latoRegularFontWithSize:20.0];
     self.titleLabel.textColor = [UIColor globalGreenColor];
     self.titleLabel.text = self.festivalToDisplay.name;
 

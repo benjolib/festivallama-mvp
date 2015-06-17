@@ -14,6 +14,7 @@
 #import "CDFestival+CDFestivalHelper.h"
 #import "FestivalModel.h"
 #import "FestivalDetailViewController.h"
+#import "UIFont+LatoFonts.h"
 
 @interface CalendarViewController () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSArray *savedFestivalsArray;
@@ -147,7 +148,7 @@
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
     titleLabel.textAlignment = NSTextAlignmentLeft;
-    titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0];
+    titleLabel.font = [UIFont latoBoldFontWithSize:17.0];
     [headerView addSubview:titleLabel];
 
     return headerView;
@@ -162,7 +163,7 @@
 
     cell.nameLabel.text = festival.name;
     cell.locationLabel.text = [festival locationAddress];
-    NSString *timeString = [festival calendarDaysTillEndDateString];
+    NSString *timeString = [festival calendarDaysTillStartDateString];
     cell.timeLeftLabel.text = timeString;
     cell.calendarIcon.hidden = timeString.length == 0;
 

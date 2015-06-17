@@ -10,4 +10,19 @@
 
 @interface UIFont (LatoFonts)
 
++ (UIFont*)latoBlackFontWithSize:(CGFloat)size;
++ (UIFont*)latoBlackItalicFontWithSize:(CGFloat)size;
+
++ (UIFont*)latoBoldFontWithSize:(CGFloat)size;
++ (UIFont*)latoBoldItalicFontWithSize:(CGFloat)size;
+
++ (UIFont*)latoHairlineFontWithSize:(CGFloat)size;
++ (UIFont*)latoHairlineItalicFontWithSize:(CGFloat)size;
+
++ (UIFont*)latoItalicFontWithSize:(CGFloat)size;
++ (UIFont*)latoRegularFontWithSize:(CGFloat)size;
+
++ (UIFont*)latoLightFontWithSize:(CGFloat)size;
++ (UIFont*)latoLightItalicFontWithSize:(CGFloat)size;
+
 @end

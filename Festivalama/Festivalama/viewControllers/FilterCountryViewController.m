@@ -95,11 +95,18 @@
         [FilterModel sharedModel].selectedCountry = nil;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else {
-        if (self.selectedCountriesArray.count == 0) {
-            [self.selectedCountriesArray addObject:selectedCountryName];
-            [FilterModel sharedModel].selectedCountry = selectedCountryName;
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if (self.selectedCountriesArray.count != 0) {
+            Country *selectedCountry = [Country countryWithName:self.selectedCountriesArray.firstObject flag:nil];
+            NSInteger selectedCountryIndex = [self.allCountriesArray indexOfObject:selectedCountry];
+            NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:selectedCountryIndex inSection:0];
+            [self.selectedCountriesArray removeAllObjects];
+            if (selectedIndexPath) {
+                [tableView reloadRowsAtIndexPaths:@[selectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
         }
+        [self.selectedCountriesArray addObject:selectedCountryName];
+        [FilterModel sharedModel].selectedCountry = selectedCountryName;
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 
     [self adjustButtonToFilterModel];

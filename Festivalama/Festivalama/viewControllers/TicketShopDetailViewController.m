@@ -87,7 +87,7 @@
     [self.confirmPopup showPopupViewAnimationOnView:self.view withBlurredBackground:YES];
 }
 
-- (void)popupViewConfirmButtonPressed
+- (void)popupViewConfirmButtonPressed:(PopupView *)popupView
 {
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -8,9 +8,7 @@
 
 #import "FestivalDetailInfoViewController.h"
 #import "FestivalModel.h"
-
-@interface FestivalDetailInfoViewController ()
-@end
+#import "UIFont+LatoFonts.h"
 
 @implementation FestivalDetailInfoViewController
 
@@ -21,6 +19,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     self.containerView.backgroundColor = [UIColor clearColor];
 
+    self.infoTextLabel.font = [UIFont latoRegularFontWithSize:16.0];
     [self refreshView];
     [self.scrollView flashScrollIndicators];
 }
@@ -47,7 +46,7 @@
         return;
     }
 
-    NSDictionary *attributes = @{NSFontAttributeName:self.infoTextLabel.font};
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont latoRegularFontWithSize:16.0]};
     NSInteger options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesLineFragmentOrigin;
     CGRect labelRect = [self.infoTextLabel.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.infoTextLabel.frame), CGFLOAT_MAX) options:options attributes:attributes context:NULL];
 

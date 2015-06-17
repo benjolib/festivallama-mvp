@@ -7,8 +7,15 @@
 //
 
 #import "InfoDetailSelectionButton.h"
+#import "UIFont+LatoFonts.h"
 
 @implementation InfoDetailSelectionButton
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.titleLabel.font = [UIFont latoRegularFontWithSize:16.0];
+}
 
 - (void)setButtonPosition:(NSInteger)position selectedPosition:(NSInteger)selectedPosition active:(BOOL)active
 {

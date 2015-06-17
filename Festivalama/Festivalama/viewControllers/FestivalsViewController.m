@@ -29,9 +29,6 @@
 @property (nonatomic, strong) MenuTransitionManager *menuTransitionManager;
 @property (nonatomic, strong) FestivalDownloadClient *festivalDownloadClient;
 @property (nonatomic, strong) FestivalRankClient *rankClient;
-@property (nonatomic, strong) NSTimer *searchTimer;
-@property (nonatomic, copy) NSString *searchText;
-@property (nonatomic) BOOL isSearching;
 @property (nonatomic) NSInteger limit;
 @property (nonatomic) NSInteger startIndex;
 @end
@@ -112,7 +109,7 @@
 
     cell.nameLabel.text = festival.name;
     cell.locationLabel.text = [festival locationAddress];
-    NSString *timeString = [festival calendarDaysTillEndDateString];
+    NSString *timeString = [festival calendarDaysTillStartDateString];
     cell.timeLeftLabel.text = timeString;
     cell.calendarIcon.hidden = timeString.length == 0;
 
@@ -191,7 +188,11 @@
             if (weakSelf.isSearching) {
                 weakSelf.festivalsArray = [festivalsArray mutableCopy];
             } else {
-                [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
+                if (weakSelf.startIndex == 0) {
+                    weakSelf.festivalsArray = [festivalsArray mutableCopy];
+                } else {
+                    [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
+                }
             }
 
             if (weakSelf.festivalsArray.count == 0 && weakSelf.isSearching) {
@@ -236,8 +237,10 @@
 
 - (void)filterContent:(NSNotification*)notification
 {
-    [self.festivalsArray removeAllObjects];
-    [self downloadAllFestivals];
+    if ([[FilterModel sharedModel] isFiltering]) {
+        [self.festivalsArray removeAllObjects];
+        [self downloadAllFestivals];
+    }
 }
 
 #pragma mark - searching
@@ -322,6 +325,7 @@
     [self.tableView showLoadingIndicator];
     [self refreshView];
 
+    [GeneralSettings saveAppStartDate];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filterContent:) name:@"festivalFilterEnabled" object:nil];
 }
 

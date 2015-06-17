@@ -7,6 +7,7 @@
 //
 
 #import "FilterTableViewCell.h"
+#import "UIFont+LatoFonts.h"
 
 @implementation FilterTableViewCell
 
@@ -15,6 +16,8 @@
     self.backgroundColor = [UIColor clearColor];
     self.textLabel.textColor = [UIColor whiteColor];
     self.nameLabel.textColor = [UIColor whiteColor];
+    self.textLabel.font = [UIFont latoRegularFontWithSize:16];
+    self.nameLabel.font = [UIFont latoRegularFontWithSize:16];
 }
 
 - (void)layoutSubviews

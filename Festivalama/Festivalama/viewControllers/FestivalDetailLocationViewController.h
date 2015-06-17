@@ -18,4 +18,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *cityLabel;
 @property (nonatomic, weak) IBOutlet WebsiteButton *websiteButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *locationTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *streetTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *postcodeTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *placeTitleLabel;
+
 @end

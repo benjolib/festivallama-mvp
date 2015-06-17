@@ -9,6 +9,7 @@
 #import "FestivalDetailBandsViewController.h"
 #import "FestivalModel.h"
 #import "Band.h"
+#import "UIFont+LatoFonts.h"
 
 @interface FestivalDetailBandsViewController ()
 @property (nonatomic, strong) NSArray *tableData;
@@ -58,6 +59,7 @@
     Band *band = self.tableData[indexPath.section][indexPath.row];
 
     cell.textLabel.text = band.name;
+    cell.textLabel.font = [UIFont latoRegularFontWithSize:17.0];
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = [UIColor whiteColor];
     return cell;

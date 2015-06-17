@@ -17,6 +17,11 @@
 @property (nonatomic, weak) IBOutlet UILabel *festivalLocationLabel;
 @property (nonatomic, weak) IBOutlet UILabel *festivalCostsLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *costTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *typeTitleLabel;
+
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UIView *containerView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *containerViewHeightConstraint;

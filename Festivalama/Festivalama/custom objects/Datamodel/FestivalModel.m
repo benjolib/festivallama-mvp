@@ -32,7 +32,6 @@
     festival.category = [dictionary nonNullObjectForKey:@"category"];
     festival.rank = [dictionary nonNullObjectForKey:@"rank"];
 
-    // TODO: dates
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"YYYY-MM-dd";
 
@@ -63,14 +62,13 @@
     return [NSString stringWithFormat:@"%@, %@", self.city, self.country];
 }
 
-- (NSString*)calendarDaysTillEndDateString
+- (NSString*)calendarDaysTillStartDateString
 {
-    if (!self.endDate || !self.startDate) {
+    if (!self.startDate) {
         return nil;
     }
     NSInteger numberOfDaysLeft = [self daysTillStartDate];
-    if (numberOfDaysLeft == 0) {
-        // TODO:
+    if (numberOfDaysLeft < 0) {
         return nil;
     }
     return [NSString stringWithFormat:@"In %ld Tagen", (long)numberOfDaysLeft];
@@ -90,7 +88,6 @@
     return numberOfDays;
 }
 
-
 #pragma mark - info view methods
 - (NSString*)infoLocationString
 {
@@ -109,8 +106,9 @@
     NSInteger startYear = startComponents.year;
 
     if (!self.endDate) {
-        return nil;
+        return [NSString stringWithFormat:@"%ld. %.2ld. %ld", (long)startDay, (long)startMonth, (long)startYear];
     }
+
     NSDateComponents *endComponents = [gregorianCalendar components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self.endDate];
     NSInteger endDay = endComponents.day;
     NSInteger endMonth = endComponents.month;
@@ -124,9 +122,6 @@
         } else {
             formattedInfoDateString = [NSString stringWithFormat:@"%ld.-%ld. %.2ld. %ld", (long)startDay, (long)endDay, (long)startMonth, (long)startYear];
         }
-        return formattedInfoDateString;
-    } else {
-        formattedInfoDateString = [NSString stringWithFormat:@"%ld. %.2ld. %ld", (long)startDay, (long)startMonth, (long)startYear];
         return formattedInfoDateString;
     }
 

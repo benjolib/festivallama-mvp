@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class PopupViewButton;
+@class PopupViewButton, PopupView;
 
 @protocol PopupViewDelegate <NSObject>
 
-- (void)popupViewConfirmButtonPressed;
+- (void)popupViewConfirmButtonPressed:(PopupView*)popupView;
 @optional
-- (void)popupViewCancelButtonPressed;
+- (void)popupViewCancelButtonPressed:(PopupView*)popupView;
 
 @end
 

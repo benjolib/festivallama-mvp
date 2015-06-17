@@ -9,9 +9,7 @@
 #import "FestivalDetailLocationViewController.h"
 #import "FestivalModel.h"
 #import "WebsiteButton.h"
-
-@interface FestivalDetailLocationViewController ()
-@end
+#import "UIFont+LatoFonts.h"
 
 @implementation FestivalDetailLocationViewController
 
@@ -26,6 +24,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     [self refreshView];
+    [self setFonts];
 }
 
 - (void)refreshView
@@ -37,6 +36,19 @@
     self.cityLabel.text = self.festivalToDisplay.city;
 
     self.websiteButton.hidden = self.festivalToDisplay.website.length == 0;
+}
+
+- (void)setFonts
+{
+    self.locationTitleLabel.font = [UIFont latoBoldFontWithSize:16];
+    self.streetTitleLabel.font = [UIFont latoBoldFontWithSize:16];
+    self.postCodeLabel.font = [UIFont latoBoldFontWithSize:16];
+    self.placeTitleLabel.font = [UIFont latoBoldFontWithSize:16];
+
+    self.locationNameLabel.font = [UIFont latoRegularFontWithSize:16.0];
+    self.streetLabel.font = [UIFont latoRegularFontWithSize:16.0];
+    self.postCodeLabel.font = [UIFont latoRegularFontWithSize:16.0];
+    self.cityLabel.font = [UIFont latoRegularFontWithSize:16.0];
 }
 
 @end

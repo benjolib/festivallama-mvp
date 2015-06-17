@@ -43,7 +43,7 @@
 
 - (NSString*)locationAddress;
 
-- (NSString*)calendarDaysTillEndDateString;
+- (NSString*)calendarDaysTillStartDateString;
 - (NSInteger)daysTillStartDate;
 
 - (NSString*)festivalInfoDateString;

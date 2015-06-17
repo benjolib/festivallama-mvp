@@ -8,10 +8,7 @@
 
 #import "FilterNavigationController.h"
 #import "UIColor+AppColors.h"
-
-@interface FilterNavigationController ()
-
-@end
+#import "UIFont+LatoFonts.h"
 
 @implementation FilterNavigationController
 
@@ -19,7 +16,7 @@
     [super viewDidLoad];
     [[UINavigationBar appearance] setTintColor:[UIColor globalGreenColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor globalGreenColor]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor globalGreenColor], NSFontAttributeName: [UIFont latoRegularFontWithSize:20.0]}];
 }
 
 - (BOOL)prefersStatusBarHidden

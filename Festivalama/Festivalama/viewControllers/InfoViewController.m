@@ -9,6 +9,7 @@
 #import "InfoViewController.h"
 #import "BaseTableViewCell.h"
 #import <StoreKit/StoreKit.h>
+#import "UIFont+LatoFonts.h"
 
 @interface InfoViewController () <SKStoreProductViewControllerDelegate>
 @property (nonatomic, strong) NSArray *cellTitlesArray;
@@ -43,6 +44,7 @@
     }
     cell.textLabel.text = self.cellTitlesArray[indexPath.row];
     cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.font = [UIFont latoRegularFontWithSize:16.0];
     UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclosureIcon"]];
     cell.accessoryView = accessoryView;
     
@@ -84,7 +86,7 @@
     [storeProductViewController setDelegate:self];
 
     // TODO: needs App id
-    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"594467299"} completionBlock:^(BOOL result, NSError *error) {
+    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"0"} completionBlock:^(BOOL result, NSError *error) {
         if (error) {
             NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
 

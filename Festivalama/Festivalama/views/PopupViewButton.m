@@ -8,6 +8,7 @@
 
 #import "PopupViewButton.h"
 #import "UIColor+AppColors.h"
+#import "UIFont+LatoFonts.h"
 
 @implementation PopupViewButton
 
@@ -16,6 +17,7 @@
     self = [super init];
     if (self) {
         self.layer.cornerRadius = 30;
+        [self.titleLabel setFont:[UIFont latoBoldFontWithSize:18]];
     }
     return self;
 }

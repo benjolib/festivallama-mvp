@@ -7,6 +7,7 @@
 //
 
 #import "WebsiteButton.h"
+#import "UIFont+LatoFonts.h"
 
 @implementation WebsiteButton
 
@@ -14,6 +15,7 @@
 {
     [super awakeFromNib];
 
+    self.titleLabel.font = [UIFont latoBoldFontWithSize:16.0];
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 
     NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithString:self.titleLabel.text];

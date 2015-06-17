@@ -61,12 +61,12 @@
     NSString *selectedPostcode = self.allPostcodesArray[indexPath.row];
     if ([self.selectedPostCodesArray containsObject:selectedPostcode]) {
         [self.selectedPostCodesArray removeObject:selectedPostcode];
-        self.filterModel.selectedPostCode = nil;
+        [FilterModel sharedModel].selectedPostCode = nil;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else {
         if (self.selectedPostCodesArray.count == 0) {
             [self.selectedPostCodesArray addObject:selectedPostcode];
-            self.filterModel.selectedPostCode = selectedPostcode;
+            [FilterModel sharedModel].selectedPostCode = selectedPostcode;
             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }

@@ -64,7 +64,7 @@
 }
 
 #pragma mark - popup methods
-- (void)popupViewConfirmButtonPressed
+- (void)popupViewConfirmButtonPressed:(PopupView *)popupView
 {
     if (!self.firstPopupWasDisplayed) {
         self.firstPopupWasDisplayed = YES;
