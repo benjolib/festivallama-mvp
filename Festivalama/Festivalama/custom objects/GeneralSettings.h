@@ -16,4 +16,13 @@
 + (void)setTutorialsShown;
 + (BOOL)wasTutorialShown;
 
++ (void)setOnTrackPromptWasShown;
++ (BOOL)wasOnTrackPromptShown;
+
++ (void)setRateAppWasShown;
++ (BOOL)wasRateAppShown;
+
++ (void)saveAppStartDate;
++ (NSTimeInterval)passedIntervalSinceAppStart;
+
 @end

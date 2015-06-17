@@ -42,7 +42,6 @@
 		5616120E1B1BBC2A00147093 /* FilterCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616120D1B1BBC2A00147093 /* FilterCountryViewController.m */; };
 		561612111B1BC43900147093 /* FilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 561612101B1BC43900147093 /* FilterTableViewCell.m */; };
 		561612141B1BC75E00147093 /* FilterCountriesDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 561612131B1BC75E00147093 /* FilterCountriesDatasource.m */; };
-		561612161B1BC7AE00147093 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 561612151B1BC7AE00147093 /* CountryPicker.bundle */; };
 		561612191B1BCF6500147093 /* FilterGenresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 561612181B1BCF6500147093 /* FilterGenresViewController.m */; };
 		562352351B24409E000ABCAC /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562352341B24409E000ABCAC /* CalendarViewController.m */; };
 		562352391B2440DE000ABCAC /* FestivalDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562352381B2440DE000ABCAC /* FestivalDetailInfoViewController.m */; };
@@ -63,6 +62,17 @@
 		567703731B27A8E000DC34AC /* TicketShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567703721B27A8E000DC34AC /* TicketShopDetailViewController.m */; };
 		567703761B27AADD00DC34AC /* WhiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567703751B27AADD00DC34AC /* WhiteButton.m */; };
 		567C23AF1B2A0304002EB7B4 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567C23AE1B2A0304002EB7B4 /* FilterButton.m */; };
+		567FD41F1B320C6F00D9A1D1 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD4151B320C6F00D9A1D1 /* Lato-Black.ttf */; };
+		567FD4201B320C6F00D9A1D1 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD4161B320C6F00D9A1D1 /* Lato-BlackItalic.ttf */; };
+		567FD4211B320C6F00D9A1D1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD4171B320C6F00D9A1D1 /* Lato-Bold.ttf */; };
+		567FD4221B320C6F00D9A1D1 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD4181B320C6F00D9A1D1 /* Lato-BoldItalic.ttf */; };
+		567FD4231B320C6F00D9A1D1 /* Lato-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD4191B320C6F00D9A1D1 /* Lato-Hairline.ttf */; };
+		567FD4241B320C6F00D9A1D1 /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD41A1B320C6F00D9A1D1 /* Lato-HairlineItalic.ttf */; };
+		567FD4251B320C6F00D9A1D1 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD41B1B320C6F00D9A1D1 /* Lato-Italic.ttf */; };
+		567FD4261B320C6F00D9A1D1 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD41C1B320C6F00D9A1D1 /* Lato-Light.ttf */; };
+		567FD4271B320C6F00D9A1D1 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD41D1B320C6F00D9A1D1 /* Lato-LightItalic.ttf */; };
+		567FD4281B320C6F00D9A1D1 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD41E1B320C6F00D9A1D1 /* Lato-Regular.ttf */; };
+		567FD42B1B320EDD00D9A1D1 /* UIFont+LatoFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 567FD42A1B320EDD00D9A1D1 /* UIFont+LatoFonts.m */; };
 		569B47821B28F34F0076C3B2 /* CDFestival.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47811B28F34F0076C3B2 /* CDFestival.m */; };
 		569B47851B28F3500076C3B2 /* CDBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47841B28F3500076C3B2 /* CDBand.m */; };
 		569B47881B28F3500076C3B2 /* CDGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47871B28F3500076C3B2 /* CDGenre.m */; };
@@ -193,7 +203,6 @@
 		561612101B1BC43900147093 /* FilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterTableViewCell.m; path = views/FilterTableViewCell.m; sourceTree = "<group>"; };
 		561612121B1BC75E00147093 /* FilterCountriesDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterCountriesDatasource.h; path = "custom objects/FilterCountriesDatasource.h"; sourceTree = "<group>"; };
 		561612131B1BC75E00147093 /* FilterCountriesDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterCountriesDatasource.m; path = "custom objects/FilterCountriesDatasource.m"; sourceTree = "<group>"; };
-		561612151B1BC7AE00147093 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
 		561612171B1BCF6500147093 /* FilterGenresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterGenresViewController.h; path = viewControllers/FilterGenresViewController.h; sourceTree = "<group>"; };
 		561612181B1BCF6500147093 /* FilterGenresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterGenresViewController.m; path = viewControllers/FilterGenresViewController.m; sourceTree = "<group>"; };
 		562352331B24409E000ABCAC /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalendarViewController.h; path = viewControllers/CalendarViewController.h; sourceTree = "<group>"; };
@@ -234,6 +243,18 @@
 		567703751B27AADD00DC34AC /* WhiteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhiteButton.m; path = views/WhiteButton.m; sourceTree = "<group>"; };
 		567C23AD1B2A0304002EB7B4 /* FilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterButton.h; path = views/FilterButton.h; sourceTree = "<group>"; };
 		567C23AE1B2A0304002EB7B4 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = views/FilterButton.m; sourceTree = "<group>"; };
+		567FD4151B320C6F00D9A1D1 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
+		567FD4161B320C6F00D9A1D1 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
+		567FD4171B320C6F00D9A1D1 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		567FD4181B320C6F00D9A1D1 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
+		567FD4191B320C6F00D9A1D1 /* Lato-Hairline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Hairline.ttf"; sourceTree = "<group>"; };
+		567FD41A1B320C6F00D9A1D1 /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		567FD41B1B320C6F00D9A1D1 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
+		567FD41C1B320C6F00D9A1D1 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		567FD41D1B320C6F00D9A1D1 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
+		567FD41E1B320C6F00D9A1D1 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		567FD4291B320EDD00D9A1D1 /* UIFont+LatoFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+LatoFonts.h"; path = "custom objects/UIFont+LatoFonts.h"; sourceTree = "<group>"; };
+		567FD42A1B320EDD00D9A1D1 /* UIFont+LatoFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+LatoFonts.m"; path = "custom objects/UIFont+LatoFonts.m"; sourceTree = "<group>"; };
 		569B47801B28F34F0076C3B2 /* CDFestival.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDFestival.h; path = "custom objects/coredata/CDFestival.h"; sourceTree = "<group>"; };
 		569B47811B28F34F0076C3B2 /* CDFestival.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDFestival.m; path = "custom objects/coredata/CDFestival.m"; sourceTree = "<group>"; };
 		569B47831B28F3500076C3B2 /* CDBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDBand.h; path = "custom objects/coredata/CDBand.h"; sourceTree = "<group>"; };
@@ -405,14 +426,10 @@
 		560D0A921B17951100B03090 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				567FD4141B320C5F00D9A1D1 /* fonts */,
+				567FD42C1B32364F00D9A1D1 /* Third party */,
 				560D0AA21B17951100B03090 /* Images.xcassets */,
 				56D2A7B81B20D95D0085CEDA /* festivalama_video.mov */,
-				56CF4ED51B2E311600A25CE7 /* Reachability.h */,
-				56CF4ED61B2E311600A25CE7 /* Reachability.m */,
-				56CE62E31B1FC83F0079570E /* Fabric.framework */,
-				56CE62E41B1FC83F0079570E /* Crashlytics.framework */,
-				56CF1B071B1B0D3200A899DB /* UIImage+ImageEffects.h */,
-				56CF1B081B1B0D3200A899DB /* UIImage+ImageEffects.m */,
 				560D0A931B17951100B03090 /* Info.plist */,
 				560D0A941B17951100B03090 /* main.m */,
 			);
@@ -586,6 +603,8 @@
 				56C44E8E1B1D144100DFFB6B /* NSDictionary+nonNullObjectForKey.m */,
 				560D0ADD1B179FBA00B03090 /* UIColor+AppColors.h */,
 				560D0ADE1B179FBA00B03090 /* UIColor+AppColors.m */,
+				567FD4291B320EDD00D9A1D1 /* UIFont+LatoFonts.h */,
+				567FD42A1B320EDD00D9A1D1 /* UIFont+LatoFonts.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -695,6 +714,36 @@
 			name = "Ticketshop views";
 			sourceTree = "<group>";
 		};
+		567FD4141B320C5F00D9A1D1 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				567FD4151B320C6F00D9A1D1 /* Lato-Black.ttf */,
+				567FD4161B320C6F00D9A1D1 /* Lato-BlackItalic.ttf */,
+				567FD4171B320C6F00D9A1D1 /* Lato-Bold.ttf */,
+				567FD4181B320C6F00D9A1D1 /* Lato-BoldItalic.ttf */,
+				567FD4191B320C6F00D9A1D1 /* Lato-Hairline.ttf */,
+				567FD41A1B320C6F00D9A1D1 /* Lato-HairlineItalic.ttf */,
+				567FD41B1B320C6F00D9A1D1 /* Lato-Italic.ttf */,
+				567FD41C1B320C6F00D9A1D1 /* Lato-Light.ttf */,
+				567FD41D1B320C6F00D9A1D1 /* Lato-LightItalic.ttf */,
+				567FD41E1B320C6F00D9A1D1 /* Lato-Regular.ttf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
+		567FD42C1B32364F00D9A1D1 /* Third party */ = {
+			isa = PBXGroup;
+			children = (
+				56CF4ED51B2E311600A25CE7 /* Reachability.h */,
+				56CF4ED61B2E311600A25CE7 /* Reachability.m */,
+				56CF1B071B1B0D3200A899DB /* UIImage+ImageEffects.h */,
+				56CF1B081B1B0D3200A899DB /* UIImage+ImageEffects.m */,
+				56CE62E31B1FC83F0079570E /* Fabric.framework */,
+				56CE62E41B1FC83F0079570E /* Crashlytics.framework */,
+			);
+			name = "Third party";
+			sourceTree = "<group>";
+		};
 		56C44E891B1D0F9E00DFFB6B /* countries */ = {
 			isa = PBXGroup;
 			children = (
@@ -702,7 +751,6 @@
 				5656B51B1B2E372600E04742 /* Country.m */,
 				561612121B1BC75E00147093 /* FilterCountriesDatasource.h */,
 				561612131B1BC75E00147093 /* FilterCountriesDatasource.m */,
-				561612151B1BC7AE00147093 /* CountryPicker.bundle */,
 			);
 			name = countries;
 			sourceTree = "<group>";
@@ -760,11 +808,11 @@
 		56D05A3D1B19D4180031F2A2 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
+				56C44E891B1D0F9E00DFFB6B /* countries */,
 				56C44E861B1D0E6500DFFB6B /* FestivalModel.h */,
 				56C44E871B1D0E6500DFFB6B /* FestivalModel.m */,
 				561612031B1BBA2E00147093 /* FilterModel.h */,
 				561612041B1BBA2E00147093 /* FilterModel.m */,
-				56C44E891B1D0F9E00DFFB6B /* countries */,
 				56D587F11B1E5D22007B3F5B /* Band.h */,
 				56D587F21B1E5D22007B3F5B /* Band.m */,
 				560D0AEE1B17C35D00B03090 /* Genre.h */,
@@ -860,15 +908,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D2A7B91B20D95D0085CEDA /* festivalama_video.mov in Resources */,
+				567FD4261B320C6F00D9A1D1 /* Lato-Light.ttf in Resources */,
 				56CF4ED21B2E251000A25CE7 /* SearchEmptyView.xib in Resources */,
-				561612161B1BC7AE00147093 /* CountryPicker.bundle in Resources */,
+				567FD4281B320C6F00D9A1D1 /* Lato-Regular.ttf in Resources */,
 				562352501B24C601000ABCAC /* TutorialPopupView.xib in Resources */,
+				567FD41F1B320C6F00D9A1D1 /* Lato-Black.ttf in Resources */,
+				567FD4201B320C6F00D9A1D1 /* Lato-BlackItalic.ttf in Resources */,
+				567FD4231B320C6F00D9A1D1 /* Lato-Hairline.ttf in Resources */,
 				56CF1AFD1B1B01BB00A899DB /* Onboarding.storyboard in Resources */,
+				567FD4211B320C6F00D9A1D1 /* Lato-Bold.ttf in Resources */,
 				56CF1AFF1B1B01D300A899DB /* Main.storyboard in Resources */,
+				567FD4271B320C6F00D9A1D1 /* Lato-LightItalic.ttf in Resources */,
+				567FD4221B320C6F00D9A1D1 /* Lato-BoldItalic.ttf in Resources */,
 				56D587E41B1E17D8007B3F5B /* FestivalTableViewCell.xib in Resources */,
 				56CF4ECD1B2DB9B200A25CE7 /* SearchNavigationView.xib in Resources */,
 				561611F81B1BB69400147093 /* Filter.storyboard in Resources */,
 				560D0AD81B179CB500B03090 /* PopupView.xib in Resources */,
+				567FD4241B320C6F00D9A1D1 /* Lato-HairlineItalic.ttf in Resources */,
+				567FD4251B320C6F00D9A1D1 /* Lato-Italic.ttf in Resources */,
 				560D0AA31B17951100B03090 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -924,6 +981,7 @@
 				56CF1AF61B1B007700A899DB /* MenuViewController.m in Sources */,
 				56CF0EC51B2C24EB000E6C34 /* FestivalRankClient.m in Sources */,
 				5677036F1B278DBD00DC34AC /* WebsiteButton.m in Sources */,
+				567FD42B1B320EDD00D9A1D1 /* UIFont+LatoFonts.m in Sources */,
 				561612191B1BCF6500147093 /* FilterGenresViewController.m in Sources */,
 				56CF1B091B1B0D3200A899DB /* UIImage+ImageEffects.m in Sources */,
 				56CF1B061B1B0C2000A899DB /* MenuTransitionAnimator.m in Sources */,
@@ -1128,7 +1186,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Szabolcs Sztanyi (ER2R6PB292)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1137,7 +1195,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f0c33c-6060-4afe-8a5c-9ed3fc7c70f1";
+				PROVISIONING_PROFILE = "33d76ac5-e44b-4e3f-a8d6-dc91ff59b6d8";
 			};
 			name = Release;
 		};

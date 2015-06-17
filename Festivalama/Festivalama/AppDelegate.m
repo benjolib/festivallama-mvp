@@ -10,13 +10,14 @@
 #import "GeneralSettings.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <StoreKit/StoreKit.h>
 #import "Reachability.h"
 #import "PopupView.h"
 #import "CoreDataHandler.h"
 
 #define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 
-@interface AppDelegate () <PopupViewDelegate>
+@interface AppDelegate () <PopupViewDelegate, SKStoreProductViewControllerDelegate>
 @property (nonatomic, strong) Reachability *internetReachable;
 @property (nonatomic, strong) PopupView *noInternetPopup;
 @property (nonatomic, strong) PopupView *onTrackPopup;
@@ -86,6 +87,12 @@
         return;
     }
     self.popupDisplayerTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(updatePopupTimer:) userInfo:nil repeats:YES];
+}
+
+- (void)stopPopupTimer
+{
+    [self.popupDisplayerTimer invalidate];
+    self.popupDisplayerTimer = nil;
 }
 
 - (void)updatePopupTimer:(NSTimer*)timer
@@ -169,11 +176,13 @@
 - (void)popupViewConfirmButtonPressed:(PopupView *)popupView
 {
     if (popupView == self.onTrackPopup) {
-//        if (IS_iOS8) {
-//            [[UIApplication sharedApplication] registerForRemoteNotifications];
-//        } else {
+        if (IS_iOS8) {
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        } else {
             [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
-//        }
+        }
+    } else if (popupView == self.reviewInAppStorePopup) {
+        [self rateTheApp];
     }
     [popupView dismissViewWithAnimation:YES];
     popupView = nil;
@@ -181,6 +190,38 @@
     if ([self.internetReachable currentReachabilityStatus] == NotReachable) {
         [self showNoInternetPopup];
     }
+}
+
+- (void)popupViewCancelButtonPressed:(PopupView *)popupView
+{
+    if (popupView == self.reviewInAppStorePopup) {
+        [self stopPopupTimer];
+        [GeneralSettings saveAppStartDate];
+    }
+    [popupView dismissViewWithAnimation:YES];
+    popupView = nil;
+}
+
+#pragma mark - rating the app
+- (void)rateTheApp
+{
+    SKStoreProductViewController *storeProductViewController = [[SKStoreProductViewController alloc] init];
+    [storeProductViewController setDelegate:self];
+
+    // TODO: needs App id
+    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"0"} completionBlock:^(BOOL result, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
+        } else {
+            // Present Store Product View Controller
+            [self.window.rootViewController presentViewController:storeProductViewController animated:YES completion:nil];
+        }
+    }];
+}
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
+{
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
