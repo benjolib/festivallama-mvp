@@ -38,7 +38,7 @@
         return;
     }
 
-    NSString *stringToShare = @"Hab ein cooles Festival gefunden: (Name Festival). Die App findest Du übrigens unter www.FestivaLama.io";
+    NSString *stringToShare = [NSString stringWithFormat:@"Hab ein cooles Festival gefunden: %@. Die App findest Du übrigens unter www.FestivaLama.io", self.festivalToDisplay.name];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
                                                                                          applicationActivities:nil];
     activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,
