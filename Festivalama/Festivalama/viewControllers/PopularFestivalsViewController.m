@@ -15,6 +15,7 @@
 #import "LoadingTableView.h"
 #import "FestivalModel.h"
 #import "CoreDataHandler.h"
+#import "FestivalLoadMoreTableViewCell.h"
 
 @interface PopularFestivalsViewController ()
 @property (nonatomic, strong) FestivalDownloadClient *festivalDownloadClient;
@@ -55,7 +56,7 @@
 - (void)searchForFestivals
 {
     self.startIndex = 0;
-    [self downloadPopularFestivals];
+    [self downloadAllFestivals];
 }
 
 #pragma mark - search timer
@@ -74,11 +75,21 @@
 #pragma mark - tableview methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.festivalsArray.count;
+    return self.showLoadingIndicatorCell ? self.festivalsArray.count+1 : self.festivalsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.showLoadingIndicatorCell && indexPath.row == self.festivalsArray.count) {
+        FestivalLoadMoreTableViewCell *reloadCell = (FestivalLoadMoreTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"reloadCell"];
+        if (!reloadCell) {
+            reloadCell = [[FestivalLoadMoreTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reloadCell"];
+        }
+
+        reloadCell.backgroundColor = [UIColor clearColor];
+        return reloadCell;
+    }
+
     FestivalTableViewCell *cell = (FestivalTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
     FestivalModel *festival = self.festivalsArray[indexPath.row];
 
@@ -96,16 +107,7 @@
 }
 
 #pragma mark - download methods
-- (void)refreshView
-{
-    self.startIndex = 0;
-    [self.refreshController startRefreshing];
-
-    [self.tableCounterView setCounterViewVisible:NO animated:NO];
-    [self downloadPopularFestivals];
-}
-
-- (void)downloadPopularFestivals
+- (void)downloadAllFestivals
 {
     if (!self.festivalDownloadClient) {
         self.festivalDownloadClient = [FestivalDownloadClient new];
@@ -115,56 +117,12 @@
 
     if (!self.festivalsArray) {
         self.festivalsArray = [NSMutableArray array];
-    } else {
-        [self.festivalsArray removeAllObjects];
     }
 
-    NSInteger numberOfItemsBeforeUpdate = self.festivalsArray.count;
     __weak typeof(self) weakSelf = self;
     [self.festivalDownloadClient downloadPopularFestivalsFromIndex:self.startIndex limit:self.limit filterModel:nil andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
-        [weakSelf.tableView hideLoadingIndicator];
-        if (completed) {
-            if (weakSelf.isSearching) {
-                weakSelf.festivalsArray = [festivalsArray mutableCopy];
-            } else {
-                [weakSelf.festivalsArray addObjectsFromArray:festivalsArray];
-            }
-
-            if (weakSelf.festivalsArray.count == 0 && weakSelf.isSearching) {
-                [weakSelf.tableCounterView setCounterViewVisible:NO animated:YES];
-            } else {
-                [weakSelf.tableCounterView setCounterViewVisible:YES animated:YES];
-                [weakSelf.tableCounterView displayTheNumberOfItems:(weakSelf.festivalsArray.count == 0 ? 0 : weakSelf.festivalsArray.count)];
-            }
-        } else {
-            // Handle errors
-
-        }
-        weakSelf.showLoadingIndicatorCell = NO;
-        if (numberOfItemsBeforeUpdate != weakSelf.festivalsArray.count) {
-            [weakSelf.tableView reloadData];
-        }
-        [weakSelf.refreshController endRefreshing];
-        if (weakSelf.tableView.contentOffset.y < 0) {
-            weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
-        }
-
-        if (weakSelf.festivalsArray.count == 0 && weakSelf.isSearching) {
-            [weakSelf.tableView showEmptySearchView];
-        } else {
-            [weakSelf.tableView hideEmptySearchView];
-        }
+        [weakSelf handleDownloadedFestivals:festivalsArray error:errorMessage];
     }];
-}
-
-- (void)downloadNextFestivals
-{
-    if ((self.startIndex + self.limit) < self.festivalsArray.count) {
-        self.startIndex = self.festivalsArray.count;
-    } else {
-        self.startIndex = self.startIndex + self.limit;
-    }
-    [self downloadPopularFestivals];
 }
 
 #pragma mark - view methods
@@ -178,10 +136,11 @@
     [self prepareView];
     self.startIndex = 0;
     [self.refreshController startRefreshing];
+    self.showLoadingIndicatorCell = NO;
 
     [self.tableCounterView setCounterViewVisible:NO animated:NO];
     [self.tableView showLoadingIndicator];
-    [self downloadPopularFestivals];
+    [self downloadAllFestivals];
 }
 
 - (void)didReceiveMemoryWarning

@@ -32,4 +32,6 @@
 - (void)downloadNextFestivals;
 - (void)calenderButtonTapped:(UIButton*)button;
 
+- (void)handleDownloadedFestivals:(NSArray*)festivals error:(NSString*)errorMessage;
+
 @end

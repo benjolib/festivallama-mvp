@@ -35,15 +35,6 @@
 {
     CAAnimation *animation = [[self.imageView.layer animationForKey:@"slowAnimation"] mutableCopy];
     animation.duration = 0.5;
-
-//    [self removeSlowAnimation];
-//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//    animation.removedOnCompletion = NO;
-//    animation.toValue = @(M_PI * 2.0);
-//    animation.duration = 0.5;
-//    animation.cumulative = YES;
-//    animation.repeatCount = HUGE_VALF;
-//    [self.imageView.layer addAnimation:animation forKey:@"rotationAnimation"];
 }
 
 - (void)endRefreshing
@@ -105,9 +96,6 @@
             });
         }];
     }
-
-//    [self sendActionsForControlEvents:UIControlEventValueChanged];
-//    parentScrollView.contentInset = UIEdgeInsetsMake(50.0, 0.0, 0.0, 0.0);
 }
 
 - (void)parentScrollViewDidScroll:(UIScrollView *)parentScrollView
