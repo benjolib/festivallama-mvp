@@ -39,4 +39,6 @@
 - (void)searchFieldTextChanged:(UITextField*)textfield;
 - (IBAction)searchCancelButtonTapped:(id)sender;
 
+- (void)setFilteringEnabled:(BOOL)enabled;
+
 @end

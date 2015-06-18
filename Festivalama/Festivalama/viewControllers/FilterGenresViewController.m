@@ -19,6 +19,12 @@
 
 @implementation FilterGenresViewController
 
+- (void)applyButtonPressed:(id)sender
+{
+    [[FilterModel sharedModel] setSelectedGenresArray:[self.selectedGenresArray copy]];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)trashButtonPressed:(id)sender
 {
     [FilterModel sharedModel].selectedGenresArray = nil;
@@ -163,8 +169,7 @@
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 
-    [[FilterModel sharedModel] setSelectedGenresArray:[self.selectedGenresArray copy]];
-    [self adjustButtonToFilterModel];
+    [super setFilteringEnabled:self.selectedGenresArray.count != 0];
 }
 
 #pragma mark - section index titles

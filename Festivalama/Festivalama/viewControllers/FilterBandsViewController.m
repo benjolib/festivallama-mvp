@@ -51,6 +51,12 @@
     [super adjustButtonToFilterModel];
 }
 
+- (void)applyButtonPressed:(id)sender
+{
+    [[FilterModel sharedModel] setSelectedBandsArray:[self.selectedBandsArray copy]];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (NSMutableArray *)selectedBandsArray
 {
     [self setTrashIconVisible:_selectedBandsArray.count > 0];
@@ -172,8 +178,7 @@
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 
-    [[FilterModel sharedModel] setSelectedBandsArray:[self.selectedBandsArray copy]];
-    [super adjustButtonToFilterModel];
+    [super setFilteringEnabled:self.selectedBandsArray.count != 0];
 }
 
 #pragma mark - section index titles

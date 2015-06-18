@@ -11,6 +11,13 @@
 
 @implementation FilterPlacesViewController
 
+- (void)trashButtonPressed:(id)sender
+{
+    [FilterModel sharedModel].selectedPostCode = nil;
+    [FilterModel sharedModel].selectedCountry = nil;
+    [super setFilteringEnabled:NO];
+}
+
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -60,12 +67,6 @@
         [self setTrashIconVisible:NO];
     }
     [self.tableView hideLoadingIndicator];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-
 }
 
 @end

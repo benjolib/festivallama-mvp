@@ -77,6 +77,17 @@
     [self.tableView reloadData];
 }
 
+- (void)setFilteringEnabled:(BOOL)enabled
+{
+    if (enabled) {
+        [self setTrashIconVisible:YES];
+        [self.applyButton setTitle:@"Filter anwenden" forState:UIControlStateNormal];
+    } else {
+        [self setTrashIconVisible:NO];
+        [self.applyButton setTitle:@"Filter" forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

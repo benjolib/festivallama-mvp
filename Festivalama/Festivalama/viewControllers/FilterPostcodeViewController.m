@@ -16,6 +16,15 @@
 
 @implementation FilterPostcodeViewController
 
+- (void)applyButtonPressed:(id)sender
+{
+    NSString *selectedPostcode = self.selectedPostCodesArray.firstObject;
+    if (selectedPostcode) {
+        [FilterModel sharedModel].selectedPostCode = selectedPostcode;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (void)trashButtonPressed:(id)sender
 {
     [FilterModel sharedModel].selectedPostCode = nil;
@@ -61,18 +70,21 @@
     NSString *selectedPostcode = self.allPostcodesArray[indexPath.row];
     if ([self.selectedPostCodesArray containsObject:selectedPostcode]) {
         [self.selectedPostCodesArray removeObject:selectedPostcode];
-        [FilterModel sharedModel].selectedPostCode = nil;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [super setFilteringEnabled:NO];
     } else {
-        if (self.selectedPostCodesArray.count == 0) {
-            [self.selectedPostCodesArray addObject:selectedPostcode];
-            [FilterModel sharedModel].selectedPostCode = selectedPostcode;
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if (self.selectedPostCodesArray.count != 0) {
+            NSInteger selectedCountryIndex = [self.allPostcodesArray indexOfObject:self.selectedPostCodesArray.firstObject];
+            NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:selectedCountryIndex inSection:0];
+            [self.selectedPostCodesArray removeAllObjects];
+            if (selectedIndexPath) {
+                [tableView reloadRowsAtIndexPaths:@[selectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
         }
+        [self.selectedPostCodesArray addObject:selectedPostcode];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [super setFilteringEnabled:YES];
     }
-
-    [[FilterModel sharedModel] setSelectedPostCode:selectedPostcode];
-    [self adjustButtonToFilterModel];
 }
 
 #pragma mark - view methods
@@ -84,6 +96,8 @@
     self.allPostcodesArray = @[@"1...", @"2...", @"3...", @"4...", @"5...", @"6...", @"7...", @"8...", @"9..."];
     [self.tableView reloadData];
     [self.tableView hideLoadingIndicator];
+
+    [self.selectedPostCodesArray addObject:[[FilterModel sharedModel] selectedPostCode]];
 }
 
 - (void)didReceiveMemoryWarning
