@@ -109,7 +109,7 @@
 
     self.textLabelHeightConstraint.constant = labelRect.size.height + 20.0;
     
-    CGFloat popupHeight = CGRectGetMinY(self.textLabel.frame) + self.textLabelHeightConstraint.constant + 15.0 + self.buttonsContainerViewHeightConstraint.constant;
+    CGFloat popupHeight = CGRectGetMinY(self.textLabel.frame) + self.textLabelHeightConstraint.constant + 15.0 + self.buttonsContainerViewHeightConstraint.constant + 10;
 
     self.popupBackgroundViewHeightConstraint.constant = MAX(popupHeight, 300.0);
 
