@@ -10,16 +10,34 @@
 #import "FestivalModel.h"
 #import "FestivalParser.h"
 #import "FilterModel.h"
+#import "LocationManager.h"
 
 @interface FestivalDownloadClient ()
 @property (nonatomic, strong) FestivalParser *festivalParser;
+@property (nonatomic, strong) LocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *userLocation;
 @end
 
 @implementation FestivalDownloadClient
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self discoverUserLocation];
+    }
+    return self;
+}
+
 - (void)downloadFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel searchText:(NSString*)searchText andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
 {
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kFestivalsList, (long)startIndex, (long)numberOfItems];
+
+    // add location data
+    if (self.userLocation) {
+        [urlString appendString:[NSString stringWithFormat:@"&lat=%f&lng=%f", self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude]];
+    }
+
     if (filterModel && searchText.length == 0) {
         if (filterModel.selectedCountry) {
             [urlString appendString:[NSString stringWithFormat:@"&country=%@", filterModel.selectedCountry]];
@@ -46,6 +64,20 @@
 {
     NSString *urlString = [NSString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kPopularFestivalsList, (long)startIndex, (long)numberOfItems];
     [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
+}
+
+#pragma mark - location manager methods
+- (void)discoverUserLocation
+{
+    if (!self.locationManager) {
+        self.locationManager = [[LocationManager alloc] init];
+    }
+
+    __weak typeof(self) weakSelf = self;
+    [self.locationManager startLocationDiscoveryWithCompletionBlock:^(CLLocation *userLocation, NSString *errorMessage) {
+        weakSelf.userLocation = userLocation;
+        [weakSelf.locationManager stopLocationDiscovery];
+    }];
 }
 
 #pragma mark - private methods
@@ -79,6 +111,12 @@
     }];
 
     [self startSessionTask:task];
+}
+
+- (void)dealloc
+{
+    [self.locationManager stopLocationDiscovery];
+    self.locationManager = nil;
 }
 
 @end
