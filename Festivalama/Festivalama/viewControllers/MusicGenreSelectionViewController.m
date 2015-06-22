@@ -24,12 +24,7 @@
 
 - (Genre*)genreAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSInteger sumSections = 0;
-    for (int i = 0; i < indexPath.section; i++) {
-        NSInteger rowsInSection = [self.collectionView numberOfItemsInSection:i];
-        sumSections += rowsInSection;
-    }
-    return self.allGenresArray[sumSections + indexPath.row];
+    return self.allGenresArray[indexPath.row];
 }
 
 - (IBAction)continueButtonPressed:(id)sender
@@ -40,19 +35,16 @@
 #pragma mark - center layout delegate method
 - (Genre *)titleForObjectAtIndexpath:(NSIndexPath *)indexPath
 {
+    if (indexPath.item >= self.allGenresArray.count) {
+        return nil;
+    }
     return [self genreAtIndexPath:indexPath];
 }
 
 #pragma mark - collectionView methods
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return self.numberOfSections;
-}
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 3;
-//    return self.allGenresArray.count;
+    return self.allGenresArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -100,11 +92,6 @@
 {
     return UIEdgeInsetsMake(10.0, 0.0, 0.0, 0.0);
 }
-
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return CGSizeMake((CGRectGetWidth(collectionView.frame) / 2) - 30, 60.0);
-//}
 
 - (void)updateOnboardingModel
 {

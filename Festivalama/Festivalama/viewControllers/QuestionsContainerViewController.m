@@ -79,7 +79,7 @@
     UIViewController *nextViewController = [self viewControllerAtIndex:index+1];
     self.pageControl.currentPage = index + 1;
 
-    if (index+1 >= 2) {
+    if (index+1 >= 1) {
         self.pageControl.hidden = NO;
     }
 
@@ -105,8 +105,8 @@
         contentViewController = genreViewController;
     } else {
         QuestionsViewController *questionsViewController = (QuestionsViewController*)contentViewController;
-        [questionsViewController setOptionsToDisplay:[[self.onboardingModel onboardingOptionsArrayForIndex:index-2] copy]];
-        [questionsViewController setViewTitle:[self.onboardingModel onboardingViewTitleForIndex:index-2]
+        [questionsViewController setOptionsToDisplay:[[self.onboardingModel onboardingOptionsArrayForIndex:index-1] copy]];
+        [questionsViewController setViewTitle:[self.onboardingModel onboardingViewTitleForIndex:index-1]
                               backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:index]];
         questionsViewController.indexOfView = index;
         contentViewController = questionsViewController;
