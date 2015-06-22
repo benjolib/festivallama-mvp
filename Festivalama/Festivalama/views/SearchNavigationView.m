@@ -8,6 +8,7 @@
 
 #import "SearchNavigationView.h"
 #import "UIColor+AppColors.h"
+#import "TrackingManager.h"
 
 @interface SearchNavigationView () <UITextFieldDelegate>
 @property (nonatomic) BOOL isSearching;
@@ -132,6 +133,7 @@
 
 - (IBAction)searchButtonPressed
 {
+    [[TrackingManager sharedManager] trackOpenSearch];
     if (!self.isSearching) {
         self.isSearching = YES;
         self.searchButton.userInteractionEnabled = NO;

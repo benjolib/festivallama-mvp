@@ -19,6 +19,7 @@
 #import "PopupView.h"
 #import "TicketShopDetailViewController.h"
 #import "UIFont+LatoFonts.h"
+#import "TrackingManager.h"
 
 @interface FestivalDetailViewController () <PopupViewDelegate>
 @property (nonatomic, strong) FestivalDetailBaseViewController *displayViewController;
@@ -29,6 +30,7 @@
 
 - (IBAction)ticketShopButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackUserSelectsTicketShop];
     [self showToTicketShopPopup];
 }
 
@@ -38,6 +40,7 @@
         return;
     }
 
+    [[TrackingManager sharedManager] trackUserSelectsShareButton];
     NSString *stringToShare = [NSString stringWithFormat:@"Hab ein cooles Festival gefunden: %@. Die App findest Du übrigens unter www.FestivaLama.io", self.festivalToDisplay.name];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[stringToShare]
                                                                                          applicationActivities:nil];

@@ -15,6 +15,7 @@
 #import "FestivalModel.h"
 #import "FestivalDetailViewController.h"
 #import "UIFont+LatoFonts.h"
+#import "TrackingManager.h"
 
 @interface CalendarViewController () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSArray *savedFestivalsArray;
@@ -184,6 +185,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     CDFestival *festival = [self.fetchController objectAtIndexPath:indexPath];
 
+    [[TrackingManager sharedManager] trackUserRemovesFestivalFromCalendar];
     [[CoreDataHandler sharedHandler] removeFestivalObject:festival];
 }
 

@@ -10,6 +10,7 @@
 #import "BandsDownloadClient.h"
 #import "Band.h"
 #import "FilterTableViewCell.h"
+#import "TrackingManager.h"
 
 @interface FilterBandsViewController ()
 @property (nonatomic, strong) NSArray *allBandsArrayCopy;
@@ -44,6 +45,7 @@
 
 - (void)trashButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
     [FilterModel sharedModel].selectedBandsArray = nil;
     [self.selectedBandsArray removeAllObjects];
     [self.tableView reloadData];
@@ -66,6 +68,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    [[TrackingManager sharedManager] trackFilterSearches];
+
     self.searchWrapperViewTrailingConstraint.constant = 10.0;
     self.searchCancelButtonWidthConstraint.constant = 70.0;
     [UIView animateWithDuration:0.2 animations:^{
@@ -167,9 +171,11 @@
     if ([self.selectedBandsArray containsObject:selectedBand]) {
         [self.selectedBandsArray removeObject:selectedBand];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [[TrackingManager sharedManager] trackFilterSelectsBandAgainToUnselect];
     } else {
         [self.selectedBandsArray addObject:selectedBand];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [[TrackingManager sharedManager] trackFilterSelectsBand];
     }
 
     [super setFilteringEnabled:self.selectedBandsArray.count != 0];

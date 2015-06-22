@@ -16,6 +16,7 @@
 #import "FilterGenresViewController.h"
 #import "FilterBandsViewController.h"
 #import "UIFont+LatoFonts.h"
+#import "TrackingManager.h"
 
 @interface FilterViewController ()
 @property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
@@ -28,17 +29,25 @@
 
 - (IBAction)backButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackFilterBackbutton];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)applyButtonPressed:(id)sender
 {
+    if ([[FilterModel sharedModel] isFiltering]) {
+        [[TrackingManager sharedManager] trackFilterSelectsFilterButtonWithFilters];
+    } else {
+        [[TrackingManager sharedManager] trackFilterSelectsFilterButtonWithoutFilters];
+    }
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"festivalFilterEnabled" object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)trashButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackFilterTapsTrashIconMain];
     [[FilterModel sharedModel] clearFilters];
     [self adjustButtonToFilterModel];
     [self.tableView reloadData];
@@ -89,6 +98,7 @@
 
 - (void)bandCellTrashButtonPressed:(UIButton*)button
 {
+    [[TrackingManager sharedManager] trackFilterTapsTrashIconOnMainBandCell];
     [FilterModel sharedModel].selectedBandsArray = [NSArray array];
     [self.tableView reloadData];
 }
@@ -112,9 +122,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (IS_iOS8) {
-        return UITableViewAutomaticDimension;
-    }
+//    if (IS_iOS8) {
+//        return UITableViewAutomaticDimension;
+//    }
     return 70.0;
 }
 
@@ -159,16 +169,20 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
         [self performSegueWithIdentifier:@"openGenres" sender:nil];
+        [[TrackingManager sharedManager] trackFilterSelectsGenreView];
     } else if (indexPath.row == 1) {
         if (self.allBandsArray) {
+            [[TrackingManager sharedManager] trackFilterSelectsBandsView];
             [self performSegueWithIdentifier:@"openBands" sender:nil];
         } else {
             __weak typeof(self) weakSelf = self;
             [self downloadBandsWithCompletionBlock:^{
+                [[TrackingManager sharedManager] trackFilterSelectsBandsView];
                 [weakSelf performSegueWithIdentifier:@"openBands" sender:nil];
             }];
         }
     } else {
+        [[TrackingManager sharedManager] trackFilterSelectsPlaceView];
         [self performSegueWithIdentifier:@"showLocation" sender:nil];
     }
 }

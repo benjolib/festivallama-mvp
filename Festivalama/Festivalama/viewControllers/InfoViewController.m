@@ -10,6 +10,7 @@
 #import "BaseTableViewCell.h"
 #import <StoreKit/StoreKit.h>
 #import "UIFont+LatoFonts.h"
+#import "TrackingManager.h"
 
 @interface InfoViewController () <SKStoreProductViewControllerDelegate>
 @property (nonatomic, strong) NSArray *cellTitlesArray;
@@ -55,10 +56,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
+        [[TrackingManager sharedManager] trackUserSelectsWasWirMachen];
         [self performSegueWithIdentifier:@"openWhatWeDo" sender:nil];
     } else if (indexPath.row == 1) {
+        [[TrackingManager sharedManager] trackUserSelectsTeileDieApp];
         [self shareTheApp];
     } else {
+        [[TrackingManager sharedManager] trackUserSelectsBewerteDieApp];
         [self rateTheApp];
     }
 }

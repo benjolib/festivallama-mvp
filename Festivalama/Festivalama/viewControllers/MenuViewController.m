@@ -15,6 +15,7 @@
 #import "MainContainerViewController.h"
 #import "CalendarViewController.h"
 #import "CoreDataHandler.h"
+#import "TrackingManager.h"
 
 @interface MenuViewController ()
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
@@ -52,6 +53,8 @@
 
 - (IBAction)festivalButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackUserSelectedFestivals];
+
     if ([self isSourceViewControllerFestivalsView])
     {
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -64,6 +67,8 @@
 
 - (IBAction)favoriteButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackUserSelectedPopularFestivals];
+
     if ([self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]]) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
@@ -73,6 +78,8 @@
 
 - (IBAction)calendarButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackUserSelectedCalender];
+
     if ([self.sourceViewController isKindOfClass:[CalendarViewController class]]) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
@@ -93,7 +100,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"openInfoView"]) {
+    if ([segue.identifier isEqualToString:@"openInfoView"])
+    {
+        [[TrackingManager sharedManager] trackUserSelectedInfo];
         self.transitionManager = [[FestivalTransitionManager alloc] init];
         FestivalNavigationController *destinationViewController = segue.destinationViewController;
         destinationViewController.transitioningDelegate = self.transitionManager;
