@@ -10,21 +10,26 @@
 #import "ContinueButton.h"
 #import "Genre.h"
 #import "SelectionCollectionViewCell.h"
+#import "CenterCollectionViewLayout.h"
 
-@interface MusicGenreSelectionViewController ()
+@interface MusicGenreSelectionViewController () <CenterCollectionViewLayoutProtocol>
 @property (nonatomic, strong, readwrite) NSMutableArray *selectedGenresArray;
+@property (nonatomic, strong) CenterCollectionViewLayout *centerCollectionViewLayout;
 @property (nonatomic, copy) NSString *titleString;
 @property (nonatomic, copy) NSString *imageNameString;
-
-@property (nonatomic, strong) NSArray *firstScreenGenresArray; // array of Genres for the first screen
-@property (nonatomic, strong) NSArray *secondScreenGenresArray; // array of Genres for the second screen
+@property (nonatomic) NSInteger numberOfSections;
 @end
 
 @implementation MusicGenreSelectionViewController
 
 - (Genre*)genreAtIndexPath:(NSIndexPath*)indexPath
 {
-    return [self arrayToUse][indexPath.row];
+    NSInteger sumSections = 0;
+    for (int i = 0; i < indexPath.section; i++) {
+        NSInteger rowsInSection = [self.collectionView numberOfItemsInSection:i];
+        sumSections += rowsInSection;
+    }
+    return self.allGenresArray[sumSections + indexPath.row];
 }
 
 - (IBAction)continueButtonPressed:(id)sender
@@ -32,15 +37,22 @@
     [self.rootViewController showNextViewController];
 }
 
-- (NSArray*)arrayToUse
+#pragma mark - center layout delegate method
+- (Genre *)titleForObjectAtIndexpath:(NSIndexPath *)indexPath
 {
-    return self.indexOfView == 0 ? self.firstScreenGenresArray : self.secondScreenGenresArray;
+    return [self genreAtIndexPath:indexPath];
 }
 
 #pragma mark - collectionView methods
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return self.numberOfSections;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self arrayToUse].count;
+    return 3;
+//    return self.allGenresArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -86,13 +98,13 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0.0, 20.0, 0.0, 20.0);
+    return UIEdgeInsetsMake(10.0, 0.0, 0.0, 0.0);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake((CGRectGetWidth(collectionView.frame) / 2) - 30, 60.0);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return CGSizeMake((CGRectGetWidth(collectionView.frame) / 2) - 30, 60.0);
+//}
 
 - (void)updateOnboardingModel
 {
@@ -110,13 +122,16 @@
     self.titleLabel.text = self.titleString;
     self.backgroundImageView.image = [UIImage imageNamed:self.imageNameString];
     
-    [self divideAllGenresIntoArrays];
-}
-
-- (void)divideAllGenresIntoArrays
-{
-    self.firstScreenGenresArray = [self.allGenresArray subarrayWithRange:NSMakeRange(0, self.allGenresArray.count/2)];
-    self.secondScreenGenresArray = [self.allGenresArray subarrayWithRange:NSMakeRange(self.allGenresArray.count/2, self.allGenresArray.count/2)];
+    if (self.allGenresArray.count % 3 != 0) {
+        self.numberOfSections = self.allGenresArray.count / 3 + 1;
+    } else {
+        self.numberOfSections = self.allGenresArray.count / 3;
+    }
+    
+    self.centerCollectionViewLayout = [[CenterCollectionViewLayout alloc] init];
+    self.centerCollectionViewLayout.customDataSource = self;
+    
+    self.collectionView.collectionViewLayout = self.centerCollectionViewLayout;
 }
 
 - (void)viewWillAppear:(BOOL)animated

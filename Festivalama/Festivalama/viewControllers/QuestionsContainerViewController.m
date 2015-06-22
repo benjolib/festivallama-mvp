@@ -99,13 +99,8 @@
 
     if ([contentViewController isKindOfClass:[MusicGenreSelectionViewController class]]) {
         MusicGenreSelectionViewController *genreViewController = (MusicGenreSelectionViewController*)contentViewController;
-        if (index == 0) {
-            [genreViewController setViewTitle:@"Welche Musik hörst du auf einem Festival? (1/2)" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
-            genreViewController.allGenresArray = [self.genresArray copy]; // TODO: don't pass on all the genres
-        } else {
-            [genreViewController setViewTitle:@"Welche Musik hörst du auf einem Festival? (2/2)" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:1]];
-            genreViewController.allGenresArray = [self.genresArray copy]; // TODO: don't pass on all the genres
-        }
+        [genreViewController setViewTitle:@"Welche Musik hörst du auf einem Festival?" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
+        genreViewController.allGenresArray = [self.genresArray copy];
         genreViewController.indexOfView = index;
         contentViewController = genreViewController;
     } else {
@@ -172,11 +167,11 @@
     [self setupPageViewController];
 
     self.onboardingModel = [[OnboardingModel alloc] init];
-    self.viewControllerIdentitiesArray = @[@"MusicGenreSelectionViewController", @"MusicGenreSelectionViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController"];
+    self.viewControllerIdentitiesArray = @[@"MusicGenreSelectionViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController"];
 
     MusicGenreSelectionViewController *musicGenreSelectionViewController = (MusicGenreSelectionViewController*)[self initialiseViewControllerWithIdentifier:[self.viewControllerIdentitiesArray firstObject]];
     musicGenreSelectionViewController.allGenresArray = [self.genresArray copy];
-    [musicGenreSelectionViewController setViewTitle:@"Welche Musik hörst du auf einem Festival? (1/2)" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
+    [musicGenreSelectionViewController setViewTitle:@"Welche Musik hörst du auf einem Festival?" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
     musicGenreSelectionViewController.rootViewController = self;
     musicGenreSelectionViewController.indexOfView = 0;
     self.currentIndex = 0;
