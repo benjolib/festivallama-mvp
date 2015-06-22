@@ -182,7 +182,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cMg-qp-kA8">
-                        <barButtonItem key="leftBarButtonItem" image="backbutton" id="hAq-AV-U1L">
+                        <barButtonItem key="leftBarButtonItem" image="cancelButton" id="hAq-AV-U1L">
                             <connections>
                                 <action selector="backButtonPressed:" destination="Jy7-EL-XNz" id="UTi-oe-MMD"/>
                             </connections>
@@ -751,7 +751,7 @@ Ortes in dem du ein Festival besuchen willst</string>
         </scene>
     </scenes>
     <resources>
-        <image name="backbutton" width="10" height="16"/>
+        <image name="cancelButton" width="17" height="17"/>
         <image name="trashIcon" width="19" height="23"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -45,11 +45,18 @@
     self.userInteractionEnabled = NO;
     self.emptyView.hidden = NO;
     if (self.emptyView) {
+        [self.emptyView showEmptySearch];
         [self bringSubviewToFront:self.emptyView];
     }
 }
 
-- (void)hideEmptySearchView
+- (void)showEmptyFilterView
+{
+    [self.emptyView showEmptyFilter];
+    [self showEmptySearchView];
+}
+
+- (void)hideEmptyView
 {
     self.userInteractionEnabled = YES;
     self.emptyView.hidden = YES;

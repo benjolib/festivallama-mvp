@@ -12,13 +12,16 @@
 #import "FilterTableViewCell.h"
 #import "FilterBandsTableViewCell.h"
 #import "GenreDownloadClient.h"
+#import "BandsDownloadClient.h"
 #import "FilterGenresViewController.h"
 #import "FilterBandsViewController.h"
 #import "UIFont+LatoFonts.h"
 
 @interface FilterViewController ()
 @property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
+@property (nonatomic, strong) BandsDownloadClient *bandsDownloadClient;
 @property (nonatomic, strong, readwrite) NSArray *genresArray;
+@property (nonatomic, strong) NSArray *allBandsArray;
 @end
 
 @implementation FilterViewController
@@ -49,25 +52,38 @@
     [self.genreDownloadClient downloadAllGenresWithCompletionBlock:^(NSArray *sortedGenres, NSString *errorMessage, BOOL completed) {
         if (completed) {
             weakSelf.genresArray = [sortedGenres copy];
-        } else {
+        }
+    }];
+}
 
+- (void)downloadBandsWithCompletionBlock:(void(^)())completionBlock
+{
+    self.bandsDownloadClient = [BandsDownloadClient new];
+
+    __weak typeof(self) weakSelf = self;
+    [self.bandsDownloadClient downloadAllBandsWithCompletionBlock:^(NSArray *sortedBands, NSString *errorMessage, BOOL completed) {
+        if (completed) {
+            weakSelf.allBandsArray = [sortedBands copy];
+        }
+        if (completionBlock) {
+            completionBlock();
         }
     }];
 }
 
 - (void)setTrashIconVisible:(BOOL)visible
 {
-    self.trashIcon.hidden = !visible;
+    self.trashIcon.alpha = visible ? 1.0 : 0.2;
 }
 
 - (void)adjustButtonToFilterModel
 {
     if ([[FilterModel sharedModel] isFiltering]) {
         [self setTrashIconVisible:YES];
-        [self.applyButton setTitle:@"Filter anwenden" forState:UIControlStateNormal];
+        [self.applyButton setTitle:@"Suchen" forState:UIControlStateNormal];
     } else {
         [self setTrashIconVisible:NO];
-        [self.applyButton setTitle:@"Filter" forState:UIControlStateNormal];
+        [self.applyButton setTitle:@"Suchen" forState:UIControlStateNormal];
     }
 }
 
@@ -81,10 +97,10 @@
 {
     if (enabled) {
         [self setTrashIconVisible:YES];
-        [self.applyButton setTitle:@"Filter anwenden" forState:UIControlStateNormal];
+        [self.applyButton setTitle:@"Suchen" forState:UIControlStateNormal];
     } else {
         [self setTrashIconVisible:NO];
-        [self.applyButton setTitle:@"Filter" forState:UIControlStateNormal];
+        [self.applyButton setTitle:@"Suchen" forState:UIControlStateNormal];
     }
 }
 
@@ -92,6 +108,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 3;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (IS_iOS8) {
+        return UITableViewAutomaticDimension;
+    }
+    return 70.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -136,7 +160,14 @@
     if (indexPath.row == 0) {
         [self performSegueWithIdentifier:@"openGenres" sender:nil];
     } else if (indexPath.row == 1) {
-        [self performSegueWithIdentifier:@"openBands" sender:nil];
+        if (self.allBandsArray) {
+            [self performSegueWithIdentifier:@"openBands" sender:nil];
+        } else {
+            __weak typeof(self) weakSelf = self;
+            [self downloadBandsWithCompletionBlock:^{
+                [weakSelf performSegueWithIdentifier:@"openBands" sender:nil];
+            }];
+        }
     } else {
         [self performSegueWithIdentifier:@"showLocation" sender:nil];
     }
@@ -147,6 +178,9 @@
     if ([segue.identifier isEqualToString:@"openGenres"]) {
         FilterGenresViewController *genresViewController = (FilterGenresViewController*)segue.destinationViewController;
         genresViewController.allGenresArray = [self.genresArray copy];
+    } else if ([segue.identifier isEqualToString:@"openBands"]) {
+        FilterBandsViewController *bandsTableViewController = (FilterBandsViewController*)segue.destinationViewController;
+        bandsTableViewController.allBandsArray = [self.allBandsArray copy];
     }
 }
 
@@ -163,6 +197,7 @@
     self.tableView.estimatedRowHeight = 70.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self downloadGenres];
+    [self downloadBandsWithCompletionBlock:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -224,6 +259,14 @@
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+- (void)dealloc
+{
+    self.allBandsArray = nil;
+    self.genresArray = nil;
+    self.genreDownloadClient = nil;
+    self.bandsDownloadClient = nil;
 }
 
 @end

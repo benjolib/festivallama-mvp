@@ -51,12 +51,6 @@
     [super adjustButtonToFilterModel];
 }
 
-- (void)applyButtonPressed:(id)sender
-{
-    [[FilterModel sharedModel] setSelectedBandsArray:[self.selectedBandsArray copy]];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (NSMutableArray *)selectedBandsArray
 {
     [self setTrashIconVisible:_selectedBandsArray.count > 0];
@@ -179,6 +173,7 @@
     }
 
     [super setFilteringEnabled:self.selectedBandsArray.count != 0];
+    [[FilterModel sharedModel] setSelectedBandsArray:[self.selectedBandsArray copy]];
 }
 
 #pragma mark - section index titles
@@ -222,25 +217,22 @@
     self.title = @"Bands";
 
     [self setupSearchView];
-    [self downloadBands];
+
+    dispatch_queue_t bandQeue = dispatch_queue_create("bandQeue", NULL);
+    dispatch_async(bandQeue, ^{
+        self.allBandsArrayCopy = [self.allBandsArray copy];
+        self.selectedBandsArray = [[[FilterModel sharedModel] selectedBandsArray] mutableCopy];
+        self.tableData = [self partitionObjects:self.allBandsArray collationStringSelector:@selector(name)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
 }
 
-- (void)downloadBands
+- (void)viewDidAppear:(BOOL)animated
 {
-    self.bandsDownloadClient = [BandsDownloadClient new];
-
-    [self.tableView showLoadingIndicator];
-    __weak typeof(self) weakSelf = self;
-    [self.bandsDownloadClient downloadAllBandsWithCompletionBlock:^(NSArray *sortedBands, NSString *errorMessage, BOOL completed) {
-        if (completed) {
-            weakSelf.allBandsArray = [sortedBands copy];
-            weakSelf.allBandsArrayCopy = [sortedBands copy];
-            weakSelf.selectedBandsArray = [[[FilterModel sharedModel] selectedBandsArray] mutableCopy];
-            [weakSelf.tableView hideLoadingIndicator];
-            weakSelf.tableData = [weakSelf partitionObjects:weakSelf.allBandsArray collationStringSelector:@selector(name)];
-            [weakSelf.tableView reloadData];
-        }
-    }];
+    [super viewDidAppear:animated];
+    [self adjustButtonToFilterModel];
 }
 
 - (void)dealloc

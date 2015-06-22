@@ -16,15 +16,6 @@
 
 @implementation FilterPostcodeViewController
 
-- (void)applyButtonPressed:(id)sender
-{
-    NSString *selectedPostcode = self.selectedPostCodesArray.firstObject;
-    if (selectedPostcode) {
-        [FilterModel sharedModel].selectedPostCode = selectedPostcode;
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
 - (void)trashButtonPressed:(id)sender
 {
     [FilterModel sharedModel].selectedPostCode = nil;
@@ -71,7 +62,7 @@
     if ([self.selectedPostCodesArray containsObject:selectedPostcode]) {
         [self.selectedPostCodesArray removeObject:selectedPostcode];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [super setFilteringEnabled:NO];
+        [FilterModel sharedModel].selectedPostCode = nil;
     } else {
         if (self.selectedPostCodesArray.count != 0) {
             NSInteger selectedCountryIndex = [self.allPostcodesArray indexOfObject:self.selectedPostCodesArray.firstObject];
@@ -83,8 +74,10 @@
         }
         [self.selectedPostCodesArray addObject:selectedPostcode];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [super setFilteringEnabled:YES];
+        [FilterModel sharedModel].selectedPostCode = selectedPostcode;
     }
+
+    [super adjustButtonToFilterModel];
 }
 
 #pragma mark - view methods
@@ -97,7 +90,18 @@
     [self.tableView reloadData];
     [self.tableView hideLoadingIndicator];
 
-    [self.selectedPostCodesArray addObject:[[FilterModel sharedModel] selectedPostCode]];
+    if (!self.selectedPostCodesArray) {
+        self.selectedPostCodesArray = [NSMutableArray array];
+    }
+    if ([[FilterModel sharedModel] selectedPostCode]) {
+        [self.selectedPostCodesArray addObject:[[FilterModel sharedModel] selectedPostCode]];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self adjustButtonToFilterModel];
 }
 
 - (void)didReceiveMemoryWarning

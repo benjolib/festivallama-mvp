@@ -14,6 +14,7 @@
 - (void)hideLoadingIndicator;
 
 - (void)showEmptySearchView;
-- (void)hideEmptySearchView;
+- (void)showEmptyFilterView;
+- (void)hideEmptyView;
 
 @end

@@ -35,6 +35,16 @@
     self.backgroundColor = [UIColor clearColor];
 }
 
+- (void)showEmptyFilter
+{
+    self.textLabel.text = @"Bitte ändere Deine Filterauswahl. Derzeit könnten keine Festivals gefunden werden.";
+}
+
+- (void)showEmptySearch
+{
+    self.textLabel.text = @"Wir haben leider keine Ergebnisse für Deine Suche gefunden";
+}
+
 - (void)setText:(NSString*)text
 {
     self.textLabel.text = text;

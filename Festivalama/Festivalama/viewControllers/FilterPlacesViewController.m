@@ -69,4 +69,10 @@
     [self.tableView hideLoadingIndicator];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self adjustButtonToFilterModel];
+}
+
 @end

@@ -12,4 +12,7 @@
 
 - (void)setText:(NSString*)text;
 
+- (void)showEmptySearch;
+- (void)showEmptyFilter;
+
 @end

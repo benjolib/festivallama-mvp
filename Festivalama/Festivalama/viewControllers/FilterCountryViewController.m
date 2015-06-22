@@ -19,20 +19,10 @@
 
 @implementation FilterCountryViewController
 
-- (void)applyButtonPressed:(id)sender
-{
-    NSString *selectedCountryName = self.selectedCountriesArray.firstObject;
-    if (selectedCountryName) {
-        [FilterModel sharedModel].selectedCountry = selectedCountryName;
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
 - (void)trashButtonPressed:(id)sender
 {
     [FilterModel sharedModel].selectedCountry = nil;
     [self.selectedCountriesArray removeAllObjects];
-    self.trashIcon.hidden = YES;
     [self adjustButtonToFilterModel];
     [self.tableView reloadData];
 }
@@ -102,7 +92,7 @@
     if ([self.selectedCountriesArray containsObject:selectedCountryName]) {
         [self.selectedCountriesArray removeObject:selectedCountryName];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [super setFilteringEnabled:NO];
+        [FilterModel sharedModel].selectedCountry = nil;
     } else {
         if (self.selectedCountriesArray.count != 0) {
             Country *selectedCountry = [Country countryWithName:self.selectedCountriesArray.firstObject flag:nil];
@@ -115,8 +105,9 @@
         }
         [self.selectedCountriesArray addObject:selectedCountryName];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [super setFilteringEnabled:YES];
+        [FilterModel sharedModel].selectedCountry = selectedCountryName;
     }
+    [super adjustButtonToFilterModel];
 }
 
 #pragma mark - view methods
@@ -128,6 +119,12 @@
     [self setupDatasource];
     [self.tableView reloadData];
     [self.tableView hideLoadingIndicator];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self adjustButtonToFilterModel];
 }
 
 - (void)didReceiveMemoryWarning

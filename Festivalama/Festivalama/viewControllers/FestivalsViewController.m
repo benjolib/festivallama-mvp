@@ -239,10 +239,14 @@
         self.tableView.contentOffset = CGPointMake(0.0, 0.0);
     }
 
-    if (self.festivalsArray.count == 0 && self.isSearching) {
-        [self.tableView showEmptySearchView];
+    if (self.festivalsArray.count == 0) {
+        if (self.isSearching) {
+            [self.tableView showEmptySearchView];
+        } else if ([[FilterModel sharedModel] isFiltering]) {
+            [self.tableView showEmptyFilterView];
+        }
     } else {
-        [self.tableView hideEmptySearchView];
+        [self.tableView hideEmptyView];
     }
 }
 
@@ -275,7 +279,7 @@
 {
     self.isSearching = NO;
     self.searchText = @"";
-    [self.tableView hideEmptySearchView];
+    [self.tableView hideEmptyView];
 
     [self.festivalsArray removeAllObjects];
     [self searchForFestivals];

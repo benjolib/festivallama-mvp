@@ -47,7 +47,7 @@
 {
     self.isSearching = NO;
     self.searchText = @"";
-    [self.tableView hideEmptySearchView];
+    [self.tableView hideEmptyView];
 
     [self.festivalsArray removeAllObjects];
     [self searchForFestivals];

@@ -227,7 +227,7 @@
 
 - (void)searchNavigationViewCancelButtonPressed
 {
-    [self.tableView hideEmptySearchView];
+    [self.tableView hideEmptyView];
 
     [self.fetchController.fetchRequest setPredicate:nil];
     [self fetchAllFestivals];
@@ -247,7 +247,7 @@
     if (self.fetchController.fetchedObjects.count == 0) {
         [self.tableView showEmptySearchView];
     } else {
-        [self.tableView hideEmptySearchView];
+        [self.tableView hideEmptyView];
     }
 }
 

@@ -7,6 +7,8 @@
 //
 
 #import "AbstractClient.h"
+#import "Reachability.h"
+#import "AppDelegate.h"
 
 @implementation AbstractClient
 
@@ -49,17 +51,17 @@
     else
     {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//        [UIAlertView showNoInternetConnectionAlertView];
+        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        [appDelegate showNoInternetPopup];
         return NO;
     }
 }
 
 - (BOOL)isInternetConnectionAvailable
 {
-//    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-//    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-//    return networkStatus != NotReachable;
-    return YES;
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
 }
 
 @end
