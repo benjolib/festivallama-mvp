@@ -16,6 +16,8 @@
 #import "FilterBandsViewController.h"
 #import "UIFont+LatoFonts.h"
 
+#define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
+
 @interface FilterViewController ()
 @property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
 @property (nonatomic, strong, readwrite) NSArray *genresArray;
@@ -92,6 +94,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 3;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (IS_iOS8) {
+        return UITableViewAutomaticDimension;
+    }
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
