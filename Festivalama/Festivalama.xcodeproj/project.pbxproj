@@ -60,7 +60,6 @@
 		5677036F1B278DBD00DC34AC /* WebsiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5677036E1B278DBD00DC34AC /* WebsiteButton.m */; };
 		567703731B27A8E000DC34AC /* TicketShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 567703721B27A8E000DC34AC /* TicketShopDetailViewController.m */; };
 		567703761B27AADD00DC34AC /* WhiteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567703751B27AADD00DC34AC /* WhiteButton.m */; };
-		567C23AF1B2A0304002EB7B4 /* FilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 567C23AE1B2A0304002EB7B4 /* FilterButton.m */; };
 		567FD41F1B320C6F00D9A1D1 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD4151B320C6F00D9A1D1 /* Lato-Black.ttf */; };
 		567FD4201B320C6F00D9A1D1 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD4161B320C6F00D9A1D1 /* Lato-BlackItalic.ttf */; };
 		567FD4211B320C6F00D9A1D1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD4171B320C6F00D9A1D1 /* Lato-Bold.ttf */; };
@@ -263,8 +262,6 @@
 		567703721B27A8E000DC34AC /* TicketShopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketShopDetailViewController.m; path = viewControllers/TicketShopDetailViewController.m; sourceTree = "<group>"; };
 		567703741B27AADD00DC34AC /* WhiteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhiteButton.h; path = views/WhiteButton.h; sourceTree = "<group>"; };
 		567703751B27AADD00DC34AC /* WhiteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhiteButton.m; path = views/WhiteButton.m; sourceTree = "<group>"; };
-		567C23AD1B2A0304002EB7B4 /* FilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterButton.h; path = views/FilterButton.h; sourceTree = "<group>"; };
-		567C23AE1B2A0304002EB7B4 /* FilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterButton.m; path = views/FilterButton.m; sourceTree = "<group>"; };
 		567FD4151B320C6F00D9A1D1 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		567FD4161B320C6F00D9A1D1 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		567FD4171B320C6F00D9A1D1 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -622,8 +619,6 @@
 				561612101B1BC43900147093 /* FilterTableViewCell.m */,
 				56D587F71B1E64E3007B3F5B /* FilterBandsTableViewCell.h */,
 				56D587F81B1E64E3007B3F5B /* FilterBandsTableViewCell.m */,
-				567C23AD1B2A0304002EB7B4 /* FilterButton.h */,
-				567C23AE1B2A0304002EB7B4 /* FilterButton.m */,
 				561611FD1B1BB7F800147093 /* GreenButton.h */,
 				561611FE1B1BB7F800147093 /* GreenButton.m */,
 				562352431B2457F3000ABCAC /* InfoDetailSelectionButton.h */,
@@ -1179,7 +1174,6 @@
 				56CF17C41B38B7EC00A8F9BD /* TrackingManager.m in Sources */,
 				561612111B1BC43900147093 /* FilterTableViewCell.m in Sources */,
 				561611FC1B1BB7C100147093 /* FilterViewController.m in Sources */,
-				567C23AF1B2A0304002EB7B4 /* FilterButton.m in Sources */,
 				56D05A491B19DBE00031F2A2 /* SelectionCollectionViewCell.m in Sources */,
 				564D21361B222EEB009FBF88 /* MainContainerViewController.m in Sources */,
 				56CF4ED01B2E24FF00A25CE7 /* SearchEmptyView.m in Sources */,

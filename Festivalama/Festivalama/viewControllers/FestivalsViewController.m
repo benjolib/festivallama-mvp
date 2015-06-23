@@ -7,7 +7,6 @@
 //
 
 #import "FestivalsViewController.h"
-#import "FilterButton.h"
 #import "TableviewCounterView.h"
 #import "StoryboardManager.h"
 #import "FilterNavigationController.h"
@@ -17,7 +16,6 @@
 #import "FestivalModel.h"
 #import "FestivalRefreshControl.h"
 #import "LoadingTableView.h"
-#import "FilterModel.h"
 #import "FestivalDetailViewController.h"
 #import "TutorialPopupView.h"
 #import "GeneralSettings.h"
@@ -25,6 +23,8 @@
 #import "FestivalRankClient.h"
 #import "FestivalLoadMoreTableViewCell.h"
 #import "TrackingManager.h"
+#import "GreenButton.h"
+#import "FilterModel.h"
 
 @interface FestivalsViewController ()
 @property (nonatomic, strong) MenuTransitionManager *menuTransitionManager;
