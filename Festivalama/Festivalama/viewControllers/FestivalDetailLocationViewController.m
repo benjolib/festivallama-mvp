@@ -10,11 +10,13 @@
 #import "FestivalModel.h"
 #import "WebsiteButton.h"
 #import "UIFont+LatoFonts.h"
+#import "TrackingManager.h"
 
 @implementation FestivalDetailLocationViewController
 
 - (IBAction)openWebsiteButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackUserSelectsWebsiteButton];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.festivalToDisplay.website]];
 }
 

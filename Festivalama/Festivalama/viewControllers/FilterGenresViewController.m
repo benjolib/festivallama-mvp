@@ -9,6 +9,7 @@
 #import "FilterGenresViewController.h"
 #import "FilterTableViewCell.h"
 #import "Genre.h"
+#import "TrackingManager.h"
 
 @interface FilterGenresViewController ()
 @property (nonatomic, strong) NSArray *allGenresArrayCopy;
@@ -21,6 +22,7 @@
 
 - (void)trashButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
     [FilterModel sharedModel].selectedGenresArray = nil;
     [self.selectedGenresArray removeAllObjects];
     [self.tableView reloadData];
@@ -57,6 +59,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    [[TrackingManager sharedManager] trackFilterSearches];
     self.searchWrapperViewTrailingConstraint.constant = 10.0;
     self.searchCancelButtonWidthConstraint.constant = 70.0;
     [UIView animateWithDuration:0.2 animations:^{
@@ -158,7 +161,9 @@
     if ([self.selectedGenresArray containsObject:selectedGenre]) {
         [self.selectedGenresArray removeObject:selectedGenre];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [[TrackingManager sharedManager] trackFilterSelectsGenreAgainToUnselect];
     } else {
+        [[TrackingManager sharedManager] trackFilterSelectsGenre];
         [self.selectedGenresArray addObject:selectedGenre];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }

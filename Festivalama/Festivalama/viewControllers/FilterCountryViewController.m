@@ -10,6 +10,7 @@
 #import "FilterCountriesDatasource.h"
 #import "FilterTableViewCell.h"
 #import "Country.h"
+#import "TrackingManager.h"
 
 @interface FilterCountryViewController ()
 @property (nonatomic, strong) FilterCountriesDatasource *countriesDatasource;
@@ -21,6 +22,7 @@
 
 - (void)trashButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
     [FilterModel sharedModel].selectedCountry = nil;
     [self.selectedCountriesArray removeAllObjects];
     [self adjustButtonToFilterModel];
@@ -89,11 +91,16 @@
     Country *selectedCountry = self.allCountriesArray[indexPath.row];
 
     NSString *selectedCountryName = selectedCountry.name;
-    if ([self.selectedCountriesArray containsObject:selectedCountryName]) {
+    if ([self.selectedCountriesArray containsObject:selectedCountryName])
+    {
+        [[TrackingManager sharedManager] trackFilterSelectsCountryAgainToUnselect];
         [self.selectedCountriesArray removeObject:selectedCountryName];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [FilterModel sharedModel].selectedCountry = nil;
-    } else {
+    }
+    else
+    {
+        [[TrackingManager sharedManager] trackFilterSelectsCountry];
         if (self.selectedCountriesArray.count != 0) {
             Country *selectedCountry = [Country countryWithName:self.selectedCountriesArray.firstObject flag:nil];
             NSInteger selectedCountryIndex = [self.allCountriesArray indexOfObject:selectedCountry];

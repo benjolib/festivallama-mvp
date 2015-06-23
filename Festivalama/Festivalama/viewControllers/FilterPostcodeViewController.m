@@ -8,6 +8,7 @@
 
 #import "FilterPostcodeViewController.h"
 #import "FilterTableViewCell.h"
+#import "TrackingManager.h"
 
 @interface FilterPostcodeViewController ()
 @property (nonatomic, strong) NSArray *allPostcodesArray;
@@ -18,6 +19,7 @@
 
 - (void)trashButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
     [FilterModel sharedModel].selectedPostCode = nil;
     [self.selectedPostCodesArray removeAllObjects];
     [self.tableView reloadData];
@@ -53,6 +55,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[TrackingManager sharedManager] trackFilterSelectsPostcode];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (!self.selectedPostCodesArray) {

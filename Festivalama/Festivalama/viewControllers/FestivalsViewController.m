@@ -24,6 +24,7 @@
 #import "CoreDataHandler.h"
 #import "FestivalRankClient.h"
 #import "FestivalLoadMoreTableViewCell.h"
+#import "TrackingManager.h"
 
 @interface FestivalsViewController ()
 @property (nonatomic, strong) MenuTransitionManager *menuTransitionManager;
@@ -37,6 +38,8 @@
 
 - (IBAction)filterButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackOpenFilterView];
+
     FilterNavigationController *filterNav = [StoryboardManager filterNavigationController];
     [self presentViewController:filterNav animated:YES completion:nil];
 }
@@ -59,6 +62,11 @@
     FestivalModel *festival = self.festivalsArray[indexPath.row];
 
     BOOL alreadyExisting = [[CoreDataHandler sharedHandler] addFestivalToFavorites:festival];
+    if (alreadyExisting) {
+        [[TrackingManager sharedManager] trackUserRemovedFestival];
+    } else {
+        [[TrackingManager sharedManager] trackUserAddedFestival];
+    }
     [self sendRankInformationAboutSelectedFestival:festival increment:!alreadyExisting];
     [self.tableView reloadData];
 }
@@ -142,6 +150,8 @@
 
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [self performSegueWithIdentifier:@"openFestivalDetailView" sender:cell];
+
+    [[TrackingManager sharedManager] trackSelectsFestival];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

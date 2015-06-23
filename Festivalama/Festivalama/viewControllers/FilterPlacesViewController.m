@@ -8,11 +8,13 @@
 
 #import "FilterPlacesViewController.h"
 #import "FilterTableViewCell.h"
+#import "TrackingManager.h"
 
 @implementation FilterPlacesViewController
 
 - (void)trashButtonPressed:(id)sender
 {
+    [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
     [FilterModel sharedModel].selectedPostCode = nil;
     [FilterModel sharedModel].selectedCountry = nil;
     [super setFilteringEnabled:NO];
@@ -50,8 +52,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
         [self performSegueWithIdentifier:@"openPostcode" sender:nil];
+        [[TrackingManager sharedManager] trackFilterSelectsPostcodeView];
     } else {
         [self performSegueWithIdentifier:@"openCountry" sender:nil];
+        [[TrackingManager sharedManager] trackFilterSelectsCountryView];
     }
 }
 

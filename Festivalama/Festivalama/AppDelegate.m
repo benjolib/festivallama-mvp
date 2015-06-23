@@ -14,6 +14,7 @@
 #import "Reachability.h"
 #import "PopupView.h"
 #import "CoreDataHandler.h"
+#import "TrackingManager.h"
 
 #define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) PopupView *onTrackPopup;
 @property (nonatomic, strong) PopupView *reviewInAppStorePopup;
 
+@property (nonatomic, strong) UILabel *debugLabel;
 @property (nonatomic, strong) NSTimer *popupDisplayerTimer;
 @end
 
@@ -46,6 +48,17 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
+
+#if DEBUG
+    self.debugLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, 14.0)];
+    self.debugLabel.text = @" DEBUG";
+    self.debugLabel.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
+    self.debugLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+    self.debugLabel.font = [UIFont systemFontOfSize:12.0];
+    [self.window addSubview:self.debugLabel];
+#endif
+
+    [[TrackingManager sharedManager] trackUserLaunchedApp];
     return YES;
 }
 
@@ -182,6 +195,7 @@
             [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
         }
     } else if (popupView == self.reviewInAppStorePopup) {
+        [[TrackingManager sharedManager] trackUserSelectsReviewApp];
         [self rateTheApp];
     }
     [popupView dismissViewWithAnimation:YES];
@@ -197,6 +211,7 @@
     if (popupView == self.reviewInAppStorePopup) {
         [self stopPopupTimer];
         [GeneralSettings saveAppStartDate];
+        [[TrackingManager sharedManager] trackUserSelectsReviewAppLater];
     }
     [popupView dismissViewWithAnimation:YES];
     popupView = nil;

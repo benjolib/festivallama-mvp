@@ -13,6 +13,7 @@
 #import "TicketShopperClient.h"
 #import "PopupView.h"
 #import "UIColor+AppColors.h"
+#import "TrackingManager.h"
 
 @interface TicketShopDetailViewController () <UITextFieldDelegate, PopupViewDelegate>
 @property (nonatomic, strong) TicketShopperClient *shopperClient;
@@ -32,6 +33,8 @@
     
     if (allFieldsAreValid)
     {
+        [[TrackingManager sharedManager] trackUserSendsAnfrage];
+
         TicketShopTableViewCell *cell1 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         TicketShopTableViewCell *cell2 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
         TicketShopTableViewCell *cell3 = (TicketShopTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
