@@ -8,9 +8,11 @@
 
 #import "TrackingManager.h"
 #import "Adjust.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 @interface TrackingManager ()
-
+@property(nonatomic, strong) id<GAITracker> tracker;
 @end
 
 @implementation TrackingManager
@@ -38,7 +40,17 @@
 #pragma mark - GA tracking
 - (void)setupGATracker
 {
-
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelInfo];
+    
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-62788448-4"];
 }
 
 #pragma mark - adjustTracking
@@ -66,6 +78,11 @@
 - (void)trackUserLaunchedApp
 {
     [self trackEventWithToken:@"wia0qi"];
+    
+    [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"ui_action"
+                                                               action:@"launch"
+                                                                label:@"userLaunchedApp"
+                                                                value:nil] build]];
 }
 
 - (void)trackUserSelectedFestivals
