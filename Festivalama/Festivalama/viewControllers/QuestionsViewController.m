@@ -39,7 +39,11 @@ static NSInteger cellHeight = 60.0;
     cell.titleLabel.text = option.title;
 
     BOOL cellSelected = [option isEqual:self.selectedOption];
-    [cell setSelected:cellSelected animated:YES];
+//    [cell setSelected:cellSelected animated:YES];
+    if (cellSelected) {
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
+
     cell.backgroundColor = [UIColor clearColor];
 
     return cell;

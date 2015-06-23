@@ -17,6 +17,8 @@
 #import "FilterBandsViewController.h"
 #import "UIFont+LatoFonts.h"
 
+#define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
+
 @interface FilterViewController ()
 @property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
 @property (nonatomic, strong) BandsDownloadClient *bandsDownloadClient;

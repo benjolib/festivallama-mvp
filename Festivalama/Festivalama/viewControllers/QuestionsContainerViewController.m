@@ -56,8 +56,6 @@
                                          completion:nil];
     } else {
         [GeneralSettings setOnboardingViewed];
-        
-        // TODO: Copy all the settings from OnboardingModel to Filtermodel
         [[FilterModel sharedModel] copySettingsFromOnboardingModel:self.onboardingModel];
         
         // move to festivals view
@@ -79,7 +77,7 @@
     UIViewController *nextViewController = [self viewControllerAtIndex:index+1];
     self.pageControl.currentPage = index + 1;
 
-    if (index+1 >= 2) {
+    if (index+1 >= 1) {
         self.pageControl.hidden = NO;
     }
 
@@ -99,19 +97,14 @@
 
     if ([contentViewController isKindOfClass:[MusicGenreSelectionViewController class]]) {
         MusicGenreSelectionViewController *genreViewController = (MusicGenreSelectionViewController*)contentViewController;
-        if (index == 0) {
-            [genreViewController setViewTitle:@"Welche Musik hörst du auf einem Festival? (1/2)" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
-            genreViewController.allGenresArray = [self.genresArray copy]; // TODO: don't pass on all the genres
-        } else {
-            [genreViewController setViewTitle:@"Welche Musik hörst du auf einem Festival? (2/2)" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:1]];
-            genreViewController.allGenresArray = [self.genresArray copy]; // TODO: don't pass on all the genres
-        }
+        [genreViewController setViewTitle:@"Welche Musik hörst du auf einem Festival?" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
+        genreViewController.allGenresArray = [self.genresArray copy];
         genreViewController.indexOfView = index;
         contentViewController = genreViewController;
     } else {
         QuestionsViewController *questionsViewController = (QuestionsViewController*)contentViewController;
-        [questionsViewController setOptionsToDisplay:[[self.onboardingModel onboardingOptionsArrayForIndex:index-2] copy]];
-        [questionsViewController setViewTitle:[self.onboardingModel onboardingViewTitleForIndex:index-2]
+        [questionsViewController setOptionsToDisplay:[[self.onboardingModel onboardingOptionsArrayForIndex:index-1] copy]];
+        [questionsViewController setViewTitle:[self.onboardingModel onboardingViewTitleForIndex:index-1]
                               backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:index]];
         questionsViewController.indexOfView = index;
         contentViewController = questionsViewController;
@@ -172,11 +165,11 @@
     [self setupPageViewController];
 
     self.onboardingModel = [[OnboardingModel alloc] init];
-    self.viewControllerIdentitiesArray = @[@"MusicGenreSelectionViewController", @"MusicGenreSelectionViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController"];
+    self.viewControllerIdentitiesArray = @[@"MusicGenreSelectionViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController"];
 
     MusicGenreSelectionViewController *musicGenreSelectionViewController = (MusicGenreSelectionViewController*)[self initialiseViewControllerWithIdentifier:[self.viewControllerIdentitiesArray firstObject]];
     musicGenreSelectionViewController.allGenresArray = [self.genresArray copy];
-    [musicGenreSelectionViewController setViewTitle:@"Welche Musik hörst du auf einem Festival? (1/2)" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
+    [musicGenreSelectionViewController setViewTitle:@"Welche Musik hörst du auf einem Festival?" backgroundImage:[self.onboardingModel onboardingBackgroundImageViewNameForIndex:0]];
     musicGenreSelectionViewController.rootViewController = self;
     musicGenreSelectionViewController.indexOfView = 0;
     self.currentIndex = 0;

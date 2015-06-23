@@ -125,6 +125,7 @@
 		56D587F31B1E5D22007B3F5B /* Band.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D587F21B1E5D22007B3F5B /* Band.m */; };
 		56D587F91B1E64E3007B3F5B /* FilterBandsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D587F81B1E64E3007B3F5B /* FilterBandsTableViewCell.m */; };
 		56D7384A1B3374E3002214BC /* FestivalLoadMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D738491B3374E3002214BC /* FestivalLoadMoreTableViewCell.m */; };
+		E19BD1B31B38034800C78034 /* CenterCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E19BD1B21B38034800C78034 /* CenterCollectionViewLayout.m */; };
 		E19FA3ED1B2C58930057A049 /* TicketShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3EC1B2C58930057A049 /* TicketShopTableViewCell.m */; };
 		E19FA3F01B2C5AC60057A049 /* UITextField+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3EF1B2C5AC60057A049 /* UITextField+Helper.m */; };
 		E19FA3F31B2C5BA50057A049 /* TicketShopperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3F21B2C5BA50057A049 /* TicketShopperClient.m */; };
@@ -350,6 +351,8 @@
 		56D587F81B1E64E3007B3F5B /* FilterBandsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterBandsTableViewCell.m; path = views/FilterBandsTableViewCell.m; sourceTree = "<group>"; };
 		56D738481B3374E3002214BC /* FestivalLoadMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestivalLoadMoreTableViewCell.h; path = views/FestivalLoadMoreTableViewCell.h; sourceTree = "<group>"; };
 		56D738491B3374E3002214BC /* FestivalLoadMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalLoadMoreTableViewCell.m; path = views/FestivalLoadMoreTableViewCell.m; sourceTree = "<group>"; };
+		E19BD1B11B38034800C78034 /* CenterCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CenterCollectionViewLayout.h; path = "custom objects/CenterCollectionViewLayout.h"; sourceTree = "<group>"; };
+		E19BD1B21B38034800C78034 /* CenterCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CenterCollectionViewLayout.m; path = "custom objects/CenterCollectionViewLayout.m"; sourceTree = "<group>"; };
 		E19FA3EB1B2C58930057A049 /* TicketShopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketShopTableViewCell.h; path = views/TicketShopTableViewCell.h; sourceTree = "<group>"; };
 		E19FA3EC1B2C58930057A049 /* TicketShopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketShopTableViewCell.m; path = views/TicketShopTableViewCell.m; sourceTree = "<group>"; };
 		E19FA3EE1B2C5AC60057A049 /* UITextField+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Helper.h"; sourceTree = "<group>"; };
@@ -687,6 +690,8 @@
 		562352361B2440BB000ABCAC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				E19BD1B11B38034800C78034 /* CenterCollectionViewLayout.h */,
+				E19BD1B21B38034800C78034 /* CenterCollectionViewLayout.m */,
 				56D05A391B19D37E0031F2A2 /* Welcome Question views */,
 				560D0ABE1B1799E600B03090 /* WelcomeViewController.h */,
 				560D0ABF1B1799E600B03090 /* WelcomeViewController.m */,
@@ -1027,6 +1032,7 @@
 				56CF4ED01B2E24FF00A25CE7 /* SearchEmptyView.m in Sources */,
 				562352421B244128000ABCAC /* FestivalDetailLocationViewController.m in Sources */,
 				561611FF1B1BB7F800147093 /* GreenButton.m in Sources */,
+				E19BD1B31B38034800C78034 /* CenterCollectionViewLayout.m in Sources */,
 				56C44E791B1CECC100DFFB6B /* FestivalNavigationController.m in Sources */,
 				560D0AF31B17C3E600B03090 /* GenreParser.m in Sources */,
 				561611F61B1BAE9A00147093 /* BadgeCounterView.m in Sources */,
