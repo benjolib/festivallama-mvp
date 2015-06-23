@@ -56,8 +56,6 @@
                                          completion:nil];
     } else {
         [GeneralSettings setOnboardingViewed];
-        
-        // TODO: Copy all the settings from OnboardingModel to Filtermodel
         [[FilterModel sharedModel] copySettingsFromOnboardingModel:self.onboardingModel];
         
         // move to festivals view

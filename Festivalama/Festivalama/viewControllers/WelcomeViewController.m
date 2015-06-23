@@ -57,7 +57,6 @@
     [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
         if (completed) {
             weakSelf.genresArray = [sortedCategories copy];
-            [weakSelf performSegueWithIdentifier:@"presentOnboarding" sender:nil];
         } else {
             // TODO: error handling
         }
@@ -142,7 +141,7 @@
     [super viewDidLoad];
 
     self.festivalamaImageView.alpha = 0.0;
-//    [self addVideoBackgroundLayer];
+    [self addVideoBackgroundLayer];
 
     [self downloadGenres];
 }

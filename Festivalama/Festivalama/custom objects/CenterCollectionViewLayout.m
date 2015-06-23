@@ -59,7 +59,8 @@
         CGFloat itemMargin = 10.0;
         CGFloat viewWidths = 0;
         
-        if (width4 != 0 && width3 != 0) { // we have a fourth indexPath too
+        if (width4 != 0 && width3 != 0) // we have a fourth indexPath too
+        {
             viewWidths = width1 + itemMargin + width2 + itemMargin + width3 + itemMargin + width4;
             if (CGRectGetWidth(rect) >= (viewWidths + (2 * 20))) { // 20.0 px margin on both sides
                 // if the container width is smaller than the max size, than we can fit 4 items in a row.
@@ -69,14 +70,20 @@
                 viewWidths = width1 + itemMargin + width2 + itemMargin + width3;
                 usedFourthCell = NO;
             }
-        } else {
-            viewWidths = width1 + itemMargin + width2;
+        }
+        else
+        {
             usedFourthCell = NO;
+            if (width3 != 0) {
+                viewWidths = width1 + itemMargin + width2 + itemMargin + width3;
+            } else {
+                viewWidths = width1 + itemMargin + width2;
+            }
         }
         
         CGFloat leftMargin = (CGRectGetWidth(rect) - viewWidths) / 2;
         
-        CGFloat yOrigin = sectionIndex * 60;
+        CGFloat yOrigin = sectionIndex * 55;
         
         CGFloat maxXOrigin = [self saveCellAtIndexPath:attribute.indexPath attribute:attribute withWidth:width1 xOrigin:leftMargin andYOrigin:yOrigin];
         maxXOrigin = [self saveCellAtIndexPath:secondIndexPath attribute:attribute2 withWidth:width2 xOrigin:maxXOrigin andYOrigin:yOrigin];
@@ -96,6 +103,7 @@
     attributeFrame.origin.x = xOrigin;
     attributeFrame.origin.y = yOrigin;
     attributeFrame.size.width = width;
+    attributeFrame.size.height = 45.0;
     attribute.frame = attributeFrame;
     
     if (!self.cellAttributesDictionary[indexPath]) {
@@ -115,7 +123,7 @@
     if (!title) {
         return 0;
     }
-    CGFloat width = [self widthForGenreName:title] + (4 * 10);
+    CGFloat width = [self widthForGenreName:title] + (3 * 10);
     
     [self.cellWidthDictionary setObject:@(width) forKey:indexpath];
     return width;

@@ -20,19 +20,19 @@
 {
     [super awakeFromNib];
 
-    self.cellBackgroundView.backgroundColor = [UIColor clearColor];
-    self.cellBackgroundView.layer.cornerRadius = 26;
-    self.cellBackgroundView.layer.borderWidth = 1.0;
-    self.cellBackgroundView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.contentView.layer.cornerRadius = 24;
+    self.contentView.layer.borderWidth = 1.0;
+    self.contentView.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (void)setHighlighted:(BOOL)highlighted
 {
     if (highlighted) {
-        self.cellBackgroundView.backgroundColor = [UIColor whiteColor];
+        self.contentView.backgroundColor = [UIColor whiteColor];
         self.titleLabel.textColor = [UIColor globalGreenColor];
     } else {
-        self.cellBackgroundView.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
         self.titleLabel.textColor = [UIColor whiteColor];
     }
 }
@@ -40,10 +40,10 @@
 - (void)setSelected:(BOOL)selected
 {
     if (selected) {
-        self.cellBackgroundView.backgroundColor = [UIColor whiteColor];
+        self.contentView.backgroundColor = [UIColor whiteColor];
         self.titleLabel.textColor = [UIColor globalGreenColor];
     } else {
-        self.cellBackgroundView.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
         self.titleLabel.textColor = [UIColor whiteColor];
     }
 }

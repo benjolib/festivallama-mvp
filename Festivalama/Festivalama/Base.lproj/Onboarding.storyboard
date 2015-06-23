@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -86,7 +86,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="genreBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Qqf-ZF-kFE" userLabel="backgroundImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welche Musik hörst du auf einem Festival? (1/2)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="1mv-N6-3ce">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welche Musik hörst du auf einem Festival?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="1mv-N6-3ce">
                                 <rect key="frame" x="15" y="20" width="290" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="fRp-DL-HNd"/>
@@ -127,34 +127,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMK-J2-mjC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Electro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="Phc-Hf-zWc">
-                                                            <rect key="frame" x="0.0" y="25" width="150" height="20"/>
-                                                            <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="Phc-Hf-zWc" firstAttribute="leading" secondItem="HMK-J2-mjC" secondAttribute="leading" id="Nx1-6C-wJs"/>
-                                                        <constraint firstAttribute="centerY" secondItem="Phc-Hf-zWc" secondAttribute="centerY" id="Xpg-KF-F4M"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Phc-Hf-zWc" secondAttribute="trailing" id="oBP-8J-HR8"/>
-                                                    </constraints>
-                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Electro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="150" translatesAutoresizingMaskIntoConstraints="NO" id="Phc-Hf-zWc">
+                                                    <rect key="frame" x="0.0" y="25" width="150" height="20"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="HMK-J2-mjC" firstAttribute="top" secondItem="hVt-ZA-UXo" secondAttribute="top" id="Dvv-JN-UVf"/>
-                                            <constraint firstAttribute="trailing" secondItem="HMK-J2-mjC" secondAttribute="trailing" id="JV2-m8-Dbt"/>
-                                            <constraint firstItem="HMK-J2-mjC" firstAttribute="leading" secondItem="hVt-ZA-UXo" secondAttribute="leading" id="PI4-3a-50c"/>
-                                            <constraint firstAttribute="bottom" secondItem="HMK-J2-mjC" secondAttribute="bottom" id="hgd-F3-dvo"/>
+                                            <constraint firstItem="Phc-Hf-zWc" firstAttribute="leading" secondItem="hVt-ZA-UXo" secondAttribute="leading" id="0de-Oe-0QF"/>
+                                            <constraint firstAttribute="centerY" secondItem="Phc-Hf-zWc" secondAttribute="centerY" id="Ib2-0B-jvJ"/>
+                                            <constraint firstAttribute="centerX" secondItem="Phc-Hf-zWc" secondAttribute="centerX" id="Pqd-si-VEM"/>
+                                            <constraint firstAttribute="trailing" secondItem="Phc-Hf-zWc" secondAttribute="trailing" id="gj5-Ev-Qtv"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="cellBackgroundView" destination="HMK-J2-mjC" id="Yt5-6z-XH2"/>
                                             <outlet property="titleLabel" destination="Phc-Hf-zWc" id="RJ1-Lx-b6e"/>
                                         </connections>
                                     </collectionViewCell>

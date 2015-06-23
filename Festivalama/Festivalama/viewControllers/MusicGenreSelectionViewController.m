@@ -69,11 +69,10 @@
 
     if ([self.selectedGenresArray containsObject:genre]) {
         [self.selectedGenresArray removeObject:genre];
-        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
         [self updateOnboardingModel];
     } else {
         [self.selectedGenresArray addObject:genre];
-        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
         [self updateOnboardingModel];
     }
 }
@@ -83,7 +82,7 @@
     Genre *genre = [self genreAtIndexPath:indexPath];
     if ([self.selectedGenresArray containsObject:genre]) {
         [self.selectedGenresArray removeObject:genre];
-        [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        [collectionView deselectItemAtIndexPath:indexPath animated:YES];
         [self updateOnboardingModel];
     }
 }
@@ -117,7 +116,9 @@
     
     self.centerCollectionViewLayout = [[CenterCollectionViewLayout alloc] init];
     self.centerCollectionViewLayout.customDataSource = self;
-    
+    self.centerCollectionViewLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+
+    self.collectionView.allowsMultipleSelection = YES;
     self.collectionView.collectionViewLayout = self.centerCollectionViewLayout;
 }
 
