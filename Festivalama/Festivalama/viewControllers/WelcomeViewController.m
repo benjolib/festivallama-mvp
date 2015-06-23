@@ -29,6 +29,9 @@
 
 - (void)displayFirstPopup
 {
+    if (self.activePopup.superview) {
+        return;
+    }
     self.activePopup = [[PopupView alloc] initWithDelegate:self];
     [self.activePopup setupWithConfirmButtonTitle:@"Los geht's!"
                                 cancelButtonTitle:nil
@@ -113,6 +116,8 @@
 
 - (void)replayMovie:(NSNotification *)notification
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     self.festivalamaImageView.alpha = 0.0;
     self.festivalamaImageView.transform = CGAffineTransformMakeScale(0.8, 0.8);
     [self.view bringSubviewToFront:self.festivalamaImageView];

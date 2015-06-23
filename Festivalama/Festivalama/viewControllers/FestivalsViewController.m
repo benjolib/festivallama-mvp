@@ -53,11 +53,12 @@
 
 - (void)calenderButtonTapped:(UIButton*)button
 {
-    if (![button.superview.superview isKindOfClass:[FestivalTableViewCell class]]) {
-        return;
+    UIView *aSuperview = [button superview];
+    while (![aSuperview isKindOfClass:[FestivalTableViewCell class]]) {
+        aSuperview = [aSuperview superview];
     }
 
-    FestivalTableViewCell *cell = (FestivalTableViewCell*)button.superview.superview;
+    FestivalTableViewCell *cell = (FestivalTableViewCell*)aSuperview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     FestivalModel *festival = self.festivalsArray[indexPath.row];
 

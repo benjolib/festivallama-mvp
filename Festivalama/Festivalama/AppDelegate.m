@@ -45,9 +45,7 @@
     }
 
     // Set root view controller and make windows visible
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = vc;
-    [self.window makeKeyAndVisible];
 
 #if DEBUG
     self.debugLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, 14.0)];

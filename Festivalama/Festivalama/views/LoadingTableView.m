@@ -61,6 +61,18 @@
     self.userInteractionEnabled = YES;
     self.emptyView.hidden = YES;
 }
+//
+//- (void)layoutSublayersOfLayer:(CALayer *)layer
+//{
+//    [super layoutSublayersOfLayer:layer];
+//    
+//}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self layoutIfNeeded]; // this line is key
+}
 
 #pragma mark - private methods
 - (void)awakeFromNib
@@ -74,14 +86,14 @@
 {
     self.loadingIndicatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reloadIcon"]];
     self.loadingIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:self.loadingIndicatorView];
+    [self.backgroundView addSubview:self.loadingIndicatorView];
 }
 
 - (void)setupEmptyView
 {
     self.emptyView = [[SearchEmptyView alloc] init];
     self.emptyView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:self.emptyView];
+    [self.backgroundView addSubview:self.emptyView];
     self.emptyView.hidden = YES;
 }
 
@@ -89,39 +101,43 @@
 {
     [super updateConstraints];
 
-    [self addConstraints:@[
-                           [NSLayoutConstraint constraintWithItem:self.loadingIndicatorView
-                                                        attribute:NSLayoutAttributeCenterX
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self
-                                                        attribute:NSLayoutAttributeCenterX
-                                                       multiplier:1
-                                                         constant:0],
-                           [NSLayoutConstraint constraintWithItem:self.loadingIndicatorView
-                                                        attribute:NSLayoutAttributeCenterY
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self
-                                                        attribute:NSLayoutAttributeCenterY
-                                                       multiplier:1
-                                                         constant:0]]
-     ];
+    if (self.loadingIndicatorView.superview) {
+        [self.backgroundView addConstraints:@[
+                               [NSLayoutConstraint constraintWithItem:self.loadingIndicatorView
+                                                            attribute:NSLayoutAttributeCenterX
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self.backgroundView
+                                                            attribute:NSLayoutAttributeCenterX
+                                                           multiplier:1
+                                                             constant:0],
+                               [NSLayoutConstraint constraintWithItem:self.loadingIndicatorView
+                                                            attribute:NSLayoutAttributeCenterY
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self.backgroundView
+                                                            attribute:NSLayoutAttributeCenterY
+                                                           multiplier:1
+                                                             constant:0]]
+         ];
+    }
 
-    [self addConstraints:@[
-                           [NSLayoutConstraint constraintWithItem:self.emptyView
-                                                        attribute:NSLayoutAttributeCenterX
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self
-                                                        attribute:NSLayoutAttributeCenterX
-                                                       multiplier:1
-                                                         constant:0],
-                           [NSLayoutConstraint constraintWithItem:self.emptyView
-                                                        attribute:NSLayoutAttributeCenterY
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self
-                                                        attribute:NSLayoutAttributeCenterY
-                                                       multiplier:1
-                                                         constant:-100]
-                           ]];
+    if (self.emptyView.superview) {
+        [self.backgroundView addConstraints:@[
+                               [NSLayoutConstraint constraintWithItem:self.emptyView
+                                                            attribute:NSLayoutAttributeCenterX
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self.backgroundView
+                                                            attribute:NSLayoutAttributeCenterX
+                                                           multiplier:1
+                                                             constant:0],
+                               [NSLayoutConstraint constraintWithItem:self.emptyView
+                                                            attribute:NSLayoutAttributeCenterY
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self.backgroundView
+                                                            attribute:NSLayoutAttributeCenterY
+                                                           multiplier:1
+                                                             constant:-100]
+                               ]];
+    }
 }
 
 - (void)startRefreshing
