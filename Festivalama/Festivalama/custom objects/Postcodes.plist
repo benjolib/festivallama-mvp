@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 0 bis 9999</string>
+		<key>value</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 10000 bis 19999</string>
+		<key>value</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 20000 bis 29999</string>
+		<key>value</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 30000 bis 39999</string>
+		<key>value</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 40000 bis 49999</string>
+		<key>value</key>
+		<integer>4</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 50000 bis 59999</string>
+		<key>value</key>
+		<integer>5</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 60000 bis 69999</string>
+		<key>value</key>
+		<integer>6</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 70000 bis 79999</string>
+		<key>value</key>
+		<integer>7</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 80000 bis 89999</string>
+		<key>value</key>
+		<integer>8</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Postleitzahlenbereich 90000 bis 99999</string>
+		<key>value</key>
+		<integer>9</integer>
+	</dict>
+</array>
+</plist>

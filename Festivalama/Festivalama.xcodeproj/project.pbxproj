@@ -148,6 +148,8 @@
 		56D587F91B1E64E3007B3F5B /* FilterBandsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D587F81B1E64E3007B3F5B /* FilterBandsTableViewCell.m */; };
 		56D7384A1B3374E3002214BC /* FestivalLoadMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D738491B3374E3002214BC /* FestivalLoadMoreTableViewCell.m */; };
 		E19BD1B31B38034800C78034 /* CenterCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E19BD1B21B38034800C78034 /* CenterCollectionViewLayout.m */; };
+		E19BD1BF1B39829700C78034 /* FilterPostcode.m in Sources */ = {isa = PBXBuildFile; fileRef = E19BD1BE1B39829700C78034 /* FilterPostcode.m */; };
+		E19BD1C11B39836100C78034 /* Postcodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E19BD1C01B39836100C78034 /* Postcodes.plist */; };
 		E19FA3ED1B2C58930057A049 /* TicketShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3EC1B2C58930057A049 /* TicketShopTableViewCell.m */; };
 		E19FA3F01B2C5AC60057A049 /* UITextField+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3EF1B2C5AC60057A049 /* UITextField+Helper.m */; };
 		E19FA3F31B2C5BA50057A049 /* TicketShopperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3F21B2C5BA50057A049 /* TicketShopperClient.m */; };
@@ -417,6 +419,9 @@
 		56D738491B3374E3002214BC /* FestivalLoadMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestivalLoadMoreTableViewCell.m; path = views/FestivalLoadMoreTableViewCell.m; sourceTree = "<group>"; };
 		E19BD1B11B38034800C78034 /* CenterCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CenterCollectionViewLayout.h; path = "custom objects/CenterCollectionViewLayout.h"; sourceTree = "<group>"; };
 		E19BD1B21B38034800C78034 /* CenterCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CenterCollectionViewLayout.m; path = "custom objects/CenterCollectionViewLayout.m"; sourceTree = "<group>"; };
+		E19BD1BD1B39829700C78034 /* FilterPostcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterPostcode.h; path = "custom objects/FilterPostcode.h"; sourceTree = "<group>"; };
+		E19BD1BE1B39829700C78034 /* FilterPostcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterPostcode.m; path = "custom objects/FilterPostcode.m"; sourceTree = "<group>"; };
+		E19BD1C01B39836100C78034 /* Postcodes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Postcodes.plist; path = "custom objects/Postcodes.plist"; sourceTree = "<group>"; };
 		E19FA3EB1B2C58930057A049 /* TicketShopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketShopTableViewCell.h; path = views/TicketShopTableViewCell.h; sourceTree = "<group>"; };
 		E19FA3EC1B2C58930057A049 /* TicketShopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketShopTableViewCell.m; path = views/TicketShopTableViewCell.m; sourceTree = "<group>"; };
 		E19FA3EE1B2C5AC60057A049 /* UITextField+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Helper.h"; sourceTree = "<group>"; };
@@ -950,6 +955,9 @@
 				56C44E871B1D0E6500DFFB6B /* FestivalModel.m */,
 				561612031B1BBA2E00147093 /* FilterModel.h */,
 				561612041B1BBA2E00147093 /* FilterModel.m */,
+				E19BD1BD1B39829700C78034 /* FilterPostcode.h */,
+				E19BD1BE1B39829700C78034 /* FilterPostcode.m */,
+				E19BD1C01B39836100C78034 /* Postcodes.plist */,
 				56D587F11B1E5D22007B3F5B /* Band.h */,
 				56D587F21B1E5D22007B3F5B /* Band.m */,
 				560D0AEE1B17C35D00B03090 /* Genre.h */,
@@ -1044,6 +1052,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19BD1C11B39836100C78034 /* Postcodes.plist in Resources */,
 				56D2A7B91B20D95D0085CEDA /* festivalama_video.mov in Resources */,
 				567FD4261B320C6F00D9A1D1 /* Lato-Light.ttf in Resources */,
 				56CF4ED21B2E251000A25CE7 /* SearchEmptyView.xib in Resources */,
@@ -1195,6 +1204,7 @@
 				56CF17AB1B38B7B100A8F9BD /* ADJActivityKind.m in Sources */,
 				56D05A4F1B19FEE50031F2A2 /* OnboardingOption.m in Sources */,
 				56CF17B41B38B7B100A8F9BD /* ADJConfig.m in Sources */,
+				E19BD1BF1B39829700C78034 /* FilterPostcode.m in Sources */,
 				560D0A951B17951100B03090 /* main.m in Sources */,
 				569B47881B28F3500076C3B2 /* CDGenre.m in Sources */,
 				56D587F01B1E5D08007B3F5B /* BandParser.m in Sources */,

@@ -11,6 +11,7 @@
 #import "FestivalParser.h"
 #import "FilterModel.h"
 #import "LocationManager.h"
+#import "FilterPostcode.h"
 
 @interface FestivalDownloadClient ()
 @property (nonatomic, strong) FestivalParser *festivalParser;
@@ -43,7 +44,7 @@
             [urlString appendString:[NSString stringWithFormat:@"&country=%@", filterModel.selectedCountry]];
         }
         if (filterModel.selectedPostCode && [filterModel isSelectedCountryGermany]) {
-            [urlString appendString:[NSString stringWithFormat:@"&city=%@", filterModel.selectedPostCode]];
+            [urlString appendString:[NSString stringWithFormat:@"&postcode=%ld", (long)filterModel.selectedPostCode.valueToSend]];
         }
         if (filterModel.selectedGenresArray.count > 0) {
             [urlString appendString:[NSString stringWithFormat:@"&category=%@", [filterModel genresStringForAPICall]]];

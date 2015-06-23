@@ -9,9 +9,10 @@
 #import "FilterPostcodeViewController.h"
 #import "FilterTableViewCell.h"
 #import "TrackingManager.h"
+#import "FilterPostcode.h"
 
 @interface FilterPostcodeViewController ()
-@property (nonatomic, strong) NSArray *allPostcodesArray;
+@property (nonatomic, strong) NSMutableArray *allPostcodesArray;
 @property (nonatomic, strong) NSMutableArray *selectedPostCodesArray;
 @end
 
@@ -40,7 +41,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.textLabel.text = self.allPostcodesArray[indexPath.row];
+    
+    FilterPostcode *postcode = self.allPostcodesArray[indexPath.row];
+    cell.textLabel.text = postcode.title;
 
     if ([self.selectedPostCodesArray containsObject:self.allPostcodesArray[indexPath.row]]) {
         UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
@@ -61,7 +64,8 @@
     if (!self.selectedPostCodesArray) {
         self.selectedPostCodesArray = [NSMutableArray array];
     }
-    NSString *selectedPostcode = self.allPostcodesArray[indexPath.row];
+    
+    FilterPostcode *selectedPostcode = self.allPostcodesArray[indexPath.row];
     if ([self.selectedPostCodesArray containsObject:selectedPostcode]) {
         [self.selectedPostCodesArray removeObject:selectedPostcode];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -89,16 +93,35 @@
     [super viewDidLoad];
     self.title = @"Innerhalb Deutschlands";
 
-    self.allPostcodesArray = @[@"1...", @"2...", @"3...", @"4...", @"5...", @"6...", @"7...", @"8...", @"9..."];
     [self.tableView reloadData];
     [self.tableView hideLoadingIndicator];
 
+    [self populateArrayWithPostcodes];
+    
     if (!self.selectedPostCodesArray) {
         self.selectedPostCodesArray = [NSMutableArray array];
     }
     if ([[FilterModel sharedModel] selectedPostCode]) {
         [self.selectedPostCodesArray addObject:[[FilterModel sharedModel] selectedPostCode]];
     }
+}
+
+- (void)populateArrayWithPostcodes
+{
+    if (!self.allPostcodesArray) {
+        self.allPostcodesArray = [NSMutableArray array];
+    }
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Postcodes" ofType:@"plist"];
+    NSArray *postcodesArray = [[NSArray alloc] initWithContentsOfFile:filePath];
+    
+    for (NSDictionary *postcodeDictionary in postcodesArray) {
+        FilterPostcode *postcode = [FilterPostcode filterPostcodeWithTitle:postcodeDictionary[@"title"]
+                                                                  andValue:[postcodeDictionary[@"value"] integerValue]];
+        [self.allPostcodesArray addObject:postcode];
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
