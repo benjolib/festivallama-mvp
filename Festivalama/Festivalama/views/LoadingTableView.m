@@ -20,7 +20,7 @@
 {
     self.loadingIndicatorView.hidden = NO;
     if (self.loadingIndicatorView) {
-        [self.backgroundView bringSubviewToFront:self.loadingIndicatorView];
+        [self bringSubviewToFront:self.loadingIndicatorView];
     }
     [self startRefreshing];
 }
@@ -36,7 +36,7 @@
     [super reloadData];
     self.userInteractionEnabled = YES;
     if (self.loadingIndicatorView) {
-        [self.backgroundView bringSubviewToFront:self.loadingIndicatorView];
+        [self bringSubviewToFront:self.loadingIndicatorView];
     }
 }
 
