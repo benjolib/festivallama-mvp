@@ -87,7 +87,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Postleitzahl";
+    self.title = @"Innerhalb Deutschlands";
 
     self.allPostcodesArray = @[@"1...", @"2...", @"3...", @"4...", @"5...", @"6...", @"7...", @"8...", @"9..."];
     [self.tableView reloadData];

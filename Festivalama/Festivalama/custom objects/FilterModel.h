@@ -25,6 +25,7 @@
 - (void)clearFilters;
 
 - (BOOL)isFiltering;
+- (BOOL)isSelectedCountryGermany;
 - (NSString*)bandsString;
 - (NSString*)genresString;
 - (NSString*)bandsStringForAPICall;

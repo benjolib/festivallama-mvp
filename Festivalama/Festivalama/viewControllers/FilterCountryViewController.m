@@ -121,7 +121,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Land";
+    self.title = @"Ganz Europa";
 
     [self setupDatasource];
     [self.tableView reloadData];

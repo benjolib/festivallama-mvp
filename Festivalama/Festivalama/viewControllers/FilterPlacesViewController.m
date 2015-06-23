@@ -39,10 +39,10 @@
     cell.accessoryView = accessoryView;
 
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"Postleitzahl";
+        cell.textLabel.text = @"Innerhalb Deutschlands";
         return cell;
     } else {
-        cell.textLabel.text = @"Land";
+        cell.textLabel.text = @"Ganz Europa";
         return cell;
     }
 }

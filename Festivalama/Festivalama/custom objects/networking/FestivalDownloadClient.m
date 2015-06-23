@@ -42,7 +42,7 @@
         if (filterModel.selectedCountry) {
             [urlString appendString:[NSString stringWithFormat:@"&country=%@", filterModel.selectedCountry]];
         }
-        if (filterModel.selectedPostCode) {
+        if (filterModel.selectedPostCode && [filterModel isSelectedCountryGermany]) {
             [urlString appendString:[NSString stringWithFormat:@"&city=%@", filterModel.selectedPostCode]];
         }
         if (filterModel.selectedGenresArray.count > 0) {

@@ -64,6 +64,11 @@
     }
 }
 
+- (BOOL)isSelectedCountryGermany
+{
+    return [self.selectedCountry isEqualToString:@"Deutschland"];
+}
+
 - (NSString*)bandsString
 {
     NSMutableString *bandsString = [[NSMutableString alloc] init];
