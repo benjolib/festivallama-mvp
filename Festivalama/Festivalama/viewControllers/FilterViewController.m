@@ -124,10 +124,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (IS_iOS8) {
-//        return UITableViewAutomaticDimension;
-//    }
-    return 70.0;
+    if (IS_iOS8) {
+        return UITableViewAutomaticDimension;
+    }
+    return 81.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
