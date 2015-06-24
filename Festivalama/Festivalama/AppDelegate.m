@@ -11,6 +11,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <StoreKit/StoreKit.h>
+#import <Parse/Parse.h>
 #import "Reachability.h"
 #import "PopupView.h"
 #import "CoreDataHandler.h"
@@ -33,6 +34,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Fabric with:@[CrashlyticsKit]];
+    [Parse setApplicationId:@"Yo5Zsijafn4kNwWkSnTZZ1RdZmGAN3bk559iIFdR"
+                  clientKey:@"b6sVnVj9rYou6BaNhKDFOaM4QRMROjNLUXatPHDx"];
     [self addNetworkObserver];
 
     UIViewController *vc = nil;
@@ -65,19 +68,36 @@
     [[CoreDataHandler sharedHandler] saveMasterContext];
 }
 
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+#pragma mark - push notification
+- (void)askUserForPushNotifications
 {
-
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-
+    // Register for Push Notitications
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    if (IS_iOS8) {
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    } else {
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+    }
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [PFPush handlePush:userInfo];
 }
 
 #pragma mark - popup view handling
@@ -187,11 +207,7 @@
 - (void)popupViewConfirmButtonPressed:(PopupView *)popupView
 {
     if (popupView == self.onTrackPopup) {
-        if (IS_iOS8) {
-            [[UIApplication sharedApplication] registerForRemoteNotifications];
-        } else {
-            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
-        }
+        [self askUserForPushNotifications];
     } else if (popupView == self.reviewInAppStorePopup) {
         [[TrackingManager sharedManager] trackUserSelectsReviewApp];
         [self rateTheApp];
