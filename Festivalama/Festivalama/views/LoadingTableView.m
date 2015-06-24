@@ -42,7 +42,6 @@
 
 - (void)showEmptySearchView
 {
-    self.userInteractionEnabled = NO;
     self.emptyView.hidden = NO;
     if (self.emptyView) {
         [self.emptyView showEmptySearch];
@@ -52,7 +51,6 @@
 
 - (void)showEmptyFilterView
 {
-    self.userInteractionEnabled = NO;
     self.emptyView.hidden = NO;
     if (self.emptyView) {
         [self.emptyView showEmptyFilter];
@@ -85,7 +83,7 @@
 - (void)setupEmptyView
 {
     self.emptyView = [[SearchEmptyView alloc] init];
-    self.emptyView.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - CGRectGetWidth(self.emptyView.frame)/2, CGRectGetHeight(self.frame)/2 - CGRectGetHeight(self.emptyView.frame)/2, CGRectGetWidth(self.emptyView.frame), CGRectGetHeight(self.emptyView.frame));
+    self.emptyView.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - CGRectGetWidth(self.emptyView.frame)/2, CGRectGetHeight(self.frame)/2 - [SearchEmptyView viewHeight]/2, CGRectGetWidth(self.emptyView.frame), [SearchEmptyView viewHeight]);
     [self addSubview:self.emptyView];
     self.emptyView.hidden = YES;
 }

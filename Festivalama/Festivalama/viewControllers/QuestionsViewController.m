@@ -39,9 +39,8 @@ static NSInteger cellHeight = 60.0;
     cell.titleLabel.text = option.title;
 
     BOOL cellSelected = [option isEqual:self.selectedOption];
-//    [cell setSelected:cellSelected animated:YES];
     if (cellSelected) {
-        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [cell setSelected:cellSelected animated:YES];
     }
 
     cell.backgroundColor = [UIColor clearColor];
@@ -78,44 +77,44 @@ static NSInteger cellHeight = 60.0;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
     OnboardingOption *option = self.optionsToDisplay[indexPath.row];
+
+    if (!self.selectedOptionsArray) {
+        self.selectedOptionsArray = [NSMutableArray array];
+    }
 
     if ([self.selectedOptionsArray containsObject:option]) {
         [self.selectedOptionsArray removeObject:option];
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     } else {
         [self.selectedOptionsArray addObject:option];
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-
-        [self.rootViewController.onboardingModel userSelectedOption:option atScreenIndex:self.indexOfView];
-        switch (self.indexOfView) {
-            case 0:
-                // Irrelevant
-                break;
-            case 1: {
-                if (indexPath.row == 0 || indexPath.row == 1) {
-                    // filter by Germany
-                    [self.rootViewController setFilterByLocationEnabled:YES];
-                } else {
-                    // no location filter
-                    [self.rootViewController setFilterByLocationEnabled:NO];
-                }
-                break;
-            }
-            case 2:
-                // Irrelevant
-                break;
-            case 3:
-                // Irrelevant
-                break;
-            default:
-                break;
-        }
-
-        [self.rootViewController showNextViewController];
     }
+    
+    [self.rootViewController.onboardingModel userSelectedOption:option atScreenIndex:self.indexOfView];
+    switch (self.indexOfView) {
+        case 0:
+            // Irrelevant
+            break;
+        case 1: {
+            if (indexPath.row == 0 || indexPath.row == 1) {
+                // filter by Germany
+                [self.rootViewController setFilterByLocationEnabled:YES];
+            } else {
+                // no location filter
+                [self.rootViewController setFilterByLocationEnabled:NO];
+            }
+            break;
+        }
+        case 2:
+            // Irrelevant
+            break;
+        case 3:
+            // Irrelevant
+            break;
+        default:
+            break;
+    }
+    
+    [self.rootViewController showNextViewController];
 }
 
 #pragma mark - view methods
@@ -127,10 +126,8 @@ static NSInteger cellHeight = 60.0;
     self.backgroundImageView.image = [UIImage imageNamed:self.imageNameString];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)reloadSelection
 {
-    [super viewDidAppear:animated];
-
     if (self.rootViewController.onboardingModel.selectedOptionAtScreensDictionary) {
         OnboardingOption *option = [self.rootViewController.onboardingModel.selectedOptionAtScreensDictionary nonNullObjectForKey:@(self.indexOfView)];
         if (option) {
@@ -138,6 +135,12 @@ static NSInteger cellHeight = 60.0;
             [self.tableView reloadData];
         }
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self reloadSelection];
 }
 
 - (BOOL)prefersStatusBarHidden

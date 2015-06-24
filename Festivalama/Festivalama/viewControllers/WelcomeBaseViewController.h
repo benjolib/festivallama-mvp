@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QuestionsContainerViewController.h"
+#import "OnboardingContainerViewController.h"
 
 // Base viewController for all the viewController in the onboarding section
 
 @interface WelcomeBaseViewController : UIViewController
 
-@property (nonatomic, strong) QuestionsContainerViewController *rootViewController;
+@property (nonatomic, strong) OnboardingContainerViewController *rootViewController;
 @property (nonatomic) NSInteger indexOfView;
+
+- (void)reloadSelection;
 
 @end

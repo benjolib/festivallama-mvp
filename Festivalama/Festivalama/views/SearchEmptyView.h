@@ -15,4 +15,6 @@
 - (void)showEmptySearch;
 - (void)showEmptyFilter;
 
++ (CGFloat)viewHeight;
+
 @end

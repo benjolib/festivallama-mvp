@@ -10,6 +10,11 @@
 
 @implementation WelcomeBaseViewController
 
+- (void)reloadSelection
+{
+    // implemented in subclasses
+}
+
 - (BOOL)prefersStatusBarHidden
 {
     return YES;

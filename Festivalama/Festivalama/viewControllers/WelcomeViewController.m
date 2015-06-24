@@ -10,7 +10,7 @@
 #import "PopupView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "CategoryDownloadClient.h"
-#import "QuestionsContainerViewController.h"
+#import "OnboardingContainerViewController.h"
 #import "LocationManager.h"
 
 #import "StoryboardManager.h"
@@ -60,6 +60,7 @@
     [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
         if (completed) {
             weakSelf.genresArray = [sortedCategories copy];
+                            [self performSegueWithIdentifier:@"presentOnboarding" sender:nil];
         } else {
             // TODO: error handling
         }
@@ -93,8 +94,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"presentOnboarding"]) {
-        QuestionsContainerViewController *questionsViewController = (QuestionsContainerViewController*)segue.destinationViewController;
-        questionsViewController.genresArray = [self.genresArray copy];
+        OnboardingContainerViewController *onboardingViewController = (OnboardingContainerViewController*)segue.destinationViewController;
+        onboardingViewController.genresArray = [self.genresArray copy];
     }
 }
 
@@ -146,7 +147,7 @@
     [super viewDidLoad];
 
     self.festivalamaImageView.alpha = 0.0;
-    [self addVideoBackgroundLayer];
+//    [self addVideoBackgroundLayer];
 
     [self downloadGenres];
 }

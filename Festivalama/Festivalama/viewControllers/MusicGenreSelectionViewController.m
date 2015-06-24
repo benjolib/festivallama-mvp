@@ -7,7 +7,6 @@
 //
 
 #import "MusicGenreSelectionViewController.h"
-#import "ContinueButton.h"
 #import "Genre.h"
 #import "SelectionCollectionViewCell.h"
 #import "CenterCollectionViewLayout.h"
@@ -25,11 +24,6 @@
 - (Genre*)genreAtIndexPath:(NSIndexPath*)indexPath
 {
     return self.allGenresArray[indexPath.row];
-}
-
-- (IBAction)continueButtonPressed:(id)sender
-{
-    [self.rootViewController showNextViewController];
 }
 
 #pragma mark - center layout delegate method
@@ -75,6 +69,8 @@
         [self.selectedGenresArray addObject:genre];
         [self updateOnboardingModel];
     }
+    
+    [self reportNumberOfSelectedItemsCountChanged];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -84,6 +80,15 @@
         [self.selectedGenresArray removeObject:genre];
         [collectionView deselectItemAtIndexPath:indexPath animated:YES];
         [self updateOnboardingModel];
+    }
+
+    [self reportNumberOfSelectedItemsCountChanged];
+}
+
+- (void)reportNumberOfSelectedItemsCountChanged
+{
+    if ([self.delegate respondsToSelector:@selector(musicGenreSelectionNumberOfSelectedItemsChanged:)]) {
+        [self.delegate musicGenreSelectionNumberOfSelectedItemsChanged:self.selectedGenresArray.count];
     }
 }
 
@@ -95,7 +100,14 @@
 - (void)updateOnboardingModel
 {
     self.rootViewController.onboardingModel.selectedGenres = [_selectedGenresArray copy];
-    self.continueButton.enabled = self.selectedGenresArray.count > 0;
+}
+
+- (void)reloadSelection
+{
+    if (self.rootViewController.onboardingModel.selectedGenres.count > 0) {
+        self.selectedGenresArray = [self.rootViewController.onboardingModel.selectedGenres mutableCopy];
+    }
+    [self.collectionView reloadData];
 }
 
 #pragma mark - view methods
@@ -104,7 +116,6 @@
     [super viewDidLoad];
     self.selectedGenresArray = [NSMutableArray array];
 
-    self.continueButton.enabled = self.selectedGenresArray.count > 0;
     self.titleLabel.text = self.titleString;
     self.backgroundImageView.image = [UIImage imageNamed:self.imageNameString];
     
@@ -125,11 +136,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.rootViewController.onboardingModel.selectedGenres.count > 0) {
-        self.selectedGenresArray = [self.rootViewController.onboardingModel.selectedGenres mutableCopy];
-        self.continueButton.enabled = self.selectedGenresArray.count > 0;
-    }
-    [self.collectionView reloadData];
+    [self reloadSelection];
 }
 
 - (void)setViewTitle:(NSString*)title backgroundImage:(NSString*)imageName

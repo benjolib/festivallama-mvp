@@ -161,6 +161,8 @@
 		E19BD1E51B3AA19700C78034 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19BD1E41B3AA19700C78034 /* MobileCoreServices.framework */; };
 		E19BD1E71B3AA1A400C78034 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19BD1E61B3AA1A400C78034 /* Security.framework */; };
 		E19BD1EB1B3AAA9F00C78034 /* OnboardingContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E19BD1EA1B3AAA9F00C78034 /* OnboardingContainerViewController.m */; };
+		E19BD1F11B3AB3EA00C78034 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19BD1F01B3AB3EA00C78034 /* Bolts.framework */; };
+		E19BD1F41B3ADE4B00C78034 /* OnboardingPageControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E19BD1F31B3ADE4B00C78034 /* OnboardingPageControlView.m */; };
 		E19FA3ED1B2C58930057A049 /* TicketShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3EC1B2C58930057A049 /* TicketShopTableViewCell.m */; };
 		E19FA3F01B2C5AC60057A049 /* UITextField+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3EF1B2C5AC60057A049 /* UITextField+Helper.m */; };
 		E19FA3F31B2C5BA50057A049 /* TicketShopperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E19FA3F21B2C5BA50057A049 /* TicketShopperClient.m */; };
@@ -456,6 +458,11 @@
 		E19BD1E61B3AA1A400C78034 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E19BD1E91B3AAA9F00C78034 /* OnboardingContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingContainerViewController.h; path = viewControllers/OnboardingContainerViewController.h; sourceTree = "<group>"; };
 		E19BD1EA1B3AAA9F00C78034 /* OnboardingContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingContainerViewController.m; path = viewControllers/OnboardingContainerViewController.m; sourceTree = "<group>"; };
+		E19BD1EC1B3AB38E00C78034 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E19BD1EE1B3AB39300C78034 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		E19BD1F01B3AB3EA00C78034 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		E19BD1F21B3ADE4B00C78034 /* OnboardingPageControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingPageControlView.h; path = views/OnboardingPageControlView.h; sourceTree = "<group>"; };
+		E19BD1F31B3ADE4B00C78034 /* OnboardingPageControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingPageControlView.m; path = views/OnboardingPageControlView.m; sourceTree = "<group>"; };
 		E19FA3EB1B2C58930057A049 /* TicketShopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketShopTableViewCell.h; path = views/TicketShopTableViewCell.h; sourceTree = "<group>"; };
 		E19FA3EC1B2C58930057A049 /* TicketShopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketShopTableViewCell.m; path = views/TicketShopTableViewCell.m; sourceTree = "<group>"; };
 		E19FA3EE1B2C5AC60057A049 /* UITextField+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Helper.h"; sourceTree = "<group>"; };
@@ -471,6 +478,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19BD1F11B3AB3EA00C78034 /* Bolts.framework in Frameworks */,
 				E19BD1E71B3AA1A400C78034 /* Security.framework in Frameworks */,
 				560D0ACD1B179A3D00B03090 /* QuartzCore.framework in Frameworks */,
 				E19BD1E51B3AA19700C78034 /* MobileCoreServices.framework in Frameworks */,
@@ -632,6 +640,8 @@
 		560D0AD21B179AAF00B03090 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E19BD1EE1B3AB39300C78034 /* Social.framework */,
+				E19BD1EC1B3AB38E00C78034 /* Accounts.framework */,
 				E19BD1E61B3AA1A400C78034 /* Security.framework */,
 				E19BD1E41B3AA19700C78034 /* MobileCoreServices.framework */,
 				E19BD1E21B3AA17F00C78034 /* CFNetwork.framework */,
@@ -685,6 +695,8 @@
 				56CF1AF71B1B00C200A899DB /* MenuButton.h */,
 				56CF1AF81B1B00C200A899DB /* MenuButton.m */,
 				56CF1AFA1B1B00CA00A899DB /* Popup */,
+				E19BD1F21B3ADE4B00C78034 /* OnboardingPageControlView.h */,
+				E19BD1F31B3ADE4B00C78034 /* OnboardingPageControlView.m */,
 				56CF4EC91B2D9F7A00A25CE7 /* SearchNavigationView.h */,
 				56CF4ECA1B2D9F7A00A25CE7 /* SearchNavigationView.m */,
 				56CF4ECC1B2DB9B200A25CE7 /* SearchNavigationView.xib */,
@@ -1047,6 +1059,7 @@
 		E19BD1DD1B3A9F0D00C78034 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
+				E19BD1F01B3AB3EA00C78034 /* Bolts.framework */,
 				E19BD1DE1B3A9F1E00C78034 /* Parse.framework */,
 			);
 			name = Parse;
@@ -1297,6 +1310,7 @@
 				56D05A4F1B19FEE50031F2A2 /* OnboardingOption.m in Sources */,
 				56CF17B41B38B7B100A8F9BD /* ADJConfig.m in Sources */,
 				E19BD1BF1B39829700C78034 /* FilterPostcode.m in Sources */,
+				E19BD1F41B3ADE4B00C78034 /* OnboardingPageControlView.m in Sources */,
 				560D0A951B17951100B03090 /* main.m in Sources */,
 				569B47881B28F3500076C3B2 /* CDGenre.m in Sources */,
 				56D587F01B1E5D08007B3F5B /* BandParser.m in Sources */,
@@ -1430,7 +1444,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Szabolcs Sztanyi (X3957V6X5K)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Szabolcs Sztanyi (X3957V6X5K)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1444,6 +1458,7 @@
 					/Users/ssztanyi/Downloads/GoogleAnalyticsServicesiOS_3.12,
 					"$(PROJECT_DIR)/Festivalama",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e726a972-59b5-4d07-af5a-ee4a58b6d3ac";
 			};
@@ -1469,6 +1484,7 @@
 					/Users/ssztanyi/Downloads/GoogleAnalyticsServicesiOS_3.12,
 					"$(PROJECT_DIR)/Festivalama",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2249ffee-875c-40be-9e9e-defa17e2fedd";
 			};

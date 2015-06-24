@@ -36,6 +36,7 @@
     [Fabric with:@[CrashlyticsKit]];
     [Parse setApplicationId:@"Yo5Zsijafn4kNwWkSnTZZ1RdZmGAN3bk559iIFdR"
                   clientKey:@"b6sVnVj9rYou6BaNhKDFOaM4QRMROjNLUXatPHDx"];
+    
     [self addNetworkObserver];
 
     UIViewController *vc = nil;

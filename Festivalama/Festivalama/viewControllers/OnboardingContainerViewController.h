@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OnboardingModel.h"
 
-@interface OnboardingContainerViewController : UIViewController
+@class ContinueButton, OnboardingPageControlView;
+
+@interface OnboardingContainerViewController : UIViewController <UIScrollViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet ContinueButton *continueButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *continueButtonHeightConstraint;
+@property (nonatomic, weak) IBOutlet OnboardingPageControlView *pageControl;
+@property (nonatomic, strong) NSArray *genresArray;
+@property (nonatomic, strong) OnboardingModel *onboardingModel;
+
+- (IBAction)moveToNextViewController:(id)sender;
+
+- (void)showNextViewController;
+- (void)setFilterByLocationEnabled:(BOOL)enabled;
 
 @end

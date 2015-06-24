@@ -213,7 +213,8 @@
 - (void)handleDownloadedFestivals:(NSArray*)festivals error:(NSString*)errorMessage
 {
     [self.tableView hideLoadingIndicator];
-    if (!errorMessage) {
+    if (!errorMessage)
+    {
         if (self.isSearching) {
             self.festivalsArray = [festivals mutableCopy];
         } else {
@@ -254,6 +255,8 @@
         if (self.isSearching) {
             [self.tableView showEmptySearchView];
         } else if ([[FilterModel sharedModel] isFiltering]) {
+            [self.tableView showEmptyFilterView];
+        } else {
             [self.tableView showEmptyFilterView];
         }
     } else {

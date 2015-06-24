@@ -29,6 +29,11 @@
     return self;
 }
 
++ (CGFloat)viewHeight
+{
+    return 252.0;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];

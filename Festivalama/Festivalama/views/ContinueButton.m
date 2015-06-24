@@ -48,7 +48,6 @@
     if (enabled) {
         self.backgroundColor = [UIColor whiteColor];
     } else {
-
         self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
     }
 }

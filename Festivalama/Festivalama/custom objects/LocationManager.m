@@ -89,8 +89,8 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     if (locations.count > 0 && self.completionBlock) {
-        self.completionBlock([locations firstObject], nil);
         [manager stopUpdatingLocation];
+        self.completionBlock([locations firstObject], nil);
     }
 }
 
