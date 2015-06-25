@@ -130,7 +130,6 @@
 		56CF4ED21B2E251000A25CE7 /* SearchEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56CF4ED11B2E251000A25CE7 /* SearchEmptyView.xib */; };
 		56CF4ED41B2E2F4200A25CE7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CF4ED31B2E2F4200A25CE7 /* StoreKit.framework */; };
 		56CF4ED71B2E311600A25CE7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CF4ED61B2E311600A25CE7 /* Reachability.m */; };
-		56D05A3C1B19D3980031F2A2 /* QuestionsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A3B1B19D3980031F2A2 /* QuestionsContainerViewController.m */; };
 		56D05A401B19D43D0031F2A2 /* OnboardingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A3F1B19D43D0031F2A2 /* OnboardingModel.m */; };
 		56D05A431B19D9740031F2A2 /* MusicGenreSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A421B19D9740031F2A2 /* MusicGenreSelectionViewController.m */; };
 		56D05A461B19D9CD0031F2A2 /* ContinueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D05A451B19D9CD0031F2A2 /* ContinueButton.m */; };
@@ -398,8 +397,6 @@
 		56CF4ED31B2E2F4200A25CE7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		56CF4ED51B2E311600A25CE7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		56CF4ED61B2E311600A25CE7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		56D05A3A1B19D3980031F2A2 /* QuestionsContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionsContainerViewController.h; path = viewControllers/QuestionsContainerViewController.h; sourceTree = "<group>"; };
-		56D05A3B1B19D3980031F2A2 /* QuestionsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsContainerViewController.m; path = viewControllers/QuestionsContainerViewController.m; sourceTree = "<group>"; };
 		56D05A3E1B19D43D0031F2A2 /* OnboardingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingModel.h; path = "custom objects/Datamodel/OnboardingModel.h"; sourceTree = "<group>"; };
 		56D05A3F1B19D43D0031F2A2 /* OnboardingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingModel.m; path = "custom objects/Datamodel/OnboardingModel.m"; sourceTree = "<group>"; };
 		56D05A411B19D9740031F2A2 /* MusicGenreSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MusicGenreSelectionViewController.h; path = viewControllers/MusicGenreSelectionViewController.h; sourceTree = "<group>"; };
@@ -1002,8 +999,6 @@
 		56D05A391B19D37E0031F2A2 /* Welcome Question views */ = {
 			isa = PBXGroup;
 			children = (
-				56D05A3A1B19D3980031F2A2 /* QuestionsContainerViewController.h */,
-				56D05A3B1B19D3980031F2A2 /* QuestionsContainerViewController.m */,
 				56CE62D21B1F77F30079570E /* WelcomeBaseViewController.h */,
 				56CE62D31B1F77F30079570E /* WelcomeBaseViewController.m */,
 				56D05A411B19D9740031F2A2 /* MusicGenreSelectionViewController.h */,
@@ -1214,7 +1209,6 @@
 				564D21331B22260D009FBF88 /* WhatWeDoViewController.m in Sources */,
 				56CF17AC1B38B7B100A8F9BD /* ADJActivityPackage.m in Sources */,
 				56CF17AF1B38B7B100A8F9BD /* NSString+ADJAdditions.m in Sources */,
-				56D05A3C1B19D3980031F2A2 /* QuestionsContainerViewController.m in Sources */,
 				56C44E881B1D0E6500DFFB6B /* FestivalModel.m in Sources */,
 				56D2A7BC1B20F6380085CEDA /* FestivalDetailViewController.m in Sources */,
 				561612021B1BB9FB00147093 /* FilterNavigationController.m in Sources */,
@@ -1460,7 +1454,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e726a972-59b5-4d07-af5a-ee4a58b6d3ac";
+				PROVISIONING_PROFILE = "e8279e7f-7992-4824-9b09-91a77f0a23e0";
 			};
 			name = Debug;
 		};
@@ -1469,8 +1463,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RunaShop GmbH (NDMF32TPPR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: RunaShop GmbH (NDMF32TPPR)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1486,7 +1480,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2249ffee-875c-40be-9e9e-defa17e2fedd";
+				PROVISIONING_PROFILE = "30cb7bc4-bca5-4f5b-ba13-feffffca2260";
 			};
 			name = Release;
 		};

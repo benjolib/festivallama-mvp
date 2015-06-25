@@ -50,7 +50,7 @@
 
 - (void)showNextViewController
 {
-    if (self.currentIndex <= self.viewControllerIdentitiesArray.count)
+    if (self.currentIndex < self.viewControllerIdentitiesArray.count-1)
     {
         WelcomeBaseViewController *welcomeViewController = [self loadQuestionsViewControllerAtIndex:++self.currentIndex];
         [self.scrollView setContentOffset:CGPointMake(CGRectGetWidth(self.view.frame) * self.currentIndex, 0.0) animated:YES];
@@ -76,7 +76,7 @@
     }
     
     // if viewController is already created & added, than we don't have to do all the things below
-    if (index > self.viewControllersArray.count) {
+    if (index <= self.viewControllersArray.count-1) {
         if ([self.viewControllersArray objectAtIndex:index]) {
             return [self.viewControllersArray objectAtIndex:index];
         }
@@ -111,9 +111,6 @@
     int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.currentIndex = page;
     
-    if (page > 0) {
-        [self.pageControl setCurrentDotIndex:page];
-    }
     [self setContinueButtonVisible:page == 0];
     [self setPageControlVisible:page > 0 withCurrentIndex:page];
 }
@@ -135,7 +132,8 @@
 
 - (void)setPageControlVisible:(BOOL)visible withCurrentIndex:(NSInteger)index
 {
-
+    self.pageControl.hidden = !visible;
+    [self.pageControl setCurrentDotIndex:index];
 }
 
 - (void)setContinueButtonVisible:(BOOL)visible
@@ -164,6 +162,7 @@
     [self setupViewControllers];
     self.continueButton.enabled = NO;
     
+    self.pageControl.hidden = YES;
     [self.pageControl setNumberOfDots:self.viewControllerIdentitiesArray.count];
 }
 
@@ -194,9 +193,6 @@
 
 - (void)adjustScrollViewContentSize
 {
-    UIViewController *firstViewController = [self.viewControllersArray firstObject];
-    CGFloat viewHeight = CGRectGetHeight(firstViewController.view.frame);
-    
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame) * self.viewControllersArray.count, CGRectGetHeight(self.view.frame));
 }
 
@@ -207,6 +203,7 @@
     CGRect viewFrame = viewController.view.frame;
     viewFrame.origin.x = CGRectGetWidth(self.view.frame) * index;
     viewFrame.size.width = CGRectGetWidth(self.scrollView.frame);
+    viewFrame.size.height = CGRectGetHeight(self.view.frame);
     viewController.view.frame = viewFrame;
     
     [self.scrollView addSubview:viewController.view];

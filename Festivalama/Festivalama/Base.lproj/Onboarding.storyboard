@@ -65,7 +65,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAG-4w-D5w">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <outlet property="delegate" destination="I9v-Eu-KtY" id="QIl-Kf-Wul"/>
                                 </connections>
@@ -96,8 +96,8 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="g5P-95-tou" secondAttribute="bottom" id="64Z-9b-J5t"/>
+                            <constraint firstItem="pkk-IY-z9b" firstAttribute="top" secondItem="IAG-4w-D5w" secondAttribute="bottom" id="EoM-B7-J0w"/>
                             <constraint firstItem="g5P-95-tou" firstAttribute="leading" secondItem="De3-gL-mZh" secondAttribute="leading" id="IzS-sZ-U7Q"/>
-                            <constraint firstItem="INS-4Y-PKn" firstAttribute="top" secondItem="IAG-4w-D5w" secondAttribute="bottom" id="Rxe-pp-Kyp"/>
                             <constraint firstAttribute="trailing" secondItem="g5P-95-tou" secondAttribute="trailing" id="k8D-Kf-cJC"/>
                             <constraint firstItem="pkk-IY-z9b" firstAttribute="top" secondItem="INS-4Y-PKn" secondAttribute="bottom" id="ldK-AE-Dyx"/>
                             <constraint firstAttribute="trailing" secondItem="INS-4Y-PKn" secondAttribute="trailing" id="mbV-iB-c2L"/>
@@ -162,7 +162,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LEL-Gb-hTC">
-                                <rect key="frame" x="0.0" y="105" width="320" height="463"/>
+                                <rect key="frame" x="0.0" y="105" width="320" height="383"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bMI-ve-0nV">
                                     <size key="itemSize" width="150" height="70"/>
@@ -214,7 +214,7 @@
                             <constraint firstItem="1mv-N6-3ce" firstAttribute="leading" secondItem="XqX-Sf-oDM" secondAttribute="leading" constant="15" id="fue-Dh-ZFp"/>
                             <constraint firstItem="1mv-N6-3ce" firstAttribute="top" secondItem="sAD-Wy-kRL" secondAttribute="bottom" constant="20" id="khX-os-NN3"/>
                             <constraint firstItem="LEL-Gb-hTC" firstAttribute="leading" secondItem="XqX-Sf-oDM" secondAttribute="leading" id="lTr-gY-yr9"/>
-                            <constraint firstItem="j4f-yq-wDP" firstAttribute="top" secondItem="LEL-Gb-hTC" secondAttribute="bottom" id="oFX-x5-bH0"/>
+                            <constraint firstItem="j4f-yq-wDP" firstAttribute="top" secondItem="LEL-Gb-hTC" secondAttribute="bottom" constant="80" id="oFX-x5-bH0"/>
                             <constraint firstAttribute="trailing" secondItem="1mv-N6-3ce" secondAttribute="trailing" constant="15" id="rwF-d3-NDy"/>
                             <constraint firstItem="Qqf-ZF-kFE" firstAttribute="top" secondItem="sAD-Wy-kRL" secondAttribute="bottom" id="ucJ-dr-bbZ"/>
                         </constraints>

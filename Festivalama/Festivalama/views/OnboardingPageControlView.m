@@ -40,8 +40,10 @@
 
 - (void)setCurrentDotIndex:(NSInteger)currentDotIndex
 {
-    _currentDotIndex = currentDotIndex;
-    [self setNeedsDisplay];
+    if (_currentDotIndex != currentDotIndex) {
+        _currentDotIndex = currentDotIndex;
+        [self setNeedsDisplay];
+    }
 }
 
 #pragma mark - private methods
