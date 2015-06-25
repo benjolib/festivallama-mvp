@@ -65,6 +65,15 @@
 }
 
 #pragma mark - private methods
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    if (self.loadingIndicatorView.superview) {
+        UIImage *image = self.loadingIndicatorView.image;
+        self.loadingIndicatorView.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - image.size.width/2, CGRectGetHeight(self.frame)/2 - image.size.height/2, image.size.width, image.size.height);
+    }
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];

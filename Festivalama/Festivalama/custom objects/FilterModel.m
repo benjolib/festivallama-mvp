@@ -37,7 +37,7 @@
 {
     self.selectedGenresArray = [[onboarding selectedGenres] copy];
     if (onboarding.filterByGermany) {
-        self.selectedCountry = @"germany";
+        self.selectedCountry = @"deutschland";
     }
 }
 
@@ -66,7 +66,7 @@
 
 - (BOOL)isSelectedCountryGermany
 {
-    return [self.selectedCountry isEqualToString:@"Deutschland"];
+    return [self.selectedCountry caseInsensitiveCompare:@"Deutschland"];
 }
 
 - (NSString*)bandsString
@@ -89,8 +89,8 @@
     for (int i = 0; i < self.selectedGenresArray.count; i++) {
         Genre *genre = self.selectedGenresArray[i];
         [genresString appendString:genre.name];
-        if (i != self.selectedBandsArray.count-1) {
-            [genresString appendString:@", "];
+        if (i != self.selectedGenresArray.count-1) {
+            [genresString appendString:@","];
         }
     }
 
