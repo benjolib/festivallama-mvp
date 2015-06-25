@@ -823,7 +823,6 @@
 		562352361B2440BB000ABCAC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				E19BD1E81B3AAA8500C78034 /* new way of doing it */,
 				E19BD1B11B38034800C78034 /* CenterCollectionViewLayout.h */,
 				E19BD1B21B38034800C78034 /* CenterCollectionViewLayout.m */,
 				56D05A391B19D37E0031F2A2 /* Welcome Question views */,
@@ -999,6 +998,8 @@
 		56D05A391B19D37E0031F2A2 /* Welcome Question views */ = {
 			isa = PBXGroup;
 			children = (
+				E19BD1E91B3AAA9F00C78034 /* OnboardingContainerViewController.h */,
+				E19BD1EA1B3AAA9F00C78034 /* OnboardingContainerViewController.m */,
 				56CE62D21B1F77F30079570E /* WelcomeBaseViewController.h */,
 				56CE62D31B1F77F30079570E /* WelcomeBaseViewController.m */,
 				56D05A411B19D9740031F2A2 /* MusicGenreSelectionViewController.h */,
@@ -1058,15 +1059,6 @@
 				E19BD1DE1B3A9F1E00C78034 /* Parse.framework */,
 			);
 			name = Parse;
-			sourceTree = "<group>";
-		};
-		E19BD1E81B3AAA8500C78034 /* new way of doing it */ = {
-			isa = PBXGroup;
-			children = (
-				E19BD1E91B3AAA9F00C78034 /* OnboardingContainerViewController.h */,
-				E19BD1EA1B3AAA9F00C78034 /* OnboardingContainerViewController.m */,
-			);
-			name = "new way of doing it";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
