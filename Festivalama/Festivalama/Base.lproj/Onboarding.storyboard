@@ -144,8 +144,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LEL-Gb-hTC">
-                                <rect key="frame" x="0.0" y="105" width="320" height="383"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LEL-Gb-hTC">
+                                <rect key="frame" x="0.0" y="105" width="320" height="413"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bMI-ve-0nV">
                                     <size key="itemSize" width="150" height="70"/>
@@ -192,8 +192,8 @@
                             <constraint firstAttribute="bottom" secondItem="Qqf-ZF-kFE" secondAttribute="bottom" id="DOu-EE-Jnq"/>
                             <constraint firstAttribute="trailing" secondItem="Qqf-ZF-kFE" secondAttribute="trailing" id="JAZ-k1-O1t"/>
                             <constraint firstItem="j4f-yq-wDP" firstAttribute="top" secondItem="Qqf-ZF-kFE" secondAttribute="bottom" id="NXl-ul-60Y"/>
-                            <constraint firstAttribute="bottom" secondItem="LEL-Gb-hTC" secondAttribute="bottom" constant="80" id="Wbm-Jy-aaW"/>
-                            <constraint firstItem="LEL-Gb-hTC" firstAttribute="top" secondItem="XqX-Sf-oDM" secondAttribute="top" constant="105" id="YX3-eJ-ujV"/>
+                            <constraint firstItem="LEL-Gb-hTC" firstAttribute="top" secondItem="XqX-Sf-oDM" secondAttribute="top" constant="105" id="QaD-ZG-0TJ"/>
+                            <constraint firstAttribute="bottom" secondItem="LEL-Gb-hTC" secondAttribute="bottom" constant="50" id="THm-SG-Lgc"/>
                             <constraint firstItem="Qqf-ZF-kFE" firstAttribute="leading" secondItem="XqX-Sf-oDM" secondAttribute="leading" id="Z7U-m7-YwL"/>
                             <constraint firstAttribute="trailing" secondItem="LEL-Gb-hTC" secondAttribute="trailing" id="a2I-J8-vgM"/>
                             <constraint firstItem="1mv-N6-3ce" firstAttribute="leading" secondItem="XqX-Sf-oDM" secondAttribute="leading" constant="15" id="fue-Dh-ZFp"/>
@@ -238,7 +238,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="e6c-Fu-uAZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="e6c-Fu-uAZ">
                                 <rect key="frame" x="0.0" y="105" width="320" height="383"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>

@@ -10,6 +10,8 @@
 #import "Genre.h"
 #import "UIFont+LatoFonts.h"
 
+#define kCellHeight 55.0
+
 @interface CenterCollectionViewLayout ()
 @property (nonatomic, strong) NSMutableDictionary *cellWidthDictionary;
 @property (nonatomic, strong) NSMutableDictionary *cellPositionsDictionary;
@@ -18,6 +20,12 @@
 
 @implementation CenterCollectionViewLayout
 
+- (CGSize)collectionViewContentSize
+{
+    NSInteger itemCount = [self.collectionView numberOfItemsInSection:0] / 3;
+    CGFloat height = itemCount * (kCellHeight + 10);
+    return CGSizeMake(CGRectGetWidth(self.collectionView.frame), height);
+}
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
@@ -33,9 +41,14 @@
     }
     
     NSInteger sectionIndex = 0;
+    CGFloat lastYOrigin = 0;
     NSArray *attributes = [super layoutAttributesForElementsInRect:rect];
     for (UICollectionViewLayoutAttributes *attribute in attributes)
     {
+        NSInteger numberOfRows = attributes.count / 4; // 4 cells can be maximum next to each other
+        CGFloat cHeight = (CGRectGetHeight(self.collectionView.frame) / numberOfRows) - 20.0; //(for margins)
+        CGFloat margins = cHeight * numberOfRows;
+        
         if (self.cellAttributesDictionary[attribute.indexPath]) {
             attribute.frame = ((UICollectionViewLayoutAttributes*)self.cellAttributesDictionary[attribute.indexPath]).frame;
             continue;
@@ -83,7 +96,18 @@
         
         CGFloat leftMargin = (CGRectGetWidth(rect) - viewWidths) / 2;
         
-        CGFloat yOrigin = sectionIndex * 55;
+        CGFloat yOrigin = 0;
+        
+        if (sectionIndex == 0) {
+            lastYOrigin = margins/2 - 105.0;
+            if (lastYOrigin < 80) {
+                lastYOrigin = 0;
+            }
+        } else {
+            lastYOrigin += kCellHeight;
+        }
+        
+        yOrigin = lastYOrigin;
         
         CGFloat maxXOrigin = [self saveCellAtIndexPath:attribute.indexPath attribute:attribute withWidth:width1 xOrigin:leftMargin andYOrigin:yOrigin];
         maxXOrigin = [self saveCellAtIndexPath:secondIndexPath attribute:attribute2 withWidth:width2 xOrigin:maxXOrigin andYOrigin:yOrigin];
@@ -94,6 +118,7 @@
         
         sectionIndex++;
     }
+    
     return attributes;
 }
 
@@ -103,7 +128,7 @@
     attributeFrame.origin.x = xOrigin;
     attributeFrame.origin.y = yOrigin;
     attributeFrame.size.width = width;
-    attributeFrame.size.height = 45.0;
+    attributeFrame.size.height = kCellHeight-10;
     attribute.frame = attributeFrame;
     
     if (!self.cellAttributesDictionary[indexPath]) {
@@ -131,7 +156,7 @@
 
 - (CGFloat)widthForGenreName:(Genre*)genre
 {
-    CGRect labelRect = [genre.name boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 50.0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont latoBoldFontWithSize:16.0]} context:nil];
+    CGRect labelRect = [genre.name boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, kCellHeight-10) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont latoBoldFontWithSize:16.0]} context:nil];
     
     return labelRect.size.width;
 }

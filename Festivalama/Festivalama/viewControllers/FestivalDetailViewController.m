@@ -114,7 +114,7 @@
                               duration:0.0
                                options:UIViewAnimationOptionTransitionCrossDissolve
                             animations:^{
-                                toViewController.view.frame = self.containerView.bounds;
+                                toViewController.view.frame = self.containerView.frame;
                             }
                             completion:^(BOOL finished) {
                                 [self.displayViewController willMoveToParentViewController:nil];

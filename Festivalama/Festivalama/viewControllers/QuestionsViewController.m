@@ -33,14 +33,14 @@ static NSInteger cellHeight = 60.0;
 #pragma mark - tableView methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SelectionTableViewCell *cell = (SelectionTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    SelectionTableViewCell *cell = (SelectionTableViewCell*)[tableView dequeueReusableCellWithIdentifier:[SelectionTableViewCell cellIdentifier]];
 
     OnboardingOption *option = self.optionsToDisplay[indexPath.section];
     cell.titleLabel.text = option.title;
 
     BOOL cellSelected = [option isEqual:self.selectedOption];
     if (cellSelected) {
-        [cell setSelected:cellSelected animated:YES];
+        cell.selected = YES;
     }
 
     cell.backgroundColor = [UIColor clearColor];
@@ -77,7 +77,7 @@ static NSInteger cellHeight = 60.0;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OnboardingOption *option = self.optionsToDisplay[indexPath.row];
+    OnboardingOption *option = self.optionsToDisplay[indexPath.section];
 
     if (!self.selectedOptionsArray) {
         self.selectedOptionsArray = [NSMutableArray array];
@@ -95,7 +95,7 @@ static NSInteger cellHeight = 60.0;
             // Irrelevant
             break;
         case 1: {
-            if (indexPath.row == 0 || indexPath.row == 1) {
+            if (indexPath.section == 0 || indexPath.section == 1) {
                 // filter by Germany
                 [self.rootViewController setFilterByLocationEnabled:YES];
             } else {
@@ -132,7 +132,8 @@ static NSInteger cellHeight = 60.0;
         OnboardingOption *option = [self.rootViewController.onboardingModel.selectedOptionAtScreensDictionary nonNullObjectForKey:@(self.indexOfView)];
         if (option) {
             self.selectedOption = option;
-            [self.tableView reloadData];
+            NSInteger index = [self.optionsToDisplay indexOfObject:option];
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] animated:YES scrollPosition:UITableViewScrollPositionNone];
         }
     }
 }
