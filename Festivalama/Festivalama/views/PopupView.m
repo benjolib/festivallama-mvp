@@ -10,6 +10,7 @@
 #import "PopupViewButton.h"
 #import "UIImage+ImageEffects.h"
 #import "UIColor+AppColors.h"
+#import "AppDelegate.h"
 
 @interface PopupView ()
 @property (nonatomic, strong) UIView *parentView;
@@ -119,6 +120,9 @@
 #pragma mark - showing/hiding methods
 - (void)showPopupViewAnimationOnView:(UIView*)parentView withBlurredBackground:(BOOL)blurBackground
 {
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appdelegate.window endEditing:YES];
+
     self.parentView = parentView;
     self.frame = parentView.frame;
     [parentView addSubview:self];

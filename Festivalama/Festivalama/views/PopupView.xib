@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -57,7 +57,7 @@ Festival-Kalender.</string>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aky-Yq-T4A" userLabel="buttonsContainerView">
-                    <rect key="frame" x="22" y="327" width="276" height="140"/>
+                    <rect key="frame" x="22" y="317" width="276" height="140"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="140" id="1Yx-eH-UyL"/>
@@ -73,7 +73,7 @@ Festival-Kalender.</string>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="aky-Yq-T4A" firstAttribute="bottom" secondItem="Fxz-uC-afI" secondAttribute="bottom" id="Cvy-gl-w7a"/>
+                <constraint firstItem="aky-Yq-T4A" firstAttribute="bottom" secondItem="Fxz-uC-afI" secondAttribute="bottom" constant="-10" id="Cvy-gl-w7a"/>
                 <constraint firstItem="Fxz-uC-afI" firstAttribute="top" secondItem="YGO-s8-RRa" secondAttribute="bottom" constant="-42" id="Nqe-Ue-fVo"/>
                 <constraint firstItem="YGO-s8-RRa" firstAttribute="centerX" secondItem="Fxz-uC-afI" secondAttribute="centerX" id="qmx-qA-Zkq"/>
                 <constraint firstAttribute="centerY" secondItem="Fxz-uC-afI" secondAttribute="centerY" constant="-10" id="tKq-lY-YmP"/>

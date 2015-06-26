@@ -7,8 +7,7 @@
 //
 
 #import "AbstractClient.h"
-
-@class FilterModel;
+#import "FilterModel.h"
 
 @interface FestivalDownloadClient : AbstractClient
 

@@ -33,11 +33,13 @@
 
 - (void)setupAsCancelButton
 {
-    self.backgroundColor = [UIColor whiteColor];
-    [self setTitleColor:[UIColor globalGreenColor] forState:UIControlStateNormal];
-    [self setTitleColor:[UIColor globalGreenColorWithAlpha:0.4] forState:UIControlStateHighlighted];
+    UIColor *greenColor = [UIColor colorWithRed:147.0/255.0 green:181.0/255.0 blue:135.0/255.0 alpha:1.0];
 
-    self.layer.borderColor = [UIColor globalGreenColor].CGColor;
+    self.backgroundColor = [UIColor clearColor];
+    [self setTitleColor:greenColor forState:UIControlStateNormal];
+    [self setTitleColor:[greenColor lighterColorWithAlpha:0.4] forState:UIControlStateHighlighted];
+
+    self.layer.borderColor = greenColor.CGColor;
     self.layer.borderWidth = 1.0;
 }
 
