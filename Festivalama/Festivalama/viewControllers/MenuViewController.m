@@ -46,9 +46,7 @@
 
 - (BOOL)isSourceViewControllerFestivalsView
 {
-    return [self.sourceViewController isKindOfClass:[FestivalsViewController class]]
-    && ![self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]]
-    && ![self.sourceViewController isKindOfClass:[CalendarViewController class]];
+    return [self.sourceViewController isMemberOfClass:[FestivalsViewController class]];
 }
 
 - (IBAction)festivalButtonPressed:(id)sender
@@ -69,7 +67,7 @@
 {
     [[TrackingManager sharedManager] trackUserSelectedPopularFestivals];
 
-    if ([self.sourceViewController isKindOfClass:[PopularFestivalsViewController class]]) {
+    if ([self.sourceViewController isMemberOfClass:[PopularFestivalsViewController class]]) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         [self switchCurrentSourceWithMenuItem:MenuItemFavoriteFestivals];
@@ -80,7 +78,7 @@
 {
     [[TrackingManager sharedManager] trackUserSelectedCalender];
 
-    if ([self.sourceViewController isKindOfClass:[CalendarViewController class]]) {
+    if ([self.sourceViewController isMemberOfClass:[CalendarViewController class]]) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         [self switchCurrentSourceWithMenuItem:MenuItemFestivalsCalendar];

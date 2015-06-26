@@ -120,8 +120,12 @@
     }
 
     __weak typeof(self) weakSelf = self;
-    [self.festivalDownloadClient downloadPopularFestivalsFromIndex:self.startIndex limit:self.limit filterModel:[FilterModel sharedModel] andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
-        [weakSelf handleDownloadedFestivals:festivalsArray error:errorMessage];
+    [self.festivalDownloadClient downloadPopularFestivalsFromIndex:self.startIndex
+                                                             limit:self.limit
+                                                        searchText:self.searchText
+                                                       filterModel:[FilterModel sharedModel]
+                                                andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
+                                                    [weakSelf handleDownloadedFestivals:festivalsArray error:errorMessage];
     }];
 }
 

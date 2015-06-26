@@ -76,7 +76,7 @@
         Band *band = self.selectedBandsArray[i];
         [bandsString appendString:band.name];
         if (i != self.selectedBandsArray.count-1) {
-            [bandsString appendString:@", "];
+            [bandsString appendString:@","];
         }
     }
 

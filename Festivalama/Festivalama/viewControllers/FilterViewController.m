@@ -55,7 +55,7 @@
     [self.tableView reloadData];
 }
 
-- (void)downloadGenres
+- (void)downloadGenresWithCompletionBlock:(void(^)())completionBlock
 {
     self.genreDownloadClient = [GenreDownloadClient new];
 
@@ -63,6 +63,9 @@
     [self.genreDownloadClient downloadAllGenresWithCompletionBlock:^(NSArray *sortedGenres, NSString *errorMessage, BOOL completed) {
         if (completed) {
             weakSelf.genresArray = [sortedGenres copy];
+        }
+        if (completionBlock) {
+            completionBlock();
         }
     }];
 }
@@ -212,7 +215,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.estimatedRowHeight = 70.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self downloadGenres];
+    [self downloadGenresWithCompletionBlock:nil];
     [self downloadBandsWithCompletionBlock:nil];
 }
 

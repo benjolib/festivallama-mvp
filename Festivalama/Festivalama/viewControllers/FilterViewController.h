@@ -41,4 +41,6 @@
 
 - (void)setFilteringEnabled:(BOOL)enabled;
 
+- (void)downloadGenresWithCompletionBlock:(void(^)())completionBlock;
+
 @end

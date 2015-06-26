@@ -34,6 +34,21 @@
 {
     NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kFestivalsList, (long)startIndex, (long)numberOfItems];
 
+    urlString = [self appendSearchText:searchText andFilterModel:filterModel fromURLString:urlString];
+    [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
+}
+
+- (void)downloadPopularFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems searchText:(NSString*)searchText filterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
+{
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kPopularFestivalsList, (long)startIndex, (long)numberOfItems];
+
+    urlString = [self appendSearchText:searchText andFilterModel:filterModel fromURLString:urlString];
+    [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
+}
+
+#pragma mark - private methods
+- (NSMutableString*)appendSearchText:(NSString*)searchText andFilterModel:(FilterModel*)filterModel fromURLString:(NSMutableString*)urlString
+{
     // add location data
     if (self.userLocation) {
         [urlString appendString:[NSString stringWithFormat:@"&lat=%f&lng=%f", self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude]];
@@ -58,13 +73,7 @@
         [urlString appendString:[NSString stringWithFormat:@"&name=%@", [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     }
 
-    [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
-}
-
-- (void)downloadPopularFestivalsFromIndex:(NSInteger)startIndex limit:(NSInteger)numberOfItems filterModel:(FilterModel*)filterModel andCompletionBlock:(void (^)(NSArray *festivalsArray, NSString *errorMessage, BOOL completed))completionBlock
-{
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?start=%ld&limit=%ld", kBaseURL, kPopularFestivalsList, (long)startIndex, (long)numberOfItems];
-    [self downloadFestivalsWithURL:[NSURL URLWithString:urlString] andCompletionBlock:completionBlock];
+    return urlString;
 }
 
 #pragma mark - location manager methods
