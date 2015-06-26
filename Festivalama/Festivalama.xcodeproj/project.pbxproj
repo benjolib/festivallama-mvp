@@ -1446,7 +1446,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e8279e7f-7992-4824-9b09-91a77f0a23e0";
+				PROVISIONING_PROFILE = "098c49d8-84e0-4190-a11c-4dd3f0cdd694";
 			};
 			name = Debug;
 		};
@@ -1472,7 +1472,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "30cb7bc4-bca5-4f5b-ba13-feffffca2260";
+				PROVISIONING_PROFILE = "d0edd166-2e06-4311-b833-0edd50b22303";
 			};
 			name = Release;
 		};
