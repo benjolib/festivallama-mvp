@@ -8,10 +8,6 @@
 
 #import "FestivalDetailBaseViewController.h"
 
-@interface FestivalDetailBaseViewController ()
-
-@end
-
 @implementation FestivalDetailBaseViewController
 @synthesize festivalToDisplay = _festivalToDisplay;
 

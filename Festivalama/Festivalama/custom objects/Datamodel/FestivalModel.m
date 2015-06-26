@@ -68,8 +68,8 @@
         return nil;
     }
     NSInteger numberOfDaysLeft = [self daysTillStartDate];
-    if (numberOfDaysLeft < 0) {
-        return nil;
+    if (numberOfDaysLeft <= 0) {
+        return [NSString stringWithFormat:@"Jetzt"];
     }
     return [NSString stringWithFormat:@"In %ld Tagen", (long)numberOfDaysLeft];
 }

@@ -32,6 +32,10 @@
                         <state key="normal" image="festivalCalendarButton">
                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="touchedDown:" destination="6Em-xm-xgW" eventType="touchDown" id="Ihj-xZ-LXg"/>
+                            <action selector="touchedUp:" destination="6Em-xm-xgW" eventType="touchUpInside" id="uXA-DX-1Uh"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="xb0-mI-9pw">
                         <rect key="frame" x="42" y="10" width="216" height="21"/>
@@ -127,7 +131,7 @@
                 <outlet property="popularityView" destination="fTt-OJ-whG" id="e6O-cJ-yAI"/>
                 <outlet property="timeLeftLabel" destination="AYE-i4-DxP" id="kHO-kB-HaW"/>
             </connections>
-            <point key="canvasLocation" x="251" y="415.5"/>
+            <point key="canvasLocation" x="40" y="220.5"/>
         </tableViewCell>
     </objects>
     <resources>

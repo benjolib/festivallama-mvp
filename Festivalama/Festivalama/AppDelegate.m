@@ -51,13 +51,13 @@
     // Set root view controller and make windows visible
     self.window.rootViewController = vc;
 
-#if DEBUG
+#ifdef DEBUG
     self.debugLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, 14.0)];
     self.debugLabel.text = @" DEBUG";
     self.debugLabel.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
     self.debugLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.6];
     self.debugLabel.font = [UIFont systemFontOfSize:12.0];
-    [self.window addSubview:self.debugLabel];
+    [self.window.rootViewController.view addSubview:self.debugLabel];
 #endif
 
     [[TrackingManager sharedManager] trackUserLaunchedApp];

@@ -20,6 +20,22 @@
     self.popularityLabel.textColor = [UIColor globalGreenColor];
 }
 
+- (IBAction)touchedDown:(UIButton*)button
+{
+    button.transform = CGAffineTransformMakeScale(0.5, 0.5);
+}
+
+- (IBAction)touchedUp:(UIButton*)button
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        button.transform = CGAffineTransformMakeScale(0.5, 0.5);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.1 animations:^{
+            button.transform = CGAffineTransformIdentity;
+        }];
+    }];
+}
+
 - (void)showSavedState:(BOOL)saved
 {
     if (saved) {

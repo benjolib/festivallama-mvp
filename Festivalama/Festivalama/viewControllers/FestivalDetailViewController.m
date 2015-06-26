@@ -185,4 +185,12 @@
     return YES;
 }
 
+- (void)dealloc
+{
+    self.displayViewController = nil;
+    self.festivalToDisplay = nil;
+    self.activePopup.delegate = nil;
+    self.activePopup = nil;
+}
+
 @end

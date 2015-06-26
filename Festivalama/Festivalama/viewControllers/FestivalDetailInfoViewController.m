@@ -45,12 +45,14 @@
     if (!self.infoTextLabel) {
         return;
     }
+    
+    CGSize intr = self.infoTextLabel.intrinsicContentSize;
 
-    NSDictionary *attributes = @{NSFontAttributeName:[UIFont latoRegularFontWithSize:16.0]};
-    NSInteger options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesLineFragmentOrigin;
-    CGRect labelRect = [self.infoTextLabel.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.infoTextLabel.frame), CGFLOAT_MAX) options:options attributes:attributes context:NULL];
+//    NSDictionary *attributes = @{NSFontAttributeName:[UIFont latoRegularFontWithSize:16.0]};
+//    NSInteger options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesLineFragmentOrigin;
+//    CGRect labelRect = [self.infoTextLabel.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.infoTextLabel.frame), CGFLOAT_MAX) options:options attributes:attributes context:NULL];
 
-    self.infoTextLabelHeightConstraint.constant = labelRect.size.height;
+    self.infoTextLabelHeightConstraint.constant = intr.height;
 
     CGRect infoTextLabelFrame = self.infoTextLabel.frame;
     infoTextLabelFrame.size.height = self.infoTextLabelHeightConstraint.constant;
@@ -58,7 +60,7 @@
 
     [self.view setNeedsDisplay];
 
-    CGFloat viewHeight = CGRectGetMaxY(self.festivalCostsLabel.frame) + 20.0 + labelRect.size.height;
+    CGFloat viewHeight = CGRectGetMaxY(self.festivalCostsLabel.frame) + 20.0 + intr.height;
     self.containerViewHeightConstraint.constant = viewHeight;
 
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), self.containerViewHeightConstraint.constant);
