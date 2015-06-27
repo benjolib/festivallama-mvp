@@ -22,6 +22,7 @@
 + (instancetype)sharedModel;
 
 - (void)copySettingsFromOnboardingModel:(OnboardingModel*)onboarding;
+- (void)copySettingsFromFilterModel:(FilterModel*)filterModel;
 - (void)clearFilters;
 
 - (BOOL)isFiltering;

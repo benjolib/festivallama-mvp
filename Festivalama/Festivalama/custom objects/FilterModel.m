@@ -41,6 +41,14 @@
     }
 }
 
+- (void)copySettingsFromFilterModel:(FilterModel*)filterModel
+{
+    self.selectedBandsArray = filterModel.selectedBandsArray;
+    self.selectedCountry = filterModel.selectedCountry;
+    self.selectedGenresArray = filterModel.selectedGenresArray;
+    self.selectedPostCode = filterModel.selectedPostCode;
+}
+
 - (void)clearFilters
 {
     self.selectedCountry = nil;

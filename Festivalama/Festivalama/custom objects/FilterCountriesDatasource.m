@@ -29,10 +29,10 @@
 {
     NSMutableArray *tempArray = [NSMutableArray array];
 
-    [tempArray addObject:[Country countryWithName:@"Österreich" flag:@"autria"]];
+    [tempArray addObject:[Country countryWithName:@"Österreich" flag:@"austria"]];
     [tempArray addObject:[Country countryWithName:@"Belgien" flag:@"belgium"]];
-    [tempArray addObject:[Country countryWithName:@"Kroatien" flag:@""]];
-    [tempArray addObject:[Country countryWithName:@"Tschechien" flag:@""]];
+    [tempArray addObject:[Country countryWithName:@"Kroatien" flag:@"kroatien"]];
+    [tempArray addObject:[Country countryWithName:@"Tschechien" flag:@"tschechien"]];
     [tempArray addObject:[Country countryWithName:@"Dänemark" flag:@"denmark"]];
     [tempArray addObject:[Country countryWithName:@"Finnland" flag:@"finnland"]];
     [tempArray addObject:[Country countryWithName:@"Frankreich" flag:@"france"]];

@@ -203,8 +203,6 @@
     CGRect viewFrame = viewController.view.frame;
     viewFrame = self.scrollView.frame;
     viewFrame.origin.x = CGRectGetWidth(self.view.frame) * index;
-//    viewFrame.size.width = CGRectGetWidth(self.view.frame);
-//    viewFrame.size.height = CGRectGetHeight(self.view.frame);
     viewController.view.frame = viewFrame;
     
     [self.scrollView addSubview:viewController.view];

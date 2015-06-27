@@ -21,6 +21,7 @@
 @property (nonatomic, strong) FestivalDownloadClient *festivalDownloadClient;
 @property (nonatomic) NSInteger limit;
 @property (nonatomic) NSInteger startIndex;
+@property (nonatomic, strong) FilterModel *filterModel;
 @end
 
 @implementation PopularFestivalsViewController
@@ -123,10 +124,21 @@
     [self.festivalDownloadClient downloadPopularFestivalsFromIndex:self.startIndex
                                                              limit:self.limit
                                                         searchText:self.searchText
-                                                       filterModel:[FilterModel sharedModel]
+                                                       filterModel:self.filterModel
                                                 andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
                                                     [weakSelf handleDownloadedFestivals:festivalsArray error:errorMessage];
     }];
+}
+
+- (void)filterContent:(NSNotification*)notification
+{
+    if ([[FilterModel sharedModel] isFiltering])
+    {
+        self.filterModel = [FilterModel sharedModel];
+        [[FilterModel sharedModel] clearFilters];
+
+        [self downloadAllFestivals];
+    }
 }
 
 #pragma mark - view methods
@@ -145,11 +157,17 @@
     [self.tableCounterView setCounterViewVisible:NO animated:NO];
     [self.tableView showLoadingIndicator];
     [self downloadAllFestivals];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filterContent:) name:@"festivalFilterEnabled" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

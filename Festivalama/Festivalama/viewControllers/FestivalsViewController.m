@@ -24,6 +24,7 @@
 #import "FestivalLoadMoreTableViewCell.h"
 #import "TrackingManager.h"
 #import "GreenButton.h"
+
 #import "FilterModel.h"
 
 @interface FestivalsViewController ()
@@ -32,6 +33,7 @@
 @property (nonatomic, strong) FestivalRankClient *rankClient;
 @property (nonatomic) NSInteger limit;
 @property (nonatomic) NSInteger startIndex;
+@property (nonatomic, strong) FilterModel *filterModel;
 @end
 
 @implementation FestivalsViewController
@@ -40,6 +42,7 @@
 {
     [[TrackingManager sharedManager] trackOpenFilterView];
 
+    [[FilterModel sharedModel] copySettingsFromFilterModel:self.filterModel];
     FilterNavigationController *filterNav = [StoryboardManager filterNavigationController];
     [self presentViewController:filterNav animated:YES completion:nil];
 }
@@ -203,7 +206,7 @@
     __weak typeof(self) weakSelf = self;
     [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex
                                                       limit:self.limit
-                                                filterModel:[FilterModel sharedModel]
+                                                filterModel:self.filterModel
                                                  searchText:self.searchText
                                          andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
                                              [weakSelf handleDownloadedFestivals:festivalsArray error:errorMessage];
@@ -266,7 +269,11 @@
 
 - (void)filterContent:(NSNotification*)notification
 {
-    if ([[FilterModel sharedModel] isFiltering]) {
+    if ([[FilterModel sharedModel] isFiltering])
+    {
+        self.filterModel = [FilterModel sharedModel];
+        [[FilterModel sharedModel] clearFilters];
+
         [self downloadAllFestivals];
     }
 }
