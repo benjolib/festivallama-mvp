@@ -11,17 +11,17 @@
 #import "UIColor+AppColors.h"
 #import "FilterTableViewCell.h"
 #import "FilterBandsTableViewCell.h"
-#import "GenreDownloadClient.h"
 #import "BandsDownloadClient.h"
 #import "FilterGenresViewController.h"
 #import "FilterBandsViewController.h"
 #import "UIFont+LatoFonts.h"
 #import "TrackingManager.h"
+#import "CategoryDownloadClient.h"
 
 #define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 
 @interface FilterViewController ()
-@property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
+@property (nonatomic, strong) CategoryDownloadClient *categoryDownloadClient;
 @property (nonatomic, strong) BandsDownloadClient *bandsDownloadClient;
 @property (nonatomic, strong, readwrite) NSArray *genresArray;
 @property (nonatomic, strong) NSArray *allBandsArray;
@@ -57,12 +57,12 @@
 
 - (void)downloadGenresWithCompletionBlock:(void(^)())completionBlock
 {
-    self.genreDownloadClient = [GenreDownloadClient new];
+    self.categoryDownloadClient = [CategoryDownloadClient new];
 
     __weak typeof(self) weakSelf = self;
-    [self.genreDownloadClient downloadAllGenresWithCompletionBlock:^(NSArray *sortedGenres, NSString *errorMessage, BOOL completed) {
+    [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
         if (completed) {
-            weakSelf.genresArray = [sortedGenres copy];
+            weakSelf.genresArray = [sortedCategories copy];
         }
         if (completionBlock) {
             completionBlock();
@@ -101,10 +101,26 @@
     }
 }
 
-- (void)bandCellTrashButtonPressed:(UIButton*)button
+- (void)cellTrashButtonPressed:(UIButton*)button
 {
+    UIView *aSuperview = [button superview];
+    while (![aSuperview isKindOfClass:[FilterBandsTableViewCell class]]) {
+        aSuperview = [aSuperview superview];
+    }
+
+    FilterBandsTableViewCell *cell = (FilterBandsTableViewCell*)aSuperview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+
+    if (indexPath.row == 0) {
+        [FilterModel sharedModel].selectedGenresArray = [NSArray array];
+    } else if (indexPath.row == 1) {
+        [FilterModel sharedModel].selectedBandsArray = [NSArray array];
+    } else if (indexPath.row == 2) {
+        [FilterModel sharedModel].selectedPostcodesArray = [NSArray array];
+        [FilterModel sharedModel].selectedCountriesArray = [NSArray array];
+    }
+
     [[TrackingManager sharedManager] trackFilterTapsTrashIconOnMainBandCell];
-    [FilterModel sharedModel].selectedBandsArray = [NSArray array];
     [self.tableView reloadData];
 }
 
@@ -135,38 +151,53 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 1) {
-        FilterBandsTableViewCell *cell = (FilterBandsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"bandsCell"];
+    FilterBandsTableViewCell *cell = (FilterBandsTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"bandsCell"];
+    cell.accessoryView = nil;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.backgroundColor = [UIColor clearColor];
 
+    BOOL enableTrashIcon = NO;
+
+    if (indexPath.row == 1)
+    {
         NSString *bandsString = [[FilterModel sharedModel] bandsString];
         if (bandsString.length > 0) {
-            cell.trashButton.userInteractionEnabled = YES;
-            [cell.trashButton addTarget:self action:@selector(bandCellTrashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            [cell.trashButton setImage:[UIImage imageNamed:@"trashIcon"] forState:UIControlStateNormal];
+            enableTrashIcon = YES;
         } else {
-            cell.trashButton.userInteractionEnabled = NO;
-            [cell.trashButton setImage:[UIImage imageNamed:@"disclosureIcon"] forState:UIControlStateNormal];
+            enableTrashIcon = NO;
         }
-
-        cell.accessoryView = nil;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.backgroundColor = [UIColor clearColor];
         cell.nameLabel.text = @"Nach Künstlern";
         cell.bandDetailLabel.text = bandsString;
-        return cell;
-    } else {
-        FilterTableViewCell *cell = (FilterTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"basicCell"];
-
-        UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclosureIcon"]];
-        cell.accessoryView = accessoryView;
-
-        if (indexPath.row == 0) {
-            cell.nameLabel.text = @"Nach Musik Genre";
-        } else {
-            cell.nameLabel.text = @"Nach Ort";
-        }
-        return cell;
     }
+    else
+    {
+        if (indexPath.row == 0) {
+            NSString *genresString = [[FilterModel sharedModel] genresString];
+            if (genresString.length > 0) {
+                enableTrashIcon = YES;
+            }
+            cell.nameLabel.text = @"Nach Musik Genre";
+            cell.bandDetailLabel.text = genresString;
+        } else {
+            NSString *locationString = [[FilterModel sharedModel] locationDetailString];
+            if (locationString.length > 0) {
+                enableTrashIcon = YES;
+            }
+            cell.nameLabel.text = @"Nach Ort";
+            cell.bandDetailLabel.text = locationString;
+        }
+    }
+
+    if (enableTrashIcon) {
+        cell.trashButton.userInteractionEnabled = YES;
+        [cell.trashButton addTarget:self action:@selector(cellTrashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.trashButton setImage:[UIImage imageNamed:@"trashIcon"] forState:UIControlStateNormal];
+    } else {
+        cell.trashButton.userInteractionEnabled = NO;
+        [cell.trashButton setImage:[UIImage imageNamed:@"disclosureIcon"] forState:UIControlStateNormal];
+    }
+
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -209,14 +240,19 @@
     [super viewDidLoad];
     self.title = @"Filter";
 
-    self.applyButton.titleLabel.font = [UIFont latoRegularFontWithSize:17.0];
-
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self setupTableView];
     self.tableView.estimatedRowHeight = 70.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self downloadGenresWithCompletionBlock:nil];
     [self downloadBandsWithCompletionBlock:nil];
+}
+
+- (void)setupTableView
+{
+    self.applyButton.titleLabel.font = [UIFont latoRegularFontWithSize:17.0];
+
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -284,7 +320,7 @@
 {
     self.allBandsArray = nil;
     self.genresArray = nil;
-    self.genreDownloadClient = nil;
+    self.categoryDownloadClient = nil;
     self.bandsDownloadClient = nil;
 }
 

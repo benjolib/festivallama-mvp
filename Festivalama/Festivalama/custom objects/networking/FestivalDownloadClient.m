@@ -59,7 +59,7 @@
             [urlString appendString:[NSString stringWithFormat:@"&country=%@", filterModel.selectedCountry]];
         }
         if (filterModel.selectedPostCode && [filterModel isSelectedCountryGermany]) {
-            [urlString appendString:[NSString stringWithFormat:@"&postcode=%ld", (long)filterModel.selectedPostCode.valueToSend]];
+            [urlString appendString:[NSString stringWithFormat:@"&postcode=%@", [filterModel postcodeStringForAPICall]]];
         }
         if (filterModel.selectedGenresArray.count > 0) {
             [urlString appendString:[NSString stringWithFormat:@"&category=%@", [filterModel genresStringForAPICall]]];

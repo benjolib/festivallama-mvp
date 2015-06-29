@@ -16,7 +16,10 @@
 
 @property (nonatomic, strong) NSArray *selectedGenresArray;
 @property (nonatomic, strong) NSArray *selectedBandsArray;
+@property (nonatomic, strong) NSArray *selectedPostcodesArray;
+@property (nonatomic, strong) NSArray *selectedCountriesArray;
 @property (nonatomic, copy) NSString *selectedCountry;
+
 @property (nonatomic, strong) FilterPostcode *selectedPostCode;
 
 + (instancetype)sharedModel;
@@ -27,8 +30,13 @@
 
 - (BOOL)isFiltering;
 - (BOOL)isSelectedCountryGermany;
+
 - (NSString*)bandsString;
 - (NSString*)genresString;
+- (NSString*)locationDetailString;
+
+- (NSString*)countriesStringForAPICall;
+- (NSString*)postcodeStringForAPICall;
 - (NSString*)bandsStringForAPICall;
 - (NSString*)genresStringForAPICall;
 

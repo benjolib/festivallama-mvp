@@ -219,8 +219,9 @@
 #pragma mark - view methods
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.title = @"Bands";
+    [super addGradientBackground];
+    [super setupTableView];
+    self.title = @"Künstlern";
 
     [self setupSearchView];
 
@@ -231,6 +232,7 @@
         self.tableData = [self partitionObjects:self.allBandsArray collationStringSelector:@selector(name)];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            [self.tableView hideLoadingIndicator];
         });
     });
 }

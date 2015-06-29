@@ -23,7 +23,7 @@
 - (void)trashButtonPressed:(id)sender
 {
     [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
-    [FilterModel sharedModel].selectedCountry = nil;
+    [FilterModel sharedModel].selectedCountriesArray = nil;
     [self.selectedCountriesArray removeAllObjects];
     [self adjustButtonToFilterModel];
     [self.tableView reloadData];
@@ -40,8 +40,8 @@
         self.selectedCountriesArray = [NSMutableArray array];
     }
     
-    if ([[FilterModel sharedModel] selectedCountry]) {
-        [self.selectedCountriesArray addObject:[[FilterModel sharedModel] selectedCountry]];
+    if ([[FilterModel sharedModel] selectedCountriesArray].count > 0) {
+        [self.selectedCountriesArray addObjectsFromArray:[[FilterModel sharedModel] selectedCountriesArray]];
     }
     [self.tableView reloadData];
 }
@@ -68,7 +68,7 @@
     cell.textLabel.text = country.name;
     cell.imageView.image = [UIImage imageNamed:country.flag];
 
-    if ([self.selectedCountriesArray containsObject:country.name]) {
+    if ([self.selectedCountriesArray containsObject:country]) {
         UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkMarkIcon"]];
         cell.accessoryView = accessoryView;
         cell.textLabel.textColor = [UIColor whiteColor];
@@ -90,37 +90,28 @@
 
     Country *selectedCountry = self.allCountriesArray[indexPath.row];
 
-    NSString *selectedCountryName = selectedCountry.name;
-    if ([self.selectedCountriesArray containsObject:selectedCountryName])
+    if ([self.selectedCountriesArray containsObject:selectedCountry])
     {
         [[TrackingManager sharedManager] trackFilterSelectsCountryAgainToUnselect];
-        [self.selectedCountriesArray removeObject:selectedCountryName];
+        [self.selectedCountriesArray removeObject:selectedCountry];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [FilterModel sharedModel].selectedCountry = nil;
     }
     else
     {
         [[TrackingManager sharedManager] trackFilterSelectsCountry];
-        if (self.selectedCountriesArray.count != 0) {
-            Country *selectedCountry = [Country countryWithName:self.selectedCountriesArray.firstObject flag:nil];
-            NSInteger selectedCountryIndex = [self.allCountriesArray indexOfObject:selectedCountry];
-            NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:selectedCountryIndex inSection:0];
-            [self.selectedCountriesArray removeAllObjects];
-            if (selectedIndexPath) {
-                [tableView reloadRowsAtIndexPaths:@[selectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-        }
-        [self.selectedCountriesArray addObject:selectedCountryName];
+        [self.selectedCountriesArray addObject:selectedCountry];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [FilterModel sharedModel].selectedCountry = selectedCountryName;
     }
+
+    [FilterModel sharedModel].selectedCountriesArray = [self.selectedCountriesArray copy];
     [super adjustButtonToFilterModel];
 }
 
 #pragma mark - view methods
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super addGradientBackground];
+    [super setupTableView];
     self.title = @"Ganz Europa";
 
     [self setupDatasource];

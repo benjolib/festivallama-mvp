@@ -21,7 +21,7 @@
 - (void)trashButtonPressed:(id)sender
 {
     [[TrackingManager sharedManager] trackFilterTapsTrashIconDetail];
-    [FilterModel sharedModel].selectedPostCode = nil;
+    [FilterModel sharedModel].selectedPostcodesArray = nil;
     [self.selectedPostCodesArray removeAllObjects];
     [self.tableView reloadData];
 
@@ -69,28 +69,20 @@
     if ([self.selectedPostCodesArray containsObject:selectedPostcode]) {
         [self.selectedPostCodesArray removeObject:selectedPostcode];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [FilterModel sharedModel].selectedPostCode = nil;
     } else {
-        if (self.selectedPostCodesArray.count != 0) {
-            NSInteger selectedCountryIndex = [self.allPostcodesArray indexOfObject:self.selectedPostCodesArray.firstObject];
-            NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:selectedCountryIndex inSection:0];
-            [self.selectedPostCodesArray removeAllObjects];
-            if (selectedIndexPath) {
-                [tableView reloadRowsAtIndexPaths:@[selectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-        }
         [self.selectedPostCodesArray addObject:selectedPostcode];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [FilterModel sharedModel].selectedPostCode = selectedPostcode;
     }
 
+    [FilterModel sharedModel].selectedPostcodesArray = [self.selectedPostCodesArray copy];
     [super adjustButtonToFilterModel];
 }
 
 #pragma mark - view methods
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super addGradientBackground];
+    [super setupTableView];
     self.title = @"Innerhalb Deutschlands";
 
     [self.tableView reloadData];
@@ -101,8 +93,8 @@
     if (!self.selectedPostCodesArray) {
         self.selectedPostCodesArray = [NSMutableArray array];
     }
-    if ([[FilterModel sharedModel] selectedPostCode]) {
-        [self.selectedPostCodesArray addObject:[[FilterModel sharedModel] selectedPostCode]];
+    if ([[[FilterModel sharedModel] selectedPostcodesArray] count] > 0) {
+        [self.selectedPostCodesArray addObjectsFromArray:[[FilterModel sharedModel] selectedPostcodesArray]];
     }
 }
 

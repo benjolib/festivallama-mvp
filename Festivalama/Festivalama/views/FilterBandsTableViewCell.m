@@ -11,7 +11,8 @@
 
 @implementation FilterBandsTableViewCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
     self.nameLabel.textColor = [UIColor whiteColor];

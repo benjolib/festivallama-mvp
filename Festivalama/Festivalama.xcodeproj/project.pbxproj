@@ -27,7 +27,6 @@
 		560D0ADF1B179FBA00B03090 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0ADE1B179FBA00B03090 /* UIColor+AppColors.m */; };
 		560D0AE21B17BD9200B03090 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AE11B17BD9200B03090 /* LocationManager.m */; };
 		560D0AE71B17C0B300B03090 /* AbstractClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AE61B17C0B300B03090 /* AbstractClient.m */; };
-		560D0AEA1B17C0D200B03090 /* GenreDownloadClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AE91B17C0D200B03090 /* GenreDownloadClient.m */; };
 		560D0AF01B17C35D00B03090 /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AEF1B17C35D00B03090 /* Genre.m */; };
 		560D0AF31B17C3E600B03090 /* GenreParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AF21B17C3E600B03090 /* GenreParser.m */; };
 		560D0AF51B17C4E100B03090 /* GenreListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D0AF41B17C4E100B03090 /* GenreListTest.m */; };
@@ -211,8 +210,6 @@
 		560D0AE11B17BD9200B03090 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = "custom objects/LocationManager.m"; sourceTree = "<group>"; };
 		560D0AE51B17C0B300B03090 /* AbstractClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractClient.h; path = "custom objects/AbstractClient.h"; sourceTree = "<group>"; };
 		560D0AE61B17C0B300B03090 /* AbstractClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractClient.m; path = "custom objects/AbstractClient.m"; sourceTree = "<group>"; };
-		560D0AE81B17C0D200B03090 /* GenreDownloadClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenreDownloadClient.h; path = "custom objects/networking/GenreDownloadClient.h"; sourceTree = "<group>"; };
-		560D0AE91B17C0D200B03090 /* GenreDownloadClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenreDownloadClient.m; path = "custom objects/networking/GenreDownloadClient.m"; sourceTree = "<group>"; };
 		560D0AEB1B17C11800B03090 /* NetworkConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NetworkConstants.h; path = "custom objects/networking/NetworkConstants.h"; sourceTree = "<group>"; };
 		560D0AEE1B17C35D00B03090 /* Genre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Genre.h; path = "custom objects/Datamodel/Genre.h"; sourceTree = "<group>"; };
 		560D0AEF1B17C35D00B03090 /* Genre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Genre.m; path = "custom objects/Datamodel/Genre.m"; sourceTree = "<group>"; };
@@ -760,8 +757,6 @@
 				56C44E8B1B1D0FDF00DFFB6B /* FestivalDownloadClient.m */,
 				56CF0EC31B2C24EB000E6C34 /* FestivalRankClient.h */,
 				56CF0EC41B2C24EB000E6C34 /* FestivalRankClient.m */,
-				560D0AE81B17C0D200B03090 /* GenreDownloadClient.h */,
-				560D0AE91B17C0D200B03090 /* GenreDownloadClient.m */,
 				E19FA3F11B2C5BA50057A049 /* TicketShopperClient.h */,
 				E19FA3F21B2C5BA50057A049 /* TicketShopperClient.m */,
 			);
@@ -1258,7 +1253,6 @@
 				56D05A401B19D43D0031F2A2 /* OnboardingModel.m in Sources */,
 				56CE62D41B1F77F30079570E /* WelcomeBaseViewController.m in Sources */,
 				56C44E8F1B1D144100DFFB6B /* NSDictionary+nonNullObjectForKey.m in Sources */,
-				560D0AEA1B17C0D200B03090 /* GenreDownloadClient.m in Sources */,
 				56CF4ECB1B2D9F7A00A25CE7 /* SearchNavigationView.m in Sources */,
 				561612081B1BBB0000147093 /* FilterPlacesViewController.m in Sources */,
 				56D587EA1B1E5C65007B3F5B /* FilterBandsViewController.m in Sources */,

@@ -35,6 +35,7 @@
 
 - (IBAction)backButtonPressed:(id)sender;
 
+- (void)setupTableView;
 - (void)setupSearchView;
 - (void)searchFieldTextChanged:(UITextField*)textfield;
 - (IBAction)searchCancelButtonTapped:(id)sender;

@@ -28,12 +28,14 @@
             NSArray *genresArray = [weakSelf.genreParser parseJSONData:data];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                completionBlock(genresArray, errorMessage, YES);
+                completionBlock(genresArray, nil, YES);
             });
         }
         else
         {
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(nil, errorMessage, NO);
+            });
         }
     }];
     

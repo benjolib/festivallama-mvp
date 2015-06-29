@@ -10,6 +10,7 @@
 #import "FestivalTransitionAnimator.h"
 #import "FestivalNavigationController.h"
 #import "StoryboardManager.h"
+#import "FilterModel.h"
 
 @interface FestivalTransitionManager ()
 @end

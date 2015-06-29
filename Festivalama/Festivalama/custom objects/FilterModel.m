@@ -9,6 +9,8 @@
 #import "FilterModel.h"
 #import "Band.h"
 #import "Genre.h"
+#import "Country.h"
+#import "FilterPostcode.h"
 #import "OnboardingModel.h"
 
 @implementation FilterModel
@@ -29,6 +31,8 @@
     if (self) {
         self.selectedBandsArray = [NSArray array];
         self.selectedGenresArray = [NSArray array];
+        self.selectedPostcodesArray = [NSArray array];
+        self.selectedCountriesArray = [NSArray array];
     }
     return self;
 }
@@ -47,6 +51,8 @@
     self.selectedCountry = filterModel.selectedCountry;
     self.selectedGenresArray = filterModel.selectedGenresArray;
     self.selectedPostCode = filterModel.selectedPostCode;
+    self.selectedPostcodesArray = filterModel.selectedPostcodesArray;
+    self.selectedCountriesArray = filterModel.selectedCountriesArray;
 }
 
 - (void)clearFilters
@@ -55,6 +61,8 @@
     self.selectedGenresArray = nil;
     self.selectedPostCode = nil;
     self.selectedBandsArray = nil;
+    self.selectedCountriesArray = nil;
+    self.selectedPostcodesArray = nil;
 }
 
 - (BOOL)isFiltering
@@ -67,6 +75,10 @@
         return YES;
     } else if (self.selectedBandsArray.count > 0) {
         return YES;
+    } else if (self.selectedPostcodesArray.count > 0) {
+        return YES;
+    } else if (self.selectedCountriesArray.count > 0) {
+        return YES;
     } else {
         return NO;
     }
@@ -75,6 +87,21 @@
 - (BOOL)isSelectedCountryGermany
 {
     return [self.selectedCountry caseInsensitiveCompare:@"Deutschland"];
+}
+
+#pragma mark - string methods
+// Format: Countries: Deutschland,Ungarn PostLeitzahl: 10
+- (NSString*)locationDetailString
+{
+    NSMutableString *locationString = [[NSMutableString alloc] init];
+    if (self.selectedCountriesArray.count > 0) {
+        [locationString appendFormat:@"Lände: %@", [self countriesString]];
+    }
+    if (self.selectedPostcodesArray.count > 0) {
+        [locationString appendFormat:@" Postleitzahlen: %@", @""];
+    }
+
+    return locationString;
 }
 
 - (NSString*)bandsString
@@ -103,6 +130,44 @@
     }
 
     return genresString;
+}
+
+- (NSString*)postcodeString
+{
+    NSMutableString *postcodeString = [[NSMutableString alloc] init];
+    for (int i = 0; i < self.selectedPostcodesArray.count; i++) {
+        FilterPostcode *postcode = self.selectedPostcodesArray[i];
+        [postcodeString appendString:[NSString stringWithFormat:@"%ld", (long)postcode.valueToSend]];
+        if (i != self.selectedPostcodesArray.count-1) {
+            [postcodeString appendString:@","];
+        }
+    }
+
+    return postcodeString;
+}
+
+- (NSString*)countriesString
+{
+    NSMutableString *countriesString = [[NSMutableString alloc] init];
+    for (int i = 0; i < self.selectedCountriesArray.count; i++) {
+        Country *country = self.selectedCountriesArray[i];
+        [countriesString appendString:country.name];
+        if (i != self.selectedCountriesArray.count-1) {
+            [countriesString appendString:@","];
+        }
+    }
+
+    return countriesString;
+}
+
+- (NSString*)countriesStringForAPICall
+{
+    return [[self countriesString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (NSString*)postcodeStringForAPICall
+{
+    return [[self postcodeString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (NSString*)bandsStringForAPICall

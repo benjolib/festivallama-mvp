@@ -62,7 +62,8 @@
 #pragma mark - view methods
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super addGradientBackground];
+    [self setupTableView];
     self.title = @"Ort";
 
     if (FilterModel.sharedModel.selectedCountry || FilterModel.sharedModel.selectedPostCode) {

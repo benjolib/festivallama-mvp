@@ -70,15 +70,21 @@
 }
 
 #pragma mark - push notification
-- (void)askUserForPushNotifications
+- (UIUserNotificationSettings*)userNotificationSettings
 {
-    // Register for Push Notitications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                     UIUserNotificationTypeBadge |
                                                     UIUserNotificationTypeSound);
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
                                                                              categories:nil];
-    
+    return settings;
+}
+
+- (void)askUserForPushNotifications
+{
+    // Register for Push Notitications
+    UIUserNotificationSettings *settings = [self userNotificationSettings];
+
     UIApplication *application = [UIApplication sharedApplication];
     if (IS_iOS8) {
         [application registerUserNotificationSettings:settings];
@@ -105,7 +111,10 @@
 - (void)checkToDisplayOnTrackPopup
 {
     if ([GeneralSettings passedIntervalSinceAppStart] > (2 * 60) && ![GeneralSettings wasOnTrackPromptShown]) {
-        [self displayOnTrackPopup];
+        UIApplication *application = [UIApplication sharedApplication];
+        if ([self userNotificationSettings] != [application currentUserNotificationSettings]) {
+            [self displayOnTrackPopup];
+        }
     } else if ([GeneralSettings passedIntervalSinceAppStart] > (5 * 60) && ![GeneralSettings wasRateAppShown]) {
         [self displayAppStoreReviewPopup];
         [self.popupDisplayerTimer invalidate];

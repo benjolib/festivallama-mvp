@@ -53,6 +53,9 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
         [appDelegate showNoInternetPopup];
+        [[NSOperationQueue new] addOperationWithBlock:^{
+            [task resume];
+        }];
         return NO;
     }
 }

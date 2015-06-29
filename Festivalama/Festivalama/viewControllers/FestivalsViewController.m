@@ -203,6 +203,11 @@
         self.festivalsArray = [NSMutableArray array];
     }
 
+    if (!self.filterModel) {
+        self.filterModel = [[FilterModel alloc] init];
+        [self.filterModel copySettingsFromFilterModel:[FilterModel sharedModel]];
+    }
+
     __weak typeof(self) weakSelf = self;
     [self.festivalDownloadClient downloadFestivalsFromIndex:self.startIndex
                                                       limit:self.limit
@@ -236,6 +241,7 @@
         // cause then we can assume that there are more object to come
         self.showLoadingIndicatorCell = festivals.count == self.limit;
 
+        [self.tableCounterView displayTheNumberOfItems:(self.festivalsArray.count == 0 ? 0 : self.festivalsArray.count)];
         if (self.festivalsArray.count == 0 && self.isSearching) {
             [self.tableCounterView setCounterViewVisible:NO animated:YES];
         } else {
@@ -245,7 +251,8 @@
                 [self.tableCounterView setCounterViewVisible:NO animated:YES];
             }
         }
-        [self.tableCounterView displayTheNumberOfItems:(self.festivalsArray.count == 0 ? 0 : self.festivalsArray.count)];
+    } else {
+        [self.tableCounterView setCounterViewVisible:NO animated:YES];
     }
 
     [self.tableView reloadData];

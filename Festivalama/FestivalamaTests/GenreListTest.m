@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "GenreDownloadClient.h"
+#import "CategoryDownloadClient.h"
 
 @interface GenreListTest : XCTestCase
-@property (nonatomic, strong) GenreDownloadClient *genreDownloadClient;
+@property (nonatomic, strong) CategoryDownloadClient *genreDownloadClient;
 @end
 
 @implementation GenreListTest
@@ -35,8 +35,8 @@
 {
     XCTestExpectation *downloadingExpectation = [self expectationWithDescription:@"downloading genres"];
 
-    self.genreDownloadClient = [GenreDownloadClient new];
-    [self.genreDownloadClient downloadAllGenresWithCompletionBlock:^(NSArray *sortedGenres, NSString *errorMessage, BOOL completed) {
+    self.genreDownloadClient = [CategoryDownloadClient new];
+    [self.genreDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
         XCTAssert(completed);
 
         if (completed) {
