@@ -11,14 +11,15 @@
 #import "Band.h"
 #import "FilterTableViewCell.h"
 #import "TrackingManager.h"
+#import "FestivalRefreshControl.h"
 
 @interface FilterBandsViewController ()
 @property (nonatomic, strong) NSArray *allBandsArrayCopy;
 @property (nonatomic, strong) NSArray *tableData;
 @property (nonatomic, strong) NSArray *sectionIndexTitles;
 @property (nonatomic, strong) BandsDownloadClient *bandsDownloadClient;
-@property (nonatomic, strong) NSArray *allBandsArray;
 @property (nonatomic, strong) NSMutableArray *selectedBandsArray;
+@property (nonatomic, strong) FestivalRefreshControl *refreshController;
 @end
 
 @implementation FilterBandsViewController
@@ -225,16 +226,51 @@
 
     [self setupSearchView];
 
-    dispatch_queue_t bandQeue = dispatch_queue_create("bandQeue", NULL);
-    dispatch_async(bandQeue, ^{
-        self.allBandsArrayCopy = [self.allBandsArray copy];
-        self.selectedBandsArray = [[[FilterModel sharedModel] selectedBandsArray] mutableCopy];
-        self.tableData = [self partitionObjects:self.allBandsArray collationStringSelector:@selector(name)];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-            [self.tableView hideLoadingIndicator];
+    self.refreshController = [[FestivalRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
+    [self.tableView addSubview:self.refreshController];
+
+    [self.refreshController addTarget:self
+                               action:@selector(refreshView)
+                     forControlEvents:UIControlEventValueChanged];
+
+    [self.tableView showLoadingIndicator];
+    [self refreshView];
+}
+
+- (void)refreshView
+{
+    __weak typeof(self) weakSelf = self;
+    [self downloadBandsWithCompletionBlock:^{
+        dispatch_queue_t bandQeue = dispatch_queue_create("bandQeue", NULL);
+        dispatch_async(bandQeue, ^{
+            weakSelf.allBandsArrayCopy = [weakSelf.allBandsArray copy];
+            weakSelf.selectedBandsArray = [[[FilterModel sharedModel] selectedBandsArray] mutableCopy];
+            weakSelf.tableData = [weakSelf partitionObjects:weakSelf.allBandsArray collationStringSelector:@selector(name)];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.tableView reloadData];
+                [weakSelf.tableView hideLoadingIndicator];
+                [weakSelf.refreshController endRefreshing];
+                if (weakSelf.tableView.contentOffset.y < 0) {
+                    weakSelf.tableView.contentOffset = CGPointMake(0.0, 0.0);
+                }
+            });
         });
-    });
+    }];
+}
+
+- (void)downloadBandsWithCompletionBlock:(void(^)())completionBlock
+{
+    self.bandsDownloadClient = [BandsDownloadClient new];
+
+    __weak typeof(self) weakSelf = self;
+    [self.bandsDownloadClient downloadAllBandsWithCompletionBlock:^(NSArray *sortedBands, NSString *errorMessage, BOOL completed) {
+        if (completed) {
+            weakSelf.allBandsArray = [sortedBands copy];
+        }
+        if (completionBlock) {
+            completionBlock();
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -11,8 +11,10 @@
 #import "Genre.h"
 #import "TrackingManager.h"
 #import "FestivalRefreshControl.h"
+#import "CategoryDownloadClient.h"
 
 @interface FilterGenresViewController ()
+@property (nonatomic, strong) CategoryDownloadClient *categoryDownloadClient;
 @property (nonatomic, strong) NSArray *allGenresArrayCopy;
 @property (nonatomic, strong) NSArray *tableData;
 @property (nonatomic, strong) NSArray *sectionIndexTitles;
@@ -38,7 +40,7 @@
         return _sectionIndexTitles;
     }
     NSMutableArray *firstLetterArray = [NSMutableArray array];
-    for (Genre *genre in self.allGenresArray) {
+    for (Genre *genre in self.genresArray) {
         NSString *genreName = genre.name;
 
         if (genreName.length >= 1) {
@@ -81,8 +83,8 @@
     dispatch_async(dispatch_queue_create("com.festivalama.bandQueue", NULL), ^{
         if (textfield.text.length > 0) {
             _sectionIndexTitles = nil;
-            self.allGenresArray = [self.allGenresArrayCopy filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name contains[cd] %@", textfield.text]];
-            self.tableData = [self partitionObjects:self.allGenresArray collationStringSelector:@selector(name)];
+            self.genresArray = [self.allGenresArrayCopy filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name contains[cd] %@", textfield.text]];
+            self.tableData = [self partitionObjects:self.genresArray collationStringSelector:@selector(name)];
         } else {
             _sectionIndexTitles = nil;
             self.tableData = [self partitionObjects:self.allGenresArrayCopy collationStringSelector:@selector(name)];
@@ -101,7 +103,7 @@
     self.searchField.text = @"";
     dispatch_async(dispatch_queue_create("com.festivalama.genreQueue", NULL), ^{
         _sectionIndexTitles = nil;
-        self.allGenresArray = [self.allGenresArrayCopy copy];
+        self.genresArray = [self.allGenresArrayCopy copy];
         self.tableData = [self partitionObjects:self.allGenresArrayCopy collationStringSelector:@selector(name)];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -226,12 +228,6 @@
     self.title = @"Musik Genres";
 
     [self setupSearchView];
-    if (self.allGenresArray.count == 0) {
-        [self.tableView showLoadingIndicator];
-        [self refreshView];
-    } else {
-        [self setupView];
-    }
 
     self.refreshController = [[FestivalRefreshControl alloc] initWithFrame:CGRectMake(0.0, -50.0, CGRectGetWidth(self.view.frame), 50.0)];
     [self.tableView addSubview:self.refreshController];
@@ -239,6 +235,12 @@
     [self.refreshController addTarget:self
                                action:@selector(refreshView)
                      forControlEvents:UIControlEventValueChanged];
+
+    [self.tableView showLoadingIndicator];
+    __weak typeof(self) weakSelf = self;
+    [self downloadGenresWithCompletionBlock:^{
+        [weakSelf refreshView];
+    }];
 }
 
 - (void)refreshView
@@ -257,11 +259,26 @@
 
 - (void)setupView
 {
-    self.allGenresArrayCopy = [self.allGenresArray copy];
+    self.allGenresArrayCopy = [self.genresArray copy];
     self.selectedGenresArray = [[[FilterModel sharedModel] selectedGenresArray] mutableCopy];
     self.tableData = [self partitionObjects:self.allGenresArrayCopy collationStringSelector:@selector(name)];
     [self.tableView reloadData];
     [self.tableView hideLoadingIndicator];
+}
+
+- (void)downloadGenresWithCompletionBlock:(void(^)())completionBlock
+{
+    self.categoryDownloadClient = [CategoryDownloadClient new];
+
+    __weak typeof(self) weakSelf = self;
+    [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
+        if (completed) {
+            weakSelf.genresArray = [sortedCategories copy];
+        }
+        if (completionBlock) {
+            completionBlock();
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -18,7 +18,8 @@
 @property (nonatomic, weak) IBOutlet GreenButton *applyButton;
 @property (nonatomic, weak) IBOutlet UIButton *trashIcon;
 
-@property (nonatomic, strong, readonly) NSArray *genresArray;
+@property (nonatomic, strong) NSArray *genresArray;
+@property (nonatomic, strong) NSArray *allBandsArray;
 
 // search views
 @property (nonatomic, weak) IBOutlet UIView *searchWrapperView;
@@ -41,7 +42,5 @@
 - (IBAction)searchCancelButtonTapped:(id)sender;
 
 - (void)setFilteringEnabled:(BOOL)enabled;
-
-- (void)downloadGenresWithCompletionBlock:(void(^)())completionBlock;
 
 @end

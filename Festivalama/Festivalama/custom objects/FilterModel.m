@@ -90,20 +90,6 @@
 }
 
 #pragma mark - string methods
-// Format: Countries: Deutschland,Ungarn PostLeitzahl: 10
-- (NSString*)locationDetailString
-{
-    NSMutableString *locationString = [[NSMutableString alloc] init];
-    if (self.selectedCountriesArray.count > 0) {
-        [locationString appendFormat:@"Lände: %@", [self countriesString]];
-    }
-    if (self.selectedPostcodesArray.count > 0) {
-        [locationString appendFormat:@" Postleitzahlen: %@", @""];
-    }
-
-    return locationString;
-}
-
 - (NSString*)bandsString
 {
     NSMutableString *bandsString = [[NSMutableString alloc] init];

@@ -11,21 +11,12 @@
 #import "UIColor+AppColors.h"
 #import "FilterTableViewCell.h"
 #import "FilterBandsTableViewCell.h"
-#import "BandsDownloadClient.h"
 #import "FilterGenresViewController.h"
 #import "FilterBandsViewController.h"
 #import "UIFont+LatoFonts.h"
 #import "TrackingManager.h"
-#import "CategoryDownloadClient.h"
 
 #define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
-
-@interface FilterViewController ()
-@property (nonatomic, strong) CategoryDownloadClient *categoryDownloadClient;
-@property (nonatomic, strong) BandsDownloadClient *bandsDownloadClient;
-@property (nonatomic, strong, readwrite) NSArray *genresArray;
-@property (nonatomic, strong) NSArray *allBandsArray;
-@end
 
 @implementation FilterViewController
 
@@ -53,36 +44,6 @@
     [[FilterModel sharedModel] clearFilters];
     [self adjustButtonToFilterModel];
     [self.tableView reloadData];
-}
-
-- (void)downloadGenresWithCompletionBlock:(void(^)())completionBlock
-{
-    self.categoryDownloadClient = [CategoryDownloadClient new];
-
-    __weak typeof(self) weakSelf = self;
-    [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
-        if (completed) {
-            weakSelf.genresArray = [sortedCategories copy];
-        }
-        if (completionBlock) {
-            completionBlock();
-        }
-    }];
-}
-
-- (void)downloadBandsWithCompletionBlock:(void(^)())completionBlock
-{
-    self.bandsDownloadClient = [BandsDownloadClient new];
-
-    __weak typeof(self) weakSelf = self;
-    [self.bandsDownloadClient downloadAllBandsWithCompletionBlock:^(NSArray *sortedBands, NSString *errorMessage, BOOL completed) {
-        if (completed) {
-            weakSelf.allBandsArray = [sortedBands copy];
-        }
-        if (completionBlock) {
-            completionBlock();
-        }
-    }];
 }
 
 - (void)setTrashIconVisible:(BOOL)visible
@@ -122,6 +83,8 @@
 
     [[TrackingManager sharedManager] trackFilterTapsTrashIconOnMainBandCell];
     [self.tableView reloadData];
+
+    [self adjustButtonToFilterModel];
 }
 
 - (void)setFilteringEnabled:(BOOL)enabled
@@ -179,12 +142,17 @@
             cell.nameLabel.text = @"Nach Musik Genre";
             cell.bandDetailLabel.text = genresString;
         } else {
-            NSString *locationString = [[FilterModel sharedModel] locationDetailString];
-            if (locationString.length > 0) {
-                enableTrashIcon = YES;
-            }
             cell.nameLabel.text = @"Nach Ort";
-            cell.bandDetailLabel.text = locationString;
+            if ([[FilterModel sharedModel] selectedCountriesArray].count > 0) {
+                enableTrashIcon = YES;
+                cell.bandDetailLabel.text = @"Land ausgewählt";
+            } else if ([[FilterModel sharedModel] selectedPostcodesArray].count > 0) {
+                enableTrashIcon = YES;
+                cell.bandDetailLabel.text = @"Ort ausgewählt";
+            } else {
+                enableTrashIcon = NO;
+                cell.bandDetailLabel.text = @"";
+            }
         }
     }
 
@@ -207,16 +175,8 @@
         [self performSegueWithIdentifier:@"openGenres" sender:nil];
         [[TrackingManager sharedManager] trackFilterSelectsGenreView];
     } else if (indexPath.row == 1) {
-        if (self.allBandsArray) {
-            [[TrackingManager sharedManager] trackFilterSelectsBandsView];
-            [self performSegueWithIdentifier:@"openBands" sender:nil];
-        } else {
-            __weak typeof(self) weakSelf = self;
-            [self downloadBandsWithCompletionBlock:^{
-                [[TrackingManager sharedManager] trackFilterSelectsBandsView];
-                [weakSelf performSegueWithIdentifier:@"openBands" sender:nil];
-            }];
-        }
+        [[TrackingManager sharedManager] trackFilterSelectsBandsView];
+        [self performSegueWithIdentifier:@"openBands" sender:nil];
     } else {
         [[TrackingManager sharedManager] trackFilterSelectsPlaceView];
         [self performSegueWithIdentifier:@"showLocation" sender:nil];
@@ -225,10 +185,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"openGenres"]) {
-        FilterGenresViewController *genresViewController = (FilterGenresViewController*)segue.destinationViewController;
-        genresViewController.allGenresArray = [self.genresArray copy];
-    } else if ([segue.identifier isEqualToString:@"openBands"]) {
+    if ([segue.identifier isEqualToString:@"openBands"]) {
         FilterBandsViewController *bandsTableViewController = (FilterBandsViewController*)segue.destinationViewController;
         bandsTableViewController.allBandsArray = [self.allBandsArray copy];
     }
@@ -243,8 +200,6 @@
     [self setupTableView];
     self.tableView.estimatedRowHeight = 70.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self downloadGenresWithCompletionBlock:nil];
-    [self downloadBandsWithCompletionBlock:nil];
 }
 
 - (void)setupTableView
@@ -293,8 +248,9 @@
     self.searchField.leftView = leftSpacerView;
     self.searchField.leftViewMode = UITextFieldViewModeAlways;
 
-    [self.searchField addTarget:self action:@selector(searchFieldTextChanged:) forControlEvents:UIControlEventEditingChanged];
-
+    [self.searchField addTarget:self
+                         action:@selector(searchFieldTextChanged:)
+               forControlEvents:UIControlEventEditingChanged];
 
     [self.searchCancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.searchCancelButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.6] forState:UIControlStateHighlighted];
@@ -320,8 +276,6 @@
 {
     self.allBandsArray = nil;
     self.genresArray = nil;
-    self.categoryDownloadClient = nil;
-    self.bandsDownloadClient = nil;
 }
 
 @end

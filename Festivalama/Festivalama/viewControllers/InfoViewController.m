@@ -37,6 +37,11 @@
     return self.cellTitlesArray.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70.0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -90,7 +95,7 @@
     [storeProductViewController setDelegate:self];
 
     // TODO: needs App id
-    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"0"} completionBlock:^(BOOL result, NSError *error) {
+    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"1013815740"} completionBlock:^(BOOL result, NSError *error) {
         if (error) {
             NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
 

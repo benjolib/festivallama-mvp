@@ -10,6 +10,4 @@
 
 @interface FilterGenresViewController : FilterViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSArray *allGenresArray;
-
 @end

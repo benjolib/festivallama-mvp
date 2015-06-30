@@ -49,8 +49,9 @@
 
 - (IBAction)trashButtonPressed:(id)sender
 {
-    [[FilterModel sharedModel] clearFilters];
-    self.trashIcon.hidden = ![FilterModel.sharedModel isFiltering];
+    [self.filterModel clearFilters];
+
+    self.trashIcon.hidden = !self.filterModel.isFiltering;
     [self refreshView];
 }
 
@@ -278,7 +279,7 @@
 {
     if ([[FilterModel sharedModel] isFiltering])
     {
-        self.filterModel = [FilterModel sharedModel];
+        [self.filterModel copySettingsFromFilterModel:[FilterModel sharedModel]];
         [[FilterModel sharedModel] clearFilters];
 
         [self downloadAllFestivals];
@@ -407,7 +408,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.trashIcon.hidden = ![FilterModel.sharedModel isFiltering];
+    self.trashIcon.hidden = !self.filterModel.isFiltering;
 }
 
 - (void)didReceiveMemoryWarning
