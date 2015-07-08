@@ -64,7 +64,7 @@
 }
 
 #pragma mark - setup methods
-- (void)setupWithConfirmButtonTitle:(NSString*)confirmTitle cancelButtonTitle:(NSString*)cancelTitle viewTitle:(NSString*)viewTitle text:(NSString*)text icon:(UIImage*)icon
+- (void)setupWithConfirmButtonTitle:(NSString*)confirmTitle cancelButtonTitle:(NSString*)cancelTitle viewTitle:(NSString*)viewTitle text:(NSString*)text icon:(UIImage*)icon showFestivalamaLogo:(BOOL)showLogo
 {
     self.iconImageView.image = icon;
     self.titleLabel.text = viewTitle;
@@ -100,6 +100,17 @@
     self.buttonsContainerViewHeightConstraint.constant = buttonsContainerViewHeight;
 
     [self adjustViewSize];
+
+    // show logo
+    if (showLogo) {
+
+    } else {
+        // adjust size and constraints
+        [self.logoImageView removeFromSuperview];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.popupBackgroundView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+
+        [self layoutIfNeeded];
+    }
 }
 
 - (void)adjustViewSize
@@ -122,6 +133,7 @@
 {
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appdelegate.window endEditing:YES];
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 
     self.parentView = parentView;
     self.frame = parentView.frame;

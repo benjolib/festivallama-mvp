@@ -151,7 +151,7 @@
                                  cancelButtonTitle:nil
                                          viewTitle:@"On Track"
                                               text:@"Sicher Dir die Möglichkeit an geschlossenen Vorverkaufs Aktionen teilzunehmen."
-                                              icon:[UIImage imageNamed:@"iconOnTrack"]];
+                                              icon:[UIImage imageNamed:@"iconOnTrack"] showFestivalamaLogo:NO];
     [self.onTrackPopup showPopupViewAnimationOnView:self.window withBlurredBackground:YES];
     [GeneralSettings setOnTrackPromptWasShown];
 }
@@ -166,7 +166,7 @@
                                           cancelButtonTitle:@"Vielleicht später"
                                                   viewTitle:@"Deine ideen"
                                                        text:@"Hast Du Ideen was man an der App verbessern könnte? Wir würden Sie gerne hören. Über den App Store kannst Du uns Deinen Kommentar hinterlassen"
-                                                       icon:[UIImage imageNamed:@"iconStar"]];
+                                                       icon:[UIImage imageNamed:@"iconStar"] showFestivalamaLogo:NO];
     [self.reviewInAppStorePopup showPopupViewAnimationOnView:self.window withBlurredBackground:YES];
     [GeneralSettings setRateAppWasShown];
 }
@@ -204,7 +204,7 @@
                                  cancelButtonTitle:nil
                                          viewTitle:@"Sorry"
                                               text:@"Es scheint als hättest Du derzeit keine Verbindung zum Internet."
-                                              icon:[UIImage imageNamed:@"iconWifi"]];
+                                              icon:[UIImage imageNamed:@"iconWifi"] showFestivalamaLogo:NO];
     [self.noInternetPopup showPopupViewAnimationOnView:self.window withBlurredBackground:YES];
 }
 

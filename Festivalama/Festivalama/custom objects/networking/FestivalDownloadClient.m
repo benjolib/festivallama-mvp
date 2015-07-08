@@ -55,8 +55,8 @@
     }
 
     if (filterModel && searchText.length == 0) {
-        if (filterModel.selectedCountry) {
-            [urlString appendString:[NSString stringWithFormat:@"&country=%@", filterModel.selectedCountry]];
+        if (filterModel.selectedCountriesArray.count > 0) {
+            [urlString appendString:[NSString stringWithFormat:@"&country=%@", [filterModel countriesStringForAPICall]]];
         }
         if (filterModel.selectedPostCode && [filterModel isSelectedCountryGermany]) {
             [urlString appendString:[NSString stringWithFormat:@"&postcode=%@", [filterModel postcodeStringForAPICall]]];
@@ -72,6 +72,9 @@
     if (searchText.length > 0) {
         [urlString appendString:[NSString stringWithFormat:@"&name=%@", [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     }
+
+    // add sorting
+    [urlString appendString:@"&orderProperty=date_start"];
 
     return urlString;
 }

@@ -105,22 +105,26 @@
     NSInteger startMonth = startComponents.month;
     NSInteger startYear = startComponents.year;
 
+    NSDateFormatter *monthFormatter = [[NSDateFormatter alloc] init];
+    NSString *startMonthName = [[monthFormatter monthSymbols] objectAtIndex:(startMonth-1)];
+
     if (!self.endDate) {
-        return [NSString stringWithFormat:@"%ld. %.2ld. %ld", (long)startDay, (long)startMonth, (long)startYear];
+        return [NSString stringWithFormat:@"%ld. %@. %ld", (long)startDay, startMonthName, (long)startYear];
     }
 
     NSDateComponents *endComponents = [gregorianCalendar components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self.endDate];
     NSInteger endDay = endComponents.day;
     NSInteger endMonth = endComponents.month;
-//    NSInteger endYear = endComponents.year;
+
+    NSString *endMonthName = [[monthFormatter monthSymbols] objectAtIndex:(endMonth-1)];
 
     NSString *formattedInfoDateString = nil;
     if (startDay && endDay)
     {
         if (startMonth != endMonth) {
-            formattedInfoDateString = [NSString stringWithFormat:@"%ld.-%ld. %.2ld-%.2ld. %ld", (long)startDay, (long)endDay, (long)startMonth, (long)endMonth, (long)startYear];
+            formattedInfoDateString = [NSString stringWithFormat:@"%ld. %@. - %ld. %@. %ld", (long)startDay, startMonthName, (long)endDay, endMonthName, (long)startYear];
         } else {
-            formattedInfoDateString = [NSString stringWithFormat:@"%ld.-%ld. %.2ld. %ld", (long)startDay, (long)endDay, (long)startMonth, (long)startYear];
+            formattedInfoDateString = [NSString stringWithFormat:@"%ld-%ld. %@. %ld", (long)startDay, (long)endDay, startMonthName, (long)startYear];
         }
         return formattedInfoDateString;
     }

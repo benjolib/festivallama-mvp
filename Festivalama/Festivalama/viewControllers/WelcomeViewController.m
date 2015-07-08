@@ -12,7 +12,6 @@
 #import "CategoryDownloadClient.h"
 #import "OnboardingContainerViewController.h"
 #import "LocationManager.h"
-
 #import "StoryboardManager.h"
 
 @interface WelcomeViewController () <PopupViewDelegate>
@@ -23,6 +22,7 @@
 @property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, strong) CategoryDownloadClient *categoryDownloadClient;
 @property (nonatomic, strong) NSArray *genresArray;
+@property (nonatomic) BOOL shouldContinue;
 @end
 
 @implementation WelcomeViewController
@@ -37,7 +37,7 @@
                                 cancelButtonTitle:nil
                                         viewTitle:@"Vergiss den Alltag"
                                              text:@"Und tauche ein in den Festival Sommer Deines Lebens. Mit 5 Fragen erstellen wir Dir Deinen individuellen Festival-Kalender."
-                                             icon:[UIImage imageNamed:@"iconTent"]];
+                                             icon:[UIImage imageNamed:@"iconTent"] showFestivalamaLogo:YES];
     [self.activePopup showPopupViewAnimationOnView:self.view withBlurredBackground:NO];
 }
 
@@ -48,7 +48,7 @@
                                 cancelButtonTitle:nil
                                         viewTitle:@"Location"
                                              text:@"Du möchtest wissen, welche Festivals in Deiner Nähe stattfinden?"
-                                             icon:[UIImage imageNamed:@"iconLocation"]];
+                                             icon:[UIImage imageNamed:@"iconLocation"] showFestivalamaLogo:YES];
     [self.activePopup showPopupViewAnimationOnView:self.view withBlurredBackground:NO];
 }
 
@@ -60,6 +60,9 @@
     [self.categoryDownloadClient downloadAllCategoriesWithCompletionBlock:^(NSArray *sortedCategories, NSString *errorMessage, BOOL completed) {
         if (completed) {
             weakSelf.genresArray = [sortedCategories copy];
+            if (weakSelf.shouldContinue) {
+                [weakSelf performSegueWithIdentifier:@"presentOnboarding" sender:nil];
+            }
         } else {
             // TODO: error handling
         }
@@ -80,11 +83,16 @@
         [self.activePopup dismissViewWithAnimation:YES];
         // show location popup, if agreed go on
 
+        __weak typeof(self) weakSelf = self;
         self.locationManager = [LocationManager new];
         [self.locationManager startLocationDiscoveryWithCompletionBlock:^(CLLocation *userLocation, NSString *errorMessage) {
-            if (userLocation) {
-                [self.locationManager stopLocationDiscovery];
-                [self performSegueWithIdentifier:@"presentOnboarding" sender:nil];
+            if (userLocation)
+            {
+                [weakSelf.locationManager stopLocationDiscovery];
+                weakSelf.shouldContinue = YES;
+                if (weakSelf.genresArray.count > 0) {
+                    [weakSelf performSegueWithIdentifier:@"presentOnboarding" sender:nil];
+                }
             }
         }];
     }
@@ -117,17 +125,8 @@
 - (void)replayMovie:(NSNotification *)notification
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    self.festivalamaImageView.alpha = 0.0;
-    self.festivalamaImageView.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    [self.view bringSubviewToFront:self.festivalamaImageView];
 
-    [UIView animateWithDuration:0.3 animations:^{
-        self.festivalamaImageView.transform = CGAffineTransformIdentity;
-        self.festivalamaImageView.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        [self displayFirstPopup];
-    }];
+    [self displayFirstPopup];
 }
 
 - (void)addVideoBackgroundLayer
@@ -145,9 +144,7 @@
 {
     [super viewDidLoad];
 
-    self.festivalamaImageView.alpha = 0.0;
     [self addVideoBackgroundLayer];
-
     [self downloadGenres];
 }
 

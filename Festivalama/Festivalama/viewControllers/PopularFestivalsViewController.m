@@ -134,7 +134,10 @@
 {
     if ([[FilterModel sharedModel] isFiltering])
     {
-        self.filterModel = [FilterModel sharedModel];
+        if (!self.filterModel) {
+            self.filterModel = [[FilterModel alloc] init];
+        }
+        [self.filterModel copySettingsFromFilterModel:[FilterModel sharedModel]];
         [[FilterModel sharedModel] clearFilters];
 
         [self downloadAllFestivals];

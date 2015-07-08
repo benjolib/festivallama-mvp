@@ -28,6 +28,7 @@
 @property (nonatomic, strong) PopupViewButton *confirmButton;
 @property (nonatomic, strong) PopupViewButton *cancelButton;
 @property (nonatomic, weak) IBOutlet UIImageView *iconImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *logoImageView;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *textLabel;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *textLabelHeightConstraint;
@@ -37,7 +38,12 @@
 
 - (instancetype)initWithDelegate:(id <PopupViewDelegate>)delegate;
 
-- (void)setupWithConfirmButtonTitle:(NSString*)confirmTitle cancelButtonTitle:(NSString*)cancelTitle viewTitle:(NSString*)viewTitle text:(NSString*)text icon:(UIImage*)icon;
+- (void)setupWithConfirmButtonTitle:(NSString*)confirmTitle
+                  cancelButtonTitle:(NSString*)cancelTitle
+                          viewTitle:(NSString*)viewTitle
+                               text:(NSString*)text
+                               icon:(UIImage*)icon
+                showFestivalamaLogo:(BOOL)showLogo;
 
 - (void)showPopupViewAnimationOnView:(UIView*)parentView withBlurredBackground:(BOOL)blurBackground;
 - (void)dismissViewWithAnimation:(BOOL)animated;

@@ -153,15 +153,19 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"openFestivalDetailView" sender:cell];
+    if (indexPath.row != self.festivalsArray.count)
+    {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [self performSegueWithIdentifier:@"openFestivalDetailView" sender:cell];
 
-    [[TrackingManager sharedManager] trackSelectsFestival];
+        [[TrackingManager sharedManager] trackSelectsFestival];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([sender isKindOfClass:[UITableViewCell class]] && [segue.identifier isEqualToString:@"openFestivalDetailView"]) {
+    if ([sender isKindOfClass:[UITableViewCell class]] && [segue.identifier isEqualToString:@"openFestivalDetailView"])
+    {
         UITableViewCell *cell = (UITableViewCell*)sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 
@@ -265,7 +269,7 @@
     if (self.festivalsArray.count == 0) {
         if (self.isSearching) {
             [self.tableView showEmptySearchView];
-        } else if ([[FilterModel sharedModel] isFiltering]) {
+        } else if (self.filterModel.isFiltering) {
             [self.tableView showEmptyFilterView];
         } else {
             [self.tableView showEmptyFilterView];
@@ -279,6 +283,9 @@
 {
     if ([[FilterModel sharedModel] isFiltering])
     {
+        if (!self.filterModel) {
+            self.filterModel = [[FilterModel alloc] init];
+        }
         [self.filterModel copySettingsFromFilterModel:[FilterModel sharedModel]];
         [[FilterModel sharedModel] clearFilters];
 

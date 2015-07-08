@@ -133,7 +133,7 @@
                                 cancelButtonTitle:nil
                                         viewTitle:@"R.S.V.P"
                                              text:@"Teile uns mit wie viele Tickets Du benötigtst und wir schicken Dir das Angebot mit dem besten Preis innerhalb weniger Stunden per E-Mail."
-                                             icon:[UIImage imageNamed:@"iconShop"]];
+                                             icon:[UIImage imageNamed:@"iconShop"] showFestivalamaLogo:NO];
     [self.activePopup showPopupViewAnimationOnView:self.view withBlurredBackground:YES];
 }
 

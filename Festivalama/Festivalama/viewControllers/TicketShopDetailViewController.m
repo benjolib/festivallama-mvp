@@ -86,7 +86,7 @@
                                 cancelButtonTitle:nil
                                         viewTitle:@"Unser Versprechen"
                                              text:@"Wir haben deine Anfrage erhalten und Du erhältst innerhalb 24 Stunden ein Angebot mit dem besten Preis per E-Mail"
-                                             icon:[UIImage imageNamed:@"iconEmail"]];
+                                             icon:[UIImage imageNamed:@"iconEmail"] showFestivalamaLogo:NO];
     [self.confirmPopup showPopupViewAnimationOnView:self.view withBlurredBackground:YES];
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fxz-uC-afI">
-                    <rect key="frame" x="22" y="121" width="276" height="346"/>
+                    <rect key="frame" x="22" y="187" width="276" height="346"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="iv5-1t-Sr9">
                             <rect key="frame" x="10" y="60" width="256" height="30"/>
@@ -57,26 +57,35 @@ Festival-Kalender.</string>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aky-Yq-T4A" userLabel="buttonsContainerView">
-                    <rect key="frame" x="22" y="317" width="276" height="140"/>
+                    <rect key="frame" x="22" y="383" width="276" height="140"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="140" id="1Yx-eH-UyL"/>
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconLocation" translatesAutoresizingMaskIntoConstraints="NO" id="YGO-s8-RRa">
-                    <rect key="frame" x="119" y="81" width="82" height="82"/>
+                    <rect key="frame" x="119" y="147" width="82" height="82"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="82" id="2uJ-Fj-ILq"/>
                         <constraint firstAttribute="width" constant="82" id="djq-3a-otq"/>
+                    </constraints>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="headerIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Mdf-1G-XBN">
+                    <rect key="frame" x="109" y="20" width="102" height="117"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="102" id="JAx-ba-7qT"/>
+                        <constraint firstAttribute="height" constant="117" id="Ts4-lR-XOx"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="aky-Yq-T4A" firstAttribute="bottom" secondItem="Fxz-uC-afI" secondAttribute="bottom" constant="-10" id="Cvy-gl-w7a"/>
+                <constraint firstItem="Mdf-1G-XBN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="L4d-rE-ovB"/>
                 <constraint firstItem="Fxz-uC-afI" firstAttribute="top" secondItem="YGO-s8-RRa" secondAttribute="bottom" constant="-42" id="Nqe-Ue-fVo"/>
+                <constraint firstAttribute="centerX" secondItem="Mdf-1G-XBN" secondAttribute="centerX" id="bxp-Rz-jYO"/>
+                <constraint firstItem="YGO-s8-RRa" firstAttribute="top" secondItem="Mdf-1G-XBN" secondAttribute="bottom" constant="10" id="pra-go-UqS"/>
                 <constraint firstItem="YGO-s8-RRa" firstAttribute="centerX" secondItem="Fxz-uC-afI" secondAttribute="centerX" id="qmx-qA-Zkq"/>
-                <constraint firstAttribute="centerY" secondItem="Fxz-uC-afI" secondAttribute="centerY" constant="-10" id="tKq-lY-YmP"/>
                 <constraint firstItem="aky-Yq-T4A" firstAttribute="trailing" secondItem="Fxz-uC-afI" secondAttribute="trailing" id="teP-YC-a80"/>
                 <constraint firstItem="Fxz-uC-afI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="vl9-Wn-g52"/>
                 <constraint firstItem="aky-Yq-T4A" firstAttribute="leading" secondItem="Fxz-uC-afI" secondAttribute="leading" id="vyv-hI-9ku"/>
@@ -87,16 +96,18 @@ Festival-Kalender.</string>
                 <outlet property="buttonsContainerView" destination="aky-Yq-T4A" id="w5e-dT-qvy"/>
                 <outlet property="buttonsContainerViewHeightConstraint" destination="1Yx-eH-UyL" id="Wy2-N2-FWF"/>
                 <outlet property="iconImageView" destination="YGO-s8-RRa" id="oyq-mM-q3E"/>
+                <outlet property="logoImageView" destination="Mdf-1G-XBN" id="etG-np-BR6"/>
                 <outlet property="popupBackgroundView" destination="Fxz-uC-afI" id="e4l-45-ujK"/>
                 <outlet property="popupBackgroundViewHeightConstraint" destination="mz6-aq-Pbd" id="Zrn-TX-XlL"/>
                 <outlet property="textLabel" destination="dSc-8q-kcp" id="N1s-sd-oSq"/>
                 <outlet property="textLabelHeightConstraint" destination="3HB-UB-eUv" id="eGN-ks-IIk"/>
                 <outlet property="titleLabel" destination="iv5-1t-Sr9" id="WeJ-I1-i91"/>
             </connections>
-            <point key="canvasLocation" x="208" y="120"/>
+            <point key="canvasLocation" x="-158" y="77"/>
         </view>
     </objects>
     <resources>
+        <image name="headerIcon" width="102" height="117"/>
         <image name="iconLocation" width="86" height="86"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

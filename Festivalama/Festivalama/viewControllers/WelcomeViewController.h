@@ -10,6 +10,4 @@
 
 @interface WelcomeViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UIImageView *festivalamaImageView;
-
 @end
