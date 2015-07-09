@@ -17,6 +17,11 @@ static NSString * const kAppStartDateKey = @"appStartDateKey";
 
 @implementation GeneralSettings
 
++ (NSString*)appStoreID
+{
+    return @"1013815740";
+}
+
 + (void)setOnboardingViewed
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kOnboardingViewedKey];

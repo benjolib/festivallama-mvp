@@ -248,7 +248,7 @@
     [storeProductViewController setDelegate:self];
 
     // TODO: needs App id
-    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"0"} completionBlock:^(BOOL result, NSError *error) {
+    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : [GeneralSettings appStoreID]} completionBlock:^(BOOL result, NSError *error) {
         if (error) {
             NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
         } else {

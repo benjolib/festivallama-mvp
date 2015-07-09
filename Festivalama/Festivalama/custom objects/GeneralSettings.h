@@ -10,6 +10,8 @@
 
 @interface GeneralSettings : NSObject
 
++ (NSString*)appStoreID;
+
 + (void)setOnboardingViewed;
 + (BOOL)onboardingViewed;
 
