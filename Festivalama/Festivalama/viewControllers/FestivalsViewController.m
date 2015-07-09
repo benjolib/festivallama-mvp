@@ -24,7 +24,7 @@
 #import "FestivalLoadMoreTableViewCell.h"
 #import "TrackingManager.h"
 #import "GreenButton.h"
-
+#import "FilterViewController.h"
 #import "FilterModel.h"
 
 @interface FestivalsViewController ()
@@ -37,6 +37,33 @@
 @end
 
 @implementation FestivalsViewController
+
+- (IBAction)unwindFromFilterViewUsingSearch:(UIStoryboardSegue*)unwindSegue
+{
+    if ([[FilterModel sharedModel] isFiltering])
+    {
+        [self copySettingsFromFiltering];
+        self.startIndex = 0;
+        [self downloadAllFestivals];
+    }
+}
+
+- (IBAction)unwindFromFilterViewUsingCloseButton:(UIStoryboardSegue*)unwindSegue
+{
+    if ([[FilterModel sharedModel] isFiltering]) {
+
+    } else {
+        if ([self.filterModel isFiltering]) {
+            
+        }
+    }
+
+
+    [self copySettingsFromFiltering];
+
+    self.startIndex = 0;
+    [self downloadAllFestivals];
+}
 
 - (IBAction)filterButtonPressed:(id)sender
 {
@@ -53,6 +80,15 @@
 
     self.trashIcon.hidden = !self.filterModel.isFiltering;
     [self refreshView];
+}
+
+- (void)copySettingsFromFiltering
+{
+    if (!self.filterModel) {
+        self.filterModel = [[FilterModel alloc] init];
+    }
+    [self.filterModel copySettingsFromFilterModel:[FilterModel sharedModel]];
+    [[FilterModel sharedModel] clearFilters];
 }
 
 - (void)calenderButtonTapped:(UIButton*)button
@@ -279,20 +315,6 @@
     }
 }
 
-- (void)filterContent:(NSNotification*)notification
-{
-    if ([[FilterModel sharedModel] isFiltering])
-    {
-        if (!self.filterModel) {
-            self.filterModel = [[FilterModel alloc] init];
-        }
-        [self.filterModel copySettingsFromFilterModel:[FilterModel sharedModel]];
-        [[FilterModel sharedModel] clearFilters];
-
-        [self downloadAllFestivals];
-    }
-}
-
 #pragma mark - searching
 - (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText
 {
@@ -377,7 +399,6 @@
     [self refreshView];
 
     [GeneralSettings saveAppStartDate];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filterContent:) name:@"festivalFilterEnabled" object:nil];
 }
 
 - (void)prepareView

@@ -64,6 +64,7 @@
                                 </state>
                                 <connections>
                                     <action selector="applyButtonPressed:" destination="Jy7-EL-XNz" eventType="touchUpInside" id="cgL-fc-fzv"/>
+                                    <segue destination="2AM-ee-afp" kind="unwind" unwindAction="unwindFromFilterViewUsingSearch:" id="9jL-Zm-KGs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KV4-CN-p1V">
@@ -182,6 +183,7 @@
                         <barButtonItem key="leftBarButtonItem" image="cancelButton" id="hAq-AV-U1L">
                             <connections>
                                 <action selector="backButtonPressed:" destination="Jy7-EL-XNz" id="UTi-oe-MMD"/>
+                                <segue destination="2AM-ee-afp" kind="unwind" unwindAction="unwindFromFilterViewUsingCloseButton:" id="9qq-u3-ndb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -195,6 +197,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M8n-6e-wX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="2AM-ee-afp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="345" y="325"/>
         </scene>

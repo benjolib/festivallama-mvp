@@ -23,7 +23,6 @@
 - (IBAction)backButtonPressed:(id)sender
 {
     [[TrackingManager sharedManager] trackFilterBackbutton];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)applyButtonPressed:(id)sender
@@ -33,9 +32,6 @@
     } else {
         [[TrackingManager sharedManager] trackFilterSelectsFilterButtonWithoutFilters];
     }
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"festivalFilterEnabled" object:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)trashButtonPressed:(id)sender
