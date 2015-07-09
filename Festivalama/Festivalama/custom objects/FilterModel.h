@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 // Object to hold all the selected filtering options
 
@@ -19,7 +20,7 @@
 @property (nonatomic, strong) NSArray *selectedPostcodesArray;
 @property (nonatomic, strong) NSArray *selectedCountriesArray;
 @property (nonatomic, copy) NSString *selectedCountry;
-
+@property (nonatomic, strong) CLLocation *userLocation;
 @property (nonatomic, strong) FilterPostcode *selectedPostCode;
 
 + (instancetype)sharedModel;

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "OnboardingModel.h"
 
 @class ContinueButton, OnboardingPageControlView;
@@ -19,6 +20,7 @@
 @property (nonatomic, weak) IBOutlet OnboardingPageControlView *pageControl;
 @property (nonatomic, strong) NSArray *genresArray;
 @property (nonatomic, strong) OnboardingModel *onboardingModel;
+@property (nonatomic, strong) CLLocation *userLocation;
 
 - (IBAction)moveToNextViewController:(id)sender;
 

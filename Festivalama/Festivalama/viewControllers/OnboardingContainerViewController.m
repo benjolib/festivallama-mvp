@@ -169,6 +169,8 @@
 - (void)setupViewControllers
 {
     self.onboardingModel = [[OnboardingModel alloc] init];
+    self.onboardingModel.userLocation = self.userLocation;
+    
     self.viewControllerIdentitiesArray = @[@"MusicGenreSelectionViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController", @"QuestionsViewController"];
     
     MusicGenreSelectionViewController *musicGenreSelectionViewController = (MusicGenreSelectionViewController*)[self initialiseViewControllerWithIdentifier:[self.viewControllerIdentitiesArray firstObject]];

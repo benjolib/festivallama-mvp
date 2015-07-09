@@ -78,7 +78,9 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     if (error.code == kCLErrorLocationUnknown) {
-        return;
+        if (self.completionBlock) {
+            self.completionBlock(nil, @"Unknown error occured while getting the location.");
+        }
     } else if (error.code == kCLErrorDenied) {
         if (self.completionBlock) {
             self.completionBlock(nil, @"Please authorize Location Services in the Settings app.");

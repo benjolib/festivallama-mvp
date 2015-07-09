@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @class Genre, OnboardingOption;
 
 @interface OnboardingModel : NSObject
 
+@property (nonatomic, strong) CLLocation *userLocation;
 @property (nonatomic, strong) NSArray *selectedGenres;
 @property (nonatomic) BOOL filterByGermany;
 @property (nonatomic, strong) NSMutableDictionary *selectedOptionAtScreensDictionary;

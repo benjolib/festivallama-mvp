@@ -49,9 +49,13 @@
 #pragma mark - private methods
 - (NSMutableString*)appendSearchText:(NSString*)searchText andFilterModel:(FilterModel*)filterModel fromURLString:(NSMutableString*)urlString
 {
+    if (!self.userLocation) {
+        self.userLocation = filterModel.userLocation;
+    }
+
     // add location data
     if (self.userLocation) {
-        [urlString appendString:[NSString stringWithFormat:@"&lat=%f&lng=%f", self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude]];
+        [urlString appendString:[NSString stringWithFormat:@"&lat=%.2f&lng=%.2f", self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude]];
     }
 
     if (filterModel && searchText.length == 0) {

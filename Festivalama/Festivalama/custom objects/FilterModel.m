@@ -40,6 +40,8 @@
 - (void)copySettingsFromOnboardingModel:(OnboardingModel*)onboarding
 {
     self.selectedGenresArray = [[onboarding selectedGenres] copy];
+    self.userLocation = onboarding.userLocation;
+
     if (onboarding.filterByGermany) {
         self.selectedCountry = @"deutschland";
     }
