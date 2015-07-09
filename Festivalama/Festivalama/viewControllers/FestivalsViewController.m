@@ -50,19 +50,8 @@
 
 - (IBAction)unwindFromFilterViewUsingCloseButton:(UIStoryboardSegue*)unwindSegue
 {
-    if ([[FilterModel sharedModel] isFiltering]) {
-
-    } else {
-        if ([self.filterModel isFiltering]) {
-            
-        }
-    }
-
-
-    [self copySettingsFromFiltering];
-
-    self.startIndex = 0;
-    [self downloadAllFestivals];
+    // shouldn't do anything, when user taps the close button,
+    // since tapping the close button means, he wants to cancel all the settings he did in the filter view
 }
 
 - (IBAction)filterButtonPressed:(id)sender
@@ -282,17 +271,16 @@
         // cause then we can assume that there are more object to come
         self.showLoadingIndicatorCell = festivals.count == self.limit;
 
+        // check to show the counter view
         [self.tableCounterView displayTheNumberOfItems:(self.festivalsArray.count == 0 ? 0 : self.festivalsArray.count)];
-        if (self.festivalsArray.count == 0 && self.isSearching) {
-            [self.tableCounterView setCounterViewVisible:NO animated:YES];
+        if (self.festivalsArray.count != 0 && (self.isSearching || self.filterModel.isFiltering)) {
+            [self.tableCounterView setCounterViewVisible:YES animated:YES];
         } else {
-            if (self.festivalsArray.count > 6) {
-                [self.tableCounterView setCounterViewVisible:YES animated:YES];
-            } else {
-                [self.tableCounterView setCounterViewVisible:NO animated:YES];
-            }
+            [self.tableCounterView setCounterViewVisible:NO animated:YES];
         }
-    } else {
+    }
+    else
+    {
         [self.tableCounterView setCounterViewVisible:NO animated:YES];
     }
 
@@ -308,7 +296,7 @@
         } else if (self.filterModel.isFiltering) {
             [self.tableView showEmptyFilterView];
         } else {
-            [self.tableView showEmptyFilterView];
+            [self.tableView showEmptySearchView];
         }
     } else {
         [self.tableView hideEmptyView];
@@ -366,11 +354,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.refreshController parentScrollViewDidScroll:scrollView];
-    if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= 30.0) {
-        [self.tableCounterView setCounterViewVisible:YES animated:YES];
-    } else {
-        [self.tableCounterView setCounterViewVisible:NO animated:YES];
-    }
+    [self checkToShowCounterViewForScrollView:scrollView];
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
@@ -381,7 +365,12 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     [self.refreshController parentScrollViewDidEndDragging:scrollView];
-    if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= 30.0) {
+    [self checkToShowCounterViewForScrollView:scrollView];
+}
+
+- (void)checkToShowCounterViewForScrollView:(UIScrollView*)scrollView
+{
+    if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= 30.0 && (self.isSearching || self.filterModel.isFiltering)) {
         [self.tableCounterView setCounterViewVisible:YES animated:YES];
     } else {
         [self.tableCounterView setCounterViewVisible:NO animated:YES];

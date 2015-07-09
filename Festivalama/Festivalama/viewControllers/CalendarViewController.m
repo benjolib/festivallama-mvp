@@ -30,7 +30,6 @@
         return _fetchController;
     }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"CDFestival"];
-//    [fetchRequest setPredicate:predicate];
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES]]];
 
     [fetchRequest setFetchLimit:20];
@@ -61,7 +60,17 @@
     NSInteger numberOfItems = self.fetchController.fetchedObjects.count;
     [self.tableCounterView displayTheNumberOfItems:(numberOfItems == 0 ? 0 : numberOfItems)];
 
-    [self.tableCounterView setCounterViewVisible:(numberOfItems != 0) animated:YES];
+    if (numberOfItems != 0 && self.isSearching) {
+        [self.tableCounterView setCounterViewVisible:YES animated:YES];
+    } else {
+        [self.tableCounterView setCounterViewVisible:NO animated:YES];
+    }
+
+    if (self.fetchController.fetchedObjects.count == 0 && !self.isSearching) {
+        [self.tableView showEmptyCalendarView];
+    } else {
+        [self.tableView hideEmptyView];
+    }
 }
 
 #pragma mark - fetchController delegate methods
@@ -213,9 +222,7 @@
 }
 
 - (void)downloadNextFestivals
-{
-    
-}
+{}
 
 #pragma mark - searching
 - (void)searchNavigationViewSearchButtonPressed:(NSString *)searchText
@@ -241,8 +248,10 @@
     if (searchText.length > 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchText];
         [self.fetchController.fetchRequest setPredicate:predicate];
+        self.isSearching = YES;
     } else {
         [self.fetchController.fetchRequest setPredicate:nil];
+        self.isSearching = NO;
     }
 
     [self fetchAllFestivals];
@@ -253,7 +262,6 @@
         [self.tableView hideEmptyView];
     }
 }
-
 
 #pragma mark - view methods
 - (void)viewDidLoad

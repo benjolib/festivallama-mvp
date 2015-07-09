@@ -23,6 +23,7 @@
 - (IBAction)backButtonPressed:(id)sender
 {
     [[TrackingManager sharedManager] trackFilterBackbutton];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)applyButtonPressed:(id)sender
@@ -32,6 +33,7 @@
     } else {
         [[TrackingManager sharedManager] trackFilterSelectsFilterButtonWithoutFilters];
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)trashButtonPressed:(id)sender
