@@ -58,6 +58,15 @@
     }
 }
 
+- (void)showEmptyCalendarView
+{
+    self.emptyView.hidden = NO;
+    if (self.emptyView) {
+        [self.emptyView showEmptyCalendarView];
+        [self bringSubviewToFront:self.emptyView];
+    }
+}
+
 - (void)hideEmptyView
 {
     self.userInteractionEnabled = YES;

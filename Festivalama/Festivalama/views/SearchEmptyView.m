@@ -9,7 +9,7 @@
 #import "SearchEmptyView.h"
 
 @interface SearchEmptyView ()
-@property (nonatomic, strong) UILabel *textLabel;
+@property (nonatomic, strong) IBOutlet UILabel *textLabel;
 @end
 
 @implementation SearchEmptyView
@@ -31,7 +31,7 @@
 
 + (CGFloat)viewHeight
 {
-    return 252.0;
+    return 270.0;
 }
 
 - (void)awakeFromNib
@@ -48,6 +48,11 @@
 - (void)showEmptySearch
 {
     self.textLabel.text = @"Wir haben leider keine Ergebnisse für Deine Suche gefunden";
+}
+
+- (void)showEmptyCalendarView
+{
+    self.textLabel.text = @"Du hast bisher noch keine Festivals hinzugefügt";
 }
 
 - (void)setText:(NSString*)text

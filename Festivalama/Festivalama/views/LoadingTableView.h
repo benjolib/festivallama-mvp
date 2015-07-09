@@ -15,6 +15,7 @@
 
 - (void)showEmptySearchView;
 - (void)showEmptyFilterView;
+- (void)showEmptyCalendarView;
 - (void)hideEmptyView;
 
 @end
