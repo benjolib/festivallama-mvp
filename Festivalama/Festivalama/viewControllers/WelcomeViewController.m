@@ -19,6 +19,7 @@
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (nonatomic) BOOL firstPopupWasDisplayed;
 
+@property (nonatomic, strong) CLLocation *userLocation;
 @property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, strong) CategoryDownloadClient *categoryDownloadClient;
 @property (nonatomic, strong) NSArray *genresArray;
@@ -86,13 +87,14 @@
         __weak typeof(self) weakSelf = self;
         self.locationManager = [LocationManager new];
         [self.locationManager startLocationDiscoveryWithCompletionBlock:^(CLLocation *userLocation, NSString *errorMessage) {
-            if (userLocation)
-            {
-                [weakSelf.locationManager stopLocationDiscovery];
-                weakSelf.shouldContinue = YES;
-                if (weakSelf.genresArray.count > 0) {
-                    [weakSelf performSegueWithIdentifier:@"presentOnboarding" sender:nil];
-                }
+            [weakSelf.locationManager stopLocationDiscovery];
+            if (userLocation) {
+                weakSelf.userLocation = userLocation;
+            }
+
+            weakSelf.shouldContinue = YES;
+            if (weakSelf.genresArray.count > 0) {
+                [weakSelf performSegueWithIdentifier:@"presentOnboarding" sender:nil];
             }
         }];
     }
@@ -103,6 +105,7 @@
     if ([segue.identifier isEqualToString:@"presentOnboarding"]) {
         OnboardingContainerViewController *onboardingViewController = (OnboardingContainerViewController*)segue.destinationViewController;
         onboardingViewController.genresArray = [self.genresArray copy];
+        onboardingViewController.userLocation = self.userLocation;
     }
 }
 
