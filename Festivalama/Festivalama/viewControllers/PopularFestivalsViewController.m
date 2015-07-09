@@ -120,6 +120,10 @@
         self.festivalsArray = [NSMutableArray array];
     }
 
+    if (!self.filterModel) {
+        self.filterModel = [[FilterModel alloc] init];
+    }
+
     __weak typeof(self) weakSelf = self;
     [self.festivalDownloadClient downloadPopularFestivalsFromIndex:self.startIndex
                                                              limit:self.limit
@@ -128,20 +132,6 @@
                                                 andCompletionBlock:^(NSArray *festivalsArray, NSString *errorMessage, BOOL completed) {
                                                     [weakSelf handleDownloadedFestivals:festivalsArray error:errorMessage];
     }];
-}
-
-- (void)filterContent:(NSNotification*)notification
-{
-    if ([[FilterModel sharedModel] isFiltering])
-    {
-        if (!self.filterModel) {
-            self.filterModel = [[FilterModel alloc] init];
-        }
-        [self.filterModel copySettingsFromFilterModel:[FilterModel sharedModel]];
-        [[FilterModel sharedModel] clearFilters];
-
-        [self downloadAllFestivals];
-    }
 }
 
 #pragma mark - view methods
@@ -160,7 +150,6 @@
     [self.tableCounterView setCounterViewVisible:NO animated:NO];
     [self.tableView showLoadingIndicator];
     [self downloadAllFestivals];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filterContent:) name:@"festivalFilterEnabled" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
