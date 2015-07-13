@@ -40,12 +40,9 @@
 
 - (IBAction)unwindFromFilterViewUsingSearch:(UIStoryboardSegue*)unwindSegue
 {
-    if ([[FilterModel sharedModel] isFiltering])
-    {
-        [self copySettingsFromFiltering];
-        self.startIndex = 0;
-        [self downloadAllFestivals];
-    }
+    [self copySettingsFromFiltering];
+    self.startIndex = 0;
+    [self downloadAllFestivals];
 }
 
 - (IBAction)unwindFromFilterViewUsingCloseButton:(UIStoryboardSegue*)unwindSegue
