@@ -37,15 +37,13 @@
 {
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
 
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
+    [super startDataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completionBlock) {
                 completionBlock(completed, errorMessage);
             }
         });
     }];
-
-    [self startSessionTask:task];
 }
 
 @end

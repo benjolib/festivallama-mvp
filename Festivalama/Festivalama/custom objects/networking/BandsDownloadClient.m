@@ -21,7 +21,7 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
 
     __weak typeof(self) weakSelf = self;
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
+    [super startDataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
         if (completed)
         {
             weakSelf.bandParser = [BandParser new];
@@ -38,8 +38,6 @@
             });
         }
     }];
-
-    [self startSessionTask:task];
 }
 
 @end

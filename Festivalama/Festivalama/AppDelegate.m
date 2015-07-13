@@ -12,7 +12,6 @@
 #import <Crashlytics/Crashlytics.h>
 #import <StoreKit/StoreKit.h>
 #import <Parse/Parse.h>
-#import "Reachability.h"
 #import "PopupView.h"
 #import "CoreDataHandler.h"
 #import "TrackingManager.h"
@@ -20,7 +19,6 @@
 #define IS_iOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 
 @interface AppDelegate () <PopupViewDelegate, SKStoreProductViewControllerDelegate>
-@property (nonatomic, strong) Reachability *internetReachable;
 @property (nonatomic, strong) PopupView *noInternetPopup;
 @property (nonatomic, strong) PopupView *onTrackPopup;
 @property (nonatomic, strong) PopupView *reviewInAppStorePopup;
@@ -36,8 +34,6 @@
     [Fabric with:@[CrashlyticsKit]];
     [Parse setApplicationId:@"Yo5Zsijafn4kNwWkSnTZZ1RdZmGAN3bk559iIFdR"
                   clientKey:@"b6sVnVj9rYou6BaNhKDFOaM4QRMROjNLUXatPHDx"];
-    
-    [self addNetworkObserver];
 
     UIViewController *vc = nil;
     if ([GeneralSettings onboardingViewed]) {
@@ -171,49 +167,6 @@
     [GeneralSettings setRateAppWasShown];
 }
 
-#pragma mark - internet connection checking methods
-- (void)addNetworkObserver
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-    self.internetReachable = [Reachability reachabilityForInternetConnection];
-    [self.internetReachable startNotifier];
-}
-
-- (void)networkStatusChanged:(NSNotification*)notification
-{
-    NetworkStatus status = [self.internetReachable currentReachabilityStatus];
-    switch (status) {
-        case NotReachable:
-            [self showNoInternetPopup];
-            break;
-        case ReachableViaWiFi:
-        case ReachableViaWWAN:
-        default:
-            [self hideNoInternetPopup];
-            break;
-    }
-}
-
-- (void)showNoInternetPopup
-{
-    if (self.noInternetPopup.superview) {
-        return;
-    }
-    self.noInternetPopup = [[PopupView alloc] initWithDelegate:self];
-    [self.noInternetPopup setupWithConfirmButtonTitle:@"Erneut versuchen"
-                                 cancelButtonTitle:nil
-                                         viewTitle:@"Sorry"
-                                              text:@"Es scheint als hättest Du derzeit keine Verbindung zum Internet."
-                                              icon:[UIImage imageNamed:@"iconWifi"] showFestivalamaLogo:NO];
-    [self.noInternetPopup showPopupViewAnimationOnView:self.window withBlurredBackground:YES];
-}
-
-- (void)hideNoInternetPopup
-{
-    [self.noInternetPopup dismissViewWithAnimation:YES];
-    self.noInternetPopup = nil;
-}
-
 - (void)popupViewConfirmButtonPressed:(PopupView *)popupView
 {
     if (popupView == self.onTrackPopup) {
@@ -224,10 +177,6 @@
     }
     [popupView dismissViewWithAnimation:YES];
     popupView = nil;
-
-    if ([self.internetReachable currentReachabilityStatus] == NotReachable) {
-        [self showNoInternetPopup];
-    }
 }
 
 - (void)popupViewCancelButtonPressed:(PopupView *)popupView
@@ -247,7 +196,6 @@
     SKStoreProductViewController *storeProductViewController = [[SKStoreProductViewController alloc] init];
     [storeProductViewController setDelegate:self];
 
-    // TODO: needs App id
     [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : [GeneralSettings appStoreID]} completionBlock:^(BOOL result, NSError *error) {
         if (error) {
             NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);

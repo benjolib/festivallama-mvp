@@ -21,12 +21,12 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[self defaultSessionConfiguration]];
     
     __weak typeof(self) weakSelf = self;
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
+    [super startDataTaskWithRequest:request forSession:session withCompletionBlock:^(NSData *data, NSString *errorMessage, BOOL completed) {
         if (completed)
         {
             weakSelf.genreParser = [GenreParser new];
             NSArray *genresArray = [weakSelf.genreParser parseJSONData:data];
-            
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(genresArray, nil, YES);
             });
@@ -38,8 +38,6 @@
             });
         }
     }];
-    
-    [self startSessionTask:task];
 }
 
 - (void)dealloc

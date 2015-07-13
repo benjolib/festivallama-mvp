@@ -9,6 +9,17 @@
 #import "AbstractClient.h"
 #import "Reachability.h"
 #import "AppDelegate.h"
+#import "PopupView.h"
+
+#define kRetryLimit 3
+
+@interface AbstractClient () <PopupViewDelegate>
+@property (nonatomic, strong) PopupView *noInternetPopup;
+@property (nonatomic, copy) void (^completionBlock)(NSData *data, NSString *errorMessage, BOOL completed);
+@property (nonatomic, copy) NSURLRequest *retryRequest;
+@property (nonatomic, copy) NSURLSession *retrySession;
+@property (nonatomic) NSInteger retryCount;
+@end
 
 @implementation AbstractClient
 
@@ -24,40 +35,61 @@
     return sessionConfiguration;
 }
 
-- (NSURLSessionDataTask*)dataTaskWithRequest:(NSURLRequest*)request forSession:(NSURLSession*)session withCompletionBlock:(void (^)(NSData *data, NSString *errorMessage, BOOL completed))completionBlock
+- (void)startDataTaskWithRequest:(NSURLRequest*)request forSession:(NSURLSession*)session withCompletionBlock:(void (^)(NSData *data, NSString *errorMessage, BOOL completed))completionBlock
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
+    __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
 
         NSInteger statusCode = httpResponse.statusCode;
-        completionBlock(data, error.localizedDescription, (statusCode == 200));
+        if (statusCode != 200 && weakSelf.retryCount < kRetryLimit)
+        {
+            weakSelf.completionBlock = completionBlock;
+            weakSelf.retryRequest = request;
+            weakSelf.retrySession = session;
+            weakSelf.retryCount++;
+
+            if (![weakSelf isInternetConnectionAvailable] && statusCode == 0) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf showNoInternetConnectionPopup];
+                });
+            } else {
+                [weakSelf startDataTaskWithRequest:request forSession:session withCompletionBlock:weakSelf.completionBlock];
+            }
+        }
+        else
+        {
+            completionBlock(data, error.localizedDescription, (statusCode == 200));
+        }
     }];
 
-    return task;
+    [[NSOperationQueue new] addOperationWithBlock:^{
+        [task resume];
+    }];
 }
 
-- (BOOL)startSessionTask:(NSURLSessionDataTask*)task
+#pragma mark - handle internet connection
+- (void)showNoInternetConnectionPopup
 {
-    if ([self isInternetConnectionAvailable])
-    {
-        [[NSOperationQueue new] addOperationWithBlock:^{
-            [task resume];
-        }];
-        return YES;
-    }
-    else
-    {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        [appDelegate showNoInternetPopup];
-        [[NSOperationQueue new] addOperationWithBlock:^{
-            [task resume];
-        }];
-        return NO;
-    }
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    UIWindow *window = appDelegate.window;
+
+    self.noInternetPopup = [[PopupView alloc] initWithDelegate:self];
+    [self.noInternetPopup setupWithConfirmButtonTitle:@"Erneut versuchen"
+                                    cancelButtonTitle:nil
+                                            viewTitle:@"Sorry"
+                                                 text:@"Es scheint als hättest Du derzeit keine Verbindung zum Internet."
+                                                 icon:[UIImage imageNamed:@"iconWifi"] showFestivalamaLogo:NO];
+    [self.noInternetPopup showPopupViewAnimationOnView:window withBlurredBackground:YES];
+}
+
+- (void)popupViewConfirmButtonPressed:(PopupView *)popupView
+{
+    // restart last request
+    [self startDataTaskWithRequest:self.retryRequest forSession:self.retrySession withCompletionBlock:self.completionBlock];
 }
 
 - (BOOL)isInternetConnectionAvailable
