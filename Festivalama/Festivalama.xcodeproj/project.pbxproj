@@ -70,6 +70,7 @@
 		567FD4271B320C6F00D9A1D1 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD41D1B320C6F00D9A1D1 /* Lato-LightItalic.ttf */; };
 		567FD4281B320C6F00D9A1D1 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567FD41E1B320C6F00D9A1D1 /* Lato-Regular.ttf */; };
 		567FD42B1B320EDD00D9A1D1 /* UIFont+LatoFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 567FD42A1B320EDD00D9A1D1 /* UIFont+LatoFonts.m */; };
+		56870F441B555F9200903F19 /* aboutUs.html in Resources */ = {isa = PBXBuildFile; fileRef = 56870F431B555F9200903F19 /* aboutUs.html */; };
 		569B47821B28F34F0076C3B2 /* CDFestival.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47811B28F34F0076C3B2 /* CDFestival.m */; };
 		569B47851B28F3500076C3B2 /* CDBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47841B28F3500076C3B2 /* CDBand.m */; };
 		569B47881B28F3500076C3B2 /* CDGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 569B47871B28F3500076C3B2 /* CDGenre.m */; };
@@ -285,6 +286,7 @@
 		567FD41E1B320C6F00D9A1D1 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		567FD4291B320EDD00D9A1D1 /* UIFont+LatoFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+LatoFonts.h"; path = "custom objects/UIFont+LatoFonts.h"; sourceTree = "<group>"; };
 		567FD42A1B320EDD00D9A1D1 /* UIFont+LatoFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+LatoFonts.m"; path = "custom objects/UIFont+LatoFonts.m"; sourceTree = "<group>"; };
+		56870F431B555F9200903F19 /* aboutUs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = aboutUs.html; sourceTree = "<group>"; };
 		569B47801B28F34F0076C3B2 /* CDFestival.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDFestival.h; path = "custom objects/coredata/CDFestival.h"; sourceTree = "<group>"; };
 		569B47811B28F34F0076C3B2 /* CDFestival.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDFestival.m; path = "custom objects/coredata/CDFestival.m"; sourceTree = "<group>"; };
 		569B47831B28F3500076C3B2 /* CDBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDBand.h; path = "custom objects/coredata/CDBand.h"; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				567FD4141B320C5F00D9A1D1 /* fonts */,
 				567FD42C1B32364F00D9A1D1 /* Third party */,
 				560D0AA21B17951100B03090 /* Images.xcassets */,
+				56870F431B555F9200903F19 /* aboutUs.html */,
 				56D2A7B81B20D95D0085CEDA /* festivalama_video.mov */,
 				560D0A931B17951100B03090 /* Info.plist */,
 				560D0A941B17951100B03090 /* main.m */,
@@ -1152,6 +1155,7 @@
 				56CF1AFF1B1B01D300A899DB /* Main.storyboard in Resources */,
 				567FD4271B320C6F00D9A1D1 /* Lato-LightItalic.ttf in Resources */,
 				567FD4221B320C6F00D9A1D1 /* Lato-BoldItalic.ttf in Resources */,
+				56870F441B555F9200903F19 /* aboutUs.html in Resources */,
 				56D587E41B1E17D8007B3F5B /* FestivalTableViewCell.xib in Resources */,
 				56CF4ECD1B2DB9B200A25CE7 /* SearchNavigationView.xib in Resources */,
 				561611F81B1BB69400147093 /* Filter.storyboard in Resources */,
